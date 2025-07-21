@@ -117,12 +117,10 @@ const PartnersContainer = styled.div`
   
   img {
     height: 40px;
-    filter: grayscale(100%) brightness(1.5);
-    opacity: 0.6;
-    transition: filter 0.3s ease, opacity 0.3s ease;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
     
     &:hover {
-      filter: grayscale(0%) brightness(1);
       opacity: 1;
     }
   }
@@ -259,10 +257,19 @@ function CityPoint({ position, name }) {
 
 function Globe() {
   const texture = useTexture('/earth-texture.jpg');
+  const cloudsTexture = useTexture('/clouds.jpg');
   const seoul = majorCities.find(c => c.name === 'Seoul').position;
   const shanghai = majorCities.find(c => c.name === 'Shanghai').position;
   const hongkong = majorCities.find(c => c.name === 'Hong Kong').position;
   const berlin = majorCities.find(c => c.name === 'Berlin').position;
+
+  const cloudsRef = useRef();
+
+  useFrame((_, delta) => {
+    if (cloudsRef.current) {
+      cloudsRef.current.rotation.y += delta * 0.05;
+    }
+  });
 
   return (
     <group rotation={[0, 0, 0]}>
@@ -271,6 +278,14 @@ function Globe() {
           map={texture}
           metalness={0.5}
           roughness={0.7}
+        />
+      </Sphere>
+      <Sphere ref={cloudsRef} args={[2.52, 64, 64]}>
+        <meshStandardMaterial
+          map={cloudsTexture}
+          transparent
+          opacity={0.4}
+          depthWrite={false}
         />
       </Sphere>
       {majorCities.map(city => <CityPoint key={city.name} {...city} />)}

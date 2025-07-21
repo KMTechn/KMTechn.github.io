@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from './components/Header';
 import Footer from './components/Footer'; // Import Footer
+import { ThemeProvider } from './contexts/ThemeContext';
 
 import './index.css';
 
@@ -14,9 +15,11 @@ const ContactPage = lazy(() => import('./pages/ContactPage'));
 const AppContainer = styled.div`
   width: 100%;
   min-height: 100vh; // Use min-height to ensure footer is at the bottom
-  background-color: var(--titanium-dark);
+  background-color: var(--background-color);
+  color: var(--text-color);
   display: flex;
   flex-direction: column;
+  transition: background-color 0.3s, color 0.3s;
 `;
 
 const MainContent = styled.main`
@@ -31,22 +34,24 @@ const LoadingFallback = () => (
 
 function App() {
   return (
-    <Router>
-      <AppContainer>
-        <Header />
-        <MainContent>
-          <Suspense fallback={<LoadingFallback />}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-            </Routes>
-          </Suspense>
-        </MainContent>
-        <Footer />
-      </AppContainer>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <AppContainer>
+          <Header />
+          <MainContent>
+            <Suspense fallback={<LoadingFallback />}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/services" element={<ServicesPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+              </Routes>
+            </Suspense>
+          </MainContent>
+          <Footer />
+        </AppContainer>
+      </Router>
+    </ThemeProvider>
   );
 }
 

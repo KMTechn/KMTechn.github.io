@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink as RouterNavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import logo from '/logo.png'; // Import the logo
+import { useTheme } from '../hooks/useTheme';
+import { Sun, Moon } from 'lucide-react';
 
 const HeaderContainer = styled.header`
   position: fixed;
@@ -13,8 +15,9 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
-  background: linear-gradient(to bottom, rgba(18, 18, 18, 0.8), transparent);
+  background: var(--header-bg);
   backdrop-filter: blur(5px);
+  transition: background-color 0.3s;
 `;
 
 const LogoContainer = styled(RouterNavLink)`
@@ -34,10 +37,11 @@ const LogoContainer = styled(RouterNavLink)`
 const Nav = styled.nav`
   display: flex;
   gap: 2rem;
+  align-items: center;
 `;
 
 const NavLink = styled(RouterNavLink)`
-  color: var(--text-secondary);
+  color: var(--text-color);
   font-size: 1rem;
   font-weight: 500;
   transition: color 0.2s ease;
@@ -58,7 +62,7 @@ const NavLink = styled(RouterNavLink)`
   }
 
   &:hover {
-    color: var(--text-primary);
+    color: var(--accent-amber);
   }
   
   &:hover::after {
@@ -67,7 +71,7 @@ const NavLink = styled(RouterNavLink)`
   }
 
   &.active {
-    color: var(--text-primary);
+    color: var(--accent-amber);
     text-shadow: 0 0 5px var(--accent-amber-glow);
   }
 
@@ -77,7 +81,27 @@ const NavLink = styled(RouterNavLink)`
   }
 `;
 
+const ThemeToggleButton = styled.button`
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s, background-color 0.3s;
+
+  &:hover {
+    color: var(--accent-amber);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+`;
+
 const Header = () => {
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <HeaderContainer>
       <LogoContainer to="/">
@@ -87,6 +111,9 @@ const Header = () => {
         <NavLink to="/about">About</NavLink>
         <NavLink to="/services">Services</NavLink>
         <NavLink to="/contact">Contact</NavLink>
+        <ThemeToggleButton onClick={toggleTheme}>
+          {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+        </ThemeToggleButton>
       </Nav>
     </HeaderContainer>
   );
