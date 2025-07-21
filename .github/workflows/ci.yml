@@ -1,4 +1,4 @@
-name: CI
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -6,19 +6,44 @@ on:
   pull_request:
     branches: [ main ]
 
-jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
+# 워크플로우가 GitHub Pages에 배포할 수 있도록 권한을 설정합니다.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js 20
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
       - name: Install dependencies
         run: npm install
-      - name: Build project
+      - name: Build
         run: npm run build
-      - name: Run tests
+      - name: Test
         run: npm test
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # 'dist' 디렉토리에서 업로드합니다. Vite의 기본 빌드 출력 폴더입니다.
+          path: './dist'
+
+  deploy:
+    # build 작업이 성공적으로 완료된 후에만 deploy 작업을 실행합니다.
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
