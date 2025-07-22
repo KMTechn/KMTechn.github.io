@@ -225,9 +225,9 @@ const HomePage = () => {
   };
 
   const strongPoints = [
-    { icon: <FaAward />, title: t('strong_point_1_title'), desc: t('strong_point_1_desc') },
     { icon: <FaBrain />, title: t('strong_point_2_title'), desc: t('strong_point_2_desc') },
     { icon: <FaShippingFast />, title: t('strong_point_5_title'), desc: t('strong_point_5_desc') },
+    { icon: <FaMicroscope />, title: t('strong_point_6_title'), desc: t('strong_point_6_desc') },
   ];
 
   return (
@@ -282,7 +282,7 @@ const HomePage = () => {
       </ServicesSection>
 
       <StrengthsSection>
-        <SectionTitle>{t('about_strong_points_title')}</SectionTitle>
+        <SectionTitle>{t('home_strengths_title')}</SectionTitle>
         <Grid>
           {strongPoints.map((item, index) => (
             <StrengthCard key={index} whileHover={{ y: -10 }}>

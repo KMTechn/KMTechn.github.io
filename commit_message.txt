@@ -1,6 +1,6 @@
-fix: Resolve 404 error and layout issues
+fix: Resolve deployment and layout issues, update content
 
-- Add base path to vite.config.js to fix 404 error on deployment.
-- Unify card sizes on the 'About Us' page for a cleaner layout.
-- Correct map rendering issues on the 'Contact' page.
-- Fix broken Leaflet marker icons.
+- Configure vite.config.js with the correct base path to fix 404 error.
+- Unify card sizes on 'About Us' page for a consistent layout.
+- Update organization chart with new personnel and improve formatting.
+- Correct Romanization of names and adjust line breaks for readability.
