@@ -1,4 +1,1 @@
-fix: Resolve deployment routing and homepage rendering errors
-
-- Add basename to React Router to fix blank page issue on GitHub Pages.
-- Add missing icon import (FaMicroscope) in HomePage.jsx to resolve reference error.
+feat: Adjust camera distance to enlarge Globe view

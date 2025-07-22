@@ -3,54 +3,43 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Section, SectionTitle } from '../components/ui/Page';
-import { FaCar, FaWarehouse, FaDisplay, FaObjectGroup, FaMicrochip } from 'react-icons/fa6';
-import { FaSearch, FaTools, FaIndustry, FaCogs } from 'react-icons/fa';
+import { FaWarehouse, FaSearch, FaTools, FaTruckLoading, FaQrcode, FaBoxes, FaCheckCircle, FaArrowRight } from 'react-icons/fa';
+
+import continentalLogo from '../assets/logos/continental.jpeg';
+import humaxLogo from '../assets/logos/humax.jpeg';
+import hyundaiLogo from '../assets/logos/Hyundai_Motor_Company_logo.svg.png';
+import kanaviLogo from '../assets/logos/kanavi mobility.jpeg';
+import kiaLogo from '../assets/logos/KIA_logo3.svg.png';
+import lgDisplayLogo from '../assets/logos/LG_Display_logo_(english).png';
 
 const PageContainer = styled.div`
   color: var(--text-color);
-`;
-
-const TabContainer = styled(motion.div)`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 3rem;
-  gap: 1rem;
-  flex-wrap: wrap;
-`;
-
-const TabButton = styled(motion.button)`
-  padding: 0.8rem 1.5rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border: 2px solid var(--border-color);
-  background-color: ${({ active }) => (active ? 'var(--accent-amber)' : 'transparent')};
-  color: ${({ active }) => (active ? '#121212' : 'var(--text-color)')};
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: var(--accent-amber);
-    color: #121212;
-    border-color: var(--accent-amber);
-  }
 `;
 
 const ContentContainer = styled(motion.div)`
   background-color: var(--card-bg);
   padding: 3rem 5%;
   border-radius: 12px;
+  margin-bottom: 4rem;
 `;
 
 const BizSection = styled.div`
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 `;
 
 const BizTitle = styled.h3`
   font-size: 2.2rem;
   color: var(--accent-amber);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   text-align: center;
+`;
+
+const BizDescription = styled.p`
+  margin-bottom: 3rem;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
 `;
 
 const ProductGrid = styled(motion.div)`
@@ -101,28 +90,90 @@ const ProductList = styled.ul`
   }
 `;
 
-const InfoSection = styled.div`
-  margin-top: auto;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border-color);
+const ProcessTimeline = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  margin-top: 3rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    left: 20px;
+    width: 4px;
+    background-color: var(--border-color);
+    border-radius: 2px;
+  }
 `;
 
-const SubHeading = styled.h5`
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--accent-amber);
-  margin-bottom: 0.8rem;
+const ProcessStep = styled(motion.div)`
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  position: relative;
+  padding-left: 50px;
+`;
+
+const StepIcon = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--accent-amber);
+  color: #121212;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  font-size: 1.5rem;
+  border: 4px solid var(--card-bg);
 `;
 
-const InfoText = styled.p`
-  font-size: 0.95rem;
+const StepContent = styled.div`
+  background: var(--background-color);
+  padding: 1.5rem;
+  border-radius: 12px;
+  flex: 1;
+  border: 1px solid var(--border-color);
+`;
+
+const StepTitle = styled.h4`
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+`;
+
+const StepDescription = styled.p`
   line-height: 1.6;
-  color: var(--text-secondary);
 `;
 
+const CustomerLogoGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 2rem;
+  align-items: center;
+`;
+
+const LogoWrapper = styled(motion.div)`
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  border: 1px solid var(--border-color);
+`;
+
+const Logo = styled.img`
+  max-width: 100%;
+  max-height: 60px;
+  object-fit: contain;
+`;
 
 const BusinessPage = () => {
   const { t } = useTranslation();
@@ -151,6 +202,26 @@ const BusinessPage = () => {
     { icon: <FaTools />, title: t('tpl_packaging_title'), items: getSafeArray('tpl_packaging_items') },
   ];
 
+  const workProcessSteps = [
+    { icon: <FaWarehouse />, titleKey: 'process_step_1_title', descKey: 'process_step_1_desc' },
+    { icon: <FaTruckLoading />, titleKey: 'process_step_2_title', descKey: 'process_step_2_desc' },
+    { icon: <FaBoxes />, titleKey: 'process_step_3_title', descKey: 'process_step_3_desc' },
+    { icon: <FaTools />, titleKey: 'process_step_4_title', descKey: 'process_step_4_desc' },
+    { icon: <FaCheckCircle />, titleKey: 'process_step_5_title', descKey: 'process_step_5_desc' },
+    { icon: <FaQrcode />, titleKey: 'process_step_6_title', descKey: 'process_step_6_desc' },
+    { icon: <FaBoxes />, titleKey: 'process_step_7_title', descKey: 'process_step_7_desc' },
+    { icon: <FaArrowRight />, titleKey: 'process_step_8_title', descKey: 'process_step_8_desc' },
+  ];
+
+  const customers = [
+    { name: 'Continental', logo: continentalLogo },
+    { name: 'Humax', logo: humaxLogo },
+    { name: 'Hyundai', logo: hyundaiLogo },
+    { name: 'Kanavi Mobility', logo: kanaviLogo },
+    { name: 'Kia', logo: kiaLogo },
+    { name: 'LG Display', logo: lgDisplayLogo },
+  ];
+
   return (
     <PageContainer>
       <Section>
@@ -161,13 +232,7 @@ const BusinessPage = () => {
         <ContentContainer variants={itemVariants}>
           <BizSection>
             <BizTitle>{t('tpl_biz_title')}</BizTitle>
-            <motion.p 
-              style={{marginBottom: '3rem', lineHeight: '1.7', textAlign: 'center', maxWidth: '800px', margin: '0 auto 3rem'}}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              {t('tpl_biz_desc')}
-            </motion.p>
+            <BizDescription>{t('tpl_biz_desc')}</BizDescription>
             <ProductGrid variants={containerVariants} initial="hidden" animate="visible">
               {tplBizData.map((data, index) => (
                 <ProductCard key={index} variants={itemVariants}>
@@ -180,6 +245,37 @@ const BusinessPage = () => {
             </ProductGrid>
           </BizSection>
         </ContentContainer>
+
+        <ContentContainer variants={itemVariants}>
+          <BizSection>
+            <BizTitle>{t('tpl_work_process_title')}</BizTitle>
+            <ProcessTimeline>
+              {workProcessSteps.map((step, index) => (
+                <ProcessStep key={index} variants={itemVariants}>
+                  <StepIcon>{step.icon}</StepIcon>
+                  <StepContent>
+                    <StepTitle>{t(step.titleKey)}</StepTitle>
+                    <StepDescription>{t(step.descKey)}</StepDescription>
+                  </StepContent>
+                </ProcessStep>
+              ))}
+            </ProcessTimeline>
+          </BizSection>
+        </ContentContainer>
+        
+        <ContentContainer variants={itemVariants}>
+          <BizSection>
+            <BizTitle>{t('core_customers_title')}</BizTitle>
+            <CustomerLogoGrid>
+              {customers.map((customer) => (
+                <LogoWrapper key={customer.name} whileHover={{ scale: 1.05 }}>
+                  <Logo src={customer.logo} alt={`${customer.name} logo`} />
+                </LogoWrapper>
+              ))}
+            </CustomerLogoGrid>
+          </BizSection>
+        </ContentContainer>
+
       </Section>
     </PageContainer>
   );
