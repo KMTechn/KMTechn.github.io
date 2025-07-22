@@ -1,6 +1,5 @@
-fix: Resolve deployment and layout issues, update content
+feat: Add strengths section to homepage and update content
 
-- Configure vite.config.js with the correct base path to fix 404 error.
-- Unify card sizes on 'About Us' page for a consistent layout.
-- Update organization chart with new personnel and improve formatting.
-- Correct Romanization of names and adjust line breaks for readability.
+- Add "Why Choose Us?" section to the homepage.
+- Update personnel name to Park Kwan-ho.
+- Refine Romanization and formatting for the organization chart.

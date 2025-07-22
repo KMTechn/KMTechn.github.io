@@ -11,7 +11,7 @@ import { Section, SectionTitle } from '../components/ui/Page';
 import Globe from '../components/ui/Globe';
 import GlobeControls from '../components/ui/GlobeControls';
 import { 
-  FaArrowRight, FaCar, FaWarehouse, FaAward, FaBrain, FaShippingFast 
+  FaArrowRight, FaWarehouse, FaBrain, FaShippingFast, FaMicroscope
 } from 'react-icons/fa';
 
 const PageContainer = styled.div`
