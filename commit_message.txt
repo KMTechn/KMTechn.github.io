@@ -1,1 +1,6 @@
-fix: Update Header test to handle duplicate links
+refactor: Revamp site content to focus on 3rd Party Logistics
+
+- Update key messaging to align with industry standards for 3PL services.
+- Remove 'Partners' page and all related assets for security.
+- Streamline 'Business' and 'Home' pages to highlight 3PL.
+- Adjust 'About Us' layout to a symmetrical, centered design.
