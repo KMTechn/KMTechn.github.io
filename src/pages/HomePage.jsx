@@ -78,7 +78,7 @@ const Title = styled(motion.h1)`
   }
 
   @media (max-width: 768px) {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
   }
 `;
 
@@ -88,6 +88,10 @@ const Subtitle = styled(motion.p)`
   max-width: 500px;
   margin-bottom: 2.5rem;
   line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
 `;
 
 const CTAButton = styled(motion.button)`
