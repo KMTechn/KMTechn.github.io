@@ -51,6 +51,8 @@ const ArtworkContainer = styled(motion.div)`
   height: 70vh;
   min-height: 400px;
   cursor: grab;
+  width: 100%;
+  position: relative;
 
   &:active {
     cursor: grabbing;
