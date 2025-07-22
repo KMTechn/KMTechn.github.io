@@ -7,6 +7,12 @@ export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState('light');
 
   useEffect(() => {
+    // Force set the theme on initial load to override any cached settings
+    document.documentElement.setAttribute('data-theme', 'light');
+    setTheme('light');
+  }, []);
+
+  useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
