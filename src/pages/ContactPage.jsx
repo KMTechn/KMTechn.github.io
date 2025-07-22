@@ -49,8 +49,7 @@ const InfoRow = styled.div`
 `;
 
 const MapWrapper = styled.div`
-  height: 100%;
-  min-height: 300px;
+  height: 300px;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--border-color);

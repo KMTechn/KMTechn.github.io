@@ -41,6 +41,8 @@ const Card = styled(motion.div)`
   transition: transform 0.3s, box-shadow 0.3s;
   display: flex;
   flex-direction: column;
+  width: 350px; /* Set a fixed width for better alignment */
+  height: 100%;
 
   &:hover {
     transform: translateY(-10px);

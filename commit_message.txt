@@ -1,6 +1,4 @@
-refactor: Revamp site content to focus on 3rd Party Logistics
+docs: Update organization chart and refine translations
 
-- Update key messaging to align with industry standards for 3PL services.
-- Remove 'Partners' page and all related assets for security.
-- Streamline 'Business' and 'Home' pages to highlight 3PL.
-- Adjust 'About Us' layout to a symmetrical, centered design.
+- Update organization chart with new personnel information.
+- Refine Korean translations for better clarity and natural phrasing.
