@@ -199,7 +199,7 @@ const HomePage = () => {
   const { t } = useTranslation();
 
   // Set camera to focus on Korea initially
-  const initialCameraPosition = latLonToVector3(37.5665, 126.9780, 10);
+  const initialCameraPosition = latLonToVector3(37.5665, 126.9780, 8);
 
   const [globeSettings, setGlobeSettings] = useState({
     ambientIntensity: 1.0,
