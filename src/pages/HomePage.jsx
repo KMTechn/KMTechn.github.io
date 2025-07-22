@@ -6,13 +6,20 @@ import { useTranslation } from 'react-i18next';
 import { Canvas } from '@react-three/fiber';
 import * as THREE from 'three';
 import { Vector3 } from 'three';
-import { MapControls } from '@react-three/drei';
+import { MapControls, useTexture } from '@react-three/drei';
 import { Section, SectionTitle } from '../components/ui/Page';
 import Globe from '../components/ui/Globe';
 import GlobeControls from '../components/ui/GlobeControls';
 import { 
-  FaArrowRight, FaWarehouse, FaBrain, FaShippingFast, FaMicroscope
+  FaArrowRight, FaWarehouse, FaBrain, FaShippingFast, FaMicroscope, FaSearch, FaTools
 } from 'react-icons/fa';
+
+// 텍스처를 미리 로드하여 UX 개선
+useTexture.preload([
+  '/earth-day.jpg',
+  '/earth-night.jpg',
+  '/earth-clouds.jpg',
+]);
 
 const PageContainer = styled.div`
   width: 100%;
@@ -118,16 +125,6 @@ const ServicesSection = styled(Section)`
   background-color: var(--card-bg);
 `;
 
-const ServicesGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
 const ServiceCard = styled(motion.div)`
   background: var(--background-color);
   padding: 2.5rem;
@@ -224,6 +221,12 @@ const HomePage = () => {
     visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100 } },
   };
 
+  const services = [
+    { icon: <FaWarehouse size={30} />, titleKey: 'home_service_warehouse_title', descKey: 'home_service_warehouse_desc' },
+    { icon: <FaSearch size={30} />, titleKey: 'home_service_inspection_title', descKey: 'home_service_inspection_desc' },
+    { icon: <FaTools size={30} />, titleKey: 'home_service_packaging_title', descKey: 'home_service_packaging_desc' },
+  ];
+
   const strongPoints = [
     { icon: <FaBrain />, title: t('strong_point_2_title'), desc: t('strong_point_2_desc') },
     { icon: <FaShippingFast />, title: t('strong_point_5_title'), desc: t('strong_point_5_desc') },
@@ -247,7 +250,12 @@ const HomePage = () => {
         </TextContainer>
         <ArtworkContainer initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}>
           <Canvas camera={{ position: initialCameraPosition, fov: 50 }}>
-            <Suspense fallback={null}>
+            <Suspense fallback={
+              <mesh>
+                <sphereGeometry args={[3.08, 32, 32]} />
+                <meshBasicMaterial wireframe color="gray" />
+              </mesh>
+            }>
               <Globe {...globeSettings} />
             </Suspense>
             <MapControls 
@@ -270,14 +278,15 @@ const HomePage = () => {
       <ServicesSection>
         <SectionTitle>{t('home_services_title')}</SectionTitle>
         <Grid>
-          <ServiceCard 
-            whileHover={{ y: -10 }}
-            style={{ gridColumn: '1 / -1', maxWidth: '600px', margin: '0 auto' }}
-          >
-            <ServiceTitle><FaWarehouse size={30} /> {t('home_services_3pl_title')}</ServiceTitle>
-            <ServiceDescription>{t('home_services_3pl_desc')}</ServiceDescription>
-            <Link to="/business"><CTAButton>{t('home_services_button')}</CTAButton></Link>
-          </ServiceCard>
+          {services.map((service, index) => (
+            <ServiceCard key={index} whileHover={{ y: -10 }}>
+              <ServiceTitle>{service.icon} {t(service.titleKey)}</ServiceTitle>
+              <ServiceDescription>{t(service.descKey)}</ServiceDescription>
+              <Link to="/business">
+                <CTAButton>{t('home_services_button')}</CTAButton>
+              </Link>
+            </ServiceCard>
+          ))}
         </Grid>
       </ServicesSection>
 
