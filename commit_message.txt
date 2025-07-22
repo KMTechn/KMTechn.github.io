@@ -1,1 +1,1 @@
-fix: Adjust globe container layout
+fix: Update Header test to handle duplicate links

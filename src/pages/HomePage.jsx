@@ -270,12 +270,10 @@ const HomePage = () => {
       <ServicesSection>
         <SectionTitle>{t('home_services_title')}</SectionTitle>
         <Grid>
-          <ServiceCard whileHover={{ y: -10 }}>
-            <ServiceTitle><FaCar size={30} /> {t('home_services_agent_title')}</ServiceTitle>
-            <ServiceDescription>{t('home_services_agent_desc')}</ServiceDescription>
-            <Link to="/business"><CTAButton>{t('home_services_button')}</CTAButton></Link>
-          </ServiceCard>
-          <ServiceCard whileHover={{ y: -10 }}>
+          <ServiceCard 
+            whileHover={{ y: -10 }}
+            style={{ gridColumn: '1 / -1', maxWidth: '600px', margin: '0 auto' }}
+          >
             <ServiceTitle><FaWarehouse size={30} /> {t('home_services_3pl_title')}</ServiceTitle>
             <ServiceDescription>{t('home_services_3pl_desc')}</ServiceDescription>
             <Link to="/business"><CTAButton>{t('home_services_button')}</CTAButton></Link>

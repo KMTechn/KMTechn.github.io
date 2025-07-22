@@ -126,7 +126,6 @@ const InfoText = styled.p`
 
 const BusinessPage = () => {
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = React.useState('agent');
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -146,37 +145,6 @@ const BusinessPage = () => {
     return Array.isArray(result) ? result : [result];
   };
 
-  const agentBizData = {
-    display: { 
-      title: t('agent_display_title'), 
-      icon: <FaDisplay />, 
-      items: getSafeArray('agent_display_items'),
-      suppliers: t('agent_display_suppliers'),
-      applications: t('agent_display_applications')
-    },
-    cover_glass: { 
-      title: t('agent_cover_glass_title'), 
-      icon: <FaObjectGroup />, 
-      items: getSafeArray('agent_cover_glass_items'),
-      suppliers: t('agent_cover_glass_suppliers'),
-      applications: t('agent_cover_glass_applications')
-    },
-    molding: { 
-      title: t('agent_molding_title'), 
-      icon: <FaCar />, 
-      items: getSafeArray('agent_molding_items'),
-      suppliers: t('agent_molding_suppliers'),
-      applications: t('agent_molding_applications')
-    },
-    semiconductor: { 
-      title: t('agent_semiconductor_title'), 
-      icon: <FaMicrochip />, 
-      items: getSafeArray('agent_semiconductor_items'),
-      suppliers: t('agent_semiconductor_suppliers'),
-      applications: t('agent_semiconductor_applications')
-    },
-  };
-
   const tplBizData = [
     { icon: <FaWarehouse />, title: t('tpl_warehouse_title'), items: getSafeArray('tpl_warehouse_items') },
     { icon: <FaSearch />, title: t('tpl_inspection_title'), items: getSafeArray('tpl_inspection_items') },
@@ -188,60 +156,30 @@ const BusinessPage = () => {
       <Section>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
           <SectionTitle>{t('business_title')}</SectionTitle>
-          <TabContainer variants={containerVariants} initial="hidden" animate="visible">
-            <TabButton whileHover={{ y: -2 }} active={activeTab === 'agent'} onClick={() => setActiveTab('agent')}>{t('business_tab_agent')}</TabButton>
-            <TabButton whileHover={{ y: -2 }} active={activeTab === '3pl'} onClick={() => setActiveTab('3pl')}>{t('business_tab_3pl')}</TabButton>
-          </TabContainer>
         </motion.div>
 
-        {activeTab === 'agent' && (
-          <ContentContainer variants={itemVariants}>
-            <BizSection>
-              <BizTitle>{t('agent_biz_title')}</BizTitle>
-              <ProductGrid variants={containerVariants} initial="hidden" animate="visible">
-                {Object.values(agentBizData).map((data, index) => (
-                  <ProductCard key={index} variants={itemVariants}>
-                    <ProductTitle>{data.icon} {data.title}</ProductTitle>
-                    <ProductList>
-                      {data.items.map((item, i) => <li key={i}>{item}</li>)}
-                    </ProductList>
-                    <InfoSection>
-                      <SubHeading><FaIndustry /> {t('agent_suppliers_title')}</SubHeading>
-                      <InfoText>{data.suppliers}</InfoText>
-                      <SubHeading style={{marginTop: '1rem'}}><FaCogs /> {t('agent_applications_title')}</SubHeading>
-                      <InfoText>{data.applications}</InfoText>
-                    </InfoSection>
-                  </ProductCard>
-                ))}
-              </ProductGrid>
-            </BizSection>
-          </ContentContainer>
-        )}
-
-        {activeTab === '3pl' && (
-          <ContentContainer variants={itemVariants}>
-            <BizSection>
-              <BizTitle>{t('tpl_biz_title')}</BizTitle>
-              <motion.p 
-                style={{marginBottom: '3rem', lineHeight: '1.7', textAlign: 'center', maxWidth: '800px', margin: '0 auto 3rem'}}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-              >
-                {t('tpl_biz_desc')}
-              </motion.p>
-              <ProductGrid variants={containerVariants} initial="hidden" animate="visible">
-                {tplBizData.map((data, index) => (
-                  <ProductCard key={index} variants={itemVariants}>
-                    <ProductTitle>{data.icon} {data.title}</ProductTitle>
-                    <ProductList>
-                      {data.items.map((item, i) => <li key={i}>{item}</li>)}
-                    </ProductList>
-                  </ProductCard>
-                ))}
-              </ProductGrid>
-            </BizSection>
-          </ContentContainer>
-        )}
+        <ContentContainer variants={itemVariants}>
+          <BizSection>
+            <BizTitle>{t('tpl_biz_title')}</BizTitle>
+            <motion.p 
+              style={{marginBottom: '3rem', lineHeight: '1.7', textAlign: 'center', maxWidth: '800px', margin: '0 auto 3rem'}}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              {t('tpl_biz_desc')}
+            </motion.p>
+            <ProductGrid variants={containerVariants} initial="hidden" animate="visible">
+              {tplBizData.map((data, index) => (
+                <ProductCard key={index} variants={itemVariants}>
+                  <ProductTitle>{data.icon} {data.title}</ProductTitle>
+                  <ProductList>
+                    {data.items.map((item, i) => <li key={i}>{item}</li>)}
+                  </ProductList>
+                </ProductCard>
+              ))}
+            </ProductGrid>
+          </BizSection>
+        </ContentContainer>
       </Section>
     </PageContainer>
   );

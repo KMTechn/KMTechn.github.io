@@ -1,10 +1,9 @@
 {
   "nav_about": "About Us",
   "nav_business": "Business",
-  "nav_partners": "Partners",
   "nav_contact": "Contact",
-  "hero_title": "Global Leader in the OEM Vehicle and Parts Industry",
-  "hero_subtitle": "KMTech provides customized solutions based on top-tier expertise in logistics and quality engineering services.",
+  "hero_title": "Global Leader in Advanced 3rd Party Logistics",
+  "hero_subtitle": "We deliver customized 3rd Party Logistics solutions, optimizing your supply chain with our top-tier expertise.",
   "hero_button": "Learn More",
   "about_ideology_title": "Company Ideology",
   "about_ideology_desc": "KMTech proactively creates an environment to meet the demands and expectations of all stakeholders, taking responsibility to the very end.",
@@ -18,38 +17,9 @@
   "pillar_customer_orientation": "Customer Orientation",
   "pillar_ethical_behavior": "Ethical Behavior",
   "pillar_company_development": "Company Development",
-  "business_title": "Business Areas",
-  "business_tab_agent": "Agent Biz",
-  "business_tab_3pl": "3PL Biz",
-  "agent_biz_title": "Agent Biz",
-  "agent_suppliers_title": "Key Suppliers",
-  "agent_applications_title": "Applications",
-  "agent_display_title": "Display",
-  "agent_display_items": [
-    "Mono LCD module", "TTFT LCD module", "OLED module", "Camera module", "Cover glass", "Touch panel", "BLU", "Optical Bonding"
-  ],
-  "agent_display_suppliers": "Guangdong SID Technology, Truly International Holdings",
-  "agent_display_applications": "Automotive Displays, Home Appliances, EV Chargers",
-  "agent_cover_glass_title": "Cover Glass",
-  "agent_cover_glass_items": [
-    "2D & 3D cover glass", "Custom tooling for various shapes", "Factories in China and Vietnam", "Top Tier 1 supplier in China"
-  ],
-  "agent_cover_glass_suppliers": "Wuhu Token Sciences",
-  "agent_cover_glass_applications": "Automotive Displays, Center Information Displays (CID)",
-  "agent_molding_title": "Molding",
-  "agent_molding_items": [
-    "Notebook, Monitor, Tablet, Automotive parts", "Thixo Molding with Magnesium", "Global market share for Notebook: 34%"
-  ],
-  "agent_molding_suppliers": "Juteng International Holdings",
-  "agent_molding_applications": "Vehicle Interior/Exterior, Laptops, Monitors",
-  "agent_semiconductor_title": "Semiconductor",
-  "agent_semiconductor_items": [
-    "DDI", "Various power IC", "LED driver", "T-con", "Sensor", "VCM Driver"
-  ],
-  "agent_semiconductor_suppliers": "Fitipower Integrated Technology",
-  "agent_semiconductor_applications": "Laptops, Monitors, Tablets, E-readers",
-  "tpl_biz_title": "3PL (3rd Party Logistics)",
-  "tpl_biz_desc": "KMTech takes full responsibility for our clients' logistics processes through our 3PL services. We provide one-stop solutions from storage, packaging, and inspection to delivery, utilizing state-of-the-art facilities and systematic processes, allowing our clients to focus on their core business.",
+  "business_title": "Our Business: 3rd Party Logistics",
+  "tpl_biz_title": "3rd Party Logistics",
+  "tpl_biz_desc": "KMTech takes full responsibility for our clients' logistics processes through our 3rd Party Logistics services. We provide one-stop solutions from storage, packaging, and inspection to delivery, utilizing state-of-the-art facilities and systematic processes, allowing our clients to focus on their core business.",
   "tpl_warehouse_title": "Warehouse & Storage",
   "tpl_warehouse_items": [
     "Total area of 2,140㎡", "Capacity for 3,000 pallets", "Container dock for 2 vehicles (40ft & 20ft)", "16 CCTV systems with recording"
@@ -62,7 +32,6 @@
   "tpl_packaging_items": [
     "Customized repackaging for clients", "Dismantling for 50 pallets at once", "QR code system linked with ERP", "Sorting and classification"
   ],
-  "partners_title": "Our Key Partners",
   "contact_title": "Contact Us",
   "contact_office_title": "Head Office",
   "contact_office_address": "#805, 34 Hwangsaeul-ro 200beon-gil, Bundang-gu, Seongnam-si, Gyeonggi-do, 13595 Korea",
@@ -81,10 +50,8 @@
   "contact_form_submitting": "Sending...",
   "contact_form_success_title": "Message Sent!",
   "contact_form_success_desc": "Thank you for your inquiry. We will get back to you soon.",
-  "home_services_title": "Our Core Services",
-  "home_services_agent_title": "Agent Business",
-  "home_services_agent_desc": "We act as a key agent, supplying essential, high-quality components like displays, semiconductors, and molding parts for the automotive industry.",
-  "home_services_3pl_title": "3PL Business",
+  "home_services_title": "Our Core Service",
+  "home_services_3pl_title": "3rd Party Logistics Solutions",
   "home_services_3pl_desc": "We provide comprehensive 3rd party logistics services, including warehousing, inspection, and packaging, to optimize your supply chain.",
   "home_services_button": "View Details",
   "about_strong_points_title": "Our Strengths",
