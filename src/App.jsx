@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
 import { ThemeProvider } from './contexts/ThemeContext';
+// ScrollToTop component is no longer needed and has been removed.
 
 import './index.css';
 
@@ -16,16 +17,16 @@ const ContactPage = lazy(() => import('./pages/ContactPage'));
 const AppContainer = styled.div`
   width: 100%;
   min-height: 100vh;
-  background-color: var(--background-color);
+  background-color: transparent;
   color: var(--text-color);
   display: flex;
   flex-direction: column;
-  transition: background-color 0.3s, color 0.3s;
+  transition: color 0.3s;
 `;
 
 const MainContent = styled.main`
   flex: 1;
-  padding-top: 80px; /* Header height */
+  padding-top: 80px; 
 `;
 
 const LoadingFallback = () => (
@@ -38,6 +39,7 @@ function App() {
   return (
     <ThemeProvider>
       <Router>
+        {/* ScrollToTop component has been removed. */}
         <AppContainer>
           <Header />
           <MainContent>

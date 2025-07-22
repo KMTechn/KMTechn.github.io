@@ -5,13 +5,6 @@ import { motion } from 'framer-motion';
 import { Section, SectionTitle } from '../components/ui/Page';
 import { FaWarehouse, FaSearch, FaTools, FaTruckLoading, FaQrcode, FaBoxes, FaCheckCircle, FaArrowRight } from 'react-icons/fa';
 
-import continentalLogo from '../assets/logos/continental.jpeg';
-import humaxLogo from '../assets/logos/humax.jpeg';
-import hyundaiLogo from '../assets/logos/Hyundai_Motor_Company_logo.svg.png';
-import kanaviLogo from '../assets/logos/kanavi mobility.jpeg';
-import kiaLogo from '../assets/logos/KIA_logo3.svg.png';
-import lgDisplayLogo from '../assets/logos/LG_Display_logo_(english).png';
-
 const PageContainer = styled.div`
   color: var(--text-color);
 `;
@@ -214,12 +207,13 @@ const BusinessPage = () => {
   ];
 
   const customers = [
-    { name: 'Continental', logo: continentalLogo },
-    { name: 'Humax', logo: humaxLogo },
-    { name: 'Hyundai', logo: hyundaiLogo },
-    { name: 'Kanavi Mobility', logo: kanaviLogo },
-    { name: 'Kia', logo: kiaLogo },
-    { name: 'LG Display', logo: lgDisplayLogo },
+    { name: 'Continental', logo: '/logos/continental.jpeg' },
+    { name: 'Humax', logo: '/logos/humax.jpeg' },
+    { name: 'Hyundai', logo: '/logos/Hyundai_Motor_Company_logo.svg.png' },
+    { name: 'Kanavi Mobility', logo: '/logos/kanavi mobility.jpeg' },
+    { name: 'Kia', logo: '/logos/KIA_logo3.svg.png' },
+    { name: 'LG Display', logo: '/logos/LG_Display_logo_(english).png' },
+    { name: 'LG Electronics', logo: '/logos/LG electronics.png' },
   ];
 
   return (

@@ -3,10 +3,11 @@ import { createContext, useState, useMemo, useEffect } from 'react';
 export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState('light'); // 기본값을 'light'로 설정
 
+  // 테마가 변경될 때마다 body 태그의 data-theme 속성을 직접 업데이트합니다.
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
+    document.body.setAttribute('data-theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {

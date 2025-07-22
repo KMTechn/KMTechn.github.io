@@ -56,7 +56,7 @@ const MobileNav = styled.nav`
   width: 100%;
   height: 100vh;
   background: var(--background-color);
-  transform: ${props => props.isOpen ? 'translateX(0)' : 'translateX(100%)'};
+  transform: ${props => props.$isOpen ? 'translateX(0)' : 'translateX(100%)'};
   transition: transform 0.3s ease-in-out;
   z-index: 999;
 `;
@@ -181,7 +181,7 @@ const Header = () => {
           </MobileMenuButton>
         </ControlsContainer>
       </HeaderContainer>
-      <MobileNav isOpen={isMenuOpen}>
+      <MobileNav $isOpen={isMenuOpen}>
         <NavLink to="/about" onClick={closeMenu}>{t('nav_about')}</NavLink>
         <NavLink to="/business" onClick={closeMenu}>{t('nav_business')}</NavLink>
         <NavLink to="/partners" onClick={closeMenu}>{t('nav_partners')}</NavLink>

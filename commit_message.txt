@@ -1,1 +1,1 @@
-feat: Adjust camera distance to enlarge Globe view
+feat: Enhance Business page and revert star background

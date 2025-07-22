@@ -1,13 +1,17 @@
+import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-export const PageContainer = styled(motion.div)`
+const PageContainer = styled.div`
   width: 100%;
-  padding: 8rem 5% 4rem;
+  /* The problematic top padding has been removed. */
+  padding: 0 5% 4rem; 
   background-color: var(--titanium-dark);
   color: var(--text-primary);
-  min-height: calc(100vh - 120px); // Adjust based on header/footer height
+  min-height: calc(100vh - 120px);
 `;
+
+const MotionContainer = styled(motion.div)``;
 
 export const Section = styled.section`
   padding: 6rem 5%;
@@ -27,3 +31,33 @@ export const Title = styled(motion.h1)`
   margin-bottom: 4rem;
   text-align: center;
 `;
+
+const pageVariants = {
+  initial: { opacity: 0, y: 20 },
+  in: { opacity: 1, y: 0 },
+  out: { opacity: 0, y: -20 },
+};
+
+const pageTransition = {
+  type: 'tween',
+  ease: 'anticipate',
+  duration: 0.5,
+};
+
+const Page = ({ children }) => {
+  return (
+    <PageContainer>
+      <MotionContainer
+        initial="initial"
+        animate="in"
+        exit="out"
+        variants={pageVariants}
+        transition={pageTransition}
+      >
+        {children}
+      </MotionContainer>
+    </PageContainer>
+  );
+};
+
+export default Page;
