@@ -1,4 +1,6 @@
-docs: Update organization chart and refine translations
+fix: Resolve 404 error and layout issues
 
-- Update organization chart with new personnel information.
-- Refine Korean translations for better clarity and natural phrasing.
+- Add base path to vite.config.js to fix 404 error on deployment.
+- Unify card sizes on the 'About Us' page for a cleaner layout.
+- Correct map rendering issues on the 'Contact' page.
+- Fix broken Leaflet marker icons.

@@ -26,8 +26,8 @@ const Description = styled.p`
 `;
 
 const CardGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   justify-content: center;
   gap: 2rem;
 `;
@@ -41,8 +41,6 @@ const Card = styled(motion.div)`
   transition: transform 0.3s, box-shadow 0.3s;
   display: flex;
   flex-direction: column;
-  width: 350px; /* Set a fixed width for better alignment */
-  height: 100%;
 
   &:hover {
     transform: translateY(-10px);
@@ -103,6 +101,7 @@ const OrgTitle = styled.div`
 const OrgName = styled.div`
   font-size: 0.9rem;
   opacity: 0.9;
+  white-space: pre-line;
 `;
 
 const OrgLevel = styled.div`
