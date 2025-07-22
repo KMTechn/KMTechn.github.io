@@ -1,6 +1,0 @@
-<svg width="150" height="50" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    .text { font: bold 24px 'Segoe UI', sans-serif; fill: #8892b0; }
-  </style>
-  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" class="text">GlobalCorp</text>
-</svg>

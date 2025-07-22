@@ -2,19 +2,21 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from './components/Header';
-import Footer from './components/Footer'; // Import Footer
+import Footer from './components/Footer';
+import ErrorBoundary from './components/ErrorBoundary';
 import { ThemeProvider } from './contexts/ThemeContext';
 
 import './index.css';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
-const AboutPage = lazy(() => import('./pages/AboutPage'));
-const ServicesPage = lazy(() => import('./pages/ServicesPage'));
+const AboutUsPage = lazy(() => import('./pages/AboutUsPage'));
+const BusinessPage = lazy(() => import('./pages/BusinessPage'));
+const PartnersPage = lazy(() => import('./pages/PartnersPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 
 const AppContainer = styled.div`
   width: 100%;
-  min-height: 100vh; // Use min-height to ensure footer is at the bottom
+  min-height: 100vh;
   background-color: var(--background-color);
   color: var(--text-color);
   display: flex;
@@ -24,6 +26,7 @@ const AppContainer = styled.div`
 
 const MainContent = styled.main`
   flex: 1;
+  padding-top: 80px; /* Header height */
 `;
 
 const LoadingFallback = () => (
@@ -39,14 +42,17 @@ function App() {
         <AppContainer>
           <Header />
           <MainContent>
-            <Suspense fallback={<LoadingFallback />}>
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/services" element={<ServicesPage />} />
-                <Route path="/contact" element={<ContactPage />} />
-              </Routes>
-            </Suspense>
+            <ErrorBoundary>
+              <Suspense fallback={<LoadingFallback />}>
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/about" element={<AboutUsPage />} />
+                  <Route path="/business" element={<BusinessPage />} />
+                  <Route path="/partners" element={<PartnersPage />} />
+                  <Route path="/contact" element={<ContactPage />} />
+                </Routes>
+              </Suspense>
+            </ErrorBoundary>
           </MainContent>
           <Footer />
         </AppContainer>

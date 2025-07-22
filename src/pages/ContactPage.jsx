@@ -1,115 +1,140 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import { PageContainer, Title } from '../components/ui/Page';
+import { useTranslation } from 'react-i18next';
+import { Section, SectionTitle } from '../components/ui/Page';
+import { FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import ContactForm from '../components/ui/ContactForm';
 
-const FormContainer = styled(motion.form)`
-  width: 100%;
-  max-width: 600px;
+const PageContainer = styled.div`
+  color: var(--text-color);
+`;
+
+const ContentGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const ContactInfoContainer = styled.div`
+  background: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+`;
+
+const CardTitle = styled.h3`
+  font-size: 1.8rem;
+  color: var(--accent-amber);
+  margin-bottom: 2rem;
+`;
+
+const InfoRow = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  margin: 0 auto;
-`;
-
-const Input = styled.input`
-  background: var(--titanium-light);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1rem;
-  font-size: 1rem;
-  color: var(--text-primary);
-  outline: none;
-  transition: border-color 0.3s ease;
-
-  &:focus {
-    border-color: var(--accent-amber);
-  }
-`;
-
-const TextArea = styled.textarea`
-  background: var(--titanium-light);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1rem;
-  font-size: 1rem;
-  color: var(--text-primary);
-  outline: none;
-  transition: border-color 0.3s ease;
-  min-height: 150px;
-  resize: vertical;
-
-  &:focus {
-    border-color: var(--accent-amber);
-  }
-`;
-
-const SubmitButton = styled(motion.button)`
-  padding: 1rem 2rem;
-  border: 1px solid var(--accent-amber);
-  border-radius: 8px;
-  background-color: var(--accent-amber);
-  color: var(--titanium-dark);
+  align-items: start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
   font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  opacity: ${props => (props.disabled ? 0.5 : 1)};
-  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+  line-height: 1.6;
 
-  &:hover {
-    background-color: ${props => (props.disabled ? 'var(--accent-amber)' : 'transparent')};
-    color: ${props => (props.disabled ? 'var(--titanium-dark)' : 'var(--accent-amber)')};
+  svg {
+    flex-shrink: 0;
+    margin-top: 5px;
+    color: var(--accent-amber);
   }
 `;
 
-const StatusMessage = styled.div`
-  text-align: center;
-  margin-top: 1rem;
-  color: ${props => (props.type === 'success' ? 'var(--accent-amber)' : '#ff4d4d')};
+const MapWrapper = styled.div`
+  height: 100%;
+  min-height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  margin-top: 2rem;
+
+  .leaflet-container {
+    height: 100%;
+    width: 100%;
+  }
+`;
+
+const ContactSection = styled.div`
+  margin-top: 4rem;
 `;
 
 const ContactPage = () => {
-  const [status, setStatus] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setStatus('');
-
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    // Simulate a successful submission
-    setStatus({ type: 'success', message: 'Thank you for your message! We will get back to you shortly.' });
-    e.target.reset();
-    setIsSubmitting(false);
-  };
+  const { t } = useTranslation();
+  const headOfficePos = [37.377156, 127.113823];
+  const warehousePos = [36.896990, 127.146803];
 
   return (
     <PageContainer>
-      <Title>Contact Us</Title>
-      <FormContainer
-        onSubmit={handleSubmit}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <Input name="name" type="text" placeholder="Your Name" required />
-        <Input name="email" type="email" placeholder="Your Email" required />
-        <Input name="subject" type="text" placeholder="Subject" required />
-        <TextArea name="message" placeholder="Your Message" required />
-        <SubmitButton
-          type="submit"
-          whileHover={{ scale: isSubmitting ? 1 : 1.05 }}
-          whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? 'Sending...' : 'Send Message'}
-        </SubmitButton>
-        {status && <StatusMessage type={status.type}>{status.message}</StatusMessage>}
-      </FormContainer>
+      <Section>
+        <SectionTitle>{t('contact_title')}</SectionTitle>
+        
+        <ContentGrid>
+          <ContactInfoContainer>
+            <CardTitle>{t('contact_form_title')}</CardTitle>
+            <p style={{marginBottom: '1.5rem', lineHeight: '1.6'}}>{t('contact_form_desc')}</p>
+            <ContactForm />
+          </ContactInfoContainer>
+
+          <div>
+            <ContactInfoContainer>
+              <CardTitle>{t('contact_office_title')}</CardTitle>
+              <InfoRow>
+                <FaMapMarkerAlt size={20} />
+                <span>{t('contact_office_address')}</span>
+              </InfoRow>
+              <InfoRow>
+                <FaPhone size={20} />
+                <span>{t('contact_office_phone')}</span>
+              </InfoRow>
+              <InfoRow>
+                <FaEnvelope size={20} />
+                <span>{t('contact_office_email')}</span>
+              </InfoRow>
+              <MapWrapper>
+                <MapContainer center={headOfficePos} zoom={15} scrollWheelZoom={false}>
+                  <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                  <Marker position={headOfficePos}><Popup>{t('contact_office_title')}</Popup></Marker>
+                </MapContainer>
+              </MapWrapper>
+            </ContactInfoContainer>
+          </div>
+        </ContentGrid>
+
+        <ContactSection>
+          <ContentGrid>
+            <MapWrapper style={{marginTop: 0, minHeight: '400px'}}>
+              <MapContainer center={warehousePos} zoom={15} scrollWheelZoom={false}>
+                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                <Marker position={warehousePos}><Popup>{t('contact_warehouse_title')}</Popup></Marker>
+              </MapContainer>
+            </MapWrapper>
+            <ContactInfoContainer>
+              <CardTitle>{t('contact_warehouse_title')}</CardTitle>
+              <InfoRow>
+                <FaMapMarkerAlt size={20} />
+                <span>{t('contact_warehouse_address')}</span>
+              </InfoRow>
+              <InfoRow>
+                <FaPhone size={20} />
+                <span>{t('contact_warehouse_phone')}</span>
+              </InfoRow>
+              <InfoRow>
+                <FaEnvelope size={20} />
+                <span>{t('contact_warehouse_email')}</span>
+              </InfoRow>
+            </ContactInfoContainer>
+          </ContentGrid>
+        </ContactSection>
+
+      </Section>
     </PageContainer>
   );
 };

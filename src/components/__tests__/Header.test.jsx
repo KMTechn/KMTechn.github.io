@@ -22,8 +22,9 @@ describe('Header Component', () => {
     expect(logo).toBeInTheDocument();
 
     // Check for navigation links
-    expect(screen.getByText('About')).toBeInTheDocument();
-    expect(screen.getByText('Services')).toBeInTheDocument();
+    expect(screen.getByText('About Us')).toBeInTheDocument();
+    expect(screen.getByText('Business')).toBeInTheDocument();
+    expect(screen.getByText('Partners')).toBeInTheDocument();
     expect(screen.getByText('Contact')).toBeInTheDocument();
   });
 
