@@ -37,7 +37,7 @@ const LoadingFallback = () => (
 function App() {
   return (
     <ThemeProvider>
-      <Router basename="/KMTechn.github.io">
+      <Router>
         <AppContainer>
           <Header />
           <MainContent>

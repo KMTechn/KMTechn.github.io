@@ -1,5 +1,4 @@
-feat: Add strengths section to homepage and update content
+fix: Resolve deployment routing and homepage rendering errors
 
-- Add "Why Choose Us?" section to the homepage.
-- Update personnel name to Park Kwan-ho.
-- Refine Romanization and formatting for the organization chart.
+- Add basename to React Router to fix blank page issue on GitHub Pages.
+- Add missing icon import (FaMicroscope) in HomePage.jsx to resolve reference error.
