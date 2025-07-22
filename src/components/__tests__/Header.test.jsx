@@ -22,10 +22,11 @@ describe('Header Component', () => {
     expect(logo).toBeInTheDocument();
 
     // Check for navigation links
-    expect(screen.getByText('About Us')).toBeInTheDocument();
-    expect(screen.getByText('Business')).toBeInTheDocument();
-    expect(screen.getByText('Partners')).toBeInTheDocument();
-    expect(screen.getByText('Contact')).toBeInTheDocument();
+    // Use getAllByText as both desktop and mobile navs are rendered in the test environment
+    expect(screen.getAllByText('About Us')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Business')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Partners')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Contact')[0]).toBeInTheDocument();
   });
 
   test('logo links to the homepage', () => {
