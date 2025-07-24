@@ -1,11 +1,11 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
 import { ThemeProvider } from './contexts/ThemeContext';
-// ScrollToTop component is no longer needed and has been removed.
+import ScrollToTop from './components/ScrollToTop';
 
 import './index.css';
 
@@ -16,17 +16,18 @@ const ContactPage = lazy(() => import('./pages/ContactPage'));
 
 const AppContainer = styled.div`
   width: 100%;
-  min-height: 100vh;
-  background-color: transparent;
-  color: var(--text-color);
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  transition: color 0.3s;
 `;
 
 const MainContent = styled.main`
   flex: 1;
   padding-top: 80px; 
+  overflow-y: auto; /* Ensure this container is the one that scrolls */
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: color 0.3s, background-color 0.3s;
 `;
 
 const LoadingFallback = () => (
@@ -36,13 +37,15 @@ const LoadingFallback = () => (
 );
 
 function App() {
+  const mainContentRef = useRef(null);
+
   return (
     <ThemeProvider>
       <Router>
-        {/* ScrollToTop component has been removed. */}
+        <ScrollToTop mainContentRef={mainContentRef} />
         <AppContainer>
           <Header />
-          <MainContent>
+          <MainContent ref={mainContentRef}>
             <ErrorBoundary>
               <Suspense fallback={<LoadingFallback />}>
                 <Routes>
@@ -53,8 +56,8 @@ function App() {
                 </Routes>
               </Suspense>
             </ErrorBoundary>
+            <Footer />
           </MainContent>
-          <Footer />
         </AppContainer>
       </Router>
     </ThemeProvider>
@@ -62,3 +65,4 @@ function App() {
 }
 
 export default App;
+
