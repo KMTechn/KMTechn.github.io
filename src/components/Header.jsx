@@ -184,7 +184,6 @@ const Header = () => {
       <MobileNav $isOpen={isMenuOpen}>
         <NavLink to="/about" onClick={closeMenu}>{t('nav_about')}</NavLink>
         <NavLink to="/business" onClick={closeMenu}>{t('nav_business')}</NavLink>
-        <NavLink to="/partners" onClick={closeMenu}>{t('nav_partners')}</NavLink>
         <NavLink to="/contact" onClick={closeMenu}>{t('nav_contact')}</NavLink>
       </MobileNav>
     </>

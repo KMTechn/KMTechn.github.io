@@ -1,6 +1,6 @@
 import React, { Suspense, useState } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Canvas } from '@react-three/fiber';
@@ -10,6 +10,7 @@ import { MapControls, useTexture } from '@react-three/drei';
 import { Section, SectionTitle } from '../components/ui/Page';
 import Globe from '../components/ui/Globe';
 import GlobeControls from '../components/ui/GlobeControls';
+import Loader from '../components/ui/Loader';
 import { 
   FaArrowRight, FaWarehouse, FaBrain, FaShippingFast, FaMicroscope, FaSearch, FaTools
 } from 'react-icons/fa';
@@ -125,30 +126,6 @@ const ServicesSection = styled(Section)`
   background-color: var(--card-bg);
 `;
 
-const ServiceCard = styled(motion.div)`
-  background: var(--background-color);
-  padding: 2.5rem;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  display: flex;
-  flex-direction: column;
-`;
-
-const ServiceTitle = styled.h3`
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: var(--accent-amber);
-`;
-
-const ServiceDescription = styled.p`
-  line-height: 1.7;
-  flex-grow: 1;
-  margin-bottom: 2rem;
-`;
-
 const StrengthsSection = styled(Section)`
   text-align: center;
 `;
@@ -159,7 +136,13 @@ const Grid = styled.div`
   gap: 3rem;
 `;
 
-const StrengthCard = styled(ServiceCard)`
+const StrengthCard = styled(motion.div)`
+  background: var(--background-color);
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
   text-align: center;
   align-items: center;
 `;
@@ -186,6 +169,66 @@ const MoreButtonContainer = styled(motion.div)`
   margin-top: 3rem;
 `;
 
+// New interactive services components
+const ServicesWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+`;
+
+const ServiceTabsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  padding: 0.5rem;
+  background-color: var(--background-color);
+`;
+
+const ServiceTab = styled.button`
+  background-color: ${props => props.$isActive ? 'var(--accent-amber)' : 'transparent'};
+  color: ${props => props.$isActive ? '#121212' : 'var(--text-color)'};
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+
+  &:hover:not(.active) {
+    background-color: ${props => !props.$isActive && 'var(--card-bg)'};
+  }
+`;
+
+const ServiceContentContainer = styled(motion.div)`
+  background: var(--background-color);
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  width: 100%;
+  max-width: 800px;
+  min-height: 160px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ServiceContent = styled(motion.p)`
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 600px;
+`;
+
+
 const latLonToVector3 = (lat, lon, radius) => {
   const phi = (90 - lat) * (Math.PI / 180);
   const theta = (lon + 180) * (Math.PI / 180);
@@ -197,6 +240,7 @@ const latLonToVector3 = (lat, lon, radius) => {
 
 const HomePage = () => {
   const { t } = useTranslation();
+  const [activeService, setActiveService] = useState(0);
 
   // Set camera to focus on Korea initially
   const initialCameraPosition = latLonToVector3(37.5665, 126.9780, 8);
@@ -222,9 +266,9 @@ const HomePage = () => {
   };
 
   const services = [
-    { icon: <FaWarehouse size={30} />, titleKey: 'home_service_warehouse_title', descKey: 'home_service_warehouse_desc' },
-    { icon: <FaSearch size={30} />, titleKey: 'home_service_inspection_title', descKey: 'home_service_inspection_desc' },
-    { icon: <FaTools size={30} />, titleKey: 'home_service_packaging_title', descKey: 'home_service_packaging_desc' },
+    { icon: <FaWarehouse size={24} />, titleKey: 'home_service_warehouse_title', descKey: 'home_service_warehouse_desc' },
+    { icon: <FaSearch size={24} />, titleKey: 'home_service_inspection_title', descKey: 'home_service_inspection_desc' },
+    { icon: <FaTools size={24} />, titleKey: 'home_service_packaging_title', descKey: 'home_service_packaging_desc' },
   ];
 
   const strongPoints = [
@@ -232,6 +276,13 @@ const HomePage = () => {
     { icon: <FaShippingFast />, title: t('strong_point_5_title'), desc: t('strong_point_5_desc') },
     { icon: <FaMicroscope />, title: t('strong_point_6_title'), desc: t('strong_point_6_desc') },
   ];
+
+  const contentAnimation = {
+    initial: { opacity: 0, y: 10 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -10 },
+    transition: { duration: 0.2 }
+  };
 
   return (
     <PageContainer>
@@ -250,12 +301,7 @@ const HomePage = () => {
         </TextContainer>
         <ArtworkContainer initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}>
           <Canvas camera={{ position: initialCameraPosition, fov: 50 }}>
-            <Suspense fallback={
-              <mesh>
-                <sphereGeometry args={[3.08, 32, 32]} />
-                <meshBasicMaterial wireframe color="gray" />
-              </mesh>
-            }>
+            <Suspense fallback={<Loader />}>
               <Globe {...globeSettings} />
             </Suspense>
             <MapControls 
@@ -277,17 +323,35 @@ const HomePage = () => {
 
       <ServicesSection>
         <SectionTitle>{t('home_services_title')}</SectionTitle>
-        <Grid>
-          {services.map((service, index) => (
-            <ServiceCard key={index} whileHover={{ y: -10 }}>
-              <ServiceTitle>{service.icon} {t(service.titleKey)}</ServiceTitle>
-              <ServiceDescription>{t(service.descKey)}</ServiceDescription>
-              <Link to="/business">
-                <CTAButton>{t('home_services_button')}</CTAButton>
-              </Link>
-            </ServiceCard>
-          ))}
-        </Grid>
+        <ServicesWrapper>
+          <ServiceTabsContainer>
+            {services.map((service, index) => (
+              <ServiceTab
+                key={service.titleKey}
+                $isActive={activeService === index}
+                onMouseEnter={() => setActiveService(index)}
+              >
+                {service.icon}
+                <span>{t(service.titleKey).split(' ')[0]}</span>
+              </ServiceTab>
+            ))}
+          </ServiceTabsContainer>
+          <ServiceContentContainer>
+            <AnimatePresence mode="wait">
+              <ServiceContent
+                key={activeService}
+                {...contentAnimation}
+              >
+                {t(services[activeService].descKey)}
+              </ServiceContent>
+            </AnimatePresence>
+          </ServiceContentContainer>
+          <Link to="/business">
+            <CTAButton whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              {t('home_services_button')}
+            </CTAButton>
+          </Link>
+        </ServicesWrapper>
       </ServicesSection>
 
       <StrengthsSection>

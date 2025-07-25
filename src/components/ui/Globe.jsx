@@ -165,7 +165,7 @@ const Globe = (props) => {
 
       <group ref={globeRef}>
         {/* Earth */}
-        <Sphere args={[GLOBE_RADIUS, 64, 64]}>
+        <Sphere args={[GLOBE_RADIUS, 32, 32]}>
           <meshStandardMaterial 
             map={dayMap}
             metalness={metalness} 
@@ -179,7 +179,7 @@ const Globe = (props) => {
         {/* Clouds */}
         <Sphere 
           ref={cloudsRef} 
-          args={[GLOBE_RADIUS + 0.05, 64, 64]}
+          args={[GLOBE_RADIUS + 0.05, 32, 32]}
           castShadow={false}
           receiveShadow={false}
         >

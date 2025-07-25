@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Section, SectionTitle } from '../components/ui/Page';
@@ -7,6 +7,7 @@ import { FaWarehouse, FaSearch, FaTools, FaTruckLoading, FaQrcode, FaBoxes, FaCh
 
 const PageContainer = styled.div`
   color: var(--text-color);
+  overflow-x: hidden;
 `;
 
 const ContentContainer = styled(motion.div)`
@@ -18,6 +19,9 @@ const ContentContainer = styled(motion.div)`
 
 const BizSection = styled.div`
   margin-bottom: 4rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 const BizTitle = styled.h3`
@@ -144,14 +148,26 @@ const StepDescription = styled.p`
   line-height: 1.6;
 `;
 
-const CustomerLogoGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 2rem;
-  align-items: center;
+// Logo Carousel
+const scrollX = keyframes`
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
 `;
 
-const LogoWrapper = styled(motion.div)`
+const LogoCarouselContainer = styled.div`
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+`;
+
+const LogoTrack = styled(motion.div)`
+  display: flex;
+  animation: ${scrollX} 40s linear infinite;
+`;
+
+const LogoWrapper = styled.div`
   background: #ffffff;
   padding: 1rem;
   border-radius: 12px;
@@ -159,7 +175,10 @@ const LogoWrapper = styled(motion.div)`
   justify-content: center;
   align-items: center;
   height: 100px;
+  width: 200px;
+  margin: 0 1rem;
   border: 1px solid var(--border-color);
+  flex-shrink: 0;
 `;
 
 const Logo = styled.img`
@@ -215,6 +234,7 @@ const BusinessPage = () => {
     { name: 'LG Display', logo: '/logos/LG_Display_logo_(english).png' },
     { name: 'LG Electronics', logo: '/logos/LG electronics.png' },
   ];
+  const duplicatedCustomers = [...customers, ...customers];
 
   return (
     <PageContainer>
@@ -260,13 +280,15 @@ const BusinessPage = () => {
         <ContentContainer variants={itemVariants}>
           <BizSection>
             <BizTitle>{t('core_customers_title')}</BizTitle>
-            <CustomerLogoGrid>
-              {customers.map((customer) => (
-                <LogoWrapper key={customer.name} whileHover={{ scale: 1.05 }}>
-                  <Logo src={customer.logo} alt={`${customer.name} logo`} />
-                </LogoWrapper>
-              ))}
-            </CustomerLogoGrid>
+            <LogoCarouselContainer>
+              <LogoTrack>
+                {duplicatedCustomers.map((customer, index) => (
+                  <LogoWrapper key={`${customer.name}-${index}`}>
+                    <Logo src={customer.logo} alt={`${customer.name} logo`} />
+                  </LogoWrapper>
+                ))}
+              </LogoTrack>
+            </LogoCarouselContainer>
           </BizSection>
         </ContentContainer>
 
