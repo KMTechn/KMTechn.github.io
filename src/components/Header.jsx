@@ -124,10 +124,39 @@ const ControlButton = styled.button`
   }
 `;
 
-const LanguageSwitcher = styled(ControlButton)`
-  font-size: 0.9rem;
-  font-weight: 600;
-  min-width: 60px;
+const LanguageSwitcher = styled.div`
+  position: relative;
+  
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0.5rem 2rem 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s;
+    
+    &:hover {
+      color: var(--accent-amber);
+      border-color: var(--accent-amber);
+    }
+  }
+
+  &::after {
+    content: '▼';
+    font-size: 0.7rem;
+    position: absolute;
+    top: 50%;
+    right: 0.7rem;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--text-color);
+  }
 `;
 
 const MobileMenuButton = styled(ControlButton)`
@@ -143,9 +172,15 @@ const Header = () => {
   const { theme, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const changeLanguage = () => {
-    const newLang = i18n.language === 'ko' ? 'en' : 'ko';
-    i18n.changeLanguage(newLang);
+  const languages = {
+    en: { nativeName: 'English' },
+    ko: { nativeName: '한국어' },
+    zh: { nativeName: '中文' },
+    de: { nativeName: 'Deutsch' }
+  };
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
   };
 
   const closeMenu = () => setIsMenuOpen(false);
@@ -170,8 +205,17 @@ const Header = () => {
           <NavLink to="/contact">{t('nav_contact')}</NavLink>
         </Nav>
         <ControlsContainer>
-          <LanguageSwitcher onClick={changeLanguage}>
-            {i18n.language.toUpperCase()}
+          <LanguageSwitcher>
+            <select 
+              onChange={(e) => changeLanguage(e.target.value)} 
+              value={i18n.language}
+            >
+              {Object.keys(languages).map((lng) => (
+                <option key={lng} value={lng}>
+                  {languages[lng].nativeName}
+                </option>
+              ))}
+            </select>
           </LanguageSwitcher>
           <ControlButton onClick={toggleTheme}>
             {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
