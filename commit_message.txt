@@ -1,0 +1,1 @@
+feat: Enhance Business page and revert star background
