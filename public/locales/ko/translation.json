@@ -106,14 +106,28 @@
   "org_ceo": "대표이사",
   "org_ceo_name": "박창건",
   "org_marketing_engineering_title": "마케팅/엔지니어링",
-  "org_marketing_engineering_members": "CTO 이재영\n상무 장익진\n이사 이동용",
+  "org_marketing_engineering_members": [
+    { "role": "CTO", "name": "이재영" },
+    { "role": "상무", "name": "장익진" },
+    { "role": "이사", "name": "이동용" }
+  ],
   "org_qc_technical_title": "품질관리/기술",
-  "org_qc_technical_members": "이사 이성우",
+  "org_qc_technical_members": [
+    { "role": "이사", "name": "이성우" }
+  ],
   "org_product_control_title": "생산관리",
-  "org_product_control_members": "이사 서동교\n주임 박관호",
+  "org_product_control_members": [
+    { "role": "이사", "name": "서동교" },
+    { "role": "주임", "name": "박관호" }
+  ],
   "org_3pl_title": "3PL",
-  "org_3pl_members": "상무 장익진\n과장 김소미",
+  "org_3pl_members": [
+    { "role": "상무", "name": "장익진" },
+    { "role": "과장", "name": "김소미" }
+  ],
   "org_management_title": "경영관리",
-  "org_management_members": "송익준",
+  "org_management_members": [
+    { "role": "담당", "name": "송익준" }
+  ],
   "footer_copyright": "© 2024 KMTech. 모든 권리를 보유합니다."
 }
