@@ -1,0 +1,3 @@
+fix(test): Add missing partners link to header
+
+The CI build failed because the 'Partners' navigation link was missing from the Header component, causing the test to fail. This commit adds the link to both the desktop and mobile navigation and updates the translation files.
