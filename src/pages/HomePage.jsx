@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -31,14 +31,15 @@ const HeroSection = styled(Section)`
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  padding: 0 5%;
+  padding: 2rem 5%;
   background: var(--background-color);
+  gap: 2rem;
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
     text-align: center;
-    height: auto;
-    padding: 4rem 5%;
+    min-height: auto;
+    padding: 3rem 5%;
   }
 `;
 
@@ -46,36 +47,34 @@ const TextContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-right: 2rem;
-
+  
   @media (max-width: 900px) {
     align-items: center;
     order: 2;
-    padding-right: 0;
   }
 `;
 
 const ArtworkContainer = styled(motion.div)`
-  height: 70vh;
-  min-height: 400px;
-  cursor: grab;
+  height: 100%;
   width: 100%;
   position: relative;
+  cursor: grab;
 
   &:active {
     cursor: grabbing;
   }
 
   @media (max-width: 900px) {
-    height: 40vh;
-    width: 100%;
     order: 1;
-    margin-bottom: 2rem;
+    width: 90%;
+    max-width: 450px;
+    margin: 0 auto 2rem;
+    aspect-ratio: 1 / 1;
   }
 `;
 
 const Title = styled(motion.h1)`
-  font-size: 3.5rem;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1.5rem;
@@ -84,30 +83,22 @@ const Title = styled(motion.h1)`
   span {
     color: var(--accent-amber);
   }
-
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
-  }
 `;
 
 const Subtitle = styled(motion.p)`
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   color: var(--text-secondary);
   max-width: 500px;
   margin-bottom: 2.5rem;
   line-height: 1.6;
-
-  @media (max-width: 768px) {
-    font-size: 1.1rem;
-  }
 `;
 
 const CTAButton = styled(motion.button)`
-  padding: 1rem 2rem;
+  padding: clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2rem);
   border-radius: 50px;
   background-color: var(--accent-amber);
   color: #121212;
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -241,6 +232,18 @@ const latLonToVector3 = (lat, lon, radius) => {
 const HomePage = () => {
   const { t } = useTranslation();
   const [activeService, setActiveService] = useState(0);
+  const artworkRef = useRef(null);
+  const [canvasKey, setCanvasKey] = useState(Date.now());
+
+  useEffect(() => {
+    const handleResize = () => {
+      setCanvasKey(Date.now());
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
 
   // Set camera to focus on Korea initially
   const initialCameraPosition = latLonToVector3(37.5665, 126.9780, 8);
@@ -299,8 +302,16 @@ const HomePage = () => {
             </CTAButton>
           </Link>
         </TextContainer>
-        <ArtworkContainer initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}>
-          <Canvas camera={{ position: initialCameraPosition, fov: 50 }}>
+        <ArtworkContainer 
+          ref={artworkRef}
+          initial={{ opacity: 0, scale: 0.8 }} 
+          animate={{ opacity: 1, scale: 1 }} 
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <Canvas 
+            key={canvasKey}
+            camera={{ position: initialCameraPosition, fov: 50 }}
+          >
             <Suspense fallback={<Loader />}>
               <Globe {...globeSettings} />
             </Suspense>
