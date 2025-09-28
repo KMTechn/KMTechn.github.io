@@ -13,6 +13,7 @@ const HomePage = lazy(() => import('./pages/HomePage'));
 const AboutUsPage = lazy(() => import('./pages/AboutUsPage'));
 const BusinessPage = lazy(() => import('./pages/BusinessPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
+const PartnersPage = lazy(() => import('./pages/PartnersPage'));
 
 const AppContainer = styled.div`
   width: 100%;
@@ -41,7 +42,7 @@ function App() {
 
   return (
     <ThemeProvider>
-      <Router>
+      <Router basename="/kmtech-website">
         <ScrollToTop mainContentRef={mainContentRef} />
         <AppContainer>
           <Header />
@@ -53,6 +54,7 @@ function App() {
                   <Route path="/about" element={<AboutUsPage />} />
                   <Route path="/business" element={<BusinessPage />} />
                   <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/partners" element={<PartnersPage />} />
                 </Routes>
               </Suspense>
             </ErrorBoundary>

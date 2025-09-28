@@ -44,13 +44,13 @@ const PartnersPage = () => {
   const { t } = useTranslation();
 
   const partners = [
-    { name: 'Continental', logo: '/logos/continental.jpeg' },
-    { name: 'Humax', logo: '/logos/humax.jpeg' },
-    { name: 'Hyundai', logo: '/logos/Hyundai_Motor_Company_logo.svg.png' },
-    { name: 'Kanavi Mobility', logo: '/logos/kanavi mobility.jpeg' },
-    { name: 'Kia', logo: '/logos/KIA_logo3.svg.png' },
-    { name: 'LG Display', logo: '/logos/LG_Display_logo_(english).png' },
-    { name: 'LG Electronics', logo: '/logos/LG electronics.png' },
+    { name: 'Continental', logo: `${import.meta.env.BASE_URL}logos/continental.jpeg` },
+    { name: 'Humax', logo: `${import.meta.env.BASE_URL}logos/humax.jpeg` },
+    { name: 'Hyundai', logo: `${import.meta.env.BASE_URL}logos/Hyundai_Motor_Company_logo.svg.png` },
+    { name: 'Kanavi Mobility', logo: `${import.meta.env.BASE_URL}logos/kanavi-mobility.jpeg` },
+    { name: 'Kia', logo: `${import.meta.env.BASE_URL}logos/KIA_logo3.svg.png` },
+    { name: 'LG Display', logo: `${import.meta.env.BASE_URL}logos/LG_Display_logo_(english).png` },
+    { name: 'LG Electronics', logo: `${import.meta.env.BASE_URL}logos/LG-electronics.png` },
   ];
 
   const containerVariants = {

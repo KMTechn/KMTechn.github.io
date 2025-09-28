@@ -202,6 +202,7 @@ const Header = () => {
         <Nav>
           <NavLink to="/about">{t('nav_about')}</NavLink>
           <NavLink to="/business">{t('nav_business')}</NavLink>
+          <NavLink to="/partners">{t('nav_partners')}</NavLink>
           <NavLink to="/contact">{t('nav_contact')}</NavLink>
         </Nav>
         <ControlsContainer>
