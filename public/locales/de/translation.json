@@ -45,7 +45,7 @@
   "process_step_5_title": "Inspektion & Test",
   "process_step_5_desc": "Visuelle und funktionale Tests zur Sicherstellung der Qualitätsstandards.",
   "process_step_6_title": "QR-Code-Lesung",
-  "process_step_6_desc": "ERP-gebundenes QR-Code-Scannen für eine genaue Bestandsverwaltung.",
+  "process_step_6_desc": "ERP-gekoppeltes QR-Code-Scannen für eine genaue Bestandsverwaltung.",
   "process_step_7_title": "Umverpackung",
   "process_step_7_desc": "Maßgeschneiderte Umverpackung nach den Anforderungen des Endkunden.",
   "process_step_8_title": "Verladung & Lieferung",
