@@ -3,9 +3,9 @@
 
 :root {
   /* Primary accent color - improves WCAG AA contrast ratio */
-  --accent-amber: #D4A500;
-  --accent-amber-light: #FFBF00;
-  --accent-amber-glow: rgba(212, 165, 0, 0.4);
+  --accent-amber: #FFBF00;
+  --accent-amber-light: #FFD700;
+  --accent-amber-glow: rgba(255, 191, 0, 0.4);
   /* Additional colors for semantic meaning */
   --success-color: #10b981;
   --error-color: #ef4444;
@@ -22,9 +22,9 @@
   --footer-bg: #f0f0f0;
   --card-bg: #ffffff;
   --border-color: rgba(0, 0, 0, 0.08);
-  /* Light theme uses darker accent color for better contrast */
-  --accent-amber: #B8860B;
-  --accent-color: #D4A500;
+  /* Light theme uses brighter accent color for better visibility */
+  --accent-amber: #FFD700;
+  --accent-color: #FFBF00;
 }
 
 [data-theme='dark'] {
