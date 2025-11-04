@@ -3,9 +3,9 @@
 
 :root {
   /* Primary accent color - improves WCAG AA contrast ratio */
-  --accent-amber: #FFBF00;
-  --accent-amber-light: #FFD700;
-  --accent-amber-glow: rgba(255, 191, 0, 0.4);
+  --accent-amber: #FFD700;
+  --accent-amber-light: #FFED4E;
+  --accent-amber-glow: rgba(255, 215, 0, 0.4);
   /* Additional colors for semantic meaning */
   --success-color: #10b981;
   --error-color: #ef4444;
@@ -23,8 +23,8 @@
   --card-bg: #ffffff;
   --border-color: rgba(0, 0, 0, 0.08);
   /* Light theme uses brighter accent color for better visibility */
-  --accent-amber: #FFD700;
-  --accent-color: #FFBF00;
+  --accent-amber: #FFED4E;
+  --accent-color: #FFD700;
 }
 
 [data-theme='dark'] {
@@ -36,8 +36,8 @@
   --card-bg: #1a1a1a;
   --border-color: rgba(255, 255, 255, 0.1);
   /* Dark theme uses lighter accent color */
-  --accent-amber: #FFBF00;
-  --accent-color: #FFBF00;
+  --accent-amber: #FFED4E;
+  --accent-color: #FFED4E;
 }
 
 *, *::before, *::after {
