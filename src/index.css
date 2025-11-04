@@ -2,27 +2,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@400;700&family=Spectral:wght@700&display=swap');
 
 :root {
-  --accent-amber: #FFBF00;
-  --accent-amber-glow: rgba(255, 191, 0, 0.4);
+  /* Primary accent color - improves WCAG AA contrast ratio */
+  --accent-amber: #D4A500;
+  --accent-amber-light: #FFBF00;
+  --accent-amber-glow: rgba(212, 165, 0, 0.4);
+  /* Additional colors for semantic meaning */
+  --success-color: #10b981;
+  --error-color: #ef4444;
+  --warning-color: #f59e0b;
+  --info-color: #3b82f6;
   --border-color: rgba(255, 255, 255, 0.1);
 }
 
 [data-theme='light'] {
   --background-color: #f5f5f5;
-  --text-color: #121212;
+  --text-color: #1a1a1a;
+  --text-secondary: #4b5563;
   --header-bg: #ffffff;
   --footer-bg: #f0f0f0;
   --card-bg: #ffffff;
-  --border-color: rgba(0, 0, 0, 0.1);
+  --border-color: rgba(0, 0, 0, 0.08);
+  /* Light theme uses darker accent color for better contrast */
+  --accent-amber: #B8860B;
+  --accent-color: #D4A500;
 }
 
 [data-theme='dark'] {
   --background-color: #121212;
   --text-color: #e5e5e5;
+  --text-secondary: #a0aec0;
   --header-bg: #1a1a1a;
   --footer-bg: #1a1a1a;
   --card-bg: #1a1a1a;
   --border-color: rgba(255, 255, 255, 0.1);
+  /* Dark theme uses lighter accent color */
+  --accent-amber: #FFBF00;
+  --accent-color: #FFBF00;
 }
 
 *, *::before, *::after {
@@ -57,21 +72,123 @@ body[data-theme='light'] {
   --background-color: #f5f5f5;
 }
 
+/* Typography System - 8px baseline grid */
+:root {
+  /* Font sizing scale */
+  --font-xs: 0.75rem;     /* 12px */
+  --font-sm: 0.875rem;    /* 14px */
+  --font-base: 1rem;      /* 16px */
+  --font-lg: 1.125rem;    /* 18px */
+  --font-xl: 1.25rem;     /* 20px */
+  --font-2xl: 1.5rem;     /* 24px */
+  --font-3xl: 1.875rem;   /* 30px */
+  --font-4xl: 2.25rem;    /* 36px */
+  --font-5xl: 3rem;       /* 48px */
+
+  /* Line height scale */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* Spacing scale (8px baseline) */
+  --space-0: 0;
+  --space-1: 0.25rem;     /* 4px */
+  --space-2: 0.5rem;      /* 8px */
+  --space-3: 0.75rem;     /* 12px */
+  --space-4: 1rem;        /* 16px */
+  --space-5: 1.25rem;     /* 20px */
+  --space-6: 1.5rem;      /* 24px */
+  --space-7: 1.75rem;     /* 28px */
+  --space-8: 2rem;        /* 32px */
+  --space-10: 2.5rem;     /* 40px */
+  --space-12: 3rem;       /* 48px */
+  --space-16: 4rem;       /* 64px */
+  --space-20: 5rem;       /* 80px */
+
+  /* Radius scale */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
+  font-size: var(--font-base);
+  line-height: var(--line-height-normal);
+
   background-color: var(--background-color);
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
 }
 
-h1, h2, h3, h4, h5, h6 {
+/* Heading hierarchy */
+h1 {
+  font-family: 'Noto Sans KR', 'Spectral', serif;
+  font-size: clamp(2.2rem, 5vw, var(--font-5xl));
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--space-6);
+  color: var(--text-color);
+}
+
+h2 {
+  font-family: 'Noto Sans KR', 'Spectral', serif;
+  font-size: var(--font-3xl);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--space-6);
+  color: var(--text-color);
+}
+
+h3 {
+  font-family: 'Noto Sans KR', 'Spectral', serif;
+  font-size: var(--font-2xl);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--space-4);
+  color: var(--text-color);
+}
+
+h4, h5, h6 {
   font-family: 'Noto Sans KR', 'Spectral', serif;
   font-weight: 700;
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--space-3);
   color: var(--text-color);
-  text-shadow: 0 0 10px rgba(229, 229, 229, 0.1);
+}
+
+h4 {
+  font-size: var(--font-xl);
+}
+
+h5 {
+  font-size: var(--font-lg);
+}
+
+h6 {
+  font-size: var(--font-base);
+}
+
+/* Paragraph and text styles */
+p {
+  margin-bottom: var(--space-4);
+  line-height: var(--line-height-normal);
+}
+
+small {
+  font-size: var(--font-sm);
+}
+
+strong, b {
+  font-weight: 600;
+}
+
+em, i {
+  font-style: italic;
 }
 
 a {
@@ -82,4 +199,58 @@ a {
 
 a:hover {
   color: var(--accent-amber);
+}
+
+/* Keyboard and focus accessibility */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--accent-amber);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Remove outline for mouse users to avoid double focus indicator */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+select:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible) {
+  outline: none;
+}
+
+button {
+  transition: all 0.3s ease;
+}
+
+button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Skip to main content link for keyboard navigation */
+a.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--accent-amber);
+  color: var(--background-color);
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 100;
+}
+
+a.skip-to-main:focus {
+  top: 0;
+  outline: none;
 }

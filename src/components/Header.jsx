@@ -195,20 +195,22 @@ const Header = () => {
 
   return (
     <>
-      <HeaderContainer>
-        <LogoContainer to="/" onClick={closeMenu}>
+      <HeaderContainer role="banner">
+        <LogoContainer to="/" onClick={closeMenu} aria-label="KMTECH home">
           <img src={logo} alt="KMTECH Logo" />
         </LogoContainer>
-        <Nav>
-          <NavLink to="/about">{t('nav_about')}</NavLink>
-          <NavLink to="/business">{t('nav_business')}</NavLink>
-          <NavLink to="/contact">{t('nav_contact')}</NavLink>
+        <Nav aria-label="Main navigation">
+          <NavLink to="/about" title={t('nav_about')}>{t('nav_about')}</NavLink>
+          <NavLink to="/business" title={t('nav_business')}>{t('nav_business')}</NavLink>
+          <NavLink to="/contact" title={t('nav_contact')}>{t('nav_contact')}</NavLink>
         </Nav>
         <ControlsContainer>
           <LanguageSwitcher>
-            <select 
-              onChange={(e) => changeLanguage(e.target.value)} 
+            <select
+              onChange={(e) => changeLanguage(e.target.value)}
               value={i18n.language}
+              aria-label="Select language"
+              title="Select website language"
             >
               {Object.keys(languages).map((lng) => (
                 <option key={lng} value={lng}>
@@ -217,15 +219,29 @@ const Header = () => {
               ))}
             </select>
           </LanguageSwitcher>
-          <ControlButton onClick={toggleTheme}>
+          <ControlButton
+            onClick={toggleTheme}
+            aria-label={theme === 'light' ? 'Enable dark mode' : 'Enable light mode'}
+            title={theme === 'light' ? 'Enable dark mode' : 'Enable light mode'}
+          >
             {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
           </ControlButton>
-          <MobileMenuButton onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <MobileMenuButton
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMenuOpen}
+            title={isMenuOpen ? 'Close menu' : 'Open menu'}
+          >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </MobileMenuButton>
         </ControlsContainer>
       </HeaderContainer>
-      <MobileNav $isOpen={isMenuOpen}>
+      <MobileNav
+        $isOpen={isMenuOpen}
+        role="navigation"
+        aria-label="Mobile navigation"
+        aria-hidden={!isMenuOpen}
+      >
         <NavLink to="/about" onClick={closeMenu}>{t('nav_about')}</NavLink>
         <NavLink to="/business" onClick={closeMenu}>{t('nav_business')}</NavLink>
         <NavLink to="/partners" onClick={closeMenu}>{t('nav_partners')}</NavLink>

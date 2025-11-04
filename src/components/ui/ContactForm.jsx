@@ -8,58 +8,92 @@ import emailjs from '@emailjs/browser';
 const FormContainer = styled(motion.form)`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  margin-top: 2rem;
+  gap: var(--space-6);
+  margin-top: var(--space-8);
   position: relative;
 `;
 
 const Input = styled.input`
-  padding: 1rem;
-  border-radius: 8px;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
   border: 1px solid var(--border-color);
   background-color: var(--background-color);
   color: var(--text-color);
-  font-size: 1rem;
-  transition: border-color 0.3s;
+  font-size: var(--font-base);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  font-family: inherit;
+
+  &:hover:not(:disabled) {
+    border-color: var(--accent-amber);
+  }
 
   &:focus {
-    outline: none;
+    outline: 2px solid var(--accent-amber);
+    outline-offset: 2px;
     border-color: var(--accent-amber);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 `;
 
 const Textarea = styled.textarea`
-  padding: 1rem;
-  border-radius: 8px;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
   border: 1px solid var(--border-color);
   background-color: var(--background-color);
   color: var(--text-color);
-  font-size: 1rem;
+  font-size: var(--font-base);
+  line-height: var(--line-height-relaxed);
   min-height: 150px;
   resize: vertical;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  font-family: inherit;
+
+  &:hover:not(:disabled) {
+    border-color: var(--accent-amber);
+  }
 
   &:focus {
-    outline: none;
+    outline: 2px solid var(--accent-amber);
+    outline-offset: 2px;
     border-color: var(--accent-amber);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 `;
 
 const SubmitButton = styled.button`
-  padding: 1rem 2rem;
-  border-radius: 50px;
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-full);
   background-color: var(--accent-amber);
   color: #121212;
-  font-size: 1.1rem;
+  font-size: var(--font-lg);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   border: 2px solid var(--accent-amber);
   align-self: flex-start;
+  font-family: inherit;
 
   &:hover:not(:disabled) {
     background-color: transparent;
     color: var(--accent-amber);
+    transform: translateY(-2px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:focus {
+    outline: 2px solid var(--accent-amber);
+    outline-offset: 2px;
   }
 
   &:disabled {
@@ -70,15 +104,15 @@ const SubmitButton = styled.button`
 
 const StatusMessage = styled(motion.div)`
   background-color: var(--card-bg);
-  border: 1px solid ${props => props.status === 'success' ? 'var(--accent-green)' : 'var(--accent-red)'};
-  color: ${props => props.status === 'success' ? 'var(--accent-green)' : 'var(--accent-red)'};
-  border-radius: 12px;
-  padding: 2rem;
+  border: 1px solid ${props => props.status === 'success' ? '#10b981' : '#ef4444'};
+  color: ${props => props.status === 'success' ? '#10b981' : '#ef4444'};
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: var(--space-4);
 `;
 
 const StatusTitle = styled.h3`

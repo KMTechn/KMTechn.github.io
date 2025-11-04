@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useRef, useEffect } from 'react';
+import React, { Suspense, useState, useRef, useEffect, lazy } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -6,21 +6,15 @@ import { useTranslation } from 'react-i18next';
 import { Canvas } from '@react-three/fiber';
 import * as THREE from 'three';
 import { Vector3 } from 'three';
-import { MapControls, useTexture } from '@react-three/drei';
+import { MapControls } from '@react-three/drei';
 import { Section, SectionTitle } from '../components/ui/Page';
-import Globe from '../components/ui/Globe';
-import GlobeControls from '../components/ui/GlobeControls';
 import Loader from '../components/ui/Loader';
-import { 
+import {
   FaArrowRight, FaWarehouse, FaBrain, FaShippingFast, FaMicroscope, FaSearch, FaTools
 } from 'react-icons/fa';
 
-// 텍스처를 미리 로드하여 UX 개선
-useTexture.preload([
-  '/earth-day.jpg',
-  '/earth-night.jpg',
-  '/earth-clouds.jpg',
-]);
+// 글로브를 동적으로 로드하여 번들 크기 최적화
+const Globe = lazy(() => import('../components/ui/Globe'));
 
 const PageContainer = styled.div`
   width: 100%;
