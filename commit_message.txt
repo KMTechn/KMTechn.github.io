@@ -1,1 +1,0 @@
-Fix: Update translations and configure deployment
