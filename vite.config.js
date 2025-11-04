@@ -14,7 +14,7 @@ export default defineConfig({
           // Three.js 및 3D 렌더링 라이브러리를 별도 청크로 분할
           'three-bundle': ['three', '@react-three/fiber', '@react-three/drei'],
           // 애니메이션 라이브러리 분할
-          'animation': ['framer-motion', 'react-spring'],
+          'animation': ['framer-motion'],
           // 맵/지도 라이브러리 분할
           'map': ['leaflet', 'react-leaflet'],
           // i18n 라이브러리 분할
