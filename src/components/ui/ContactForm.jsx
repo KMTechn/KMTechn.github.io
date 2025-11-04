@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, AlertCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const FormContainer = styled(motion.form)`
   display: flex;
@@ -69,8 +70,8 @@ const SubmitButton = styled.button`
 
 const StatusMessage = styled(motion.div)`
   background-color: var(--card-bg);
-  border: 1px solid var(--accent-green);
-  color: var(--accent-green);
+  border: 1px solid ${props => props.status === 'success' ? 'var(--accent-green)' : 'var(--accent-red)'};
+  color: ${props => props.status === 'success' ? 'var(--accent-green)' : 'var(--accent-red)'};
   border-radius: 12px;
   padding: 2rem;
   text-align: center;
@@ -93,6 +94,14 @@ const ContactForm = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState('idle'); // idle, submitting, success, error
 
+  // Initialize EmailJS
+  useEffect(() => {
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    if (publicKey) {
+      emailjs.init(publicKey);
+    }
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -101,33 +110,59 @@ const ContactForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setStatus('submitting');
-    console.log("Form Submitted:", formData);
 
-    // Simulate API call
-    setTimeout(() => {
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+
+    if (!serviceId || !templateId) {
+      console.error('EmailJS credentials not configured');
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
+      return;
+    }
+
+    // Send email
+    emailjs.send(serviceId, templateId, {
+      from_name: formData.name,
+      from_email: formData.email,
+      message: formData.message
+    }).then(() => {
       setStatus('success');
       setFormData({ name: '', email: '', message: '' });
-      
+
       // Reset form after 3 seconds
       setTimeout(() => {
         setStatus('idle');
       }, 3000);
-    }, 1500);
+    }).catch((error) => {
+      console.error('Failed to send email:', error);
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
+    });
   };
 
   return (
     <AnimatePresence mode="wait">
-      {status === 'success' ? (
+      {status === 'success' || status === 'error' ? (
         <StatusMessage
-          key="success"
+          key="status"
+          status={status}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
         >
           <StatusTitle>
-            <CheckCircle size={28} /> {t('contact_form_success_title')}
+            {status === 'success' ? (
+              <>
+                <CheckCircle size={28} /> {t('contact_form_success_title')}
+              </>
+            ) : (
+              <>
+                <AlertCircle size={28} /> {t('contact_form_error_title') || 'Error'}
+              </>
+            )}
           </StatusTitle>
-          <p>{t('contact_form_success_desc')}</p>
+          <p>{status === 'success' ? t('contact_form_success_desc') : t('contact_form_error_desc') || 'Failed to send message'}</p>
         </StatusMessage>
       ) : (
         <FormContainer 
