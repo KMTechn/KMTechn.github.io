@@ -98,28 +98,14 @@
   "org_ceo": "CEO",
   "org_ceo_name": "Park Chang-geon",
   "org_marketing_engineering_title": "Marketing/Engineering Div.",
-  "org_marketing_engineering_members": [
-    { "role": "CTO", "name": "Lee Jae-young" },
-    { "role": "Managing Director", "name": "Jang Ik-jin" },
-    { "role": "Director", "name": "Lee Dong-yong" }
-  ],
+  "org_marketing_engineering_members": [],
   "org_qc_technical_title": "Q.C, Technical Div.",
-  "org_qc_technical_members": [
-    { "role": "Director", "name": "Lee Seong-woo" }
-  ],
+  "org_qc_technical_members": [],
   "org_product_control_title": "Product Control Div.",
-  "org_product_control_members": [
-    { "role": "Director", "name": "Seo Dong-gyo" },
-    { "role": "Assistant Manager", "name": "Park Kwan-ho" }
-  ],
+  "org_product_control_members": [],
   "org_3pl_title": "3rd Party Logistics Div.",
-  "org_3pl_members": [
-    { "role": "Managing Director", "name": "Jang Ik-jin" },
-    { "role": "Manager", "name": "Kim So-mi" }
-  ],
+  "org_3pl_members": [],
   "org_management_title": "Management Div.",
-  "org_management_members": [
-    { "role": "Staff", "name": "Song Ik-jun" }
-  ],
+  "org_management_members": [],
   "footer_copyright": "© 2024 KMTech. All rights reserved."
 }
