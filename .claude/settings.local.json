@@ -13,7 +13,8 @@
       "Bash(for file in dist/assets/*)",
       "Bash(do if [ -f \"$file\" ])",
       "Bash(then cp \"$file\" assets/)",
-      "mcp__serena__get_symbols_overview"
+      "mcp__serena__get_symbols_overview",
+      "Bash(md5sum:*)"
     ],
     "deny": [],
     "ask": []

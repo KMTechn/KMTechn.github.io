@@ -23,12 +23,8 @@ export default defineConfig({
           'icons': ['react-icons', 'lucide-react'],
         },
       },
-      // Tree-shaking 설정: 동적 참조(i18n 등)가 있는 코드 보존
-      treeshake: {
-        moduleSideEffects: 'no-external',
-        propertyReadSideEffects: true,
-        tryCatchDeoptimization: false,
-      },
+      // Tree-shaking 비활성화: 조직도 department 코드가 제거되는 문제 해결
+      treeshake: false,
     },
     // 청크 크기 경고 임계값
     chunkSizeWarningLimit: 1000,
