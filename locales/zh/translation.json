@@ -107,14 +107,28 @@
   "org_ceo": "首席执行官",
   "org_ceo_name": "朴昌建",
   "org_marketing_engineering_title": "市场及工程部",
-  "org_marketing_engineering_members": [],
+  "org_marketing_engineering_members": [
+    { "role": "首席技术官", "name": "李在永" },
+    { "role": "常务理事", "name": "张益镇" },
+    { "role": "理事", "name": "李东勇" }
+  ],
   "org_qc_technical_title": "品控技术部",
-  "org_qc_technical_members": [],
+  "org_qc_technical_members": [
+    { "role": "理事", "name": "李成宇" }
+  ],
   "org_product_control_title": "生产管理部",
-  "org_product_control_members": [],
+  "org_product_control_members": [
+    { "role": "理事", "name": "徐东教" },
+    { "role": "代理", "name": "朴官浩" }
+  ],
   "org_3pl_title": "第三方物流部",
-  "org_3pl_members": [],
+  "org_3pl_members": [
+    { "role": "常务理事", "name": "张益镇" },
+    { "role": "经理", "name": "金素美" }
+  ],
   "org_management_title": "经营管理部",
-  "org_management_members": [],
+  "org_management_members": [
+    { "role": "专员", "name": "宋益俊" }
+  ],
   "footer_copyright": "© 2024 KMTech. 版权所有。"
 }

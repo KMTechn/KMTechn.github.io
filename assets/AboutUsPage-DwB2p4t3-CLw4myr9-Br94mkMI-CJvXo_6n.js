@@ -1,7 +1,7 @@
-import{o as p,N as e,c as r,i as h}from"./index-Btihv0AO.js";import{a as b,s as _,d as u,r as f,h as y,o as j,e as v,n as w,b as K,S as k,x as m,m as z,c as q,y as N,w as S,M as J,Q as M,J as c,_ as d,g as i,l as Q,Z as Y}from"./index-DcRM_7WJ-ry7PdAK9-C2GFryUe.js";import"./three-bundle-BXl3LOEh.js";const Z=r(d)`
+import{u as p,N as e,a as r,r as h}from"./index-DOLuPoTd.js";import{a as b,n as _,d as u,r as f,h as y,o as j,e as v,i as w,b as K,S as k,x as m,m as z,c as q,f as $,w as A,M as H,Q as N,J as c,_ as d,y as i,l as S,Z}from"./index-DcRM_7WJ-ry7PdAK9-C2GFryUe-DOXVJi4E.js";import"./three-bundle-BXl3LOEh.js";const C=r(d)`
   background-color: var(--card-bg);
   text-align: center;
-`,$=r(i.div)`
+`,I=r(i.div)`
   max-width: 800px;
   margin: 0 auto 4rem;
   h3 {
@@ -14,14 +14,14 @@ import{o as p,N as e,c as r,i as h}from"./index-Btihv0AO.js";import{a as b,s as 
     line-height: 1.8;
     color: var(--text-secondary);
   }
-`,A=r(i.div)`
+`,J=r(i.div)`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
-`,C=r(i.div)`
+`,M=r(i.div)`
   background: var(--background-color);
   padding: 2.5rem;
   border-radius: 12px;
@@ -31,16 +31,16 @@ import{o as p,N as e,c as r,i as h}from"./index-Btihv0AO.js";import{a as b,s as 
   display: flex;
   flex-direction: column;
   align-items: center;
-`,H=r.div`
+`,O=r.div`
   font-size: 3rem;
   color: var(--accent-amber);
   margin-bottom: 1.5rem;
-`,I=r.h4`
+`,P=r.h4`
   font-size: 1.5rem;
   margin-bottom: 1rem;
   font-weight: 600;
   flex-grow: 1;
-`,O=r.div`
+`,Q=r.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 2.5rem;
@@ -56,10 +56,10 @@ import{o as p,N as e,c as r,i as h}from"./index-Btihv0AO.js";import{a as b,s as 
     transform: translateY(-10px);
     box-shadow: 0 12px 24px rgba(0,0,0,0.1);
   }
-`,R=r.div`
+`,X=r.div`
   height: 220px;
   overflow: hidden;
-`,E=r.div`
+`,Y=r.div`
   width: 100%;
   height: 100%;
   background-size: cover;
@@ -69,32 +69,32 @@ import{o as p,N as e,c as r,i as h}from"./index-Btihv0AO.js";import{a as b,s as 
   ${x}:hover & {
     transform: scale(1.05);
   }
-`,F=r.div`
+`,B=r.div`
   padding: 2rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-`,G=r.div`
+`,D=r.div`
   font-size: 2.5rem;
   color: var(--accent-amber);
   margin-bottom: 1rem;
-`,L=r.h3`
+`,E=r.h3`
   font-size: 1.6rem;
   margin-bottom: 1rem;
   font-weight: 600;
   color: var(--text-color);
-`,P=r.p`
+`,F=r.p`
   font-size: 1rem;
   line-height: 1.7;
   color: var(--text-secondary);
-`,T=r(d)`
+`,G=r(d)`
   background-color: var(--background-color);
   padding: 6rem 2rem;
-`,U=r.div`
+`,L=r.div`
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
-`,V=r.div`
+`,R=r.div`
   padding: 1.5rem;
   display: inline-block;
   border-radius: 8px;
@@ -102,20 +102,20 @@ import{o as p,N as e,c as r,i as h}from"./index-Btihv0AO.js";import{a as b,s as 
   border: 1px solid var(--border-color);
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   min-width: 280px;
-`,W=r(V)`
+`,T=r(R)`
   background: var(--accent-amber);
   color: #121212;
   font-weight: 700;
   box-shadow: 0 8px 25px -5px rgba(255, 193, 7, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
-`,X=r.h3`
+`,U=r.h3`
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0;
-`,B=r.p`
+`,V=r.p`
   font-size: 1rem;
   margin: 0.25rem 0 0;
   opacity: 0.8;
-`,D=r.ul`
+`,W=r.ul`
   padding-top: 2rem;
   position: relative;
   list-style: none;
@@ -207,4 +207,4 @@ import{o as p,N as e,c as r,i as h}from"./index-Btihv0AO.js";import{a as b,s as 
   color: var(--text-secondary);
 `,le=r.span`
   font-weight: 500;
-`,ce=({node:t})=>{const[n,l]=h.useState(!1),{t:a}=p(),o=a(t.membersKey,{returnObjects:!0});return e.jsxs(re,{onClick:()=>l(!n),layout:!0,children:[e.jsxs(te,{children:[e.jsx(oe,{children:t.icon}),e.jsx(ie,{children:a(t.titleKey)}),e.jsx(i.div,{animate:{rotate:n?180:0},children:e.jsx(Q,{size:14})})]}),e.jsx(Y,{children:n&&Array.isArray(o)&&e.jsx(ae,{initial:{opacity:0,height:0},animate:{opacity:1,height:"auto"},exit:{opacity:0,height:0},transition:{duration:.3},children:o.map((s,g)=>e.jsxs(ne,{children:[e.jsx(se,{children:s.role}),e.jsx(le,{children:s.name})]},g))})})]})},xe=()=>{const{t}=p(),n=[{icon:e.jsx(b,{}),titleKey:"pillar_credibility"},{icon:e.jsx(_,{}),titleKey:"pillar_stability"},{icon:e.jsx(u,{}),titleKey:"pillar_environmental_quality"},{icon:e.jsx(f,{}),titleKey:"pillar_customer_orientation"},{icon:e.jsx(y,{}),titleKey:"pillar_ethical_behavior"},{icon:e.jsx(j,{}),titleKey:"pillar_company_development"}],l=[{icon:e.jsx(v,{}),img:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070&auto=format&fit=crop",titleKey:"strong_point_1_title",descKey:"strong_point_1_desc"},{icon:e.jsx(w,{}),img:"https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop",titleKey:"strong_point_2_title",descKey:"strong_point_2_desc"},{icon:e.jsx(K,{}),img:"https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2070&auto=format&fit=crop",titleKey:"strong_point_3_title",descKey:"strong_point_3_desc"},{icon:e.jsx(k,{}),img:"https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop",titleKey:"strong_point_4_title",descKey:"strong_point_4_desc"},{icon:e.jsx(m,{}),img:"https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?q=80&w=2070&auto=format&fit=crop",titleKey:"strong_point_5_title",descKey:"strong_point_5_desc"},{icon:e.jsx(z,{}),img:"https://images.unsplash.com/photo-1518314916381-77a37c2a49ae?q=80&w=2071&auto=format&fit=crop",titleKey:"strong_point_6_title",descKey:"strong_point_6_desc"}],a={ceo:{titleKey:"org_ceo",nameKey:"org_ceo_name"},departments:[{icon:e.jsx(q,{}),titleKey:"org_marketing_engineering_title",membersKey:"org_marketing_engineering_members"},{icon:e.jsx(N,{}),titleKey:"org_qc_technical_title",membersKey:"org_qc_technical_members"},{icon:e.jsx(S,{}),titleKey:"org_product_control_title",membersKey:"org_product_control_members"},{icon:e.jsx(m,{}),titleKey:"org_3pl_title",membersKey:"org_3pl_members"},{icon:e.jsx(J,{}),titleKey:"org_management_title",membersKey:"org_management_members"}]};return e.jsxs(M,{children:[e.jsxs(Z,{children:[e.jsx(c,{children:t("about_ideology_title")}),e.jsxs($,{children:[e.jsx("h3",{children:t("principle_customer_centered")}),e.jsx("p",{children:t("about_ideology_desc")})]}),e.jsx(A,{children:n.map(o=>e.jsxs(C,{whileHover:{y:-10},children:[e.jsx(H,{children:o.icon}),e.jsx(I,{children:t(o.titleKey)})]},o.titleKey))})]}),e.jsxs(d,{children:[e.jsx(c,{children:t("about_strong_points_title")}),e.jsx(O,{children:l.map((o,s)=>e.jsxs(x,{whileHover:{y:-5},children:[e.jsx(R,{children:e.jsx(E,{style:{backgroundImage:`url(${o.img})`}})}),e.jsxs(F,{children:[e.jsx(G,{children:o.icon}),e.jsx(L,{children:t(o.titleKey)}),e.jsx(P,{children:t(o.descKey)})]})]},s))})]}),e.jsxs(T,{children:[e.jsx(c,{children:t("about_org_title")}),e.jsxs(U,{children:[e.jsxs(W,{children:[e.jsx(X,{children:t(a.ceo.nameKey)}),e.jsx(B,{children:t(a.ceo.titleKey)})]}),e.jsx(D,{children:a.departments.map(o=>e.jsx(ee,{children:e.jsx(ce,{node:o})},o.titleKey))})]})]})]})};export{xe as default};
+`,ce=({node:t})=>{const[n,l]=h.useState(!1),{t:a}=p(),o=a(t.membersKey,{returnObjects:!0});return e.jsxs(re,{onClick:()=>l(!n),layout:!0,children:[e.jsxs(te,{children:[e.jsx(oe,{children:t.icon}),e.jsx(ie,{children:a(t.titleKey)}),e.jsx(i.div,{animate:{rotate:n?180:0},children:e.jsx(S,{size:14})})]}),e.jsx(Z,{children:n&&Array.isArray(o)&&e.jsx(ae,{initial:{opacity:0,height:0},animate:{opacity:1,height:"auto"},exit:{opacity:0,height:0},transition:{duration:.3},children:o.map((s,g)=>e.jsxs(ne,{children:[e.jsx(se,{children:s.role}),e.jsx(le,{children:s.name})]},g))})})]})},xe=()=>{const{t}=p(),n=[{icon:e.jsx(b,{}),titleKey:"pillar_credibility"},{icon:e.jsx(_,{}),titleKey:"pillar_stability"},{icon:e.jsx(u,{}),titleKey:"pillar_environmental_quality"},{icon:e.jsx(f,{}),titleKey:"pillar_customer_orientation"},{icon:e.jsx(y,{}),titleKey:"pillar_ethical_behavior"},{icon:e.jsx(j,{}),titleKey:"pillar_company_development"}],l=[{icon:e.jsx(v,{}),img:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070&auto=format&fit=crop",titleKey:"strong_point_1_title",descKey:"strong_point_1_desc"},{icon:e.jsx(w,{}),img:"https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop",titleKey:"strong_point_2_title",descKey:"strong_point_2_desc"},{icon:e.jsx(K,{}),img:"https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2070&auto=format&fit=crop",titleKey:"strong_point_3_title",descKey:"strong_point_3_desc"},{icon:e.jsx(k,{}),img:"https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop",titleKey:"strong_point_4_title",descKey:"strong_point_4_desc"},{icon:e.jsx(m,{}),img:"https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?q=80&w=2070&auto=format&fit=crop",titleKey:"strong_point_5_title",descKey:"strong_point_5_desc"},{icon:e.jsx(z,{}),img:"https://images.unsplash.com/photo-1518314916381-77a37c2a49ae?q=80&w=2071&auto=format&fit=crop",titleKey:"strong_point_6_title",descKey:"strong_point_6_desc"}],a={ceo:{titleKey:"org_ceo",nameKey:"org_ceo_name"},departments:[{icon:e.jsx(q,{}),titleKey:"org_marketing_engineering_title",membersKey:"org_marketing_engineering_members"},{icon:e.jsx($,{}),titleKey:"org_qc_technical_title",membersKey:"org_qc_technical_members"},{icon:e.jsx(A,{}),titleKey:"org_product_control_title",membersKey:"org_product_control_members"},{icon:e.jsx(m,{}),titleKey:"org_3pl_title",membersKey:"org_3pl_members"},{icon:e.jsx(H,{}),titleKey:"org_management_title",membersKey:"org_management_members"}]};return e.jsxs(N,{children:[e.jsxs(C,{children:[e.jsx(c,{children:t("about_ideology_title")}),e.jsxs(I,{children:[e.jsx("h3",{children:t("principle_customer_centered")}),e.jsx("p",{children:t("about_ideology_desc")})]}),e.jsx(J,{children:n.map(o=>e.jsxs(M,{whileHover:{y:-10},children:[e.jsx(O,{children:o.icon}),e.jsx(P,{children:t(o.titleKey)})]},o.titleKey))})]}),e.jsxs(d,{children:[e.jsx(c,{children:t("about_strong_points_title")}),e.jsx(Q,{children:l.map((o,s)=>e.jsxs(x,{whileHover:{y:-5},children:[e.jsx(X,{children:e.jsx(Y,{style:{backgroundImage:`url(${o.img})`}})}),e.jsxs(B,{children:[e.jsx(D,{children:o.icon}),e.jsx(E,{children:t(o.titleKey)}),e.jsx(F,{children:t(o.descKey)})]})]},s))})]}),e.jsxs(G,{children:[e.jsx(c,{children:t("about_org_title")}),e.jsxs(L,{children:[e.jsxs(T,{children:[e.jsx(U,{children:t(a.ceo.nameKey)}),e.jsx(V,{children:t(a.ceo.titleKey)})]}),e.jsx(W,{children:a.departments.map(o=>e.jsx(ee,{children:e.jsx(ce,{node:o})},o.titleKey))})]})]})]})};export{xe as default};
