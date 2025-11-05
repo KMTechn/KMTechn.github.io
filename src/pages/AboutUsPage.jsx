@@ -268,6 +268,17 @@ const MemberInfo = styled.div`
 `;
 
 
+const organizationData = {
+  ceo: { titleKey: 'org_ceo', nameKey: 'org_ceo_name' },
+  departments: [
+    { icon: <FaCogs />, titleKey: 'org_marketing_engineering_title', membersKey: 'org_marketing_engineering_members' },
+    { icon: <FaSearchPlus />, titleKey: 'org_qc_technical_title', membersKey: 'org_qc_technical_members' },
+    { icon: <FaSitemap />, titleKey: 'org_product_control_title', membersKey: 'org_product_control_members' },
+    { icon: <FaShippingFast />, titleKey: 'org_3pl_title', membersKey: 'org_3pl_members' },
+    { icon: <FaUsers />, titleKey: 'org_management_title', membersKey: 'org_management_members' },
+  ]
+};
+
 const AboutUsPage = () => {
   const { t } = useTranslation();
 
@@ -289,16 +300,7 @@ const AboutUsPage = () => {
     { icon: <FaMicroscope />, img: 'https://images.unsplash.com/photo-1518314916381-77a37c2a49ae?q=80&w=2071&auto=format&fit=crop', titleKey: 'strong_point_6_title', descKey: 'strong_point_6_desc' },
   ];
 
-  const organization = {
-    ceo: { titleKey: 'org_ceo', nameKey: 'org_ceo_name' },
-    departments: [
-      { icon: <FaCogs />, titleKey: 'org_marketing_engineering_title', membersKey: 'org_marketing_engineering_members' },
-      { icon: <FaSearchPlus />, titleKey: 'org_qc_technical_title', membersKey: 'org_qc_technical_members' },
-      { icon: <FaSitemap />, titleKey: 'org_product_control_title', membersKey: 'org_product_control_members' },
-      { icon: <FaShippingFast />, titleKey: 'org_3pl_title', membersKey: 'org_3pl_members' },
-      { icon: <FaUsers />, titleKey: 'org_management_title', membersKey: 'org_management_members' },
-    ]
-  };
+  const organization = organizationData;
 
   return (
     <Page>
@@ -343,18 +345,48 @@ const AboutUsPage = () => {
             <OrgTitle>{t(organization.ceo.nameKey)}</OrgTitle>
             <OrgRole>{t(organization.ceo.titleKey)}</OrgRole>
           </OrgNodeCeo>
-          <OrgTree>
-            {organization.departments.map((dept) => (
-              <OrgTreeItem key={dept.titleKey}>
-                <DepartmentNode>
-                  <DeptHeader>
-                    <DeptIcon>{dept.icon}</DeptIcon>
-                    <DeptTitle>{t(dept.titleKey)}</DeptTitle>
-                  </DeptHeader>
-                </DepartmentNode>
-              </OrgTreeItem>
-            ))}
-          </OrgTree>
+          <div style={{paddingTop: '2rem', position: 'relative', margin: 0}}>
+            <div key="dept1" style={{display: 'inline-block', textAlign: 'center', padding: '2rem 1rem', position: 'relative'}}>
+              <div style={{background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '1.25rem', minWidth: '250px', cursor: 'pointer'}}>
+                <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem'}}>
+                  <div style={{fontSize: '1.5rem', color: 'var(--accent-amber)'}}><FaCogs /></div>
+                  <h4 style={{fontSize: '1.1rem', fontWeight: 600, margin: 0, flexGrow: 1, textAlign: 'left'}}>{t('org_marketing_engineering_title')}</h4>
+                </div>
+              </div>
+            </div>
+            <div key="dept2" style={{display: 'inline-block', textAlign: 'center', padding: '2rem 1rem', position: 'relative'}}>
+              <div style={{background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '1.25rem', minWidth: '250px', cursor: 'pointer'}}>
+                <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem'}}>
+                  <div style={{fontSize: '1.5rem', color: 'var(--accent-amber)'}}><FaSearchPlus /></div>
+                  <h4 style={{fontSize: '1.1rem', fontWeight: 600, margin: 0, flexGrow: 1, textAlign: 'left'}}>{t('org_qc_technical_title')}</h4>
+                </div>
+              </div>
+            </div>
+            <div key="dept3" style={{display: 'inline-block', textAlign: 'center', padding: '2rem 1rem', position: 'relative'}}>
+              <div style={{background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '1.25rem', minWidth: '250px', cursor: 'pointer'}}>
+                <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem'}}>
+                  <div style={{fontSize: '1.5rem', color: 'var(--accent-amber)'}}><FaSitemap /></div>
+                  <h4 style={{fontSize: '1.1rem', fontWeight: 600, margin: 0, flexGrow: 1, textAlign: 'left'}}>{t('org_product_control_title')}</h4>
+                </div>
+              </div>
+            </div>
+            <div key="dept4" style={{display: 'inline-block', textAlign: 'center', padding: '2rem 1rem', position: 'relative'}}>
+              <div style={{background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '1.25rem', minWidth: '250px', cursor: 'pointer'}}>
+                <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem'}}>
+                  <div style={{fontSize: '1.5rem', color: 'var(--accent-amber)'}}><FaShippingFast /></div>
+                  <h4 style={{fontSize: '1.1rem', fontWeight: 600, margin: 0, flexGrow: 1, textAlign: 'left'}}>{t('org_3pl_title')}</h4>
+                </div>
+              </div>
+            </div>
+            <div key="dept5" style={{display: 'inline-block', textAlign: 'center', padding: '2rem 1rem', position: 'relative'}}>
+              <div style={{background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '1.25rem', minWidth: '250px', cursor: 'pointer'}}>
+                <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem'}}>
+                  <div style={{fontSize: '1.5rem', color: 'var(--accent-amber)'}}><FaUsers /></div>
+                  <h4 style={{fontSize: '1.1rem', fontWeight: 600, margin: 0, flexGrow: 1, textAlign: 'left'}}>{t('org_management_title')}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
         </OrgTreeContainer>
       </OrgSection>
     </Page>

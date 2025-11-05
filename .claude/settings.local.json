@@ -12,7 +12,8 @@
       "Bash(.nojekyll)",
       "Bash(for file in dist/assets/*)",
       "Bash(do if [ -f \"$file\" ])",
-      "Bash(then cp \"$file\" assets/)"
+      "Bash(then cp \"$file\" assets/)",
+      "mcp__serena__get_symbols_overview"
     ],
     "deny": [],
     "ask": []
