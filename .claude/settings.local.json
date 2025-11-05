@@ -14,7 +14,11 @@
       "Bash(do cp \"$file\" .)",
       "Bash(done)",
       "mcp__playwright__browser_close",
-      "Bash(gh run list:*)"
+      "Bash(gh run list:*)",
+      "Bash(find:*)",
+      "Bash(npm cache clean:*)",
+      "Bash(dir distassetsAboutUsPage* 2)",
+      "Bash(nul)"
     ],
     "deny": [],
     "ask": []
