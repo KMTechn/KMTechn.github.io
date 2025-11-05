@@ -1,24 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git pull:*)",
-      "Bash(git add:*)",
-      "Bash(git rm:*)",
-      "Bash(git commit:*)",
-      "mcp__serena__list_dir",
-      "Bash(cat:*)",
-      "Bash(npm install:*)",
-      "Bash(cd:*)",
-      "Bash(gh repo view:*)",
-      "Bash(for file in dist/earth-*.jpg)",
-      "Bash(do cp \"$file\" .)",
-      "Bash(done)",
-      "mcp__playwright__browser_close",
-      "Bash(gh run list:*)",
-      "Bash(find:*)",
-      "Bash(npm cache clean:*)",
-      "Bash(dir distassetsAboutUsPage* 2)",
-      "Bash(nul)"
+      "Bash(gh workflow run:*)",
+      "Bash(npm ci:*)"
     ],
     "deny": [],
     "ask": []
