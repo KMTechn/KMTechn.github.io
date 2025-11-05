@@ -268,24 +268,12 @@ const MemberInfo = styled.div`
 `;
 
 const Department = ({ department, t }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const members = t(department.membersKey, { returnObjects: true });
-  const memberCount = Array.isArray(members) ? members.length : 0;
-
   return (
-    <DepartmentNode onClick={() => setIsOpen(!isOpen)}>
+    <DepartmentNode>
       <DeptHeader>
         <DeptIcon>{department.icon}</DeptIcon>
         <DeptTitle>{t(department.titleKey)}</DeptTitle>
-        <ChevronIcon style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
-          <FaChevronDown size={14} />
-        </ChevronIcon>
       </DeptHeader>
-      {isOpen && (
-        <MemberInfo>
-          {memberCount > 0 ? `${memberCount}명` : '부서 정보'}
-        </MemberInfo>
-      )}
     </DepartmentNode>
   );
 };
