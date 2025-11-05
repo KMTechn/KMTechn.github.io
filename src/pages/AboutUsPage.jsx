@@ -388,13 +388,6 @@ const AboutUsPage = () => {
             <OrgTitle>{t(organization.ceo.nameKey)}</OrgTitle>
             <OrgRole>{t(organization.ceo.titleKey)}</OrgRole>
           </OrgNodeCeo>
-          <OrgTree>
-            {organization.departments.map((dept) => (
-              <OrgTreeItem key={dept.titleKey}>
-                <Department node={dept} />
-              </OrgTreeItem>
-            ))}
-          </OrgTree>
         </OrgTreeContainer>
       </OrgSection>
     </Page>
