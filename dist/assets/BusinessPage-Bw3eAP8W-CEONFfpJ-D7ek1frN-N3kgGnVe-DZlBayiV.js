@@ -1,4 +1,4 @@
-import{h as u,N as e,a as i,L as v}from"./index-B7QnLQJB.js";import{V as m,v as K,T as g,P as w,s as x,a as k,g as z,t as L,_ as G,y as o,J as C}from"./index-S6VmQXuv-BDhuIUpk-DQYuRVUb-TbiitZxu.js";const H=i.div`
+import{p as u,N as e,a as i,z as v}from"./index-Bd96V2M5.js";import{V as m,v as K,T as g,P as w,n as x,a as k,f as z,t as $,_ as A,g as o,J as C}from"./index-S6VmQXuv-BDhuIUpk-DQYuRVUb-TbiitZxu-BMTN07ZU.js";const G=i.div`
   color: var(--text-color);
   overflow-x: hidden;
 `,l=i(o.div)`
@@ -16,17 +16,17 @@ import{h as u,N as e,a as i,L as v}from"./index-B7QnLQJB.js";import{V as m,v as 
   color: var(--accent-amber);
   margin-bottom: 1rem;
   text-align: center;
-`,N=i.p`
+`,H=i.p`
   margin-bottom: 3rem;
   line-height: 1.7;
   text-align: center;
   max-width: 800px;
   margin: 0 auto 3rem;
-`,P=i(o.div)`
+`,L=i(o.div)`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
-`,V=i(o.div)`
+`,N=i(o.div)`
   background: var(--background-color);
   padding: 2rem;
   border-radius: 12px;
@@ -39,7 +39,7 @@ import{h as u,N as e,a as i,L as v}from"./index-B7QnLQJB.js";import{V as m,v as 
     transform: translateY(-10px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
   }
-`,$=i.h4`
+`,V=i.h4`
   font-size: 1.6rem;
   margin-bottom: 1.5rem;
   display: flex;
@@ -47,7 +47,7 @@ import{h as u,N as e,a as i,L as v}from"./index-B7QnLQJB.js";import{V as m,v as 
   gap: 0.8rem;
   color: var(--text-color);
   font-weight: 600;
-`,A=i.ul`
+`,D=i.ul`
   list-style: none;
   padding-left: 0;
   flex-grow: 1;
@@ -62,7 +62,7 @@ import{h as u,N as e,a as i,L as v}from"./index-B7QnLQJB.js";import{V as m,v as 
       font-weight: bold;
     }
   }
-`,D=i.div`
+`,J=i.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -79,13 +79,13 @@ import{h as u,N as e,a as i,L as v}from"./index-B7QnLQJB.js";import{V as m,v as 
     background-color: var(--border-color);
     border-radius: 2px;
   }
-`,J=i(o.div)`
+`,M=i(o.div)`
   display: flex;
   align-items: flex-start;
   gap: 1.5rem;
   position: relative;
   padding-left: 50px;
-`,M=i.div`
+`,P=i.div`
   position: absolute;
   left: 0;
   top: 0;
@@ -139,4 +139,4 @@ import{h as u,N as e,a as i,L as v}from"./index-B7QnLQJB.js";import{V as m,v as 
   max-width: 100%;
   max-height: 60px;
   object-fit: contain;
-`,Q=()=>{const{t:r}=u(),_={hidden:{opacity:0},visible:{opacity:1,transition:{staggerChildren:.1}}},a={hidden:{y:20,opacity:0},visible:{y:0,opacity:1}},n=t=>{const s=r(t,{returnObjects:!0});return Array.isArray(s)?s:[s]},h=[{icon:e.jsx(m,{}),title:r("tpl_warehouse_title"),items:n("tpl_warehouse_items")},{icon:e.jsx(K,{}),title:r("tpl_inspection_title"),items:n("tpl_inspection_items")},{icon:e.jsx(g,{}),title:r("tpl_packaging_title"),items:n("tpl_packaging_items")}],b=[{icon:e.jsx(m,{}),titleKey:"process_step_1_title",descKey:"process_step_1_desc"},{icon:e.jsx(w,{}),titleKey:"process_step_2_title",descKey:"process_step_2_desc"},{icon:e.jsx(x,{}),titleKey:"process_step_3_title",descKey:"process_step_3_desc"},{icon:e.jsx(g,{}),titleKey:"process_step_4_title",descKey:"process_step_4_desc"},{icon:e.jsx(k,{}),titleKey:"process_step_5_title",descKey:"process_step_5_desc"},{icon:e.jsx(z,{}),titleKey:"process_step_6_title",descKey:"process_step_6_desc"},{icon:e.jsx(x,{}),titleKey:"process_step_7_title",descKey:"process_step_7_desc"},{icon:e.jsx(L,{}),titleKey:"process_step_8_title",descKey:"process_step_8_desc"}],p=[{name:"Continental",logo:"/logos/continental.jpeg"},{name:"Humax",logo:"/logos/humax.jpeg"},{name:"Hyundai",logo:"/logos/Hyundai_Motor_Company_logo.svg.png"},{name:"Kanavi Mobility",logo:"/logos/kanavi mobility.jpeg"},{name:"Kia",logo:"/logos/KIA_logo3.svg.png"},{name:"LG Display",logo:"/logos/LG_Display_logo_(english).png"},{name:"LG Electronics",logo:"/logos/LG electronics.png"}],f=[...p,...p];return e.jsx(H,{children:e.jsxs(G,{children:[e.jsx(o.div,{initial:{opacity:0},animate:{opacity:1},transition:{duration:.5},children:e.jsx(C,{children:r("business_title")})}),e.jsx(l,{variants:a,children:e.jsxs(c,{children:[e.jsx(d,{children:r("tpl_biz_title")}),e.jsx(N,{children:r("tpl_biz_desc")}),e.jsx(P,{variants:_,initial:"hidden",animate:"visible",children:h.map((t,s)=>e.jsxs(V,{variants:a,children:[e.jsxs($,{children:[t.icon," ",t.title]}),e.jsx(A,{children:t.items.map((y,j)=>e.jsx("li",{children:y},j))})]},s))})]})}),e.jsx(l,{variants:a,children:e.jsxs(c,{children:[e.jsx(d,{children:r("tpl_work_process_title")}),e.jsx(D,{children:b.map((t,s)=>e.jsxs(J,{variants:a,children:[e.jsx(M,{children:t.icon}),e.jsxs(T,{children:[e.jsx(X,{children:r(t.titleKey)}),e.jsx(E,{children:r(t.descKey)})]})]},s))})]})}),e.jsx(l,{variants:a,children:e.jsxs(c,{children:[e.jsx(d,{children:r("core_customers_title")}),e.jsx(O,{children:e.jsx(Y,{children:f.map((t,s)=>e.jsx(B,{children:e.jsx(F,{src:t.logo,alt:`${t.name} logo`})},`${t.name}-${s}`))})})]})})]})})};export{Q as default};
+`,R=()=>{const{t:r}=u(),_={hidden:{opacity:0},visible:{opacity:1,transition:{staggerChildren:.1}}},a={hidden:{y:20,opacity:0},visible:{y:0,opacity:1}},n=t=>{const s=r(t,{returnObjects:!0});return Array.isArray(s)?s:[s]},h=[{icon:e.jsx(m,{}),title:r("tpl_warehouse_title"),items:n("tpl_warehouse_items")},{icon:e.jsx(K,{}),title:r("tpl_inspection_title"),items:n("tpl_inspection_items")},{icon:e.jsx(g,{}),title:r("tpl_packaging_title"),items:n("tpl_packaging_items")}],b=[{icon:e.jsx(m,{}),titleKey:"process_step_1_title",descKey:"process_step_1_desc"},{icon:e.jsx(w,{}),titleKey:"process_step_2_title",descKey:"process_step_2_desc"},{icon:e.jsx(x,{}),titleKey:"process_step_3_title",descKey:"process_step_3_desc"},{icon:e.jsx(g,{}),titleKey:"process_step_4_title",descKey:"process_step_4_desc"},{icon:e.jsx(k,{}),titleKey:"process_step_5_title",descKey:"process_step_5_desc"},{icon:e.jsx(z,{}),titleKey:"process_step_6_title",descKey:"process_step_6_desc"},{icon:e.jsx(x,{}),titleKey:"process_step_7_title",descKey:"process_step_7_desc"},{icon:e.jsx($,{}),titleKey:"process_step_8_title",descKey:"process_step_8_desc"}],p=[{name:"Continental",logo:"/logos/continental.jpeg"},{name:"Humax",logo:"/logos/humax.jpeg"},{name:"Hyundai",logo:"/logos/Hyundai_Motor_Company_logo.svg.png"},{name:"Kanavi Mobility",logo:"/logos/kanavi mobility.jpeg"},{name:"Kia",logo:"/logos/KIA_logo3.svg.png"},{name:"LG Display",logo:"/logos/LG_Display_logo_(english).png"},{name:"LG Electronics",logo:"/logos/LG electronics.png"}],f=[...p,...p];return e.jsx(G,{children:e.jsxs(A,{children:[e.jsx(o.div,{initial:{opacity:0},animate:{opacity:1},transition:{duration:.5},children:e.jsx(C,{children:r("business_title")})}),e.jsx(l,{variants:a,children:e.jsxs(c,{children:[e.jsx(d,{children:r("tpl_biz_title")}),e.jsx(H,{children:r("tpl_biz_desc")}),e.jsx(L,{variants:_,initial:"hidden",animate:"visible",children:h.map((t,s)=>e.jsxs(N,{variants:a,children:[e.jsxs(V,{children:[t.icon," ",t.title]}),e.jsx(D,{children:t.items.map((j,y)=>e.jsx("li",{children:j},y))})]},s))})]})}),e.jsx(l,{variants:a,children:e.jsxs(c,{children:[e.jsx(d,{children:r("tpl_work_process_title")}),e.jsx(J,{children:b.map((t,s)=>e.jsxs(M,{variants:a,children:[e.jsx(P,{children:t.icon}),e.jsxs(T,{children:[e.jsx(X,{children:r(t.titleKey)}),e.jsx(E,{children:r(t.descKey)})]})]},s))})]})}),e.jsx(l,{variants:a,children:e.jsxs(c,{children:[e.jsx(d,{children:r("core_customers_title")}),e.jsx(O,{children:e.jsx(Y,{children:f.map((t,s)=>e.jsx(B,{children:e.jsx(F,{src:t.logo,alt:`${t.name} logo`})},`${t.name}-${s}`))})})]})})]})})};export{R as default};
