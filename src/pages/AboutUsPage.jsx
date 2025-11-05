@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import Page, { Section, SectionTitle } from '../components/ui/Page';
-import { 
-  FaCheckCircle, FaBuilding, FaBalanceScale, 
-  FaLeaf, FaBullseye, FaGavel, FaAward, FaBrain, FaUsersCog, 
-  FaUserTie, FaShippingFast, FaMicroscope, FaChevronDown, FaSitemap, FaCogs, FaSearchPlus, FaUsers
+import {
+  FaCheckCircle, FaBuilding, FaBalanceScale,
+  FaLeaf, FaBullseye, FaGavel, FaAward, FaBrain, FaUsersCog,
+  FaUserTie, FaShippingFast, FaMicroscope
 } from 'react-icons/fa';
 
 const PhilosophySection = styled(Section)`
@@ -166,153 +166,6 @@ const OrgRole = styled.p`
   opacity: 0.8;
 `;
 
-const OrgTree = styled.ul`
-  padding-top: 2rem;
-  position: relative;
-  list-style: none;
-  margin: 0;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    height: 2rem;
-    background: var(--border-color);
-  }
-`;
-
-const OrgTreeItem = styled.li`
-  display: inline-block;
-  text-align: center;
-  padding: 2rem 1rem;
-  position: relative;
-
-  &::before, &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 50%;
-    width: 50%;
-    height: 2rem;
-    border-top: 1px solid var(--border-color);
-  }
-
-  &::after {
-    left: 50%;
-    border-left: 1px solid var(--border-color);
-  }
-
-  &:first-child::before, &:last-child::after {
-    border: 0 none;
-  }
-
-  &:last-child::before {
-    border-right: 1px solid var(--border-color);
-    border-radius: 0 6px 0 0;
-  }
-
-  &:first-child::after {
-    border-radius: 6px 0 0 0;
-  }
-`;
-
-const DepartmentNode = styled(motion.div)`
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1.25rem;
-  min-width: 250px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    border-color: var(--accent-amber);
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  }
-`;
-
-const DeptHeader = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-`;
-
-const DeptIcon = styled.div`
-  font-size: 1.5rem;
-  color: var(--accent-amber);
-`;
-
-const DeptTitle = styled.h4`
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0;
-  flex-grow: 1;
-  text-align: left;
-`;
-
-const MemberList = styled(motion.div)`
-  padding-top: 1rem;
-  margin-top: 1rem;
-  border-top: 1px solid var(--divider-color);
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-`;
-
-const MemberItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.95rem;
-`;
-
-const MemberRole = styled.span`
-  color: var(--text-secondary);
-`;
-
-const MemberName = styled.span`
-  font-weight: 500;
-`;
-
-const Department = ({ node }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const { t } = useTranslation();
-  const members = t(node.membersKey, { returnObjects: true });
-
-  return (
-    <DepartmentNode onClick={() => setIsOpen(!isOpen)} layout>
-      <DeptHeader>
-        <DeptIcon>{node.icon}</DeptIcon>
-        <DeptTitle>{t(node.titleKey)}</DeptTitle>
-        <motion.div animate={{ rotate: isOpen ? 180 : 0 }}>
-          <FaChevronDown size={14} />
-        </motion.div>
-      </DeptHeader>
-      <AnimatePresence>
-        {isOpen && Array.isArray(members) && (
-          <MemberList
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            {members.map((member, i) => (
-              <MemberItem key={i}>
-                <MemberRole>{member.role}</MemberRole>
-                <MemberName>{member.name}</MemberName>
-              </MemberItem>
-            ))}
-          </MemberList>
-        )}
-      </AnimatePresence>
-    </DepartmentNode>
-  );
-};
-
 const AboutUsPage = () => {
   const { t } = useTranslation();
 
@@ -335,14 +188,7 @@ const AboutUsPage = () => {
   ];
 
   const organization = {
-    ceo: { titleKey: 'org_ceo', nameKey: 'org_ceo_name' },
-    departments: [
-      { icon: <FaCogs />, titleKey: 'org_marketing_engineering_title', membersKey: 'org_marketing_engineering_members' },
-      { icon: <FaSearchPlus />, titleKey: 'org_qc_technical_title', membersKey: 'org_qc_technical_members' },
-      { icon: <FaSitemap />, titleKey: 'org_product_control_title', membersKey: 'org_product_control_members' },
-      { icon: <FaShippingFast />, titleKey: 'org_3pl_title', membersKey: 'org_3pl_members' },
-      { icon: <FaUsers />, titleKey: 'org_management_title', membersKey: 'org_management_members' },
-    ]
+    ceo: { titleKey: 'org_ceo', nameKey: 'org_ceo_name' }
   };
 
   return (

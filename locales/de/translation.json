@@ -106,29 +106,5 @@
   "about_org_desc": "Unsere Organisation ist so strukturiert, dass sie in allen Geschäftsbereichen spezialisierte und effiziente Dienstleistungen erbringt. Jede Abteilung wird von erfahrenen Fachleuten geleitet, die sich der Kundenzufriedenheit verschrieben haben.",
   "org_ceo": "CEO",
   "org_ceo_name": "Park Chang-geon",
-  "org_marketing_engineering_title": "Marketing/Engineering Abt.",
-  "org_marketing_engineering_members": [
-    { "role": "CTO", "name": "Lee Jae-young" },
-    { "role": "Geschäftsführer", "name": "Jang Ik-jin" },
-    { "role": "Direktor", "name": "Lee Dong-yong" }
-  ],
-  "org_qc_technical_title": "Q.C, Technische Abt.",
-  "org_qc_technical_members": [
-    { "role": "Direktor", "name": "Lee Seong-woo" }
-  ],
-  "org_product_control_title": "Produktkontroll Abt.",
-  "org_product_control_members": [
-    { "role": "Direktor", "name": "Seo Dong-gyo" },
-    { "role": "Stellvertretender Leiter", "name": "Park Kwan-ho" }
-  ],
-  "org_3pl_title": "3PL Abt.",
-  "org_3pl_members": [
-    { "role": "Geschäftsführer", "name": "Jang Ik-jin" },
-    { "role": "Manager", "name": "Kim So-mi" }
-  ],
-  "org_management_title": "Verwaltungs Abt.",
-  "org_management_members": [
-    { "role": "Mitarbeiter", "name": "Song Ik-jun" }
-  ],
   "footer_copyright": "© 2024 KMTech. Alle Rechte vorbehalten."
 }
