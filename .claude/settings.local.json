@@ -29,7 +29,13 @@
       "mcp__playwright__browser_close",
       "mcp__playwright__browser_network_requests",
       "Bash(npx vite build:*)",
-      "mcp__playwright__browser_console_messages"
+      "mcp__playwright__browser_console_messages",
+      "Bash(cat:*)",
+      "Bash(git ls-tree:*)",
+      "mcp__playwright__browser_snapshot",
+      "Bash(git checkout:*)",
+      "mcp__playwright__browser_press_key",
+      "Bash(npm ls:*)"
     ],
     "deny": [],
     "ask": []
