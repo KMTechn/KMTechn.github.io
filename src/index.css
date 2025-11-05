@@ -23,9 +23,9 @@ html[data-theme='light'],
   --footer-bg: #f0f0f0;
   --card-bg: #ffffff;
   --border-color: rgba(0, 0, 0, 0.08);
-  /* Light theme uses very bright Continental yellow */
-  --accent-amber: #FFCC00;
-  --accent-color: #FFCC00;
+  /* Light theme uses brightest pure yellow */
+  --accent-amber: #FFFF00;
+  --accent-color: #FFFF00;
 }
 
 html[data-theme='dark'],
