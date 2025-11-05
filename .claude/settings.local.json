@@ -17,7 +17,10 @@
       "Bash(md5sum:*)",
       "Bash(awk:*)",
       "Bash(gh api:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []
