@@ -16,7 +16,8 @@
       "mcp__serena__get_symbols_overview",
       "Bash(md5sum:*)",
       "Bash(awk:*)",
-      "Bash(gh api:*)"
+      "Bash(gh api:*)",
+      "Bash(npm run:*)"
     ],
     "deny": [],
     "ask": []
