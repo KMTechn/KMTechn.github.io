@@ -7,7 +7,13 @@
       "Bash(git commit:*)",
       "mcp__serena__list_dir",
       "Bash(cat:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(cd:*)",
+      "Bash(gh repo view:*)",
+      "Bash(for file in dist/earth-*.jpg)",
+      "Bash(do cp \"$file\" .)",
+      "Bash(done)",
+      "mcp__playwright__browser_close"
     ],
     "deny": [],
     "ask": []
