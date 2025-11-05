@@ -3,7 +3,6 @@ import { NavLink as RouterNavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { Sun, Moon, Menu, X } from 'lucide-react';
-import logo from '/logo.png';
 import { useTheme } from '../hooks/useTheme';
 
 const HeaderContainer = styled.header`
@@ -197,7 +196,7 @@ const Header = () => {
     <>
       <HeaderContainer role="banner">
         <LogoContainer to="/" onClick={closeMenu} aria-label="KMTECH home">
-          <img src={logo} alt="KMTECH Logo" />
+          <img src="/logo.png" alt="KMTECH Logo" />
         </LogoContainer>
         <Nav aria-label="Main navigation">
           <NavLink to="/about" title={t('nav_about')}>{t('nav_about')}</NavLink>
