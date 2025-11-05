@@ -6,11 +6,11 @@ import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
 import { ThemeProvider } from './contexts/ThemeContext';
 import ScrollToTop from './components/ScrollToTop';
+import AboutUsPage from './pages/AboutUsPage';
 
 import './index.css';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
-const AboutUsPage = lazy(() => import('./pages/AboutUsPage'));
 const BusinessPage = lazy(() => import('./pages/BusinessPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 
