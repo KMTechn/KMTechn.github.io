@@ -7,7 +7,9 @@ export default defineConfig({
   plugins: [react()],
   assetsInclude: ['**/*.jpg', '**/*.png', '**/*.gif', '**/*.svg'],
   build: {
-    // 청크 크기 최적화
+    // 미니파이 비활성화: 조직도 코드가 제거되는 문제 해결
+    minify: false,
+    // Rollup 최적화 비활성화
     rollupOptions: {
       output: {
         manualChunks: {
