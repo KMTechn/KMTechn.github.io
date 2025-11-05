@@ -1,53 +1,38 @@
-name: Deploy to GitHub Pages
+name: Verify deployment
 
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-
 jobs:
-  deploy:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Verify dist files exist
+      - name: Verify dist directory
         run: |
-          echo "Checking dist directory:"
-          ls -la dist/ | head -20
-          echo "Dist size:"
-          du -sh dist/
-
-      - name: Deploy static files to root
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: |
-          # Copy static dist files to root for GitHub Pages
-          cp -v dist/index.html .
-          cp -rv dist/assets . 2>/dev/null || true
-          cp -rv dist/locales . 2>/dev/null || true
-          cp -rv dist/logos . 2>/dev/null || true
-
-          # Copy any image files
-          find dist -maxdepth 1 -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.svg" \) -exec cp -v {} . \;
-
-          # Ensure .nojekyll exists to disable Jekyll processing
-          touch .nojekyll
-
-          # Verify files are in place
+          echo "=== Build artifacts verification ==="
           echo ""
-          echo "Files deployed to root:"
-          ls -la index.html assets/ .nojekyll 2>/dev/null | head -10
+          if [ ! -d "dist" ]; then
+            echo "❌ ERROR: dist/ directory not found"
+            exit 1
+          fi
 
-      - name: Commit and push if changed
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
-          git add -A
-          git diff --quiet --exit-code --cached || git commit -m "deploy: Static file deployment from dist/"
-          git push origin main
+          if [ ! -f "dist/index.html" ]; then
+            echo "❌ ERROR: dist/index.html not found"
+            exit 1
+          fi
+
+          echo "✓ dist/ directory exists"
+          echo "✓ dist/index.html exists"
+          echo ""
+          echo "=== Deployment structure ==="
+          ls -lh dist/ | head -15
+          echo ""
+          echo "Total size:"
+          du -sh dist/
+          echo ""
+          echo "✓ Ready for GitHub Pages deployment from /dist"
