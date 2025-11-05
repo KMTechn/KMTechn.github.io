@@ -220,7 +220,7 @@ const OrgTreeItem = styled.li`
   }
 `;
 
-const DepartmentNode = styled(motion.div)`
+const DepartmentNode = styled.div`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -267,16 +267,6 @@ const MemberInfo = styled.div`
   font-size: 0.9rem;
 `;
 
-const Department = ({ department, t }) => {
-  return (
-    <DepartmentNode>
-      <DeptHeader>
-        <DeptIcon>{department.icon}</DeptIcon>
-        <DeptTitle>{t(department.titleKey)}</DeptTitle>
-      </DeptHeader>
-    </DepartmentNode>
-  );
-};
 
 const AboutUsPage = () => {
   const { t } = useTranslation();
@@ -356,7 +346,12 @@ const AboutUsPage = () => {
           <OrgTree>
             {organization.departments.map((dept) => (
               <OrgTreeItem key={dept.titleKey}>
-                <Department department={dept} t={t} />
+                <DepartmentNode>
+                  <DeptHeader>
+                    <DeptIcon>{dept.icon}</DeptIcon>
+                    <DeptTitle>{t(dept.titleKey)}</DeptTitle>
+                  </DeptHeader>
+                </DepartmentNode>
               </OrgTreeItem>
             ))}
           </OrgTree>
