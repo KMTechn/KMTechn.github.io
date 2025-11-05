@@ -6,7 +6,8 @@ import Page, { Section, SectionTitle } from '../components/ui/Page';
 import {
   FaCheckCircle, FaBuilding, FaBalanceScale,
   FaLeaf, FaBullseye, FaGavel, FaAward, FaBrain, FaUsersCog,
-  FaUserTie, FaShippingFast, FaMicroscope
+  FaUserTie, FaShippingFast, FaMicroscope, FaCogs, FaSearchPlus,
+  FaSitemap, FaUsers, FaChevronDown
 } from 'react-icons/fa';
 
 const PhilosophySection = styled(Section)`
@@ -166,6 +167,133 @@ const OrgRole = styled.p`
   opacity: 0.8;
 `;
 
+const OrgTree = styled.ul`
+  padding-top: 2rem;
+  position: relative;
+  list-style: none;
+  margin: 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 2rem;
+    background: var(--border-color);
+  }
+`;
+
+const OrgTreeItem = styled.li`
+  display: inline-block;
+  text-align: center;
+  padding: 2rem 1rem;
+  position: relative;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 50%;
+    width: 50%;
+    height: 2rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  &::after {
+    left: 50%;
+    border-left: 1px solid var(--border-color);
+  }
+
+  &:first-child::before, &:last-child::after {
+    border: 0 none;
+  }
+
+  &:last-child::before {
+    border-right: 1px solid var(--border-color);
+    border-radius: 0 6px 0 0;
+  }
+
+  &:first-child::after {
+    border-radius: 6px 0 0 0;
+  }
+`;
+
+const DepartmentNode = styled(motion.div)`
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.25rem;
+  min-width: 250px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: var(--accent-amber);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+`;
+
+const DeptHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+`;
+
+const DeptIcon = styled.div`
+  font-size: 1.5rem;
+  color: var(--accent-amber);
+`;
+
+const DeptTitle = styled.h4`
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  flex-grow: 1;
+  text-align: left;
+`;
+
+const ChevronIcon = styled(motion.div)`
+  font-size: 0.8rem;
+`;
+
+const MemberInfo = styled.div`
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+`;
+
+const Department = ({ department, t }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const members = t(department.membersKey, { returnObjects: true });
+  const memberCount = Array.isArray(members) ? members.length : 0;
+
+  return (
+    <DepartmentNode
+      layout
+      onClick={() => setIsOpen(!isOpen)}
+      whileHover={{ y: -3 }}
+    >
+      <DeptHeader>
+        <DeptIcon>{department.icon}</DeptIcon>
+        <DeptTitle>{t(department.titleKey)}</DeptTitle>
+        <ChevronIcon animate={{ rotate: isOpen ? 180 : 0 }}>
+          <FaChevronDown size={14} />
+        </ChevronIcon>
+      </DeptHeader>
+      {isOpen && (
+        <MemberInfo>
+          {memberCount > 0 ? `${memberCount}명` : '부서 정보'}
+        </MemberInfo>
+      )}
+    </DepartmentNode>
+  );
+};
+
 const AboutUsPage = () => {
   const { t } = useTranslation();
 
@@ -188,7 +316,14 @@ const AboutUsPage = () => {
   ];
 
   const organization = {
-    ceo: { titleKey: 'org_ceo', nameKey: 'org_ceo_name' }
+    ceo: { titleKey: 'org_ceo', nameKey: 'org_ceo_name' },
+    departments: [
+      { icon: <FaCogs />, titleKey: 'org_marketing_engineering_title', membersKey: 'org_marketing_engineering_members' },
+      { icon: <FaSearchPlus />, titleKey: 'org_qc_technical_title', membersKey: 'org_qc_technical_members' },
+      { icon: <FaSitemap />, titleKey: 'org_product_control_title', membersKey: 'org_product_control_members' },
+      { icon: <FaShippingFast />, titleKey: 'org_3pl_title', membersKey: 'org_3pl_members' },
+      { icon: <FaUsers />, titleKey: 'org_management_title', membersKey: 'org_management_members' },
+    ]
   };
 
   return (
@@ -234,6 +369,13 @@ const AboutUsPage = () => {
             <OrgTitle>{t(organization.ceo.nameKey)}</OrgTitle>
             <OrgRole>{t(organization.ceo.titleKey)}</OrgRole>
           </OrgNodeCeo>
+          <OrgTree>
+            {organization.departments.map((dept) => (
+              <OrgTreeItem key={dept.titleKey}>
+                <Department department={dept} t={t} />
+              </OrgTreeItem>
+            ))}
+          </OrgTree>
         </OrgTreeContainer>
       </OrgSection>
     </Page>
