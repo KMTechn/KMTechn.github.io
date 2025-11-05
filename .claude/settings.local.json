@@ -13,7 +13,8 @@
       "Bash(for file in dist/earth-*.jpg)",
       "Bash(do cp \"$file\" .)",
       "Bash(done)",
-      "mcp__playwright__browser_close"
+      "mcp__playwright__browser_close",
+      "Bash(gh run list:*)"
     ],
     "deny": [],
     "ask": []
