@@ -44,26 +44,10 @@ jobs:
           echo "Dist size:"
           du -sh dist/
 
-      - name: Deploy to GitHub Pages (main branch root)
+      - name: Deploy to GitHub Pages
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: |
-          # Remove old built files from root
-          rm -f index.html vite.svg .nojekyll
-          rm -rf assets/ locales/ logos/ *.jpg *.png
-
-          # Copy new built files to root
-          cp dist/index.html .
-          cp dist/.nojekyll . 2>/dev/null || echo "*.jpg" >> .gitignore && echo "*.png" >> .gitignore
-          cp -r dist/assets .
-          cp -r dist/locales . 2>/dev/null || true
-          cp -r dist/logos . 2>/dev/null || true
-          cp dist/*.jpg . 2>/dev/null || true
-          cp dist/*.png . 2>/dev/null || true
-          cp dist/*.svg . 2>/dev/null || true
-
-          # Commit and push
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
-          git add -A
-          git diff --quiet --exit-code --cached || git commit -m "deploy: Update website with latest build from GitHub Actions"
-          git push origin main
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
