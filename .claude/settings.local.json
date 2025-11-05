@@ -2,7 +2,17 @@
   "permissions": {
     "allow": [
       "Bash(gh workflow run:*)",
-      "Bash(npm ci:*)"
+      "Bash(npm ci:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(while read hash msg)",
+      "Bash(do if git show $hash:assets/AboutUsPage-*CF7bp6ju.js)",
+      "Bash(then echo 'Found in commit: $hash - $msg' break fi done)",
+      "Bash(pkill:*)",
+      "Bash(curl:*)",
+      "Bash(.nojekyll)",
+      "Bash(for file in dist/assets/*)",
+      "Bash(do if [ -f \"$file\" ])",
+      "Bash(then cp \"$file\" assets/)"
     ],
     "deny": [],
     "ask": []
