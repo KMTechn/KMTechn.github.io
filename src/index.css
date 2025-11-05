@@ -132,7 +132,7 @@ h1 {
   font-weight: 700;
   line-height: var(--line-height-tight);
   margin-bottom: var(--space-6);
-  color: var(--text-color);
+  color: var(--accent-amber);
 }
 
 h2 {
