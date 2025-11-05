@@ -273,15 +273,11 @@ const Department = ({ department, t }) => {
   const memberCount = Array.isArray(members) ? members.length : 0;
 
   return (
-    <DepartmentNode
-      layout
-      onClick={() => setIsOpen(!isOpen)}
-      whileHover={{ y: -3 }}
-    >
+    <DepartmentNode onClick={() => setIsOpen(!isOpen)}>
       <DeptHeader>
         <DeptIcon>{department.icon}</DeptIcon>
         <DeptTitle>{t(department.titleKey)}</DeptTitle>
-        <ChevronIcon animate={{ rotate: isOpen ? 180 : 0 }}>
+        <ChevronIcon style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
           <FaChevronDown size={14} />
         </ChevronIcon>
       </DeptHeader>
