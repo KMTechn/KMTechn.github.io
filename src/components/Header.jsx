@@ -196,7 +196,7 @@ const Header = () => {
     <>
       <HeaderContainer role="banner">
         <LogoContainer to="/" onClick={closeMenu} aria-label="KMTECH home">
-          <img src="/logo.png" alt="KMTECH Logo" />
+          <img src="/logo.png?v=1" alt="KMTECH Logo" />
         </LogoContainer>
         <Nav aria-label="Main navigation">
           <NavLink to="/about" title={t('nav_about')}>{t('nav_about')}</NavLink>
