@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useRef, useEffect, lazy } from 'react';
+import React, { Suspense, useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -9,12 +9,10 @@ import { Vector3 } from 'three';
 import { MapControls } from '@react-three/drei';
 import { Section, SectionTitle } from '../components/ui/Page';
 import Loader from '../components/ui/Loader';
+import Globe from '../components/ui/Globe';
 import {
   FaArrowRight, FaWarehouse, FaBrain, FaShippingFast, FaMicroscope, FaSearch, FaTools
 } from 'react-icons/fa';
-
-// 글로브를 동적으로 로드하여 번들 크기 최적화
-const Globe = lazy(() => import('../components/ui/Globe'));
 
 const PageContainer = styled.div`
   width: 100%;

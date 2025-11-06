@@ -35,7 +35,8 @@
       "mcp__playwright__browser_snapshot",
       "Bash(git checkout:*)",
       "mcp__playwright__browser_press_key",
-      "Bash(npm ls:*)"
+      "Bash(npm ls:*)",
+      "Bash(npx vite preview:*)"
     ],
     "deny": [],
     "ask": []
