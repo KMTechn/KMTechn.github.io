@@ -36,7 +36,16 @@
       "Bash(git checkout:*)",
       "mcp__playwright__browser_press_key",
       "Bash(npm ls:*)",
-      "Bash(npx vite preview:*)"
+      "Bash(npx vite preview:*)",
+      "Bash(taskkill:*)",
+      "Bash(nul)",
+      "Bash(npx vite --port 5173)",
+      "Bash(npx vite:*)",
+      "Bash(npx gh-pages -d dist)",
+      "Bash(npx gh-pages -d dist --force)",
+      "Bash(git fetch:*)",
+      "Bash(git branch:*)",
+      "Bash(gh run list:*)"
     ],
     "deny": [],
     "ask": []

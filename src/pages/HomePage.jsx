@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Canvas } from '@react-three/fiber';
 import * as THREE from 'three';
-import { Vector3 } from 'three';
 import { MapControls } from '@react-three/drei';
 import { Section, SectionTitle } from '../components/ui/Page';
 import Loader from '../components/ui/Loader';
@@ -211,16 +210,6 @@ const ServiceContent = styled(motion.p)`
   max-width: 600px;
 `;
 
-
-const latLonToVector3 = (lat, lon, radius) => {
-  const phi = (90 - lat) * (Math.PI / 180);
-  const theta = (lon + 180) * (Math.PI / 180);
-  const x = -(radius * Math.sin(phi) * Math.cos(theta));
-  const z = radius * Math.sin(phi) * Math.sin(theta);
-  const y = radius * Math.cos(phi);
-  return new Vector3(x, y, z);
-};
-
 const HomePage = () => {
   const { t } = useTranslation();
   const [activeService, setActiveService] = useState(0);
@@ -235,20 +224,6 @@ const HomePage = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-
-  // Set camera to focus on Korea initially
-  const initialCameraPosition = latLonToVector3(37.5665, 126.9780, 8);
-
-  const [globeSettings, setGlobeSettings] = useState({
-    ambientIntensity: 1.0,
-    directionalIntensity: 12.0, // Decreased brightness
-    metalness: 0.2,
-    roughness: 0.5,
-    emissiveIntensity: 2.5, // Significantly increased night light brightness
-    cloudsOpacity: 0.25, 
-    atmosphereGlowColor: '#5080ff',
-  });
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -294,25 +269,25 @@ const HomePage = () => {
             </CTAButton>
           </Link>
         </TextContainer>
-        <ArtworkContainer 
+        <ArtworkContainer
           ref={artworkRef}
-          initial={{ opacity: 0, scale: 0.8 }} 
-          animate={{ opacity: 1, scale: 1 }} 
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <Canvas 
+          <Canvas
             key={canvasKey}
-            camera={{ position: initialCameraPosition, fov: 50 }}
+            camera={{ position: [0, 0, 8], fov: 50 }}
           >
             <Suspense fallback={<Loader />}>
-              <Globe {...globeSettings} />
+              <Globe />
             </Suspense>
-            <MapControls 
-              enableZoom={false} 
-              enablePan={false} 
-              autoRotate 
-              autoRotateSpeed={0.4} 
-              enableDamping 
+            <MapControls
+              enableZoom={false}
+              enablePan={false}
+              autoRotate
+              autoRotateSpeed={0.4}
+              enableDamping
               dampingFactor={0.05}
               mouseButtons={{
                 LEFT: THREE.MOUSE.ROTATE,

@@ -1,6 +1,5 @@
 import React, { useMemo, useRef, useState } from 'react';
-import { Sphere, Stars, CatmullRomLine, Html } from '@react-three/drei';
-import { useTexture } from '@react-three/drei';
+import { Sphere, Stars, CatmullRomLine, Html, useTexture } from '@react-three/drei';
 import { Vector3, NormalBlending } from 'three';
 import { useFrame } from '@react-three/fiber';
 
@@ -41,15 +40,15 @@ function Point({ position, name }) {
   });
 
   return (
-    <mesh 
-      position={position} 
+    <mesh
+      position={position}
       ref={meshRef}
       onPointerOver={() => setHovered(true)}
       onPointerOut={() => setHovered(false)}
     >
       <sphereGeometry args={[0.055, 16, 16]} />
       <meshBasicMaterial color="gold" toneMapped={false} />
-      <Html 
+      <Html
         as='div'
         distanceFactor={10}
         style={{
@@ -90,13 +89,13 @@ function Arcs({ points }) {
   const curves = useMemo(() => {
     const result = [];
     // Elevate the arc points slightly more to prevent them from clipping into the globe
-    const arcRadius = GLOBE_RADIUS + 0.05; 
+    const arcRadius = GLOBE_RADIUS + 0.05;
     const allPointsVec = points.map(p => latLonToVector3(p.lat, p.lon, arcRadius));
 
     for (let i = 0; i < allPointsVec.length; i++) {
       const start = allPointsVec[i];
       const end = allPointsVec[(i + 1) % allPointsVec.length];
-      
+
       const distance = start.distanceTo(end);
       // Adjust arc height based on the distance between points
       const heightMultiplier = 1.05 + (distance / (GLOBE_RADIUS * 2)) * 0.25;
@@ -126,12 +125,12 @@ function Arcs({ points }) {
 
 const Globe = (props) => {
   const {
-    ambientIntensity,
-    directionalIntensity,
-    metalness,
-    roughness,
-    emissiveIntensity,
-    cloudsOpacity = 0.4,
+    ambientIntensity = 1.0,
+    directionalIntensity = 12.0,
+    metalness = 0.2,
+    roughness = 0.5,
+    emissiveIntensity = 2.5,
+    cloudsOpacity = 0.25,
   } = props;
 
   const [
@@ -160,16 +159,16 @@ const Globe = (props) => {
     <>
       <ambientLight intensity={ambientIntensity} />
       <directionalLight position={[10, 10, 5]} intensity={directionalIntensity} />
-      
+
       <Stars radius={300} depth={50} count={8000} factor={5} saturation={0} fade={false} speed={1} />
 
       <group ref={globeRef}>
         {/* Earth */}
         <Sphere args={[GLOBE_RADIUS, 32, 32]}>
-          <meshStandardMaterial 
+          <meshStandardMaterial
             map={dayMap}
-            metalness={metalness} 
-            roughness={roughness} 
+            metalness={metalness}
+            roughness={roughness}
             emissiveMap={nightMap}
             emissive="#ffffff"
             emissiveIntensity={emissiveIntensity}
@@ -177,8 +176,8 @@ const Globe = (props) => {
         </Sphere>
 
         {/* Clouds */}
-        <Sphere 
-          ref={cloudsRef} 
+        <Sphere
+          ref={cloudsRef}
           args={[GLOBE_RADIUS + 0.05, 32, 32]}
           castShadow={false}
           receiveShadow={false}
@@ -190,7 +189,7 @@ const Globe = (props) => {
             blending={NormalBlending}
           />
         </Sphere>
-        
+
         <Points points={locations} />
         <Arcs points={locations} />
       </group>
@@ -199,5 +198,3 @@ const Globe = (props) => {
 }
 
 export default Globe;
-
-

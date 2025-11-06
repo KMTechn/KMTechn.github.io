@@ -5,10 +5,14 @@ export default defineConfig({
   plugins: [react()],
   base: '/',
   build: {
-    cssCodeSplit: false,
+    sourcemap: true,
     rollupOptions: {
       output: {
-        manualChunks: undefined
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
+          'i18n-vendor': ['i18next', 'react-i18next', 'i18next-browser-languagedetector', 'i18next-http-backend']
+        }
       }
     }
   }
