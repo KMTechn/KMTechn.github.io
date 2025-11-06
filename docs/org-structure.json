@@ -1,0 +1,28 @@
+{
+  "ceo": {
+    "titleKey": "org_ceo",
+    "nameKey": "org_ceo_name"
+  },
+  "departments": [
+    {
+      "titleKey": "org_marketing_engineering_title",
+      "iconName": "FaCogs"
+    },
+    {
+      "titleKey": "org_qc_technical_title",
+      "iconName": "FaSearchPlus"
+    },
+    {
+      "titleKey": "org_product_control_title",
+      "iconName": "FaSitemap"
+    },
+    {
+      "titleKey": "org_3pl_title",
+      "iconName": "FaShippingFast"
+    },
+    {
+      "titleKey": "org_management_title",
+      "iconName": "FaUsers"
+    }
+  ]
+}
