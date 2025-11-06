@@ -7,7 +7,7 @@ import {
   FaCheckCircle, FaBuilding, FaBalanceScale,
   FaLeaf, FaBullseye, FaGavel, FaAward, FaBrain, FaUsersCog,
   FaUserTie, FaShippingFast, FaMicroscope, FaCogs, FaSearchPlus,
-  FaSitemap, FaUsers, FaChevronDown
+  FaSitemap, FaUsers
 } from 'react-icons/fa';
 
 const PhilosophySection = styled(Section)`
@@ -219,54 +219,6 @@ const OrgTreeItem = styled.li`
     border-radius: 6px 0 0 0;
   }
 `;
-
-const DepartmentNode = styled.div`
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1.25rem;
-  min-width: 250px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    border-color: var(--accent-amber);
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  }
-`;
-
-const DeptHeader = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-`;
-
-const DeptIcon = styled.div`
-  font-size: 1.5rem;
-  color: var(--accent-amber);
-`;
-
-const DeptTitle = styled.h4`
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0;
-  flex-grow: 1;
-  text-align: left;
-`;
-
-const ChevronIcon = styled(motion.div)`
-  font-size: 0.8rem;
-`;
-
-const MemberInfo = styled.div`
-  padding-top: 1rem;
-  margin-top: 1rem;
-  border-top: 1px solid var(--border-color);
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-`;
-
 
 // Icon mapping
 const iconMap = {
