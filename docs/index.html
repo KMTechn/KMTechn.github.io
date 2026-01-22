@@ -1,11 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KMTECH Website</title>
-    <script type="module" crossorigin src="/assets/index-DfVEVYYD.js"></script>
+    <meta name="theme-color" content="#FFCC00" />
+    <meta name="description" content="KMTech - Global leader in advanced 3rd party logistics solutions for automotive and industrial sectors" />
+
+    <!-- Preconnect to Google Fonts for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="/logo.png" />
+
+    <title>KMTech - 3rd Party Logistics Solutions</title>
+    <!-- Single Page Apps for GitHub Pages - redirect script -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) {
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    <script type="module" crossorigin src="/assets/index-CSR6kvYZ.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/react-vendor-BvbQ_S-X.js">
     <link rel="modulepreload" crossorigin href="/assets/three-vendor-I5c4ovf2.js">
     <link rel="modulepreload" crossorigin href="/assets/i18n-vendor-Bdmv85-f.js">
