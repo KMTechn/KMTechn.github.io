@@ -1,5 +1,7 @@
 /* KMTECH Styling System */
 @import 'leaflet/dist/leaflet.css';
+
+/* Font loading optimization - use font-display: swap for better performance */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@400;700&family=Spectral:wght@700&display=swap');
 
 :root {

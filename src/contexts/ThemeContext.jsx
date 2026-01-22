@@ -2,8 +2,25 @@ import { createContext, useState, useMemo, useEffect } from 'react';
 
 export const ThemeContext = createContext();
 
+const THEME_STORAGE_KEY = 'kmtech-theme';
+
+const getInitialTheme = () => {
+  // Check localStorage first
+  const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+  if (savedTheme === 'light' || savedTheme === 'dark') {
+    return savedTheme;
+  }
+
+  // Fall back to system preference
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    return 'dark';
+  }
+
+  return 'light';
+};
+
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(getInitialTheme);
 
   useEffect(() => {
     const htmlElement = document.documentElement;
@@ -12,10 +29,25 @@ export const ThemeProvider = ({ children }) => {
     htmlElement.setAttribute('data-theme', theme);
     bodyElement.setAttribute('data-theme', theme);
 
-    console.log('ThemeProvider: Set data-theme to', theme);
-    console.log('HTML has data-theme:', htmlElement.getAttribute('data-theme'));
-    console.log('Body has data-theme:', bodyElement.getAttribute('data-theme'));
+    // Save to localStorage
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
   }, [theme]);
+
+  // Listen for system theme changes
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    const handleChange = (e) => {
+      // Only auto-switch if user hasn't manually set a preference
+      const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+      if (!savedTheme) {
+        setTheme(e.matches ? 'dark' : 'light');
+      }
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   const toggleTheme = () => {
     setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));

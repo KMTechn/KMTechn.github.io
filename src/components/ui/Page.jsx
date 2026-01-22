@@ -5,9 +5,9 @@ import { motion } from 'framer-motion';
 const PageContainer = styled.div`
   width: 100%;
   /* The problematic top padding has been removed. */
-  padding: 0 5% 4rem; 
-  background-color: var(--titanium-dark);
-  color: var(--text-primary);
+  padding: 0 5% 4rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
   min-height: calc(100vh - 120px);
 `;
 
@@ -22,7 +22,7 @@ export const SectionTitle = styled(motion.h2)`
   font-size: 2.8rem;
   text-align: center;
   margin-bottom: 4rem;
-  color: var(--text-primary);
+  color: var(--text-color);
 `;
 
 export const Title = styled(motion.h1)`

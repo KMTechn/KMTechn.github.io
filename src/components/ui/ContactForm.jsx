@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, AlertCircle } from 'lucide-react';
@@ -13,10 +13,22 @@ const FormContainer = styled(motion.form)`
   position: relative;
 `;
 
-const Input = styled.input`
+const FormField = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+`;
+
+const Label = styled.label`
+  font-size: var(--font-sm);
+  font-weight: 500;
+  color: var(--text-color);
+`;
+
+const inputStyles = css`
   padding: var(--space-4);
   border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
+  border: 1px solid ${({ $hasError }) => $hasError ? 'var(--error-color)' : 'var(--border-color)'};
   background-color: var(--background-color);
   color: var(--text-color);
   font-size: var(--font-base);
@@ -24,13 +36,13 @@ const Input = styled.input`
   font-family: inherit;
 
   &:hover:not(:disabled) {
-    border-color: var(--accent-amber);
+    border-color: ${({ $hasError }) => $hasError ? 'var(--error-color)' : 'var(--accent-amber)'};
   }
 
   &:focus {
-    outline: 2px solid var(--accent-amber);
+    outline: 2px solid ${({ $hasError }) => $hasError ? 'var(--error-color)' : 'var(--accent-amber)'};
     outline-offset: 2px;
-    border-color: var(--accent-amber);
+    border-color: ${({ $hasError }) => $hasError ? 'var(--error-color)' : 'var(--accent-amber)'};
   }
 
   &:disabled {
@@ -39,33 +51,23 @@ const Input = styled.input`
   }
 `;
 
+const Input = styled.input`
+  ${inputStyles}
+`;
+
 const Textarea = styled.textarea`
-  padding: var(--space-4);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
-  background-color: var(--background-color);
-  color: var(--text-color);
-  font-size: var(--font-base);
+  ${inputStyles}
   line-height: var(--line-height-relaxed);
   min-height: 150px;
   resize: vertical;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  font-family: inherit;
+`;
 
-  &:hover:not(:disabled) {
-    border-color: var(--accent-amber);
-  }
-
-  &:focus {
-    outline: 2px solid var(--accent-amber);
-    outline-offset: 2px;
-    border-color: var(--accent-amber);
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
+const ErrorMessage = styled.span`
+  font-size: var(--font-sm);
+  color: var(--error-color);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
 `;
 
 const SubmitButton = styled.button`
@@ -123,9 +125,25 @@ const StatusTitle = styled.h3`
   gap: 0.5rem;
 `;
 
+// Validation helpers
+const validateEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
+const validateName = (name) => {
+  return name.trim().length >= 2;
+};
+
+const validateMessage = (message) => {
+  return message.trim().length >= 10;
+};
+
 const ContactForm = () => {
   const { t } = useTranslation();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [errors, setErrors] = useState({ name: '', email: '', message: '' });
+  const [touched, setTouched] = useState({ name: false, email: false, message: false });
   const [status, setStatus] = useState('idle'); // idle, submitting, success, error
 
   // Initialize EmailJS
@@ -136,13 +154,54 @@ const ContactForm = () => {
     }
   }, []);
 
+  // Validate field on blur or change
+  const validateField = (name, value) => {
+    switch (name) {
+      case 'name':
+        return !validateName(value) ? t('validation_name_required') || 'Name must be at least 2 characters' : '';
+      case 'email':
+        return !validateEmail(value) ? t('validation_email_invalid') || 'Please enter a valid email address' : '';
+      case 'message':
+        return !validateMessage(value) ? t('validation_message_required') || 'Message must be at least 10 characters' : '';
+      default:
+        return '';
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+
+    // Clear error when user starts typing
+    if (touched[name]) {
+      setErrors(prev => ({ ...prev, [name]: validateField(name, value) }));
+    }
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    setTouched(prev => ({ ...prev, [name]: true }));
+    setErrors(prev => ({ ...prev, [name]: validateField(name, value) }));
+  };
+
+  const validateForm = () => {
+    const newErrors = {
+      name: validateField('name', formData.name),
+      email: validateField('email', formData.email),
+      message: validateField('message', formData.message),
+    };
+    setErrors(newErrors);
+    setTouched({ name: true, email: true, message: true });
+    return !Object.values(newErrors).some(error => error);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
     setStatus('submitting');
 
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
@@ -163,6 +222,8 @@ const ContactForm = () => {
     }).then(() => {
       setStatus('success');
       setFormData({ name: '', email: '', message: '' });
+      setErrors({ name: '', email: '', message: '' });
+      setTouched({ name: false, email: false, message: false });
 
       // Reset form after 3 seconds
       setTimeout(() => {
@@ -199,17 +260,80 @@ const ContactForm = () => {
           <p>{status === 'success' ? t('contact_form_success_desc') : t('contact_form_error_desc') || 'Failed to send message'}</p>
         </StatusMessage>
       ) : (
-        <FormContainer 
+        <FormContainer
           key="form"
-          onSubmit={handleSubmit} 
-          initial={{ opacity: 0 }} 
-          animate={{ opacity: 1 }} 
+          onSubmit={handleSubmit}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ delay: 0.2 }}
+          noValidate
         >
-          <Input type="text" name="name" placeholder={t('contact_form_name')} value={formData.name} onChange={handleChange} required disabled={status === 'submitting'} />
-          <Input type="email" name="email" placeholder={t('contact_form_email')} value={formData.email} onChange={handleChange} required disabled={status === 'submitting'} />
-          <Textarea name="message" placeholder={t('contact_form_message')} value={formData.message} onChange={handleChange} required disabled={status === 'submitting'} />
+          <FormField>
+            <Label htmlFor="contact-name">{t('contact_form_name')}</Label>
+            <Input
+              id="contact-name"
+              type="text"
+              name="name"
+              placeholder={t('contact_form_name')}
+              value={formData.name}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              disabled={status === 'submitting'}
+              $hasError={touched.name && errors.name}
+              aria-invalid={touched.name && errors.name ? 'true' : 'false'}
+              aria-describedby={errors.name ? 'name-error' : undefined}
+            />
+            {touched.name && errors.name && (
+              <ErrorMessage id="name-error" role="alert">
+                <AlertCircle size={14} /> {errors.name}
+              </ErrorMessage>
+            )}
+          </FormField>
+
+          <FormField>
+            <Label htmlFor="contact-email">{t('contact_form_email')}</Label>
+            <Input
+              id="contact-email"
+              type="email"
+              name="email"
+              placeholder={t('contact_form_email')}
+              value={formData.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              disabled={status === 'submitting'}
+              $hasError={touched.email && errors.email}
+              aria-invalid={touched.email && errors.email ? 'true' : 'false'}
+              aria-describedby={errors.email ? 'email-error' : undefined}
+            />
+            {touched.email && errors.email && (
+              <ErrorMessage id="email-error" role="alert">
+                <AlertCircle size={14} /> {errors.email}
+              </ErrorMessage>
+            )}
+          </FormField>
+
+          <FormField>
+            <Label htmlFor="contact-message">{t('contact_form_message')}</Label>
+            <Textarea
+              id="contact-message"
+              name="message"
+              placeholder={t('contact_form_message')}
+              value={formData.message}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              disabled={status === 'submitting'}
+              $hasError={touched.message && errors.message}
+              aria-invalid={touched.message && errors.message ? 'true' : 'false'}
+              aria-describedby={errors.message ? 'message-error' : undefined}
+            />
+            {touched.message && errors.message && (
+              <ErrorMessage id="message-error" role="alert">
+                <AlertCircle size={14} /> {errors.message}
+              </ErrorMessage>
+            )}
+          </FormField>
+
           <SubmitButton type="submit" disabled={status === 'submitting'}>
             {status === 'submitting' ? t('contact_form_submitting') : t('contact_form_submit')}
           </SubmitButton>

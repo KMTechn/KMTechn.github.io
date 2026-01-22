@@ -13,6 +13,7 @@ import './index.css';
 const HomePage = lazy(() => import('./pages/HomePage'));
 const BusinessPage = lazy(() => import('./pages/BusinessPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
+const PartnersPage = lazy(() => import('./pages/PartnersPage'));
 
 const AppContainer = styled.div`
   width: 100%;
@@ -52,6 +53,7 @@ function App() {
                   <Route path="/" element={<HomePage />} />
                   <Route path="/about" element={<AboutUsPage />} />
                   <Route path="/business" element={<BusinessPage />} />
+                  <Route path="/partners" element={<PartnersPage />} />
                   <Route path="/contact" element={<ContactPage />} />
                 </Routes>
               </Suspense>
