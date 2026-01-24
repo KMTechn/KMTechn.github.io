@@ -302,13 +302,13 @@ const PartnersPage = () => {
   const ctaInView = useInView(ctaRef, { once: true, margin: "-50px" });
 
   const partners = [
-    { name: 'Continental', logo: '/logos/continental.jpeg', industry: 'Automotive Parts' },
-    { name: 'Humax', logo: '/logos/humax.jpeg', industry: 'Electronics' },
+    { name: 'Continental', logo: '/logos/continental_new.png', industry: 'Automotive Parts' },
+    { name: 'Humax', logo: '/logos/humax_new.png', industry: 'Electronics' },
     { name: 'Hyundai Motor', logo: '/logos/Hyundai_Motor_Company_logo.svg.png', industry: 'Automotive' },
-    { name: 'Kanavi Mobility', logo: '/logos/kanavi mobility.jpeg', industry: 'Mobility' },
+    { name: 'Kanavi Mobility', logo: '/logos/kanavi_new.png', industry: 'Mobility' },
     { name: 'Kia', logo: '/logos/KIA_logo3.svg.png', industry: 'Automotive' },
-    { name: 'LG Display', logo: '/logos/LG_Display_logo_(english).png', industry: 'Display' },
-    { name: 'LG Electronics', logo: '/logos/LG electronics.png', industry: 'Electronics' },
+    { name: 'LG Display', logo: '/logos/lg_new.png', industry: 'Display' },
+    { name: 'LG Electronics', logo: '/logos/lg_new.png', industry: 'Electronics' },
   ];
 
   const stats = [

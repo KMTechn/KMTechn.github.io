@@ -1,4 +1,4 @@
-import{j as e}from"./three-vendor-ZYLi6JSD.js";import{b as o,L as u}from"./react-vendor-VEkyeZpm.js";import{A as i,a4 as b,C as f,z as t,J as a,a5 as v,a6 as y,a7 as j}from"./index-5G1JM63p.js";import{u as w}from"./i18n-vendor-BLj2OrmQ.js";const _=t.section`
+import{j as e}from"./three-vendor-ZYLi6JSD.js";import{b as o,L as u}from"./react-vendor-VEkyeZpm.js";import{A as i,a4 as b,C as f,z as t,J as a,a5 as v,a6 as y,a7 as w}from"./index-C8SLKlGW.js";import{u as j}from"./i18n-vendor-BLj2OrmQ.js";const _=t.section`
   min-height: 50vh;
   display: flex;
   align-items: center;
@@ -73,7 +73,7 @@ import{j as e}from"./three-vendor-ZYLi6JSD.js";import{b as o,L as u}from"./react
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 12px;
-`,L=t.div`
+`,P=t.div`
   width: 48px;
   height: 48px;
   display: flex;
@@ -87,12 +87,12 @@ import{j as e}from"./three-vendor-ZYLi6JSD.js";import{b as o,L as u}from"./react
     font-size: 1.25rem;
     color: var(--accent-amber);
   }
-`,P=t.div`
+`,I=t.div`
   font-size: 1.75rem;
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 0.25rem;
-`,I=t.div`
+`,L=t.div`
   font-size: 0.8rem;
   color: var(--text-secondary);
 `,R=t.section`
@@ -102,7 +102,7 @@ import{j as e}from"./three-vendor-ZYLi6JSD.js";import{b as o,L as u}from"./react
   text-align: center;
   max-width: 600px;
   margin: 0 auto 4rem;
-`,D=t.span`
+`,V=t.span`
   display: inline-block;
   font-size: 0.75rem;
   font-weight: 600;
@@ -110,16 +110,16 @@ import{j as e}from"./three-vendor-ZYLi6JSD.js";import{b as o,L as u}from"./react
   text-transform: uppercase;
   color: var(--accent-amber);
   margin-bottom: 1rem;
-`,G=t.h2`
+`,D=t.h2`
   font-size: 2rem;
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 1rem;
-`,V=t.p`
+`,E=t.p`
   font-size: 1rem;
   line-height: 1.7;
   color: var(--text-secondary);
-`,E=t(a.div)`
+`,F=t(a.div)`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
@@ -134,7 +134,7 @@ import{j as e}from"./three-vendor-ZYLi6JSD.js";import{b as o,L as u}from"./react
     grid-template-columns: 1fr;
     max-width: 300px;
   }
-`,F=t(a.div)`
+`,G=t(a.div)`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 16px;
@@ -210,5 +210,5 @@ import{j as e}from"./three-vendor-ZYLi6JSD.js";import{b as o,L as u}from"./react
   &:hover svg {
     transform: translateX(4px);
   }
-`,$={hidden:{opacity:0},visible:{opacity:1,transition:{staggerChildren:.08}}},q={hidden:{opacity:0,y:20},visible:{opacity:1,y:0,transition:{duration:.4,ease:"easeOut"}}},te=()=>{const{t:n}=w(),s=o.useRef(null),c=o.useRef(null),l=o.useRef(null),d=i(s,{once:!0,margin:"-50px"}),m=i(c,{once:!0,margin:"-50px"}),g=i(l,{once:!0,margin:"-50px"}),p=[{name:"Continental",logo:"/logos/continental.jpeg",industry:"Automotive Parts"},{name:"Humax",logo:"/logos/humax.jpeg",industry:"Electronics"},{name:"Hyundai Motor",logo:"/logos/Hyundai_Motor_Company_logo.svg.png",industry:"Automotive"},{name:"Kanavi Mobility",logo:"/logos/kanavi mobility.jpeg",industry:"Mobility"},{name:"Kia",logo:"/logos/KIA_logo3.svg.png",industry:"Automotive"},{name:"LG Display",logo:"/logos/LG_Display_logo_(english).png",industry:"Display"},{name:"LG Electronics",logo:"/logos/LG electronics.png",industry:"Electronics"}],x=[{icon:e.jsx(v,{}),value:"7+",labelKey:"partners_stat_partners"},{icon:e.jsx(y,{}),value:"15+",labelKey:"partners_stat_years"},{icon:e.jsx(j,{}),value:"99%",labelKey:"partners_stat_retention"}];return e.jsxs(b,{children:[e.jsx(_,{ref:s,children:e.jsxs(k,{children:[e.jsxs(z,{initial:{opacity:0,y:30},animate:d?{opacity:1,y:0}:{},transition:{duration:.6},children:[e.jsx(C,{children:"Our Partners"}),e.jsx(A,{children:n("core_customers_title")}),e.jsx(H,{children:n("partners_hero_desc")})]}),e.jsx(S,{initial:{opacity:0,x:30},animate:d?{opacity:1,x:0}:{},transition:{delay:.2,duration:.6},children:x.map((r,h)=>e.jsxs(T,{children:[e.jsx(L,{children:r.icon}),e.jsx(P,{children:r.value}),e.jsx(I,{children:n(r.labelKey)})]},h))})]})}),e.jsxs(R,{ref:c,children:[e.jsxs(K,{initial:{opacity:0,y:20},animate:m?{opacity:1,y:0}:{},transition:{duration:.5},children:[e.jsx(D,{children:"Trusted By Industry Leaders"}),e.jsx(G,{children:n("partners_section_title")}),e.jsx(V,{children:n("partners_section_desc")})]}),e.jsx(E,{variants:$,initial:"hidden",animate:m?"visible":"hidden",children:p.map(r=>e.jsxs(F,{variants:q,children:[e.jsx(M,{src:r.logo,alt:`${r.name} logo`}),e.jsx(B,{children:r.name}),e.jsx(N,{children:r.industry})]},r.name))})]}),e.jsx(O,{ref:l,children:e.jsxs(Y,{initial:{opacity:0,y:20},animate:g?{opacity:1,y:0}:{},transition:{duration:.5},children:[e.jsx(Z,{children:n("partners_cta_title")}),e.jsx(J,{children:n("partners_cta_desc")}),e.jsx(u,{to:"/contact",children:e.jsxs(X,{whileHover:{scale:1.02},whileTap:{scale:.98},children:[n("partners_cta_button")," ",e.jsx(f,{})]})})]})})]})};export{te as default};
-//# sourceMappingURL=PartnersPage-DjAxZPxJ.js.map
+`,$={hidden:{opacity:0},visible:{opacity:1,transition:{staggerChildren:.08}}},q={hidden:{opacity:0,y:20},visible:{opacity:1,y:0,transition:{duration:.4,ease:"easeOut"}}},te=()=>{const{t:n}=j(),s=o.useRef(null),c=o.useRef(null),l=o.useRef(null),d=i(s,{once:!0,margin:"-50px"}),m=i(c,{once:!0,margin:"-50px"}),g=i(l,{once:!0,margin:"-50px"}),p=[{name:"Continental",logo:"/logos/continental_new.png",industry:"Automotive Parts"},{name:"Humax",logo:"/logos/humax_new.png",industry:"Electronics"},{name:"Hyundai Motor",logo:"/logos/Hyundai_Motor_Company_logo.svg.png",industry:"Automotive"},{name:"Kanavi Mobility",logo:"/logos/kanavi_new.png",industry:"Mobility"},{name:"Kia",logo:"/logos/KIA_logo3.svg.png",industry:"Automotive"},{name:"LG Display",logo:"/logos/lg_new.png",industry:"Display"},{name:"LG Electronics",logo:"/logos/lg_new.png",industry:"Electronics"}],x=[{icon:e.jsx(v,{}),value:"7+",labelKey:"partners_stat_partners"},{icon:e.jsx(y,{}),value:"15+",labelKey:"partners_stat_years"},{icon:e.jsx(w,{}),value:"99%",labelKey:"partners_stat_retention"}];return e.jsxs(b,{children:[e.jsx(_,{ref:s,children:e.jsxs(k,{children:[e.jsxs(z,{initial:{opacity:0,y:30},animate:d?{opacity:1,y:0}:{},transition:{duration:.6},children:[e.jsx(C,{children:"Our Partners"}),e.jsx(A,{children:n("core_customers_title")}),e.jsx(H,{children:n("partners_hero_desc")})]}),e.jsx(S,{initial:{opacity:0,x:30},animate:d?{opacity:1,x:0}:{},transition:{delay:.2,duration:.6},children:x.map((r,h)=>e.jsxs(T,{children:[e.jsx(P,{children:r.icon}),e.jsx(I,{children:r.value}),e.jsx(L,{children:n(r.labelKey)})]},h))})]})}),e.jsxs(R,{ref:c,children:[e.jsxs(K,{initial:{opacity:0,y:20},animate:m?{opacity:1,y:0}:{},transition:{duration:.5},children:[e.jsx(V,{children:"Trusted By Industry Leaders"}),e.jsx(D,{children:n("partners_section_title")}),e.jsx(E,{children:n("partners_section_desc")})]}),e.jsx(F,{variants:$,initial:"hidden",animate:m?"visible":"hidden",children:p.map(r=>e.jsxs(G,{variants:q,children:[e.jsx(M,{src:r.logo,alt:`${r.name} logo`}),e.jsx(B,{children:r.name}),e.jsx(N,{children:r.industry})]},r.name))})]}),e.jsx(O,{ref:l,children:e.jsxs(Y,{initial:{opacity:0,y:20},animate:g?{opacity:1,y:0}:{},transition:{duration:.5},children:[e.jsx(Z,{children:n("partners_cta_title")}),e.jsx(J,{children:n("partners_cta_desc")}),e.jsx(u,{to:"/contact",children:e.jsxs(X,{whileHover:{scale:1.02},whileTap:{scale:.98},children:[n("partners_cta_button")," ",e.jsx(f,{})]})})]})})]})};export{te as default};
+//# sourceMappingURL=PartnersPage-DZJujdt3.js.map

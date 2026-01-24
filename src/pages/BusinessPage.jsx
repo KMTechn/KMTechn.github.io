@@ -233,13 +233,13 @@ const BusinessPage = () => {
   ];
 
   const customers = [
-    { name: 'Continental', logo: '/logos/continental.jpeg' },
-    { name: 'Humax', logo: '/logos/humax.jpeg' },
+    { name: 'Continental', logo: '/logos/continental_new.png' },
+    { name: 'Humax', logo: '/logos/humax_new.png' },
     { name: 'Hyundai', logo: '/logos/Hyundai_Motor_Company_logo.svg.png' },
-    { name: 'Kanavi Mobility', logo: '/logos/kanavi mobility.jpeg' },
+    { name: 'Kanavi Mobility', logo: '/logos/kanavi_new.png' },
     { name: 'Kia', logo: '/logos/KIA_logo3.svg.png' },
-    { name: 'LG Display', logo: '/logos/LG_Display_logo_(english).png' },
-    { name: 'LG Electronics', logo: '/logos/LG electronics.png' },
+    { name: 'LG Display', logo: '/logos/lg_new.png' },
+    { name: 'LG Electronics', logo: '/logos/lg_new.png' },
   ];
   const duplicatedCustomers = [...customers, ...customers];
 
