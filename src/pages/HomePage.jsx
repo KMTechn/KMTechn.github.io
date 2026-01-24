@@ -11,7 +11,7 @@ import Loader from '../components/ui/Loader';
 import Globe from '../components/ui/Globe';
 import {
   FaArrowRight, FaWarehouse, FaBrain, FaShippingFast, FaMicroscope, FaSearch, FaTools,
-  FaCheckCircle
+  FaCheckCircle, FaPhone, FaEnvelope, FaCar, FaTv, FaTruckLoading, FaBoxOpen, FaClipboardCheck
 } from 'react-icons/fa';
 import { HiOutlineChevronRight } from 'react-icons/hi';
 
@@ -97,6 +97,38 @@ const ButtonGroup = styled(motion.div)`
 
   @media (max-width: 1024px) {
     justify-content: center;
+  }
+`;
+
+const ContactInfo = styled(motion.div)`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+
+  @media (max-width: 1024px) {
+    justify-content: center;
+  }
+`;
+
+const ContactItem = styled.a`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  svg {
+    color: var(--accent-amber);
+    font-size: 1rem;
+  }
+
+  &:hover {
+    color: var(--accent-amber);
   }
 `;
 
@@ -380,6 +412,112 @@ const CTAContainer = styled(motion.div)`
   text-align: center;
 `;
 
+// Process Section
+const ProcessSection = styled(Section)`
+  background: var(--background-color);
+  padding: 7rem 5%;
+`;
+
+const ProcessFlow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 0;
+  }
+`;
+
+const ProcessStep = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  min-width: 140px;
+  max-width: 200px;
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+    max-width: 100%;
+    width: 100%;
+    text-align: left;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+`;
+
+const ProcessIconWrapper = styled.div`
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--accent-amber), #f59e0b);
+  border-radius: 16px;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+
+  svg {
+    font-size: 1.5rem;
+    color: #121212;
+  }
+
+  @media (max-width: 768px) {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 0;
+  }
+`;
+
+const ProcessStepNumber = styled.span`
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent-amber);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const ProcessStepTitle = styled.h4`
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0 0 0.25rem 0;
+`;
+
+const ProcessStepDesc = styled.p`
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+`;
+
+const ProcessTextWrapper = styled.div`
+  @media (max-width: 768px) {
+    flex: 1;
+  }
+`;
+
+const ProcessArrow = styled(motion.div)`
+  color: var(--border-color);
+  font-size: 1.5rem;
+  flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    transform: rotate(90deg);
+    margin: 0.5rem 0;
+  }
+`;
+
 // Partners Section
 const PartnersSection = styled.section`
   background: var(--background-color);
@@ -387,19 +525,63 @@ const PartnersSection = styled.section`
   border-top: 1px solid var(--border-color);
 `;
 
+const IndustryContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+`;
+
+const IndustryGroup = styled(motion.div)`
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: var(--accent-amber);
+  }
+`;
+
+const IndustryHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+
+  svg {
+    font-size: 1.25rem;
+    color: var(--accent-amber);
+  }
+`;
+
+const IndustryLabel = styled.h4`
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
+`;
+
 const PartnersGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  gap: 1.5rem;
 `;
 
 const PartnerLogo = styled(motion.img)`
-  height: 40px;
-  max-width: 120px;
+  height: 36px;
+  max-width: 100px;
   object-fit: contain;
   opacity: 0.7;
   transition: opacity 0.2s ease, transform 0.2s ease;
@@ -471,10 +653,36 @@ const HomePage = () => {
   const servicesRef = useRef(null);
   const strengthsRef = useRef(null);
 
+  const processRef = useRef(null);
+
   const heroInView = useInView(heroRef, { once: true, margin: "-50px" });
   const statsInView = useInView(statsRef, { once: true, margin: "-50px" });
   const servicesInView = useInView(servicesRef, { once: true, margin: "-50px" });
+  const processInView = useInView(processRef, { once: true, margin: "-50px" });
   const strengthsInView = useInView(strengthsRef, { once: true, margin: "-50px" });
+
+  const processSteps = [
+    {
+      icon: <FaTruckLoading />,
+      titleKey: 'process_home_step1_title',
+      descKey: 'process_home_step1_desc'
+    },
+    {
+      icon: <FaWarehouse />,
+      titleKey: 'process_home_step2_title',
+      descKey: 'process_home_step2_desc'
+    },
+    {
+      icon: <FaClipboardCheck />,
+      titleKey: 'process_home_step3_title',
+      descKey: 'process_home_step3_desc'
+    },
+    {
+      icon: <FaBoxOpen />,
+      titleKey: 'process_home_step4_title',
+      descKey: 'process_home_step4_desc'
+    }
+  ];
 
   const services = [
     { icon: <FaWarehouse />, titleKey: 'home_service_warehouse_title', descKey: 'home_service_warehouse_desc' },
@@ -495,14 +703,26 @@ const HomePage = () => {
     { value: 99, suffix: '%', labelKey: 'stats_customer_satisfaction' },
   ];
 
-  const partners = [
-    { name: 'Continental', logo: '/logos/continental.jpeg' },
-    { name: 'Humax', logo: '/logos/humax.jpeg' },
-    { name: 'Hyundai', logo: '/logos/Hyundai_Motor_Company_logo.svg.png' },
-    { name: 'Kanavi Mobility', logo: '/logos/kanavi mobility.jpeg' },
-    { name: 'Kia', logo: '/logos/KIA_logo3.svg.png' },
-    { name: 'LG Display', logo: '/logos/LG_Display_logo_(english).png' },
-    { name: 'LG Electronics', logo: '/logos/LG electronics.png' },
+  const partnersByIndustry = [
+    {
+      industry: t('partners_industry_automotive') || '자동차',
+      icon: <FaCar />,
+      partners: [
+        { name: 'Hyundai', logo: '/logos/Hyundai_Motor_Company_logo.svg.png' },
+        { name: 'Kia', logo: '/logos/KIA_logo3.svg.png' },
+        { name: 'Continental', logo: '/logos/continental.jpeg' },
+        { name: 'Kanavi Mobility', logo: '/logos/kanavi mobility.jpeg' },
+      ]
+    },
+    {
+      industry: t('partners_industry_electronics') || '전자 / 디스플레이',
+      icon: <FaTv />,
+      partners: [
+        { name: 'LG Display', logo: '/logos/LG_Display_logo_(english).png' },
+        { name: 'LG Electronics', logo: '/logos/LG electronics.png' },
+        { name: 'Humax', logo: '/logos/humax.jpeg' },
+      ]
+    }
   ];
 
   const partnersRef = useRef(null);
@@ -554,6 +774,19 @@ const HomePage = () => {
               </SecondaryButton>
             </Link>
           </ButtonGroup>
+
+          <ContactInfo
+            initial={{ opacity: 0 }}
+            animate={heroInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.7, duration: 0.5 }}
+          >
+            <ContactItem href="tel:010-3340-6877">
+              <FaPhone /> 010-3340-6877
+            </ContactItem>
+            <ContactItem href="mailto:cgpark@kmtechn.com">
+              <FaEnvelope /> cgpark@kmtechn.com
+            </ContactItem>
+          </ContactInfo>
         </TextContainer>
 
         <ArtworkContainer
@@ -636,6 +869,50 @@ const HomePage = () => {
         </ServicesGrid>
       </ServicesSection>
 
+      {/* Process Section */}
+      <ProcessSection ref={processRef}>
+        <SectionHeader
+          initial={{ opacity: 0, y: 20 }}
+          animate={processInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+        >
+          <SectionLabel>How It Works</SectionLabel>
+          <SectionTitle>{t('process_home_title')}</SectionTitle>
+          <SectionDescription>{t('process_home_desc')}</SectionDescription>
+        </SectionHeader>
+
+        <ProcessFlow>
+          {processSteps.map((step, index) => (
+            <React.Fragment key={step.titleKey}>
+              <ProcessStep
+                initial={{ opacity: 0, y: 20 }}
+                animate={processInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: index * 0.15, duration: 0.5 }}
+              >
+                <ProcessIconWrapper>
+                  {step.icon}
+                </ProcessIconWrapper>
+                <ProcessTextWrapper>
+                  <ProcessStepNumber>STEP {index + 1}</ProcessStepNumber>
+                  <ProcessStepTitle>{t(step.titleKey)}</ProcessStepTitle>
+                  <ProcessStepDesc>{t(step.descKey)}</ProcessStepDesc>
+                </ProcessTextWrapper>
+              </ProcessStep>
+
+              {index < processSteps.length - 1 && (
+                <ProcessArrow
+                  initial={{ opacity: 0 }}
+                  animate={processInView ? { opacity: 1 } : {}}
+                  transition={{ delay: index * 0.15 + 0.1, duration: 0.3 }}
+                >
+                  <HiOutlineChevronRight />
+                </ProcessArrow>
+              )}
+            </React.Fragment>
+          ))}
+        </ProcessFlow>
+      </ProcessSection>
+
       {/* Strengths Section */}
       <StrengthsSection ref={strengthsRef}>
         <SectionHeader
@@ -688,18 +965,33 @@ const HomePage = () => {
           <SectionTitle>{t('core_customers_title')}</SectionTitle>
         </SectionHeader>
 
-        <PartnersGrid>
-          {partners.map((partner, index) => (
-            <PartnerLogo
-              key={partner.name}
-              src={partner.logo}
-              alt={`${partner.name} logo`}
+        <IndustryContainer>
+          {partnersByIndustry.map((group, groupIndex) => (
+            <IndustryGroup
+              key={group.industry}
               initial={{ opacity: 0, y: 20 }}
-              animate={partnersInView ? { opacity: 0.7, y: 0 } : {}}
-              transition={{ delay: index * 0.05, duration: 0.4 }}
-            />
+              animate={partnersInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: groupIndex * 0.15, duration: 0.5 }}
+            >
+              <IndustryHeader>
+                {group.icon}
+                <IndustryLabel>{group.industry}</IndustryLabel>
+              </IndustryHeader>
+              <PartnersGrid>
+                {group.partners.map((partner, index) => (
+                  <PartnerLogo
+                    key={partner.name}
+                    src={partner.logo}
+                    alt={`${partner.name} logo`}
+                    initial={{ opacity: 0 }}
+                    animate={partnersInView ? { opacity: 0.7 } : {}}
+                    transition={{ delay: groupIndex * 0.15 + index * 0.05, duration: 0.4 }}
+                  />
+                ))}
+              </PartnersGrid>
+            </IndustryGroup>
           ))}
-        </PartnersGrid>
+        </IndustryContainer>
       </PartnersSection>
     </PageContainer>
   );

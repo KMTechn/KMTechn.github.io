@@ -153,5 +153,17 @@
   "partners_section_desc": "汽车、电子、显示器等多个行业的全球企业信赖KMTech的专业物流服务。",
   "partners_cta_title": "成为我们的合作伙伴",
   "partners_cta_desc": "与KMTech一起体验高效的物流解决方案。我们提供根据贵公司需求量身定制的服务。",
-  "partners_cta_button": "联系我们"
+  "partners_cta_button": "联系我们",
+  "partners_industry_automotive": "汽车",
+  "partners_industry_electronics": "电子 / 显示器",
+  "process_home_title": "业务流程",
+  "process_home_desc": "从入库到发货，一站式处理。",
+  "process_home_step1_title": "入库",
+  "process_home_step1_desc": "物流中心即时接收",
+  "process_home_step2_title": "仓储",
+  "process_home_step2_desc": "3,000托盘容量",
+  "process_home_step3_title": "检验",
+  "process_home_step3_desc": "洁净室质量检查",
+  "process_home_step4_title": "发货",
+  "process_home_step4_desc": "定制包装后直接配送"
 }

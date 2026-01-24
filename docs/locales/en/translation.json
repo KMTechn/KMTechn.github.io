@@ -23,15 +23,24 @@
   "tpl_biz_desc": "KMTech takes full responsibility for our clients' logistics processes through our 3rd Party Logistics services. We provide one-stop solutions from storage, packaging, and inspection to delivery, utilizing state-of-the-art facilities and systematic processes, allowing our clients to focus on their core business.",
   "tpl_warehouse_title": "Warehouse & Storage",
   "tpl_warehouse_items": [
-    "Total area of 2,140㎡", "Capacity for 3,000 pallets", "Container dock for 2 vehicles (40ft & 20ft)", "16 CCTV systems with recording"
+    "2,140㎡ facility → Ready for large volumes",
+    "3,000 pallets capacity → Reduce your inventory burden",
+    "2x 40ft container docks → Minimize unloading wait time",
+    "16-channel CCTV recording → Your assets are protected"
   ],
   "tpl_inspection_title": "Inspection",
   "tpl_inspection_items": [
-    "Operates a 3,000 Class Clean Booth", "Precision inspection and repair services", "Visual & Function Test Benches", "In-house resident engineering"
+    "3,000 Class Clean Booth → Safe for electronics",
+    "Precision inspection & repair → Catch defects before shipment",
+    "Visual & Function Test equipment → Meet your quality standards",
+    "On-site engineers → Immediate technical response"
   ],
   "tpl_packaging_title": "Packaging & Rework",
   "tpl_packaging_items": [
-    "Customized repackaging for clients", "Dismantling for 50 pallets at once", "QR code system linked with ERP", "Sorting and classification"
+    "Custom repackaging → Ship-ready for your customers",
+    "50 pallets at once → Fast turnaround on bulk orders",
+    "ERP-linked QR system → Real-time inventory tracking",
+    "Sorting & classification → Tailored to your requirements"
   ],
   "tpl_work_process_title": "Our Work Process",
   "process_step_1_title": "Warehousing",
@@ -73,12 +82,12 @@
   "home_services_3pl_title": "3rd Party Logistics Solutions",
   "home_services_3pl_desc": "We provide comprehensive 3rd party logistics services, including warehousing, inspection, and packaging, to optimize your supply chain.",
   "home_services_button": "View Details",
-  "home_service_warehouse_title": "Advanced Warehousing & Inventory Management",
-  "home_service_warehouse_desc": "Leveraging state-of-the-art facilities and a robust Warehouse Management System (WMS), we provide secure storage, real-time inventory tracking, and optimized space utilization to ensure your assets are managed with maximum efficiency and care.",
-  "home_service_inspection_title": "Precision Quality Inspection & Rework",
-  "home_service_inspection_desc": "Our dedicated quality control team, operating in advanced clean booth environments, conducts meticulous visual and functional inspections. We identify defects, perform precise rework, and ensure your products meet the highest quality standards before reaching the market.",
-  "home_service_packaging_title": "Customized Packaging & Forwarding",
-  "home_service_packaging_desc": "We offer tailored packaging solutions, from custom repacking to complex kitting and assembly. Our streamlined processes, integrated with a QR-code based ERP system, guarantee accurate sorting, classification, and on-time delivery to your final destination.",
+  "home_service_warehouse_title": "Free Up Your Inventory Burden",
+  "home_service_warehouse_desc": "Store your inventory safely in our 3,000-pallet facility. With real-time tracking and 16-channel CCTV monitoring, you can focus on your core business without worrying about asset security.",
+  "home_service_inspection_title": "Stop Defects Before They Ship",
+  "home_service_inspection_desc": "Our engineers inspect every item in a 3,000 Class Clean Booth. We catch defects before they reach your customers—reducing claims and recall risks.",
+  "home_service_packaging_title": "Ship-Ready, Direct to Customer",
+  "home_service_packaging_desc": "We repack and label to your specs, then ship directly to your destination. Simplify your supply chain with ERP-integrated real-time tracking.",
   "home_strengths_title": "Why Choose Us?",
   "about_strong_points_title": "Our Strengths",
   "strong_point_1_title": "Long-term Automotive Business",
@@ -127,10 +136,10 @@
   "footer_services": "Services",
   "footer_privacy": "Privacy Policy",
   "footer_terms": "Terms of Service",
-  "stats_warehouse_space": "Warehouse Space",
-  "stats_pallet_capacity": "Pallet Capacity",
-  "stats_years_experience": "Years Experience",
-  "stats_customer_satisfaction": "Customer Satisfaction",
+  "stats_warehouse_space": "Facility Size",
+  "stats_pallet_capacity": "Storage Capacity",
+  "stats_years_experience": "Automotive Logistics",
+  "stats_customer_satisfaction": "Client Retention",
   "contact_form_error_title": "Error Sending Message",
   "contact_form_error_desc": "There was an error sending your message. Please try again later.",
   "validation_name_required": "Name must be at least 2 characters",
@@ -144,5 +153,17 @@
   "partners_section_desc": "Global companies in automotive, electronics, display, and various other industries trust KMTech's professional logistics services.",
   "partners_cta_title": "Become Our Partner",
   "partners_cta_desc": "Experience efficient logistics solutions with KMTech. We provide customized services tailored to your company's needs.",
-  "partners_cta_button": "Contact Us"
+  "partners_cta_button": "Contact Us",
+  "partners_industry_automotive": "Automotive",
+  "partners_industry_electronics": "Electronics / Display",
+  "process_home_title": "How It Works",
+  "process_home_desc": "From receiving to shipping—handled seamlessly.",
+  "process_home_step1_title": "Receiving",
+  "process_home_step1_desc": "Immediate intake at facility",
+  "process_home_step2_title": "Storage",
+  "process_home_step2_desc": "3,000 pallet capacity",
+  "process_home_step3_title": "Inspection",
+  "process_home_step3_desc": "Quality check in clean booth",
+  "process_home_step4_title": "Shipping",
+  "process_home_step4_desc": "Custom packed & delivered"
 }

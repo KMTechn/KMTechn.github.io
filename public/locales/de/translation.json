@@ -153,5 +153,17 @@
   "partners_section_desc": "Globale Unternehmen aus den Bereichen Automobil, Elektronik, Display und verschiedenen anderen Branchen vertrauen auf die professionellen Logistikdienstleistungen von KMTech.",
   "partners_cta_title": "Werden Sie unser Partner",
   "partners_cta_desc": "Erleben Sie effiziente Logistiklösungen mit KMTech. Wir bieten maßgeschneiderte Dienstleistungen, die auf die Bedürfnisse Ihres Unternehmens zugeschnitten sind.",
-  "partners_cta_button": "Kontaktieren Sie uns"
+  "partners_cta_button": "Kontaktieren Sie uns",
+  "partners_industry_automotive": "Automobil",
+  "partners_industry_electronics": "Elektronik / Display",
+  "process_home_title": "Unser Prozess",
+  "process_home_desc": "Von der Annahme bis zum Versand—nahtlos abgewickelt.",
+  "process_home_step1_title": "Wareneingang",
+  "process_home_step1_desc": "Sofortige Annahme",
+  "process_home_step2_title": "Lagerung",
+  "process_home_step2_desc": "3.000 Paletten Kapazität",
+  "process_home_step3_title": "Prüfung",
+  "process_home_step3_desc": "Qualitätskontrolle im Reinraum",
+  "process_home_step4_title": "Versand",
+  "process_home_step4_desc": "Individuell verpackt & geliefert"
 }

@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, AlertCircle } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 
 const FormContainer = styled(motion.form)`
   display: flex;
@@ -146,14 +145,6 @@ const ContactForm = () => {
   const [touched, setTouched] = useState({ name: false, email: false, message: false });
   const [status, setStatus] = useState('idle'); // idle, submitting, success, error
 
-  // Initialize EmailJS
-  useEffect(() => {
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-    if (publicKey) {
-      emailjs.init(publicKey);
-    }
-  }, []);
-
   // Validate field on blur or change
   const validateField = (name, value) => {
     switch (name) {
@@ -204,36 +195,29 @@ const ContactForm = () => {
 
     setStatus('submitting');
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    // mailto: 방식으로 이메일 앱 열기
+    const recipient = 'cgpark@kmtechn.com';
+    const subject = encodeURIComponent(`[KMTech 문의] ${formData.name}님의 문의`);
+    const body = encodeURIComponent(
+      `보낸 사람: ${formData.name}\n` +
+      `이메일: ${formData.email}\n\n` +
+      `문의 내용:\n${formData.message}`
+    );
 
-    if (!serviceId || !templateId) {
-      console.error('EmailJS credentials not configured');
-      setStatus('error');
-      setTimeout(() => setStatus('idle'), 3000);
-      return;
-    }
+    const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
 
-    // Send email
-    emailjs.send(serviceId, templateId, {
-      from_name: formData.name,
-      from_email: formData.email,
-      message: formData.message
-    }).then(() => {
-      setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      setErrors({ name: '', email: '', message: '' });
-      setTouched({ name: false, email: false, message: false });
+    // 메일 앱 열기
+    window.location.href = mailtoLink;
 
-      // Reset form after 3 seconds
-      setTimeout(() => {
-        setStatus('idle');
-      }, 3000);
-    }).catch((error) => {
-      console.error('Failed to send email:', error);
-      setStatus('error');
-      setTimeout(() => setStatus('idle'), 3000);
-    });
+    // 폼 초기화
+    setStatus('success');
+    setFormData({ name: '', email: '', message: '' });
+    setErrors({ name: '', email: '', message: '' });
+    setTouched({ name: false, email: false, message: false });
+
+    setTimeout(() => {
+      setStatus('idle');
+    }, 3000);
   };
 
   return (
