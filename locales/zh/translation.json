@@ -116,5 +116,14 @@
   "org_product_control_title": "生产管理部",
   "org_3pl_title": "第三方物流部",
   "org_management_title": "经营管理部",
-  "footer_copyright": "© 2024 KMTech. 版权所有。"
+  "footer_copyright": "© 2024 KMTech. 版权所有。",
+  "footer_description": "KMTech是专注于汽车和工业领域的领先第三方物流公司。我们以最先进的设施和专业团队，优化您的供应链。",
+  "footer_quick_links": "快速链接",
+  "footer_services": "服务项目",
+  "footer_privacy": "隐私政策",
+  "footer_terms": "服务条款",
+  "stats_warehouse_space": "仓库面积",
+  "stats_pallet_capacity": "托盘容量",
+  "stats_years_experience": "行业经验",
+  "stats_customer_satisfaction": "客户满意度"
 }

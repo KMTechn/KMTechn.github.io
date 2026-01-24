@@ -116,5 +116,14 @@
   "org_product_control_title": "Produktkontroll Abt.",
   "org_3pl_title": "3PL Abt.",
   "org_management_title": "Verwaltungs Abt.",
-  "footer_copyright": "© 2024 KMTech. Alle Rechte vorbehalten."
+  "footer_copyright": "© 2024 KMTech. Alle Rechte vorbehalten.",
+  "footer_description": "KMTech ist ein führendes 3PL-Logistikunternehmen, spezialisiert auf Automobil- und Industriesektoren. Wir optimieren Ihre Lieferkette mit modernsten Anlagen und Fachexperten.",
+  "footer_quick_links": "Schnellzugriff",
+  "footer_services": "Dienstleistungen",
+  "footer_privacy": "Datenschutz",
+  "footer_terms": "Nutzungsbedingungen",
+  "stats_warehouse_space": "Lagerfläche",
+  "stats_pallet_capacity": "Palettenkapazität",
+  "stats_years_experience": "Jahre Erfahrung",
+  "stats_customer_satisfaction": "Kundenzufriedenheit"
 }

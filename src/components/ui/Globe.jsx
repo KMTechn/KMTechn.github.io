@@ -29,13 +29,14 @@ function Point({ position, name }) {
   const meshRef = useRef();
 
   useFrame((_, delta) => {
-    if (hovered && meshRef.current) {
-      // Simple pulse effect
-      const scale = 1 + Math.sin(performance.now() * 0.005) * 0.2;
-      meshRef.current.scale.set(scale, scale, scale);
-    } else if (meshRef.current.scale.x > 1) {
-      // Smoothly return to normal size
-      meshRef.current.scale.lerp(new Vector3(1, 1, 1), delta * 5);
+    if (!meshRef.current) return;
+
+    if (hovered) {
+      // Simple pulse effect - optimized
+      const targetScale = 1.2;
+      meshRef.current.scale.lerp({ x: targetScale, y: targetScale, z: targetScale }, delta * 3);
+    } else if (meshRef.current.scale.x > 1.01) {
+      meshRef.current.scale.lerp({ x: 1, y: 1, z: 1 }, delta * 5);
     }
   });
 
@@ -146,12 +147,12 @@ const Globe = (props) => {
   const globeRef = useRef();
   const cloudsRef = useRef();
 
-  useFrame(({ clock }) => {
+  useFrame(({ clock }, delta) => {
     if (globeRef.current) {
-      globeRef.current.rotation.y = clock.getElapsedTime() * 0.05;
+      globeRef.current.rotation.y += delta * 0.05;
     }
     if (cloudsRef.current) {
-      cloudsRef.current.rotation.y = clock.getElapsedTime() * 0.06;
+      cloudsRef.current.rotation.y += delta * 0.06;
     }
   });
 
@@ -160,11 +161,11 @@ const Globe = (props) => {
       <ambientLight intensity={ambientIntensity} />
       <directionalLight position={[10, 10, 5]} intensity={directionalIntensity} />
 
-      <Stars radius={300} depth={50} count={8000} factor={5} saturation={0} fade={false} speed={1} />
+      <Stars radius={300} depth={50} count={2000} factor={4} saturation={0} fade speed={0.5} />
 
       <group ref={globeRef}>
         {/* Earth */}
-        <Sphere args={[GLOBE_RADIUS, 32, 32]}>
+        <Sphere args={[GLOBE_RADIUS, 48, 48]}>
           <meshStandardMaterial
             map={dayMap}
             metalness={metalness}
@@ -178,7 +179,7 @@ const Globe = (props) => {
         {/* Clouds */}
         <Sphere
           ref={cloudsRef}
-          args={[GLOBE_RADIUS + 0.05, 32, 32]}
+          args={[GLOBE_RADIUS + 0.05, 24, 24]}
           castShadow={false}
           receiveShadow={false}
         >

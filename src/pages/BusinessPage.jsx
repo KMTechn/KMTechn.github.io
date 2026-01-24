@@ -148,10 +148,10 @@ const StepDescription = styled.p`
   line-height: 1.6;
 `;
 
-// Logo Carousel
+// Logo Carousel - GPU accelerated
 const scrollX = keyframes`
-  from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-100%, 0, 0); }
 `;
 
 const LogoCarouselContainer = styled.div`
@@ -162,9 +162,11 @@ const LogoCarouselContainer = styled.div`
   mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
 `;
 
-const LogoTrack = styled(motion.div)`
+const LogoTrack = styled.div`
   display: flex;
+  will-change: transform;
   animation: ${scrollX} 40s linear infinite;
+  backface-visibility: hidden;
 `;
 
 const LogoWrapper = styled.div`
@@ -185,6 +187,11 @@ const Logo = styled.img`
   max-width: 100%;
   max-height: 60px;
   object-fit: contain;
+  transition: transform 0.3s ease;
+
+  ${LogoWrapper}:hover & {
+    transform: scale(1.05);
+  }
 `;
 
 const BusinessPage = () => {

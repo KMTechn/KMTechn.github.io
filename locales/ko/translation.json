@@ -116,5 +116,14 @@
   "org_product_control_title": "생산관리팀",
   "org_3pl_title": "3PL팀",
   "org_management_title": "경영관리팀",
-  "footer_copyright": "© 2024 KMTech. All rights reserved."
+  "footer_copyright": "© 2024 KMTech. All rights reserved.",
+  "footer_description": "KMTech는 자동차 및 산업 분야의 선도적인 3PL 물류 전문 기업입니다. 최첨단 시설과 전문 인력으로 고객의 공급망 최적화를 지원합니다.",
+  "footer_quick_links": "빠른 링크",
+  "footer_services": "서비스",
+  "footer_privacy": "개인정보처리방침",
+  "footer_terms": "이용약관",
+  "stats_warehouse_space": "창고 면적",
+  "stats_pallet_capacity": "팔레트 수용",
+  "stats_years_experience": "업력",
+  "stats_customer_satisfaction": "고객 만족도"
 }

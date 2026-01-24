@@ -130,5 +130,19 @@
   "org_management_members": [
     { "role": "专员", "name": "宋益俊" }
   ],
-  "footer_copyright": "© 2024 KMTech. 版权所有。"
+  "footer_copyright": "© 2024 KMTech. 版权所有。",
+  "footer_description": "KMTech是专注于汽车和工业领域的领先第三方物流公司。我们以最先进的设施和专业团队，优化您的供应链。",
+  "footer_quick_links": "快速链接",
+  "footer_services": "服务项目",
+  "footer_privacy": "隐私政策",
+  "footer_terms": "服务条款",
+  "stats_warehouse_space": "仓库面积",
+  "stats_pallet_capacity": "托盘容量",
+  "stats_years_experience": "行业经验",
+  "stats_customer_satisfaction": "客户满意度",
+  "contact_form_error_title": "发送消息错误",
+  "contact_form_error_desc": "发送消息时出错。请稍后再试。",
+  "validation_name_required": "姓名至少需要2个字符",
+  "validation_email_invalid": "请输入有效的电子邮件地址",
+  "validation_message_required": "消息至少需要10个字符"
 }

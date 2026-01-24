@@ -121,5 +121,19 @@
   "org_management_members": [
     { "role": "Staff", "name": "Song Ik-jun" }
   ],
-  "footer_copyright": "© 2024 KMTech. All rights reserved."
+  "footer_copyright": "© 2024 KMTech. All rights reserved.",
+  "footer_description": "KMTech is a leading 3PL logistics company specializing in automotive and industrial sectors. We optimize your supply chain with state-of-the-art facilities and expert professionals.",
+  "footer_quick_links": "Quick Links",
+  "footer_services": "Services",
+  "footer_privacy": "Privacy Policy",
+  "footer_terms": "Terms of Service",
+  "stats_warehouse_space": "Warehouse Space",
+  "stats_pallet_capacity": "Pallet Capacity",
+  "stats_years_experience": "Years Experience",
+  "stats_customer_satisfaction": "Customer Satisfaction",
+  "contact_form_error_title": "Error Sending Message",
+  "contact_form_error_desc": "There was an error sending your message. Please try again later.",
+  "validation_name_required": "Name must be at least 2 characters",
+  "validation_email_invalid": "Please enter a valid email address",
+  "validation_message_required": "Message must be at least 10 characters"
 }

@@ -107,5 +107,14 @@
   "org_product_control_title": "Product Control Div.",
   "org_3pl_title": "3rd Party Logistics Div.",
   "org_management_title": "Management Div.",
-  "footer_copyright": "© 2024 KMTech. All rights reserved."
+  "footer_copyright": "© 2024 KMTech. All rights reserved.",
+  "footer_description": "KMTech is a leading 3PL logistics company specializing in automotive and industrial sectors. We optimize your supply chain with state-of-the-art facilities and expert professionals.",
+  "footer_quick_links": "Quick Links",
+  "footer_services": "Services",
+  "footer_privacy": "Privacy Policy",
+  "footer_terms": "Terms of Service",
+  "stats_warehouse_space": "Warehouse Space",
+  "stats_pallet_capacity": "Pallet Capacity",
+  "stats_years_experience": "Years Experience",
+  "stats_customer_satisfaction": "Customer Satisfaction"
 }

@@ -45,7 +45,7 @@
   "tpl_work_process_title": "업무 프로세스",
   "process_step_1_title": "입고",
   "process_step_1_desc": "직산 물류센터에 제품을 안전하게 입고 및 보관합니다.",
-  "process_step_2_title": "하��",
+  "process_step_2_title": "하역",
   "process_step_2_desc": "전용 컨테이너 도크를 통해 효율적으로 하역하고 준비합니다.",
   "process_step_3_title": "분류 및 보관",
   "process_step_3_desc": "분류된 제품을 체계적으로 정리하고 보관합니다.",
@@ -130,5 +130,19 @@
   "org_management_members": [
     { "role": "실무 담당", "name": "송익준" }
   ],
-  "footer_copyright": "© 2024 KMTech. All rights reserved."
+  "footer_copyright": "© 2024 KMTech. All rights reserved.",
+  "footer_description": "KMTech는 자동차 및 산업 분야의 선도적인 3PL 물류 전문 기업입니다. 최첨단 시설과 전문 인력으로 고객의 공급망 최적화를 지원합니다.",
+  "footer_quick_links": "빠른 링크",
+  "footer_services": "서비스",
+  "footer_privacy": "개인정보처리방침",
+  "footer_terms": "이용약관",
+  "stats_warehouse_space": "창고 면적",
+  "stats_pallet_capacity": "팔레트 수용",
+  "stats_years_experience": "업력",
+  "stats_customer_satisfaction": "고객 만족도",
+  "contact_form_error_title": "메시지 전송 오류",
+  "contact_form_error_desc": "메시지 전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
+  "validation_name_required": "성함은 2자 이상이어야 합니다",
+  "validation_email_invalid": "올바른 이메일 주소를 입력해주세요",
+  "validation_message_required": "문의 내용은 10자 이상이어야 합니다"
 }

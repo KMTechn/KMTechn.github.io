@@ -32,11 +32,10 @@ const PartnerLogo = styled.img`
   max-width: 100%;
   max-height: 70px;
   object-fit: contain;
-  filter: grayscale(100%);
-  transition: filter 0.3s;
+  transition: transform 0.3s ease;
 
   ${PartnerCard}:hover & {
-    filter: grayscale(0%);
+    transform: scale(1.05);
   }
 `;
 
