@@ -982,7 +982,7 @@ const HomePage = () => {
                     src={partner.logo}
                     alt={`${partner.name} logo`}
                     initial={{ opacity: 0 }}
-                    animate={partnersInView ? { opacity: 0.7 } : {}}
+                    animate={partnersInView ? { opacity: 1 } : {}}
                     transition={{ delay: groupIndex * 0.15 + index * 0.05, duration: 0.4 }}
                   />
                 ))}

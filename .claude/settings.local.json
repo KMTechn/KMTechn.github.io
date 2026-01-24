@@ -49,7 +49,16 @@
       "Bash(timeout 5 head:*)",
       "Bash(npm audit:*)",
       "Bash(npm uninstall:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "WebSearch",
+      "WebFetch(domain:kanavi-mobility.com)",
+      "Bash(powershell -Command \"Invoke-WebRequest -Uri ''https://kanavi-mobility.com/theme/kanavi/img/logo/logo.png'' -OutFile ''C:\\\\company\\\\program\\\\KMTechn.github.io\\\\public\\\\logos\\\\kanavi_new.png''\")",
+      "Bash(powershell -Command:*)",
+      "WebFetch(domain:3pl.kmtecherp.com)",
+      "Bash(npm install:*)",
+      "Bash(node -e:*)",
+      "WebFetch(domain:seeklogo.com)",
+      "WebFetch(domain:www.logo.wine)"
     ],
     "deny": [],
     "ask": []
