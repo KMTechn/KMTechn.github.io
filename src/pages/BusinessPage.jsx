@@ -238,8 +238,8 @@ const BusinessPage = () => {
     { name: 'Hyundai', logo: '/logos/Hyundai_Motor_Company_logo.svg.png' },
     { name: 'Kanavi Mobility', logo: '/logos/kanavi_new.png' },
     { name: 'Kia', logo: '/logos/KIA_logo3.svg.png' },
-    { name: 'LG Display', logo: '/logos/lg_new.png' },
-    { name: 'LG Electronics', logo: '/logos/lg_new.png' },
+    { name: 'LG Display', logo: '/logos/lg_display_new.png' },
+    { name: 'LG Electronics', logo: '/logos/lg_electronics_new.png' },
   ];
   const duplicatedCustomers = [...customers, ...customers];
 

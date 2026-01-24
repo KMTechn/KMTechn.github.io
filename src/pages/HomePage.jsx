@@ -718,8 +718,8 @@ const HomePage = () => {
       industry: t('partners_industry_electronics') || '전자 / 디스플레이',
       icon: <FaTv />,
       partners: [
-        { name: 'LG Display', logo: '/logos/lg_new.png' },
-        { name: 'LG Electronics', logo: '/logos/lg_new.png' },
+        { name: 'LG Display', logo: '/logos/lg_display_new.png' },
+        { name: 'LG Electronics', logo: '/logos/lg_electronics_new.png' },
         { name: 'Humax', logo: '/logos/humax_new.png' },
       ]
     }

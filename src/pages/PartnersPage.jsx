@@ -307,8 +307,8 @@ const PartnersPage = () => {
     { name: 'Hyundai Motor', logo: '/logos/Hyundai_Motor_Company_logo.svg.png', industry: 'Automotive' },
     { name: 'Kanavi Mobility', logo: '/logos/kanavi_new.png', industry: 'Mobility' },
     { name: 'Kia', logo: '/logos/KIA_logo3.svg.png', industry: 'Automotive' },
-    { name: 'LG Display', logo: '/logos/lg_new.png', industry: 'Display' },
-    { name: 'LG Electronics', logo: '/logos/lg_new.png', industry: 'Electronics' },
+    { name: 'LG Display', logo: '/logos/lg_display_new.png', industry: 'Display' },
+    { name: 'LG Electronics', logo: '/logos/lg_electronics_new.png', industry: 'Electronics' },
   ];
 
   const stats = [
