@@ -4,67 +4,67 @@
 
   <!-- Home Page -->
   <url>
-    <loc>https://kmtechn.github.io/</loc>
+    <loc>https://3pl.kmtecherp.com/</loc>
     <lastmod>2025-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kmtechn.github.io/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://kmtechn.github.io/?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://kmtechn.github.io/?lang=zh"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://kmtechn.github.io/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://kmtechn.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3pl.kmtecherp.com/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3pl.kmtecherp.com/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://3pl.kmtecherp.com/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://3pl.kmtecherp.com/?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3pl.kmtecherp.com/"/>
   </url>
 
   <!-- About Us Page -->
   <url>
-    <loc>https://kmtechn.github.io/about</loc>
+    <loc>https://3pl.kmtecherp.com/about</loc>
     <lastmod>2025-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kmtechn.github.io/about?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://kmtechn.github.io/about?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://kmtechn.github.io/about?lang=zh"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://kmtechn.github.io/about?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://kmtechn.github.io/about"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3pl.kmtecherp.com/about?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3pl.kmtecherp.com/about?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://3pl.kmtecherp.com/about?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://3pl.kmtecherp.com/about?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3pl.kmtecherp.com/about"/>
   </url>
 
   <!-- Business Page -->
   <url>
-    <loc>https://kmtechn.github.io/business</loc>
+    <loc>https://3pl.kmtecherp.com/business</loc>
     <lastmod>2025-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kmtechn.github.io/business?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://kmtechn.github.io/business?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://kmtechn.github.io/business?lang=zh"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://kmtechn.github.io/business?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://kmtechn.github.io/business"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3pl.kmtecherp.com/business?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3pl.kmtecherp.com/business?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://3pl.kmtecherp.com/business?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://3pl.kmtecherp.com/business?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3pl.kmtecherp.com/business"/>
   </url>
 
   <!-- Partners Page -->
   <url>
-    <loc>https://kmtechn.github.io/partners</loc>
+    <loc>https://3pl.kmtecherp.com/partners</loc>
     <lastmod>2025-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kmtechn.github.io/partners?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://kmtechn.github.io/partners?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://kmtechn.github.io/partners?lang=zh"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://kmtechn.github.io/partners?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://kmtechn.github.io/partners"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3pl.kmtecherp.com/partners?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3pl.kmtecherp.com/partners?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://3pl.kmtecherp.com/partners?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://3pl.kmtecherp.com/partners?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3pl.kmtecherp.com/partners"/>
   </url>
 
   <!-- Contact Page -->
   <url>
-    <loc>https://kmtechn.github.io/contact</loc>
+    <loc>https://3pl.kmtecherp.com/contact</loc>
     <lastmod>2025-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kmtechn.github.io/contact?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://kmtechn.github.io/contact?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://kmtechn.github.io/contact?lang=zh"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://kmtechn.github.io/contact?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://kmtechn.github.io/contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3pl.kmtecherp.com/contact?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3pl.kmtecherp.com/contact?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://3pl.kmtecherp.com/contact?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://3pl.kmtecherp.com/contact?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3pl.kmtecherp.com/contact"/>
   </url>
 
 </urlset>

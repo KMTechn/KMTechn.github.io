@@ -1,11 +1,11 @@
 # KMTech Robots.txt
-# https://kmtechn.github.io
+# https://3pl.kmtecherp.com
 
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://kmtechn.github.io/sitemap.xml
+Sitemap: https://3pl.kmtecherp.com/sitemap.xml
 
 # Disallow sensitive paths
 Disallow: /api/
