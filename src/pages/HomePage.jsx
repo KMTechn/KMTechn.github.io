@@ -9,7 +9,7 @@ import useIsMobile, { usePrefersReducedMotion } from '../hooks/useIsMobile';
 import GlobeFallback from '../components/ui/GlobeFallback';
 import {
   FaArrowRight, FaWarehouse, FaBrain, FaShippingFast, FaMicroscope, FaSearch, FaTools,
-  FaCheckCircle, FaPhone, FaEnvelope, FaCar, FaTv, FaTruckLoading, FaBoxOpen, FaClipboardCheck
+  FaCheckCircle, FaEnvelope, FaCar, FaTv, FaTruckLoading, FaBoxOpen, FaClipboardCheck
 } from 'react-icons/fa';
 import { HiOutlineChevronRight } from 'react-icons/hi';
 
@@ -788,9 +788,6 @@ const HomePage = () => {
             animate={heroInView ? { opacity: 1 } : {}}
             transition={{ delay: 0.7, duration: 0.5 }}
           >
-            <ContactItem href="tel:010-3340-6877">
-              <FaPhone /> 010-3340-6877
-            </ContactItem>
             <ContactItem href="mailto:cgpark@kmtechn.com">
               <FaEnvelope /> cgpark@kmtechn.com
             </ContactItem>

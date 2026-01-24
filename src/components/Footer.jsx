@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaLinkedin, FaGlobe, FaWarehouse } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaEnvelope, FaLinkedin, FaGlobe, FaWarehouse } from 'react-icons/fa';
 
 const FooterContainer = styled.footer`
   background: linear-gradient(180deg, var(--footer-bg) 0%, var(--background-color) 100%);
@@ -267,10 +267,6 @@ const Footer = () => {
           <ContactItem>
             <FaMapMarkerAlt size={16} />
             <span>{t('contact_office_address')}</span>
-          </ContactItem>
-          <ContactItem>
-            <FaPhone size={14} />
-            <a href={`tel:${t('contact_office_phone')}`}>{t('contact_office_phone')}</a>
           </ContactItem>
           <ContactItem>
             <FaEnvelope size={14} />

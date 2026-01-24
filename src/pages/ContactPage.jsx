@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { Section, SectionTitle } from '../components/ui/Page';
-import { FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaEnvelope } from 'react-icons/fa';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import ContactForm from '../components/ui/ContactForm';
 
@@ -90,10 +90,6 @@ const ContactPage = () => {
                 <span>{t('contact_office_address')}</span>
               </InfoRow>
               <InfoRow>
-                <FaPhone size={20} />
-                <span>{t('contact_office_phone')}</span>
-              </InfoRow>
-              <InfoRow>
                 <FaEnvelope size={20} />
                 <span>{t('contact_office_email')}</span>
               </InfoRow>
@@ -120,10 +116,6 @@ const ContactPage = () => {
               <InfoRow>
                 <FaMapMarkerAlt size={20} />
                 <span>{t('contact_warehouse_address')}</span>
-              </InfoRow>
-              <InfoRow>
-                <FaPhone size={20} />
-                <span>{t('contact_warehouse_phone')}</span>
               </InfoRow>
               <InfoRow>
                 <FaEnvelope size={20} />
