@@ -459,7 +459,9 @@ const CEOCard = styled(motion.div)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 1.5rem;
+  min-width: 80px;
+  min-height: 48px;
+  padding: 0.75rem 1.25rem;
   background: var(--card-bg);
   border: 1px solid var(--accent-amber);
   border-radius: 8px;
