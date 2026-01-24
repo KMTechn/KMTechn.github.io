@@ -456,15 +456,14 @@ const OrgChart = styled(motion.div)`
 `;
 
 const CEOCard = styled(motion.div)`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1rem;
+  display: inline-block;
+  padding: 12px 20px;
   background: var(--card-bg);
   border: 1px solid var(--accent-amber);
   border-radius: 8px;
   position: relative;
   margin-bottom: 2.5rem;
+  line-height: 1;
 
   &::after {
     content: '';
@@ -480,10 +479,12 @@ const CEOCard = styled(motion.div)`
 
 const CEORole = styled.h3`
   margin: 0;
-  font-size: 0.85rem;
+  padding: 0;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.05em;
   color: var(--text-color);
+  line-height: 1;
 `;
 
 const OrgLine = styled.div`
