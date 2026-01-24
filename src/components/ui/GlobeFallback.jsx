@@ -1,215 +1,210 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-const rotate = keyframes`
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+// Animations
+const fadeInUp = keyframes`
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 `;
 
 const pulse = keyframes`
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.05); }
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
 `;
 
-const float = keyframes`
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+const dash = keyframes`
+  to { stroke-dashoffset: 0; }
+`;
+
+const glow = keyframes`
+  0%, 100% { filter: drop-shadow(0 0 3px var(--accent-amber)); }
+  50% { filter: drop-shadow(0 0 8px var(--accent-amber)); }
 `;
 
 const Container = styled.div`
   width: 100%;
   height: 100%;
+  min-height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  background: radial-gradient(ellipse at center, rgba(30, 30, 50, 0.3) 0%, transparent 70%);
-`;
-
-const GlobeWrapper = styled.div`
-  position: relative;
-  width: 280px;
-  height: 280px;
-  animation: ${float} 6s ease-in-out infinite;
+  animation: ${fadeInUp} 0.8s ease-out;
 
   @media (max-width: 768px) {
-    width: 220px;
-    height: 220px;
+    min-height: 250px;
   }
 `;
 
-const GlobeImage = styled.div`
+const NetworkSVG = styled.svg`
   width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #1a365d 0%, #2d5a87 30%, #4a8db7 60%, #1a365d 100%);
-  box-shadow:
-    inset -30px -30px 60px rgba(0, 0, 0, 0.4),
-    inset 20px 20px 40px rgba(100, 180, 255, 0.1),
-    0 0 60px rgba(74, 141, 183, 0.3),
-    0 0 100px rgba(74, 141, 183, 0.1);
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    width: 30%;
-    height: 20%;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    filter: blur(10px);
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background:
-      radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.2) 0%, transparent 50%);
-  }
-`;
-
-const OrbitRing = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: ${props => props.$size}px;
-  height: ${props => props.$size}px;
-  border: 1px solid rgba(255, 204, 0, ${props => props.$opacity});
-  border-radius: 50%;
-  animation: ${rotate} ${props => props.$duration}s linear infinite;
+  max-width: 400px;
+  height: auto;
 
   @media (max-width: 768px) {
-    width: ${props => props.$size * 0.8}px;
-    height: ${props => props.$size * 0.8}px;
+    max-width: 320px;
   }
 `;
 
-const LocationDot = styled.div`
-  position: absolute;
-  width: ${props => props.$size || 8}px;
-  height: ${props => props.$size || 8}px;
-  background: var(--accent-amber);
-  border-radius: 50%;
-  box-shadow: 0 0 10px var(--accent-amber), 0 0 20px rgba(255, 204, 0, 0.5);
+const Node = styled.circle`
+  fill: var(--accent-amber);
   animation: ${pulse} 2s ease-in-out infinite;
   animation-delay: ${props => props.$delay || 0}s;
 `;
 
-const ConnectionLine = styled.div`
-  position: absolute;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.6), transparent);
-  transform-origin: left center;
-  animation: ${pulse} 3s ease-in-out infinite;
+const CenterNode = styled.circle`
+  fill: var(--accent-amber);
+  animation: ${glow} 2s ease-in-out infinite;
+`;
+
+const ConnectionPath = styled.path`
+  stroke: rgba(255, 204, 0, 0.4);
+  stroke-width: 1.5;
+  fill: none;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: ${dash} 2s ease-out forwards;
   animation-delay: ${props => props.$delay || 0}s;
 `;
 
-const StarField = styled.div`
-  position: absolute;
-  inset: -50px;
-  overflow: hidden;
-  pointer-events: none;
+const NodeLabel = styled.text`
+  fill: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 500;
+  text-anchor: middle;
+
+  @media (max-width: 768px) {
+    font-size: 9px;
+  }
 `;
 
-const Star = styled.div`
-  position: absolute;
-  width: ${props => props.$size}px;
-  height: ${props => props.$size}px;
-  background: white;
-  border-radius: 50%;
-  opacity: ${props => props.$opacity};
-  animation: ${pulse} ${props => props.$duration}s ease-in-out infinite;
-  animation-delay: ${props => props.$delay}s;
-  top: ${props => props.$top}%;
-  left: ${props => props.$left}%;
+const CenterLabel = styled.text`
+  fill: var(--accent-amber);
+  font-size: 12px;
+  font-weight: 700;
+  text-anchor: middle;
+
+  @media (max-width: 768px) {
+    font-size: 11px;
+  }
 `;
 
-const locations = [
-  { top: '25%', left: '35%', size: 10, delay: 0, label: 'Seoul' },
-  { top: '30%', left: '75%', size: 8, delay: 0.5, label: 'Berlin' },
-  { top: '55%', left: '45%', size: 8, delay: 1, label: 'Wuhu' },
-  { top: '60%', left: '65%', size: 8, delay: 1.5, label: 'Hong Kong' },
+const IconGroup = styled.g`
+  opacity: 0;
+  animation: ${fadeInUp} 0.6s ease-out forwards;
+  animation-delay: ${props => props.$delay || 0}s;
+`;
+
+// Network nodes representing global logistics connections
+const nodes = [
+  { id: 'korea', x: 200, y: 80, label: 'KOREA', delay: 0.2 },
+  { id: 'china', x: 320, y: 140, label: 'CHINA', delay: 0.4 },
+  { id: 'germany', x: 80, y: 140, label: 'GERMANY', delay: 0.6 },
+  { id: 'hongkong', x: 280, y: 260, label: 'HONG KONG', delay: 0.8 },
+  { id: 'global', x: 120, y: 260, label: 'GLOBAL', delay: 1.0 },
 ];
 
-const stars = Array.from({ length: 20 }, (_, i) => ({
-  id: i,
-  size: Math.random() * 2 + 1,
-  opacity: Math.random() * 0.5 + 0.2,
-  duration: Math.random() * 3 + 2,
-  delay: Math.random() * 2,
-  top: Math.random() * 100,
-  left: Math.random() * 100,
-}));
+const center = { x: 200, y: 180 };
 
 const GlobeFallback = () => {
   return (
     <Container>
-      <StarField>
-        {stars.map(star => (
-          <Star
-            key={star.id}
-            $size={star.size}
-            $opacity={star.opacity}
-            $duration={star.duration}
-            $delay={star.delay}
-            $top={star.top}
-            $left={star.left}
-          />
+      <NetworkSVG viewBox="0 0 400 340" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          {/* Gradient for connection lines */}
+          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="rgba(255, 204, 0, 0.1)" />
+            <stop offset="50%" stopColor="rgba(255, 204, 0, 0.6)" />
+            <stop offset="100%" stopColor="rgba(255, 204, 0, 0.1)" />
+          </linearGradient>
+
+          {/* Glow filter */}
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        {/* Connection lines from center to each node */}
+        {nodes.map((node, index) => {
+          const midX = (center.x + node.x) / 2;
+          const midY = (center.y + node.y) / 2 - 20;
+          return (
+            <ConnectionPath
+              key={`line-${node.id}`}
+              d={`M ${center.x} ${center.y} Q ${midX} ${midY} ${node.x} ${node.y}`}
+              $delay={0.3 + index * 0.15}
+            />
+          );
+        })}
+
+        {/* Outer nodes */}
+        {nodes.map((node) => (
+          <IconGroup key={node.id} $delay={node.delay}>
+            {/* Node outer ring */}
+            <circle
+              cx={node.x}
+              cy={node.y}
+              r={24}
+              fill="none"
+              stroke="rgba(255, 204, 0, 0.2)"
+              strokeWidth="1"
+            />
+            {/* Node */}
+            <Node
+              cx={node.x}
+              cy={node.y}
+              r={8}
+              $delay={node.delay}
+            />
+            {/* Label */}
+            <NodeLabel x={node.x} y={node.y + 38}>
+              {node.label}
+            </NodeLabel>
+          </IconGroup>
         ))}
-      </StarField>
 
-      <OrbitRing $size={320} $opacity={0.2} $duration={30} />
-      <OrbitRing $size={380} $opacity={0.15} $duration={45} />
-      <OrbitRing $size={440} $opacity={0.1} $duration={60} />
-
-      <GlobeWrapper>
-        <GlobeImage />
-
-        {locations.map((loc, index) => (
-          <LocationDot
-            key={index}
-            $size={loc.size}
-            $delay={loc.delay}
-            style={{ top: loc.top, left: loc.left }}
-            title={loc.label}
+        {/* Center hub */}
+        <IconGroup $delay={0}>
+          {/* Center outer rings */}
+          <circle
+            cx={center.x}
+            cy={center.y}
+            r={45}
+            fill="none"
+            stroke="rgba(255, 204, 0, 0.15)"
+            strokeWidth="1"
           />
-        ))}
+          <circle
+            cx={center.x}
+            cy={center.y}
+            r={35}
+            fill="none"
+            stroke="rgba(255, 204, 0, 0.25)"
+            strokeWidth="1"
+          />
+          {/* Center node */}
+          <CenterNode
+            cx={center.x}
+            cy={center.y}
+            r={18}
+            filter="url(#glow)"
+          />
+          {/* KM Logo text */}
+          <CenterLabel x={center.x} y={center.y + 4}>
+            KM
+          </CenterLabel>
+        </IconGroup>
 
-        <ConnectionLine
-          $delay={0.3}
-          style={{
-            top: '28%',
-            left: '40%',
-            width: '35%',
-            transform: 'rotate(5deg)',
-          }}
-        />
-        <ConnectionLine
-          $delay={0.8}
-          style={{
-            top: '45%',
-            left: '40%',
-            width: '25%',
-            transform: 'rotate(45deg)',
-          }}
-        />
-        <ConnectionLine
-          $delay={1.2}
-          style={{
-            top: '58%',
-            left: '50%',
-            width: '15%',
-            transform: 'rotate(-15deg)',
-          }}
-        />
-      </GlobeWrapper>
+        {/* Decorative elements - small dots */}
+        <circle cx={150} cy={120} r={2} fill="rgba(255, 204, 0, 0.3)" />
+        <circle cx={250} cy={200} r={2} fill="rgba(255, 204, 0, 0.3)" />
+        <circle cx={140} cy={200} r={2} fill="rgba(255, 204, 0, 0.3)" />
+        <circle cx={260} cy={120} r={2} fill="rgba(255, 204, 0, 0.3)" />
+      </NetworkSVG>
     </Container>
   );
 };
