@@ -200,8 +200,8 @@ const PartnerCard = styled(motion.div)`
 `;
 
 const PartnerLogo = styled.img`
-  max-width: 120px;
-  max-height: 50px;
+  max-width: 180px;
+  max-height: 70px;
   object-fit: contain;
   margin-bottom: 1.25rem;
 `;

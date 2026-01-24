@@ -185,7 +185,7 @@ const LogoWrapper = styled.div`
 
 const Logo = styled.img`
   max-width: 100%;
-  max-height: 60px;
+  max-height: 80px;
   object-fit: contain;
   transition: transform 0.3s ease;
 

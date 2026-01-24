@@ -580,8 +580,8 @@ const PartnersGrid = styled.div`
 `;
 
 const PartnerLogo = styled(motion.img)`
-  height: 36px;
-  max-width: 100px;
+  height: 50px;
+  max-width: 140px;
   object-fit: contain;
   opacity: 0.7;
   transition: opacity 0.2s ease, transform 0.2s ease;

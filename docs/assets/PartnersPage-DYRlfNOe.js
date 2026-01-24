@@ -1,4 +1,4 @@
-import{j as e}from"./three-vendor-ZYLi6JSD.js";import{b as o,L as u}from"./react-vendor-VEkyeZpm.js";import{A as i,a4 as b,C as f,z as t,J as a,a5 as v,a6 as y,a7 as w}from"./index-BQNHgt7T.js";import{u as j}from"./i18n-vendor-BLj2OrmQ.js";const _=t.section`
+import{j as e}from"./three-vendor-ZYLi6JSD.js";import{b as o,L as u}from"./react-vendor-VEkyeZpm.js";import{A as i,a4 as b,C as f,z as t,J as a,a5 as v,a6 as y,a7 as w}from"./index-BJbJMrCY.js";import{u as j}from"./i18n-vendor-BLj2OrmQ.js";const _=t.section`
   min-height: 50vh;
   display: flex;
   align-items: center;
@@ -154,8 +154,8 @@ import{j as e}from"./three-vendor-ZYLi6JSD.js";import{b as o,L as u}from"./react
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
   }
 `,M=t.img`
-  max-width: 120px;
-  max-height: 50px;
+  max-width: 180px;
+  max-height: 70px;
   object-fit: contain;
   margin-bottom: 1.25rem;
 `,B=t.h3`
@@ -211,4 +211,4 @@ import{j as e}from"./three-vendor-ZYLi6JSD.js";import{b as o,L as u}from"./react
     transform: translateX(4px);
   }
 `,$={hidden:{opacity:0},visible:{opacity:1,transition:{staggerChildren:.08}}},q={hidden:{opacity:0,y:20},visible:{opacity:1,y:0,transition:{duration:.4,ease:"easeOut"}}},te=()=>{const{t:n}=j(),s=o.useRef(null),c=o.useRef(null),l=o.useRef(null),d=i(s,{once:!0,margin:"-50px"}),m=i(c,{once:!0,margin:"-50px"}),g=i(l,{once:!0,margin:"-50px"}),p=[{name:"Continental",logo:"/logos/continental_new.png",industry:"Automotive Parts"},{name:"Humax",logo:"/logos/humax_new.png",industry:"Electronics"},{name:"Hyundai Motor",logo:"/logos/Hyundai_Motor_Company_logo.svg.png",industry:"Automotive"},{name:"Kanavi Mobility",logo:"/logos/kanavi_new.png",industry:"Mobility"},{name:"Kia",logo:"/logos/KIA_logo3.svg.png",industry:"Automotive"},{name:"LG Display",logo:"/logos/lg_display_new.png",industry:"Display"},{name:"LG Electronics",logo:"/logos/lg_electronics_new.png",industry:"Electronics"}],x=[{icon:e.jsx(v,{}),value:"7+",labelKey:"partners_stat_partners"},{icon:e.jsx(y,{}),value:"15+",labelKey:"partners_stat_years"},{icon:e.jsx(w,{}),value:"99%",labelKey:"partners_stat_retention"}];return e.jsxs(b,{children:[e.jsx(_,{ref:s,children:e.jsxs(k,{children:[e.jsxs(z,{initial:{opacity:0,y:30},animate:d?{opacity:1,y:0}:{},transition:{duration:.6},children:[e.jsx(C,{children:"Our Partners"}),e.jsx(A,{children:n("core_customers_title")}),e.jsx(H,{children:n("partners_hero_desc")})]}),e.jsx(S,{initial:{opacity:0,x:30},animate:d?{opacity:1,x:0}:{},transition:{delay:.2,duration:.6},children:x.map((r,h)=>e.jsxs(T,{children:[e.jsx(P,{children:r.icon}),e.jsx(I,{children:r.value}),e.jsx(L,{children:n(r.labelKey)})]},h))})]})}),e.jsxs(R,{ref:c,children:[e.jsxs(K,{initial:{opacity:0,y:20},animate:m?{opacity:1,y:0}:{},transition:{duration:.5},children:[e.jsx(V,{children:"Trusted By Industry Leaders"}),e.jsx(D,{children:n("partners_section_title")}),e.jsx(E,{children:n("partners_section_desc")})]}),e.jsx(F,{variants:$,initial:"hidden",animate:m?"visible":"hidden",children:p.map(r=>e.jsxs(G,{variants:q,children:[e.jsx(M,{src:r.logo,alt:`${r.name} logo`}),e.jsx(B,{children:r.name}),e.jsx(N,{children:r.industry})]},r.name))})]}),e.jsx(O,{ref:l,children:e.jsxs(Y,{initial:{opacity:0,y:20},animate:g?{opacity:1,y:0}:{},transition:{duration:.5},children:[e.jsx(Z,{children:n("partners_cta_title")}),e.jsx(J,{children:n("partners_cta_desc")}),e.jsx(u,{to:"/contact",children:e.jsxs(X,{whileHover:{scale:1.02},whileTap:{scale:.98},children:[n("partners_cta_button")," ",e.jsx(f,{})]})})]})})]})};export{te as default};
-//# sourceMappingURL=PartnersPage-hI3OBzPZ.js.map
+//# sourceMappingURL=PartnersPage-DYRlfNOe.js.map
