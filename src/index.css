@@ -1,8 +1,26 @@
 /* KMTECH Styling System */
 @import 'leaflet/dist/leaflet.css';
 
-/* Font loading optimization - use font-display: swap for better performance */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@400;700&family=Spectral:wght@700&display=swap');
+/*
+ * Font loading optimization:
+ * - Using font-display: swap for immediate text visibility
+ * - Limiting weights to reduce download size
+ * - Preconnect to Google Fonts in index.html for faster DNS resolution
+ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@400;700&display=swap');
+
+/* Fallback font stack for better performance */
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+  src: local('Inter');
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-display: swap;
+  src: local('Noto Sans KR');
+}
 
 :root {
   /* Primary accent color - improves WCAG AA contrast ratio */
@@ -55,6 +73,24 @@ html[data-theme='dark'],
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
+  }
+}
+
+/* Accessibility: Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Keep essential transforms but remove animations */
+  .gpu-accelerated {
+    transform: none;
+    animation: none;
   }
 }
 

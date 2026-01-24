@@ -1,19 +1,20 @@
-import React, { Suspense, useRef, useEffect, useState } from 'react';
+import React, { Suspense, useRef, useEffect, useState, lazy } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence, useInView, useMotionValue, useTransform, animate } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Canvas } from '@react-three/fiber';
-import * as THREE from 'three';
-import { MapControls } from '@react-three/drei';
 import { Section, SectionTitle } from '../components/ui/Page';
 import Loader from '../components/ui/Loader';
-import Globe from '../components/ui/Globe';
+import useIsMobile, { usePrefersReducedMotion } from '../hooks/useIsMobile';
+import GlobeFallback from '../components/ui/GlobeFallback';
 import {
   FaArrowRight, FaWarehouse, FaBrain, FaShippingFast, FaMicroscope, FaSearch, FaTools,
   FaCheckCircle, FaPhone, FaEnvelope, FaCar, FaTv, FaTruckLoading, FaBoxOpen, FaClipboardCheck
 } from 'react-icons/fa';
 import { HiOutlineChevronRight } from 'react-icons/hi';
+
+// Lazy load heavy 3D Globe only for desktop - saves ~500KB on mobile
+const Desktop3DGlobe = lazy(() => import('../components/ui/Desktop3DGlobe'));
 
 const PageContainer = styled.div`
   width: 100%;
@@ -579,7 +580,10 @@ const PartnersGrid = styled.div`
   gap: 1.5rem;
 `;
 
-const PartnerLogo = styled(motion.img)`
+const PartnerLogo = styled(motion.img).attrs({
+  loading: 'lazy',
+  decoding: 'async',
+})`
   height: 50px;
   max-width: 140px;
   object-fit: contain;
@@ -645,6 +649,12 @@ const itemVariants = {
 const HomePage = () => {
   const { t } = useTranslation();
   const artworkRef = useRef(null);
+
+  // Performance optimization: detect mobile/tablet to skip heavy 3D rendering
+  const isMobile = useIsMobile(1024);
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const shouldUse3DGlobe = !isMobile && !prefersReducedMotion;
+
   // Refs for scroll animations
   const heroRef = useRef(null);
   const statsRef = useRef(null);
@@ -793,28 +803,13 @@ const HomePage = () => {
           animate={heroInView ? { opacity: 1, x: 0 } : {}}
           transition={{ delay: 0.3, duration: 0.7 }}
         >
-          <Canvas
-            camera={{ position: [0, 0, 8], fov: 50 }}
-            dpr={[1, 1.5]}
-            performance={{ min: 0.5 }}
-          >
-            <Suspense fallback={<Loader />}>
-              <Globe />
+          {shouldUse3DGlobe ? (
+            <Suspense fallback={<GlobeFallback />}>
+              <Desktop3DGlobe />
             </Suspense>
-            <MapControls
-              enableZoom={false}
-              enablePan={false}
-              autoRotate
-              autoRotateSpeed={0.4}
-              enableDamping
-              dampingFactor={0.05}
-              mouseButtons={{
-                LEFT: THREE.MOUSE.ROTATE,
-                MIDDLE: THREE.MOUSE.DOLLY,
-                RIGHT: THREE.MOUSE.PAN
-              }}
-            />
-          </Canvas>
+          ) : (
+            <GlobeFallback />
+          )}
         </ArtworkContainer>
       </HeroSection>
 

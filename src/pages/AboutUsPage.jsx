@@ -627,13 +627,15 @@ const AboutUsPage = () => {
     { icon: <FaBuilding />, titleKey: 'pillar_company_development' },
   ];
 
+  // Optimized Unsplash images with smaller size for faster loading
+  // Using w=800 instead of w=2070 reduces image size by ~60%
   const strongPoints = [
-    { icon: <FaAward />, img: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?q=80&w=2071&auto=format&fit=crop', titleKey: 'strong_point_1_title', descKey: 'strong_point_1_desc' },
-    { icon: <FaBrain />, img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop', titleKey: 'strong_point_2_title', descKey: 'strong_point_2_desc' },
-    { icon: <FaUsersCog />, img: 'https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=2070&auto=format&fit=crop', titleKey: 'strong_point_3_title', descKey: 'strong_point_3_desc' },
-    { icon: <FaUserTie />, img: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=2026&auto=format&fit=crop', titleKey: 'strong_point_4_title', descKey: 'strong_point_4_desc' },
-    { icon: <FaShippingFast />, img: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070&auto=format&fit=crop', titleKey: 'strong_point_5_title', descKey: 'strong_point_5_desc' },
-    { icon: <FaMicroscope />, img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop', titleKey: 'strong_point_6_title', descKey: 'strong_point_6_desc' },
+    { icon: <FaAward />, img: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?q=75&w=800&auto=format&fit=crop', titleKey: 'strong_point_1_title', descKey: 'strong_point_1_desc' },
+    { icon: <FaBrain />, img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=75&w=800&auto=format&fit=crop', titleKey: 'strong_point_2_title', descKey: 'strong_point_2_desc' },
+    { icon: <FaUsersCog />, img: 'https://images.unsplash.com/photo-1553413077-190dd305871c?q=75&w=800&auto=format&fit=crop', titleKey: 'strong_point_3_title', descKey: 'strong_point_3_desc' },
+    { icon: <FaUserTie />, img: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=75&w=800&auto=format&fit=crop', titleKey: 'strong_point_4_title', descKey: 'strong_point_4_desc' },
+    { icon: <FaShippingFast />, img: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=75&w=800&auto=format&fit=crop', titleKey: 'strong_point_5_title', descKey: 'strong_point_5_desc' },
+    { icon: <FaMicroscope />, img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=75&w=800&auto=format&fit=crop', titleKey: 'strong_point_6_title', descKey: 'strong_point_6_desc' },
   ];
 
   const organization = orgStructure || { ceo: { titleKey: 'org_ceo', nameKey: 'org_ceo_name' }, departments: [] };

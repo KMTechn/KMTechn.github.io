@@ -183,7 +183,10 @@ const LogoWrapper = styled.div`
   flex-shrink: 0;
 `;
 
-const Logo = styled.img`
+const Logo = styled.img.attrs({
+  loading: 'lazy',
+  decoding: 'async',
+})`
   max-width: 100%;
   max-height: 80px;
   object-fit: contain;

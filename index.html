@@ -94,6 +94,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
+    <!-- DNS Prefetch for external resources -->
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/logo.png" as="image" />
+
+    <!-- Resource hints for 3D assets (only loaded on desktop) -->
+    <link rel="prefetch" href="/earth-day.jpg" as="image" media="(min-width: 1024px)" />
+    <link rel="prefetch" href="/earth-night.jpg" as="image" media="(min-width: 1024px)" />
+
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
 
