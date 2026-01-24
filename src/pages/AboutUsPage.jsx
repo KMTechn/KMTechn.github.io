@@ -438,14 +438,14 @@ const StrengthDescription = styled.p`
   color: var(--text-secondary);
 `;
 
-// Organization Section
+// Organization Section - Modern Minimal Design
 const OrgSection = styled(Section)`
   background: var(--background-color);
   padding: 7rem 5%;
 `;
 
 const OrgContainer = styled.div`
-  max-width: 1100px;
+  max-width: 900px;
   margin: 0 auto;
 `;
 
@@ -453,66 +453,57 @@ const OrgChart = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
 `;
 
 const CEOCard = styled(motion.div)`
   text-align: center;
-  padding: 2rem 4rem;
-  background: linear-gradient(135deg, var(--accent-amber) 0%, #e6a700 100%);
-  border-radius: 12px;
+  padding: 1.5rem 3rem;
+  background: var(--card-bg);
+  border: 2px solid var(--accent-amber);
+  border-radius: 8px;
   position: relative;
+  margin-bottom: 3rem;
 
   &::after {
     content: '';
     position: absolute;
-    bottom: -2rem;
+    bottom: -3rem;
     left: 50%;
     transform: translateX(-50%);
-    width: 2px;
-    height: 2rem;
+    width: 1px;
+    height: 3rem;
     background: var(--border-color);
   }
 `;
 
-const CEORole = styled.div`
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.6);
-  margin-bottom: 0.5rem;
-`;
-
-const CEOName = styled.h3`
-  font-size: 1.35rem;
+const CEORole = styled.h3`
+  font-size: 1rem;
   font-weight: 700;
-  color: #121212;
+  letter-spacing: 0.05em;
+  color: var(--text-color);
 `;
 
-const DepartmentsWrapper = styled.div`
+const OrgLine = styled.div`
+  width: 80%;
+  height: 1px;
+  background: var(--border-color);
   position: relative;
-  width: 100%;
+  margin-bottom: 2rem;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 10%;
-    right: 10%;
-    height: 2px;
-    background: var(--border-color);
+  @media (max-width: 768px) {
+    width: 90%;
   }
 `;
 
 const DepartmentsGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
-  padding-top: 2rem;
+  gap: 1.5rem;
+  width: 100%;
 
-  @media (max-width: 1000px) {
+  @media (max-width: 900px) {
     grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
   }
 
   @media (max-width: 600px) {
@@ -522,12 +513,7 @@ const DepartmentsGrid = styled(motion.div)`
 
 const DepartmentCard = styled(motion.div)`
   text-align: center;
-  padding: 1.5rem 1rem;
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
   position: relative;
-  transition: all 0.3s ease;
 
   &::before {
     content: '';
@@ -535,38 +521,40 @@ const DepartmentCard = styled(motion.div)`
     top: -2rem;
     left: 50%;
     transform: translateX(-50%);
-    width: 2px;
+    width: 1px;
     height: 2rem;
     background: var(--border-color);
   }
-
-  &:hover {
-    border-color: var(--accent-amber);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  }
 `;
 
-const DeptIcon = styled.div`
-  width: 40px;
-  height: 40px;
+const DeptIconWrapper = styled.div`
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(var(--accent-amber-rgb, 255, 193, 7), 0.1);
-  border-radius: 8px;
-  margin: 0 auto 0.75rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  margin: 0 auto 1rem;
+  transition: all 0.2s ease;
 
   svg {
-    font-size: 1rem;
+    font-size: 1.25rem;
     color: var(--accent-amber);
+  }
+
+  ${DepartmentCard}:hover & {
+    border-color: var(--accent-amber);
+    background: rgba(var(--accent-amber-rgb, 255, 193, 7), 0.05);
   }
 `;
 
 const DeptTitle = styled.h4`
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-color);
-  line-height: 1.3;
+  line-height: 1.4;
 `;
 
 // Icon mapping for organization
@@ -636,12 +624,12 @@ const AboutUsPage = () => {
   ];
 
   const strongPoints = [
-    { icon: <FaAward />, img: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070&auto=format&fit=crop', titleKey: 'strong_point_1_title', descKey: 'strong_point_1_desc' },
-    { icon: <FaBrain />, img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop', titleKey: 'strong_point_2_title', descKey: 'strong_point_2_desc' },
-    { icon: <FaUsersCog />, img: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2070&auto=format&fit=crop', titleKey: 'strong_point_3_title', descKey: 'strong_point_3_desc' },
-    { icon: <FaUserTie />, img: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop', titleKey: 'strong_point_4_title', descKey: 'strong_point_4_desc' },
-    { icon: <FaShippingFast />, img: 'https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?q=80&w=2070&auto=format&fit=crop', titleKey: 'strong_point_5_title', descKey: 'strong_point_5_desc' },
-    { icon: <FaMicroscope />, img: 'https://images.unsplash.com/photo-1518314916381-77a37c2a49ae?q=80&w=2071&auto=format&fit=crop', titleKey: 'strong_point_6_title', descKey: 'strong_point_6_desc' },
+    { icon: <FaAward />, img: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?q=80&w=2071&auto=format&fit=crop', titleKey: 'strong_point_1_title', descKey: 'strong_point_1_desc' },
+    { icon: <FaBrain />, img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop', titleKey: 'strong_point_2_title', descKey: 'strong_point_2_desc' },
+    { icon: <FaUsersCog />, img: 'https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=2070&auto=format&fit=crop', titleKey: 'strong_point_3_title', descKey: 'strong_point_3_desc' },
+    { icon: <FaUserTie />, img: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=2026&auto=format&fit=crop', titleKey: 'strong_point_4_title', descKey: 'strong_point_4_desc' },
+    { icon: <FaShippingFast />, img: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070&auto=format&fit=crop', titleKey: 'strong_point_5_title', descKey: 'strong_point_5_desc' },
+    { icon: <FaMicroscope />, img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop', titleKey: 'strong_point_6_title', descKey: 'strong_point_6_desc' },
   ];
 
   const organization = orgStructure || { ceo: { titleKey: 'org_ceo', nameKey: 'org_ceo_name' }, departments: [] };
@@ -810,7 +798,7 @@ const AboutUsPage = () => {
           animate={orgInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          <SectionLabel>Our Team</SectionLabel>
+          <SectionLabel>Organization</SectionLabel>
           <SectionTitle>{t('about_org_title')}</SectionTitle>
           <SectionDescription>{t('about_org_desc')}</SectionDescription>
         </SectionHeader>
@@ -823,23 +811,22 @@ const AboutUsPage = () => {
               transition={{ delay: 0.2, duration: 0.5 }}
             >
               <CEORole>{t(organization.ceo.titleKey)}</CEORole>
-              <CEOName>{t(organization.ceo.nameKey)}</CEOName>
             </CEOCard>
 
-            <DepartmentsWrapper>
-              <DepartmentsGrid
-                variants={containerVariants}
-                initial="hidden"
-                animate={orgInView ? "visible" : "hidden"}
-              >
-                {organization?.departments?.map((dept) => (
-                  <DepartmentCard key={dept.titleKey} variants={itemVariants}>
-                    <DeptIcon>{iconMap[dept.iconName]}</DeptIcon>
-                    <DeptTitle>{t(dept.titleKey)}</DeptTitle>
-                  </DepartmentCard>
-                ))}
-              </DepartmentsGrid>
-            </DepartmentsWrapper>
+            <OrgLine />
+
+            <DepartmentsGrid
+              variants={containerVariants}
+              initial="hidden"
+              animate={orgInView ? "visible" : "hidden"}
+            >
+              {organization?.departments?.map((dept) => (
+                <DepartmentCard key={dept.titleKey} variants={itemVariants}>
+                  <DeptIconWrapper>{iconMap[dept.iconName]}</DeptIconWrapper>
+                  <DeptTitle>{t(dept.titleKey)}</DeptTitle>
+                </DepartmentCard>
+              ))}
+            </DepartmentsGrid>
           </OrgChart>
         </OrgContainer>
       </OrgSection>
