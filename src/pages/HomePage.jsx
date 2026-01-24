@@ -710,17 +710,17 @@ const HomePage = () => {
       partners: [
         { name: 'Hyundai', logo: '/logos/Hyundai_Motor_Company_logo.svg.png' },
         { name: 'Kia', logo: '/logos/KIA_logo3.svg.png' },
-        { name: 'Continental', logo: '/logos/continental.jpeg' },
-        { name: 'Kanavi Mobility', logo: '/logos/kanavi mobility.jpeg' },
+        { name: 'Continental', logo: '/logos/continental_new.png' },
+        { name: 'Kanavi Mobility', logo: '/logos/kanavi_new.png' },
       ]
     },
     {
       industry: t('partners_industry_electronics') || '전자 / 디스플레이',
       icon: <FaTv />,
       partners: [
-        { name: 'LG Display', logo: '/logos/LG_Display_logo_(english).png' },
-        { name: 'LG Electronics', logo: '/logos/LG electronics.png' },
-        { name: 'Humax', logo: '/logos/humax.jpeg' },
+        { name: 'LG Display', logo: '/logos/lg_new.png' },
+        { name: 'LG Electronics', logo: '/logos/lg_new.png' },
+        { name: 'Humax', logo: '/logos/humax_new.png' },
       ]
     }
   ];
