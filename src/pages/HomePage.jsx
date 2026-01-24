@@ -583,12 +583,10 @@ const PartnerLogo = styled(motion.img)`
   height: 50px;
   max-width: 140px;
   object-fit: contain;
-  opacity: 0.7;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: transform 0.2s ease;
   will-change: transform;
 
   &:hover {
-    opacity: 1;
     transform: scale(1.05);
   }
 `;
