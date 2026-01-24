@@ -144,5 +144,14 @@
   "contact_form_error_desc": "메시지 전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
   "validation_name_required": "성함은 2자 이상이어야 합니다",
   "validation_email_invalid": "올바른 이메일 주소를 입력해주세요",
-  "validation_message_required": "문의 내용은 10자 이상이어야 합니다"
+  "validation_message_required": "문의 내용은 10자 이상이어야 합니다",
+  "partners_hero_desc": "글로벌 자동차 및 전자 산업의 선도 기업들과 함께합니다. 신뢰를 바탕으로 한 장기적인 파트너십을 통해 최고의 물류 서비스를 제공합니다.",
+  "partners_stat_partners": "파트너사",
+  "partners_stat_years": "협력 연수",
+  "partners_stat_retention": "재계약률",
+  "partners_section_title": "신뢰받는 파트너십",
+  "partners_section_desc": "자동차, 전자, 디스플레이 등 다양한 산업 분야의 글로벌 기업들이 KMTech의 전문 물류 서비스를 신뢰합니다.",
+  "partners_cta_title": "파트너가 되어주세요",
+  "partners_cta_desc": "KMTech와 함께 효율적인 물류 솔루션을 경험해 보세요. 귀사의 요구에 맞춘 맞춤형 서비스를 제공해 드립니다.",
+  "partners_cta_button": "문의하기"
 }

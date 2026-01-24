@@ -144,5 +144,14 @@
   "contact_form_error_desc": "Beim Senden Ihrer Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
   "validation_name_required": "Der Name muss mindestens 2 Zeichen lang sein",
   "validation_email_invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
-  "validation_message_required": "Die Nachricht muss mindestens 10 Zeichen lang sein"
+  "validation_message_required": "Die Nachricht muss mindestens 10 Zeichen lang sein",
+  "partners_hero_desc": "Wir arbeiten mit führenden Unternehmen der globalen Automobil- und Elektronikindustrie zusammen. Durch langfristige, auf Vertrauen basierende Partnerschaften bieten wir erstklassige Logistikdienstleistungen.",
+  "partners_stat_partners": "Partner",
+  "partners_stat_years": "Jahre der Zusammenarbeit",
+  "partners_stat_retention": "Verlängerungsrate",
+  "partners_section_title": "Vertrauensvolle Partnerschaften",
+  "partners_section_desc": "Globale Unternehmen aus den Bereichen Automobil, Elektronik, Display und verschiedenen anderen Branchen vertrauen auf die professionellen Logistikdienstleistungen von KMTech.",
+  "partners_cta_title": "Werden Sie unser Partner",
+  "partners_cta_desc": "Erleben Sie effiziente Logistiklösungen mit KMTech. Wir bieten maßgeschneiderte Dienstleistungen, die auf die Bedürfnisse Ihres Unternehmens zugeschnitten sind.",
+  "partners_cta_button": "Kontaktieren Sie uns"
 }

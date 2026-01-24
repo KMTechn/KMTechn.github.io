@@ -135,5 +135,14 @@
   "contact_form_error_desc": "There was an error sending your message. Please try again later.",
   "validation_name_required": "Name must be at least 2 characters",
   "validation_email_invalid": "Please enter a valid email address",
-  "validation_message_required": "Message must be at least 10 characters"
+  "validation_message_required": "Message must be at least 10 characters",
+  "partners_hero_desc": "We partner with leading companies in the global automotive and electronics industries. Through long-term partnerships built on trust, we deliver the best logistics services.",
+  "partners_stat_partners": "Partners",
+  "partners_stat_years": "Years of Cooperation",
+  "partners_stat_retention": "Retention Rate",
+  "partners_section_title": "Trusted Partnerships",
+  "partners_section_desc": "Global companies in automotive, electronics, display, and various other industries trust KMTech's professional logistics services.",
+  "partners_cta_title": "Become Our Partner",
+  "partners_cta_desc": "Experience efficient logistics solutions with KMTech. We provide customized services tailored to your company's needs.",
+  "partners_cta_button": "Contact Us"
 }

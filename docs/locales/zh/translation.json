@@ -85,7 +85,7 @@
   "home_service_warehouse_title": "先进的仓储与库存管理",
   "home_service_warehouse_desc": "利用最先进的设施和强大的仓库管理系统（WMS），我们提供安全的存储、实时的库存跟踪和优化的空间利用，确保您的资产以最高的效率和谨慎进行管理。",
   "home_service_inspection_title": "精密质量检验与返工",
-  "home_service_inspection_desc": "我们专业的质量控制团队在先进的洁净棚环境中操作，进行细致的视觉和功能检验。我们识别缺陷，进行精确的返工，并确保您的产品在投放市场前达到最高的质量标��。",
+  "home_service_inspection_desc": "我们专业的质量控制团队在先进的洁净棚环境中操作，进行细致的视觉和功能检验。我们识别缺陷，进行精确的返工，并确保您的产品在投放市场前达到最高的质量标准。",
   "home_service_packaging_title": "定制化包装与转运",
   "home_service_packaging_desc": "我们提供量身定制的包装解决方案，从定制重新包装到复杂的配套和组装。我们与二维码ERP系统集成的简化流程，保证了准确的分拣、分类和准时交付到您的最终目的地。",
   "home_strengths_title": "为何选择我们？",
@@ -144,5 +144,14 @@
   "contact_form_error_desc": "发送消息时出错。请稍后再试。",
   "validation_name_required": "姓名至少需要2个字符",
   "validation_email_invalid": "请输入有效的电子邮件地址",
-  "validation_message_required": "消息至少需要10个字符"
+  "validation_message_required": "消息至少需要10个字符",
+  "partners_hero_desc": "我们与全球汽车和电子行业的领先企业合作。通过建立在信任基础上的长期合作伙伴关系，我们提供最优质的物流服务。",
+  "partners_stat_partners": "合作伙伴",
+  "partners_stat_years": "合作年数",
+  "partners_stat_retention": "续约率",
+  "partners_section_title": "值得信赖的合作伙伴关系",
+  "partners_section_desc": "汽车、电子、显示器等多个行业的全球企业信赖KMTech的专业物流服务。",
+  "partners_cta_title": "成为我们的合作伙伴",
+  "partners_cta_desc": "与KMTech一起体验高效的物流解决方案。我们提供根据贵公司需求量身定制的服务。",
+  "partners_cta_button": "联系我们"
 }

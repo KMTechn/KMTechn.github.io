@@ -312,9 +312,9 @@ const PartnersPage = () => {
   ];
 
   const stats = [
-    { icon: <FaHandshake />, value: '7+', label: '파트너사' },
-    { icon: <FaIndustry />, value: '15+', label: '협력 연수' },
-    { icon: <FaGlobeAsia />, value: '99%', label: '재계약률' },
+    { icon: <FaHandshake />, value: '7+', labelKey: 'partners_stat_partners' },
+    { icon: <FaIndustry />, value: '15+', labelKey: 'partners_stat_years' },
+    { icon: <FaGlobeAsia />, value: '99%', labelKey: 'partners_stat_retention' },
   ];
 
   return (
@@ -330,8 +330,7 @@ const PartnersPage = () => {
             <HeroLabel>Our Partners</HeroLabel>
             <HeroTitle>{t('core_customers_title')}</HeroTitle>
             <HeroDescription>
-              글로벌 자동차 및 전자 산업의 선도 기업들과 함께합니다.
-              신뢰를 바탕으로 한 장기적인 파트너십을 통해 최고의 물류 서비스를 제공합니다.
+              {t('partners_hero_desc')}
             </HeroDescription>
           </HeroText>
 
@@ -344,7 +343,7 @@ const PartnersPage = () => {
               <StatCard key={index}>
                 <StatIcon>{stat.icon}</StatIcon>
                 <StatNumber>{stat.value}</StatNumber>
-                <StatLabel>{stat.label}</StatLabel>
+                <StatLabel>{t(stat.labelKey)}</StatLabel>
               </StatCard>
             ))}
           </StatsContainer>
@@ -359,10 +358,9 @@ const PartnersPage = () => {
           transition={{ duration: 0.5 }}
         >
           <SectionLabel>Trusted By Industry Leaders</SectionLabel>
-          <SectionTitle>신뢰받는 파트너십</SectionTitle>
+          <SectionTitle>{t('partners_section_title')}</SectionTitle>
           <SectionDescription>
-            자동차, 전자, 디스플레이 등 다양한 산업 분야의 글로벌 기업들이
-            KMTech의 전문 물류 서비스를 신뢰합니다.
+            {t('partners_section_desc')}
           </SectionDescription>
         </SectionHeader>
 
@@ -388,14 +386,13 @@ const PartnersPage = () => {
           animate={ctaInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          <CTATitle>파트너가 되어주세요</CTATitle>
+          <CTATitle>{t('partners_cta_title')}</CTATitle>
           <CTADescription>
-            KMTech와 함께 효율적인 물류 솔루션을 경험해 보세요.
-            귀사의 요구에 맞춘 맞춤형 서비스를 제공해 드립니다.
+            {t('partners_cta_desc')}
           </CTADescription>
           <Link to="/contact">
             <CTAButton whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              문의하기 <FaArrowRight />
+              {t('partners_cta_button')} <FaArrowRight />
             </CTAButton>
           </Link>
         </CTAContent>
