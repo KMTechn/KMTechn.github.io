@@ -457,28 +457,28 @@ const OrgChart = styled(motion.div)`
 
 const CEOCard = styled(motion.div)`
   text-align: center;
-  padding: 1.5rem 3rem;
+  padding: 1rem 2rem;
   background: var(--card-bg);
-  border: 2px solid var(--accent-amber);
+  border: 1px solid var(--accent-amber);
   border-radius: 8px;
   position: relative;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 
   &::after {
     content: '';
     position: absolute;
-    bottom: -3rem;
+    bottom: -2.5rem;
     left: 50%;
     transform: translateX(-50%);
     width: 1px;
-    height: 3rem;
+    height: 2.5rem;
     background: var(--border-color);
   }
 `;
 
 const CEORole = styled.h3`
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: 600;
   letter-spacing: 0.05em;
   color: var(--text-color);
 `;
