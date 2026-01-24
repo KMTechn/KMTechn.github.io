@@ -457,7 +457,7 @@ const OrgChart = styled(motion.div)`
 
 const CEOCard = styled(motion.div)`
   text-align: center;
-  padding: 1rem 2rem;
+  padding: 1rem;
   background: var(--card-bg);
   border: 1px solid var(--accent-amber);
   border-radius: 8px;
