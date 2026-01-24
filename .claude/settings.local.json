@@ -45,7 +45,10 @@
       "Bash(npx gh-pages -d dist --force)",
       "Bash(git fetch:*)",
       "Bash(git branch:*)",
-      "Bash(gh run list:*)"
+      "Bash(gh run list:*)",
+      "Bash(timeout 5 head:*)",
+      "Bash(npm audit:*)",
+      "Bash(npm uninstall:*)"
     ],
     "deny": [],
     "ask": []
