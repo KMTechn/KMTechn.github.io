@@ -1,24 +1,30 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 // Animations
-const fadeInUp = keyframes`
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+const rotate = keyframes`
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+`;
+
+const rotateReverse = keyframes`
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
 `;
 
 const pulse = keyframes`
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.2); }
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
 `;
 
-const dash = keyframes`
-  to { stroke-dashoffset: 0; }
+const float = keyframes`
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 `;
 
 const glow = keyframes`
-  0%, 100% { filter: drop-shadow(0 0 3px var(--accent-amber)); }
-  50% { filter: drop-shadow(0 0 8px var(--accent-amber)); }
+  0%, 100% { filter: drop-shadow(0 0 5px var(--accent-amber)); }
+  50% { filter: drop-shadow(0 0 15px var(--accent-amber)); }
 `;
 
 const Container = styled.div`
@@ -28,183 +34,202 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    min-height: 280px;
+  }
+`;
+
+const PatternWrapper = styled.div`
   position: relative;
-  animation: ${fadeInUp} 0.8s ease-out;
+  width: 300px;
+  height: 300px;
 
   @media (max-width: 768px) {
-    min-height: 250px;
+    width: 260px;
+    height: 260px;
   }
 `;
 
-const NetworkSVG = styled.svg`
+const PatternSVG = styled.svg`
   width: 100%;
-  max-width: 400px;
-  height: auto;
-
-  @media (max-width: 768px) {
-    max-width: 320px;
-  }
+  height: 100%;
+  overflow: visible;
 `;
 
-const Node = styled.circle`
-  fill: var(--accent-amber);
-  animation: ${pulse} 2s ease-in-out infinite;
+const OuterRing = styled.circle`
+  fill: none;
+  stroke: var(--accent-amber);
+  stroke-width: 1;
+  opacity: 0.2;
+  transform-origin: center;
+  animation: ${rotate} 30s linear infinite;
+`;
+
+const MiddleRing = styled.circle`
+  fill: none;
+  stroke: var(--accent-amber);
+  stroke-width: 1;
+  stroke-dasharray: 10 5;
+  opacity: 0.3;
+  transform-origin: center;
+  animation: ${rotateReverse} 20s linear infinite;
+`;
+
+const InnerRing = styled.circle`
+  fill: none;
+  stroke: var(--accent-amber);
+  stroke-width: 2;
+  opacity: 0.4;
+  transform-origin: center;
+  animation: ${rotate} 15s linear infinite;
+`;
+
+const HexagonGroup = styled.g`
+  transform-origin: center;
+  animation: ${rotateReverse} 25s linear infinite;
+`;
+
+const Hexagon = styled.polygon`
+  fill: none;
+  stroke: var(--accent-amber);
+  stroke-width: 1;
+  opacity: ${props => props.$opacity || 0.3};
+  animation: ${pulse} 3s ease-in-out infinite;
   animation-delay: ${props => props.$delay || 0}s;
 `;
 
-const CenterNode = styled.circle`
+const CenterCore = styled.g`
+  animation: ${float} 4s ease-in-out infinite;
+`;
+
+const CoreCircle = styled.circle`
   fill: var(--accent-amber);
   animation: ${glow} 2s ease-in-out infinite;
 `;
 
-const ConnectionPath = styled.path`
-  stroke: rgba(255, 204, 0, 0.4);
-  stroke-width: 1.5;
-  fill: none;
-  stroke-dasharray: 200;
-  stroke-dashoffset: 200;
-  animation: ${dash} 2s ease-out forwards;
-  animation-delay: ${props => props.$delay || 0}s;
-`;
-
-const NodeLabel = styled.text`
-  fill: var(--text-secondary);
-  font-size: 10px;
-  font-weight: 500;
-  text-anchor: middle;
-
-  @media (max-width: 768px) {
-    font-size: 9px;
-  }
-`;
-
-const CenterLabel = styled.text`
-  fill: var(--accent-amber);
-  font-size: 12px;
+const CoreText = styled.text`
+  fill: #121212;
+  font-size: 16px;
   font-weight: 700;
   text-anchor: middle;
-
-  @media (max-width: 768px) {
-    font-size: 11px;
-  }
 `;
 
-const IconGroup = styled.g`
-  opacity: 0;
-  animation: ${fadeInUp} 0.6s ease-out forwards;
+const DataNode = styled.circle`
+  fill: var(--accent-amber);
+  opacity: 0.8;
+`;
+
+const DataLine = styled.line`
+  stroke: var(--accent-amber);
+  stroke-width: 1;
+  opacity: 0.3;
+`;
+
+const FloatingDot = styled.circle`
+  fill: var(--accent-amber);
+  opacity: ${props => props.$opacity || 0.5};
+  animation: ${pulse} ${props => props.$duration || 2}s ease-in-out infinite;
   animation-delay: ${props => props.$delay || 0}s;
 `;
 
-// Network nodes representing global logistics connections
-const nodes = [
-  { id: 'korea', x: 200, y: 80, label: 'KOREA', delay: 0.2 },
-  { id: 'china', x: 320, y: 140, label: 'CHINA', delay: 0.4 },
-  { id: 'germany', x: 80, y: 140, label: 'GERMANY', delay: 0.6 },
-  { id: 'hongkong', x: 280, y: 260, label: 'HONG KONG', delay: 0.8 },
-  { id: 'global', x: 120, y: 260, label: 'GLOBAL', delay: 1.0 },
-];
-
-const center = { x: 200, y: 180 };
+// Generate hexagon points
+const createHexagon = (cx, cy, size) => {
+  const points = [];
+  for (let i = 0; i < 6; i++) {
+    const angle = (Math.PI / 3) * i - Math.PI / 2;
+    points.push(`${cx + size * Math.cos(angle)},${cy + size * Math.sin(angle)}`);
+  }
+  return points.join(' ');
+};
 
 const GlobeFallback = () => {
+  const center = { x: 150, y: 150 };
+
+  // Memoize random values to prevent re-render flicker
+  const floatingDots = useMemo(() =>
+    Array.from({ length: 12 }, (_, i) => ({
+      x: center.x + Math.cos((Math.PI * 2 * i) / 12) * 110,
+      y: center.y + Math.sin((Math.PI * 2 * i) / 12) * 110,
+      size: 2 + (i % 3),
+      opacity: 0.3 + (i % 4) * 0.1,
+      duration: 2 + (i % 3),
+      delay: (i % 4) * 0.5,
+    })), [center.x, center.y]);
+
+  // Data nodes on middle ring
+  const dataNodes = useMemo(() =>
+    Array.from({ length: 6 }, (_, i) => ({
+      x: center.x + Math.cos((Math.PI * 2 * i) / 6 - Math.PI / 2) * 70,
+      y: center.y + Math.sin((Math.PI * 2 * i) / 6 - Math.PI / 2) * 70,
+    })), [center.x, center.y]);
+
   return (
     <Container>
-      <NetworkSVG viewBox="0 0 400 340" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          {/* Gradient for connection lines */}
-          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="rgba(255, 204, 0, 0.1)" />
-            <stop offset="50%" stopColor="rgba(255, 204, 0, 0.6)" />
-            <stop offset="100%" stopColor="rgba(255, 204, 0, 0.1)" />
-          </linearGradient>
+      <PatternWrapper>
+        <PatternSVG viewBox="0 0 300 300">
+          <defs>
+            <filter id="geoGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
 
-          {/* Glow filter */}
-          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
+          {/* Outer decorative ring */}
+          <OuterRing cx={center.x} cy={center.y} r={130} />
 
-        {/* Connection lines from center to each node */}
-        {nodes.map((node, index) => {
-          const midX = (center.x + node.x) / 2;
-          const midY = (center.y + node.y) / 2 - 20;
-          return (
-            <ConnectionPath
-              key={`line-${node.id}`}
-              d={`M ${center.x} ${center.y} Q ${midX} ${midY} ${node.x} ${node.y}`}
-              $delay={0.3 + index * 0.15}
+          {/* Middle dashed ring */}
+          <MiddleRing cx={center.x} cy={center.y} r={100} />
+
+          {/* Inner solid ring */}
+          <InnerRing cx={center.x} cy={center.y} r={70} />
+
+          {/* Hexagon layers */}
+          <HexagonGroup>
+            <Hexagon points={createHexagon(center.x, center.y, 110)} $opacity={0.15} $delay={0} />
+            <Hexagon points={createHexagon(center.x, center.y, 85)} $opacity={0.25} $delay={0.5} />
+            <Hexagon points={createHexagon(center.x, center.y, 55)} $opacity={0.35} $delay={1} />
+          </HexagonGroup>
+
+          {/* Data lines from center to nodes */}
+          {dataNodes.map((node, i) => (
+            <DataLine
+              key={`line-${i}`}
+              x1={center.x}
+              y1={center.y}
+              x2={node.x}
+              y2={node.y}
             />
-          );
-        })}
+          ))}
 
-        {/* Outer nodes */}
-        {nodes.map((node) => (
-          <IconGroup key={node.id} $delay={node.delay}>
-            {/* Node outer ring */}
-            <circle
-              cx={node.x}
-              cy={node.y}
-              r={24}
-              fill="none"
-              stroke="rgba(255, 204, 0, 0.2)"
-              strokeWidth="1"
+          {/* Data nodes */}
+          {dataNodes.map((node, i) => (
+            <DataNode key={`node-${i}`} cx={node.x} cy={node.y} r={4} />
+          ))}
+
+          {/* Floating dots */}
+          {floatingDots.map((dot, i) => (
+            <FloatingDot
+              key={`dot-${i}`}
+              cx={dot.x}
+              cy={dot.y}
+              r={dot.size}
+              $opacity={dot.opacity}
+              $duration={dot.duration}
+              $delay={dot.delay}
             />
-            {/* Node */}
-            <Node
-              cx={node.x}
-              cy={node.y}
-              r={8}
-              $delay={node.delay}
-            />
-            {/* Label */}
-            <NodeLabel x={node.x} y={node.y + 38}>
-              {node.label}
-            </NodeLabel>
-          </IconGroup>
-        ))}
+          ))}
 
-        {/* Center hub */}
-        <IconGroup $delay={0}>
-          {/* Center outer rings */}
-          <circle
-            cx={center.x}
-            cy={center.y}
-            r={45}
-            fill="none"
-            stroke="rgba(255, 204, 0, 0.15)"
-            strokeWidth="1"
-          />
-          <circle
-            cx={center.x}
-            cy={center.y}
-            r={35}
-            fill="none"
-            stroke="rgba(255, 204, 0, 0.25)"
-            strokeWidth="1"
-          />
-          {/* Center node */}
-          <CenterNode
-            cx={center.x}
-            cy={center.y}
-            r={18}
-            filter="url(#glow)"
-          />
-          {/* KM Logo text */}
-          <CenterLabel x={center.x} y={center.y + 4}>
-            KM
-          </CenterLabel>
-        </IconGroup>
-
-        {/* Decorative elements - small dots */}
-        <circle cx={150} cy={120} r={2} fill="rgba(255, 204, 0, 0.3)" />
-        <circle cx={250} cy={200} r={2} fill="rgba(255, 204, 0, 0.3)" />
-        <circle cx={140} cy={200} r={2} fill="rgba(255, 204, 0, 0.3)" />
-        <circle cx={260} cy={120} r={2} fill="rgba(255, 204, 0, 0.3)" />
-      </NetworkSVG>
+          {/* Center core with KM */}
+          <CenterCore>
+            <CoreCircle cx={center.x} cy={center.y} r={35} filter="url(#geoGlow)" />
+            <CoreText x={center.x} y={center.y + 6}>KM</CoreText>
+          </CenterCore>
+        </PatternSVG>
+      </PatternWrapper>
     </Container>
   );
 };
