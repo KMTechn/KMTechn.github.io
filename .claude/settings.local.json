@@ -48,7 +48,8 @@
       "Bash(gh run list:*)",
       "Bash(timeout 5 head:*)",
       "Bash(npm audit:*)",
-      "Bash(npm uninstall:*)"
+      "Bash(npm uninstall:*)",
+      "Bash(ls:*)"
     ],
     "deny": [],
     "ask": []
