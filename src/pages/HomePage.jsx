@@ -288,6 +288,9 @@ const ServiceCard = styled(motion.div)`
   will-change: transform;
   transform: translateZ(0);
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
   &:hover {
     border-color: var(--accent-amber);
@@ -324,6 +327,7 @@ const ServiceDescription = styled.p`
   line-height: 1.7;
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
+  flex-grow: 1;
 `;
 
 const ServiceLink = styled.div`
@@ -841,7 +845,7 @@ const HomePage = () => {
 
         <ServicesGrid>
           {services.map((service, index) => (
-            <Link to="/business" key={service.titleKey} style={{ textDecoration: 'none' }}>
+            <Link to="/business" key={service.titleKey} style={{ textDecoration: 'none', height: '100%' }}>
               <ServiceCard
                 initial={{ opacity: 0, y: 30 }}
                 animate={servicesInView ? { opacity: 1, y: 0 } : {}}

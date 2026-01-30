@@ -11,11 +11,7 @@ const getInitialTheme = () => {
     return savedTheme;
   }
 
-  // Fall back to system preference
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    return 'dark';
-  }
-
+  // Default to light mode (ignore system preference)
   return 'light';
 };
 
