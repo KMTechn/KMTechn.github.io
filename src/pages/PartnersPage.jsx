@@ -204,6 +204,16 @@ const PartnerLogo = styled.img`
   max-height: 70px;
   object-fit: contain;
   margin-bottom: 1.25rem;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+
+  /* White background for logos that need it in dark mode */
+  ${props => props.$needsBg && `
+    html[data-theme="dark"] & {
+      background: white;
+      padding: 8px 12px;
+    }
+  `}
 `;
 
 const PartnerName = styled.h3`
@@ -302,8 +312,8 @@ const PartnersPage = () => {
   const ctaInView = useInView(ctaRef, { once: true, margin: "-50px" });
 
   const partners = [
-    { name: 'Continental', logo: '/logos/continental_new.png', industry: 'Automotive Parts' },
-    { name: 'Humax', logo: '/logos/humax_new.png', industry: 'Electronics' },
+    { name: 'Continental', logo: '/logos/continental_new.png', industry: 'Automotive Parts', needsBg: true },
+    { name: 'Humax', logo: '/logos/humax_new.png', industry: 'Electronics', needsBg: true },
     { name: 'Hyundai Motor', logo: '/logos/Hyundai_Motor_Company_logo.svg.png', industry: 'Automotive' },
     { name: 'Kanavi Mobility', logo: '/logos/kanavi_new.png', industry: 'Mobility' },
     { name: 'Kia', logo: '/logos/KIA_logo3.svg.png', industry: 'Automotive' },
@@ -371,7 +381,7 @@ const PartnersPage = () => {
         >
           {partners.map((partner) => (
             <PartnerCard key={partner.name} variants={itemVariants}>
-              <PartnerLogo src={partner.logo} alt={`${partner.name} logo`} />
+              <PartnerLogo src={partner.logo} alt={`${partner.name} logo`} $needsBg={partner.needsBg} />
               <PartnerName>{partner.name}</PartnerName>
               <PartnerIndustry>{partner.industry}</PartnerIndustry>
             </PartnerCard>

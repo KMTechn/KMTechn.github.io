@@ -1,4 +1,4 @@
-import{j as e}from"./three-vendor-uCD6w5gt.js";import{b as o,L as u}from"./react-vendor-VEkyeZpm.js";import{B as i,a3 as b,D as f,z as t,J as a,a4 as v,a5 as y,a6 as w}from"./index-DdCyKUx2.js";import{u as j}from"./i18n-vendor-Dc1ZlYGt.js";const _=t.section`
+import{j as e}from"./three-vendor-uCD6w5gt.js";import{b as o,L as u}from"./react-vendor-VEkyeZpm.js";import{B as i,a3 as b,D as f,z as t,J as a,a4 as v,a5 as y,a6 as w}from"./index-Bik2Tl9j.js";import{u as j}from"./i18n-vendor-Dc1ZlYGt.js";const _=t.section`
   min-height: 50vh;
   display: flex;
   align-items: center;
@@ -95,14 +95,14 @@ import{j as e}from"./three-vendor-uCD6w5gt.js";import{b as o,L as u}from"./react
 `,L=t.div`
   font-size: 0.8rem;
   color: var(--text-secondary);
-`,R=t.section`
+`,B=t.section`
   padding: 6rem 5%;
   background: var(--background-color);
-`,K=t(a.div)`
+`,R=t(a.div)`
   text-align: center;
   max-width: 600px;
   margin: 0 auto 4rem;
-`,D=t.span`
+`,K=t.span`
   display: inline-block;
   font-size: 0.75rem;
   font-weight: 600;
@@ -110,16 +110,16 @@ import{j as e}from"./three-vendor-uCD6w5gt.js";import{b as o,L as u}from"./react
   text-transform: uppercase;
   color: var(--accent-amber);
   margin-bottom: 1rem;
-`,V=t.h2`
+`,D=t.h2`
   font-size: 2rem;
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 1rem;
-`,E=t.p`
+`,V=t.p`
   font-size: 1rem;
   line-height: 1.7;
   color: var(--text-secondary);
-`,F=t(a.div)`
+`,E=t(a.div)`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
@@ -134,7 +134,7 @@ import{j as e}from"./three-vendor-uCD6w5gt.js";import{b as o,L as u}from"./react
     grid-template-columns: 1fr;
     max-width: 300px;
   }
-`,G=t(a.div)`
+`,F=t(a.div)`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 16px;
@@ -153,38 +153,48 @@ import{j as e}from"./three-vendor-uCD6w5gt.js";import{b as o,L as u}from"./react
     transform: translateY(-4px) translateZ(0);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
   }
-`,M=t.img`
+`,G=t.img`
   max-width: 180px;
   max-height: 70px;
   object-fit: contain;
   margin-bottom: 1.25rem;
-`,B=t.h3`
+  border-radius: 6px;
+  transition: background 0.2s ease;
+
+  /* White background for logos that need it in dark mode */
+  ${r=>r.$needsBg&&`
+    html[data-theme="dark"] & {
+      background: white;
+      padding: 8px 12px;
+    }
+  `}
+`,M=t.h3`
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-color);
   text-align: center;
-`,N=t.span`
+`,$=t.span`
   font-size: 0.75rem;
   color: var(--text-secondary);
   margin-top: 0.5rem;
-`,O=t.section`
+`,N=t.section`
   padding: 5rem 5%;
   background: var(--card-bg);
   text-align: center;
-`,Y=t(a.div)`
+`,O=t(a.div)`
   max-width: 600px;
   margin: 0 auto;
-`,Z=t.h2`
+`,Y=t.h2`
   font-size: 1.75rem;
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 1rem;
-`,J=t.p`
+`,Z=t.p`
   font-size: 1rem;
   line-height: 1.7;
   color: var(--text-secondary);
   margin-bottom: 2rem;
-`,X=t(a.button)`
+`,J=t(a.button)`
   padding: 1rem 2rem;
   border-radius: 8px;
   background: var(--accent-amber);
@@ -210,5 +220,5 @@ import{j as e}from"./three-vendor-uCD6w5gt.js";import{b as o,L as u}from"./react
   &:hover svg {
     transform: translateX(4px);
   }
-`,$={hidden:{opacity:0},visible:{opacity:1,transition:{staggerChildren:.08}}},q={hidden:{opacity:0,y:20},visible:{opacity:1,y:0,transition:{duration:.4,ease:"easeOut"}}},te=()=>{const{t:n}=j(),s=o.useRef(null),c=o.useRef(null),l=o.useRef(null),d=i(s,{once:!0,margin:"-50px"}),m=i(c,{once:!0,margin:"-50px"}),g=i(l,{once:!0,margin:"-50px"}),p=[{name:"Continental",logo:"/logos/continental_new.png",industry:"Automotive Parts"},{name:"Humax",logo:"/logos/humax_new.png",industry:"Electronics"},{name:"Hyundai Motor",logo:"/logos/Hyundai_Motor_Company_logo.svg.png",industry:"Automotive"},{name:"Kanavi Mobility",logo:"/logos/kanavi_new.png",industry:"Mobility"},{name:"Kia",logo:"/logos/KIA_logo3.svg.png",industry:"Automotive"},{name:"LG Display",logo:"/logos/lg_display_new.png",industry:"Display"},{name:"LG Electronics",logo:"/logos/lg_electronics_new.png",industry:"Electronics"}],x=[{icon:e.jsx(v,{}),value:"7+",labelKey:"partners_stat_partners"},{icon:e.jsx(y,{}),value:"15+",labelKey:"partners_stat_years"},{icon:e.jsx(w,{}),value:"99%",labelKey:"partners_stat_retention"}];return e.jsxs(b,{children:[e.jsx(_,{ref:s,children:e.jsxs(k,{children:[e.jsxs(z,{initial:{opacity:0,y:30},animate:d?{opacity:1,y:0}:{},transition:{duration:.6},children:[e.jsx(C,{children:"Our Partners"}),e.jsx(H,{children:n("core_customers_title")}),e.jsx(S,{children:n("partners_hero_desc")})]}),e.jsx(T,{initial:{opacity:0,x:30},animate:d?{opacity:1,x:0}:{},transition:{delay:.2,duration:.6},children:x.map((r,h)=>e.jsxs(A,{children:[e.jsx(P,{children:r.icon}),e.jsx(I,{children:r.value}),e.jsx(L,{children:n(r.labelKey)})]},h))})]})}),e.jsxs(R,{ref:c,children:[e.jsxs(K,{initial:{opacity:0,y:20},animate:m?{opacity:1,y:0}:{},transition:{duration:.5},children:[e.jsx(D,{children:"Trusted By Industry Leaders"}),e.jsx(V,{children:n("partners_section_title")}),e.jsx(E,{children:n("partners_section_desc")})]}),e.jsx(F,{variants:$,initial:"hidden",animate:m?"visible":"hidden",children:p.map(r=>e.jsxs(G,{variants:q,children:[e.jsx(M,{src:r.logo,alt:`${r.name} logo`}),e.jsx(B,{children:r.name}),e.jsx(N,{children:r.industry})]},r.name))})]}),e.jsx(O,{ref:l,children:e.jsxs(Y,{initial:{opacity:0,y:20},animate:g?{opacity:1,y:0}:{},transition:{duration:.5},children:[e.jsx(Z,{children:n("partners_cta_title")}),e.jsx(J,{children:n("partners_cta_desc")}),e.jsx(u,{to:"/contact",children:e.jsxs(X,{whileHover:{scale:1.02},whileTap:{scale:.98},children:[n("partners_cta_button")," ",e.jsx(f,{})]})})]})})]})};export{te as default};
-//# sourceMappingURL=PartnersPage-D7kLhfMC.js.map
+`,W={hidden:{opacity:0},visible:{opacity:1,transition:{staggerChildren:.08}}},X={hidden:{opacity:0,y:20},visible:{opacity:1,y:0,transition:{duration:.4,ease:"easeOut"}}},te=()=>{const{t:r}=j(),s=o.useRef(null),c=o.useRef(null),l=o.useRef(null),d=i(s,{once:!0,margin:"-50px"}),m=i(c,{once:!0,margin:"-50px"}),g=i(l,{once:!0,margin:"-50px"}),p=[{name:"Continental",logo:"/logos/continental_new.png",industry:"Automotive Parts",needsBg:!0},{name:"Humax",logo:"/logos/humax_new.png",industry:"Electronics",needsBg:!0},{name:"Hyundai Motor",logo:"/logos/Hyundai_Motor_Company_logo.svg.png",industry:"Automotive"},{name:"Kanavi Mobility",logo:"/logos/kanavi_new.png",industry:"Mobility"},{name:"Kia",logo:"/logos/KIA_logo3.svg.png",industry:"Automotive"},{name:"LG Display",logo:"/logos/lg_display_new.png",industry:"Display"},{name:"LG Electronics",logo:"/logos/lg_electronics_new.png",industry:"Electronics"}],x=[{icon:e.jsx(v,{}),value:"7+",labelKey:"partners_stat_partners"},{icon:e.jsx(y,{}),value:"15+",labelKey:"partners_stat_years"},{icon:e.jsx(w,{}),value:"99%",labelKey:"partners_stat_retention"}];return e.jsxs(b,{children:[e.jsx(_,{ref:s,children:e.jsxs(k,{children:[e.jsxs(z,{initial:{opacity:0,y:30},animate:d?{opacity:1,y:0}:{},transition:{duration:.6},children:[e.jsx(C,{children:"Our Partners"}),e.jsx(H,{children:r("core_customers_title")}),e.jsx(S,{children:r("partners_hero_desc")})]}),e.jsx(T,{initial:{opacity:0,x:30},animate:d?{opacity:1,x:0}:{},transition:{delay:.2,duration:.6},children:x.map((n,h)=>e.jsxs(A,{children:[e.jsx(P,{children:n.icon}),e.jsx(I,{children:n.value}),e.jsx(L,{children:r(n.labelKey)})]},h))})]})}),e.jsxs(B,{ref:c,children:[e.jsxs(R,{initial:{opacity:0,y:20},animate:m?{opacity:1,y:0}:{},transition:{duration:.5},children:[e.jsx(K,{children:"Trusted By Industry Leaders"}),e.jsx(D,{children:r("partners_section_title")}),e.jsx(V,{children:r("partners_section_desc")})]}),e.jsx(E,{variants:W,initial:"hidden",animate:m?"visible":"hidden",children:p.map(n=>e.jsxs(F,{variants:X,children:[e.jsx(G,{src:n.logo,alt:`${n.name} logo`,$needsBg:n.needsBg}),e.jsx(M,{children:n.name}),e.jsx($,{children:n.industry})]},n.name))})]}),e.jsx(N,{ref:l,children:e.jsxs(O,{initial:{opacity:0,y:20},animate:g?{opacity:1,y:0}:{},transition:{duration:.5},children:[e.jsx(Y,{children:r("partners_cta_title")}),e.jsx(Z,{children:r("partners_cta_desc")}),e.jsx(u,{to:"/contact",children:e.jsxs(J,{whileHover:{scale:1.02},whileTap:{scale:.98},children:[r("partners_cta_button")," ",e.jsx(f,{})]})})]})})]})};export{te as default};
+//# sourceMappingURL=PartnersPage-BYOC4g70.js.map

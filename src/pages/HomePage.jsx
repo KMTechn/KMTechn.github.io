@@ -591,8 +591,17 @@ const PartnerLogo = styled(motion.img).attrs({
   height: 50px;
   max-width: 140px;
   object-fit: contain;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, background 0.2s ease;
   will-change: transform;
+  border-radius: 6px;
+
+  /* White background for logos that need it in dark mode */
+  ${props => props.$needsBg && `
+    html[data-theme="dark"] & {
+      background: white;
+      padding: 8px 12px;
+    }
+  `}
 
   &:hover {
     transform: scale(1.05);
@@ -654,8 +663,9 @@ const HomePage = () => {
   const { t } = useTranslation();
   const artworkRef = useRef(null);
 
-  // Performance optimization: detect mobile/tablet to skip heavy 3D rendering
-  const isMobile = useIsMobile(1024);
+  // Performance optimization: detect mobile to skip heavy 3D rendering
+  // 768px breakpoint to ensure laptops show 3D globe
+  const isMobile = useIsMobile(768);
   const prefersReducedMotion = usePrefersReducedMotion();
   const shouldUse3DGlobe = !isMobile && !prefersReducedMotion;
 
@@ -722,7 +732,7 @@ const HomePage = () => {
       partners: [
         { name: 'Hyundai', logo: '/logos/Hyundai_Motor_Company_logo.svg.png' },
         { name: 'Kia', logo: '/logos/KIA_logo3.svg.png' },
-        { name: 'Continental', logo: '/logos/continental_new.png' },
+        { name: 'Continental', logo: '/logos/continental_new.png', needsBg: true },
         { name: 'Kanavi Mobility', logo: '/logos/kanavi_new.png' },
       ]
     },
@@ -732,7 +742,7 @@ const HomePage = () => {
       partners: [
         { name: 'LG Display', logo: '/logos/lg_display_new.png' },
         { name: 'LG Electronics', logo: '/logos/lg_electronics_new.png' },
-        { name: 'Humax', logo: '/logos/humax_new.png' },
+        { name: 'Humax', logo: '/logos/humax_new.png', needsBg: true },
       ]
     }
   ];
@@ -977,6 +987,7 @@ const HomePage = () => {
                     key={partner.name}
                     src={partner.logo}
                     alt={`${partner.name} logo`}
+                    $needsBg={partner.needsBg}
                     initial={{ opacity: 0 }}
                     animate={partnersInView ? { opacity: 1 } : {}}
                     transition={{ delay: groupIndex * 0.15 + index * 0.05, duration: 0.4 }}

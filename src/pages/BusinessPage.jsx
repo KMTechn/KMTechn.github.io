@@ -190,7 +190,16 @@ const Logo = styled.img.attrs({
   max-width: 100%;
   max-height: 80px;
   object-fit: contain;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, background 0.2s ease;
+  border-radius: 6px;
+
+  /* White background for logos that need it in dark mode */
+  ${props => props.$needsBg && `
+    html[data-theme="dark"] & {
+      background: white;
+      padding: 8px 12px;
+    }
+  `}
 
   ${LogoWrapper}:hover & {
     transform: scale(1.05);
@@ -236,8 +245,8 @@ const BusinessPage = () => {
   ];
 
   const customers = [
-    { name: 'Continental', logo: '/logos/continental_new.png' },
-    { name: 'Humax', logo: '/logos/humax_new.png' },
+    { name: 'Continental', logo: '/logos/continental_new.png', needsBg: true },
+    { name: 'Humax', logo: '/logos/humax_new.png', needsBg: true },
     { name: 'Hyundai', logo: '/logos/Hyundai_Motor_Company_logo.svg.png' },
     { name: 'Kanavi Mobility', logo: '/logos/kanavi_new.png' },
     { name: 'Kia', logo: '/logos/KIA_logo3.svg.png' },
@@ -294,7 +303,7 @@ const BusinessPage = () => {
               <LogoTrack>
                 {duplicatedCustomers.map((customer, index) => (
                   <LogoWrapper key={`${customer.name}-${index}`}>
-                    <Logo src={customer.logo} alt={`${customer.name} logo`} />
+                    <Logo src={customer.logo} alt={`${customer.name} logo`} $needsBg={customer.needsBg} />
                   </LogoWrapper>
                 ))}
               </LogoTrack>
