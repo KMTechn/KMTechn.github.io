@@ -13,7 +13,7 @@ const HeroSection = styled.section`
   align-items: center;
   position: relative;
   background: linear-gradient(165deg, var(--background-color) 0%, var(--card-bg) 100%);
-  padding: 8rem 5% 5rem;
+  padding: clamp(5.5rem, 9vw, 8rem) clamp(1rem, 5vw, 5%) clamp(4rem, 7vw, 5rem);
   overflow: hidden;
 
   &::after {
@@ -33,8 +33,11 @@ const HeroContent = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: clamp(2rem, 5vw, 4rem);
   align-items: center;
+  min-width: 0;
+  overflow-x: clip;
+  overflow-wrap: anywhere;
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
@@ -43,6 +46,8 @@ const HeroContent = styled.div`
 `;
 
 const HeroText = styled(motion.div)`
+  min-width: 0;
+
   @media (max-width: 900px) {
     order: 2;
   }
@@ -65,6 +70,7 @@ const HeroTitle = styled.h1`
   color: var(--text-color);
   margin-bottom: 1.5rem;
   letter-spacing: 0;
+  overflow-wrap: anywhere;
 `;
 
 const HeroDescription = styled.p`
@@ -72,6 +78,7 @@ const HeroDescription = styled.p`
   line-height: 1.8;
   color: var(--text-secondary);
   max-width: 500px;
+  overflow-wrap: anywhere;
 
   @media (max-width: 900px) {
     margin: 0 auto;
@@ -80,22 +87,25 @@ const HeroDescription = styled.p`
 
 const StatsContainer = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.75rem, 2.5vw, 1.5rem);
+  width: 100%;
+  min-width: 0;
 
   @media (max-width: 900px) {
     order: 1;
-    max-width: 400px;
+    max-width: min(100%, 400px);
     margin: 0 auto;
   }
 `;
 
 const StatCard = styled.div`
   text-align: center;
-  padding: 1.5rem;
+  padding: clamp(1rem, 3vw, 1.5rem) clamp(0.5rem, 2vw, 1.5rem);
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
+  min-width: 0;
 `;
 
 const StatIcon = styled.div`
@@ -115,15 +125,19 @@ const StatIcon = styled.div`
 `;
 
 const StatNumber = styled.div`
-  font-size: 1.75rem;
+  font-size: clamp(1.35rem, 5vw, 1.75rem);
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 0.25rem;
+  line-height: 1.1;
+  white-space: nowrap;
 `;
 
 const StatLabel = styled.div`
   font-size: 0.8rem;
   color: var(--text-secondary);
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 `;
 
 // Partners Section
@@ -136,6 +150,7 @@ const SectionHeader = styled(motion.div)`
   text-align: center;
   max-width: 600px;
   margin: 0 auto 4rem;
+  min-width: 0;
 `;
 
 const SectionLabel = styled.span`
@@ -163,26 +178,17 @@ const SectionDescription = styled.p`
 
 const PartnersGrid = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13.5rem), 1fr));
+  gap: clamp(1rem, 3vw, 2rem);
   max-width: 1100px;
   margin: 0 auto;
-
-  @media (max-width: 900px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 500px) {
-    grid-template-columns: 1fr;
-    max-width: 300px;
-  }
 `;
 
 const PartnerCard = styled(motion.div)`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 2rem;
+  padding: clamp(1.25rem, 4vw, 2rem);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -200,7 +206,7 @@ const PartnerCard = styled(motion.div)`
 `;
 
 const PartnerLogo = styled.img`
-  max-width: 180px;
+  max-width: min(180px, 100%);
   max-height: 70px;
   object-fit: contain;
   margin-bottom: 1.25rem;
@@ -269,6 +275,13 @@ const CTAButton = styled(motion(Link))`
   gap: 0.5rem;
   text-decoration: none;
   transition: all 0.2s ease;
+  justify-content: center;
+  min-height: 48px;
+  max-width: 100%;
+
+  @media (max-width: 420px) {
+    width: 100%;
+  }
 
   &:hover {
     background: #e6a700;

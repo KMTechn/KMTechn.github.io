@@ -4,32 +4,36 @@ import { motion } from 'framer-motion';
 
 const PageContainer = styled.div`
   width: 100%;
-  /* The problematic top padding has been removed. */
-  padding: 0 5% 4rem;
+  padding: 0 0 4rem;
   background-color: var(--background-color);
   color: var(--text-color);
-  min-height: calc(100vh - 120px);
+  min-height: calc(100dvh - 120px);
 `;
 
 const MotionContainer = styled(motion.div)``;
 
 export const Section = styled.section`
-  padding: 6rem 5%;
+  padding: clamp(4rem, 7vw, 6rem) clamp(1rem, 5vw, 5%);
   background-color: ${props => props.bg || 'transparent'};
+  overflow-x: clip;
 `;
 
 export const SectionTitle = styled(motion.h2)`
-  font-size: 2.8rem;
+  font-size: clamp(2rem, 5vw, 2.8rem);
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
   color: var(--text-color);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
 `;
 
 export const Title = styled(motion.h1)`
-  font-size: 3.5rem;
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
   color: var(--accent-amber);
-  margin-bottom: 4rem;
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
   text-align: center;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
 `;
 
 const pageVariants = {

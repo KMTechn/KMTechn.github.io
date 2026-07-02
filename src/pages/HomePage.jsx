@@ -59,6 +59,8 @@ const TextContainer = styled(motion.div)`
   flex-direction: column;
   align-items: flex-start;
   z-index: 1;
+  min-width: 0;
+  width: 100%;
 
   @media (max-width: 1024px) {
     align-items: center;
@@ -82,8 +84,10 @@ const Title = styled(motion.h1)`
   line-height: 1.2;
   margin-bottom: 1.5rem;
   max-width: 600px;
+  width: 100%;
   color: var(--text-color);
   letter-spacing: 0;
+  overflow-wrap: anywhere;
 
   @media (max-width: 600px) {
     font-size: 2.25rem;
@@ -95,8 +99,10 @@ const Subtitle = styled(motion.p)`
   font-size: 1.125rem;
   color: var(--text-secondary);
   max-width: 500px;
+  width: 100%;
   margin-bottom: 2.5rem;
   line-height: 1.8;
+  overflow-wrap: anywhere;
 
   @media (max-width: 600px) {
     font-size: 1rem;
@@ -108,6 +114,8 @@ const ButtonGroup = styled(motion.div)`
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  width: 100%;
+  max-width: 500px;
 
   @media (max-width: 1024px) {
     justify-content: center;
@@ -165,6 +173,7 @@ const PrimaryButton = styled(motion(Link))`
   justify-content: center;
   border: 1px solid transparent;
   min-height: 48px;
+  min-width: 0;
   text-decoration: none;
 
   &:hover {
@@ -225,15 +234,11 @@ const ArtworkContainer = styled(motion.div)`
 
 const HeroProofGrid = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 7.5rem), 1fr));
   gap: 0.75rem;
   width: 100%;
   max-width: 620px;
   margin-top: 1.5rem;
-
-  @media (max-width: 700px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 `;
 
 const HeroProofItem = styled.div`
@@ -241,6 +246,7 @@ const HeroProofItem = styled.div`
   border-radius: 8px;
   background: rgba(var(--card-bg-rgb, 255, 255, 255), 0.64);
   padding: 0.85rem;
+  min-width: 0;
 `;
 
 const HeroProofValue = styled.div`
@@ -248,6 +254,7 @@ const HeroProofValue = styled.div`
   font-size: 1.1rem;
   font-weight: 700;
   line-height: 1.1;
+  white-space: nowrap;
 `;
 
 const HeroProofLabel = styled.div`
@@ -255,6 +262,7 @@ const HeroProofLabel = styled.div`
   font-size: 0.78rem;
   line-height: 1.35;
   margin-top: 0.35rem;
+  overflow-wrap: anywhere;
 `;
 
 // Stats Section
@@ -270,18 +278,10 @@ const StatsSection = styled.section`
 
 const StatsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.75rem), 1fr));
+  gap: clamp(0.75rem, 2vw, 1rem);
   max-width: 1200px;
   margin: 0 auto;
-
-  @media (max-width: 900px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 600px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 `;
 
 const StatItem = styled(motion.div)`
@@ -298,6 +298,7 @@ const StatNumber = styled.div`
   color: var(--text-color);
   line-height: 1;
   margin-bottom: 0.75rem;
+  white-space: nowrap;
 
   span {
     color: var(--accent-amber);
@@ -308,6 +309,8 @@ const StatLabel = styled.div`
   font-size: 0.9rem;
   color: var(--text-secondary);
   font-weight: 500;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 `;
 
 // Services Section
@@ -348,21 +351,17 @@ const SectionDescription = styled.p`
 
 const ServicesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: clamp(1rem, 3vw, 2rem);
   max-width: 1200px;
   margin: 0 auto;
-
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-  }
 `;
 
 const ServiceCard = styled(motion.div)`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 2.5rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
   cursor: pointer;
   will-change: transform;
   transform: translateZ(0);
@@ -370,6 +369,7 @@ const ServiceCard = styled(motion.div)`
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-width: 0;
 
   &:hover {
     border-color: var(--accent-amber);
@@ -377,9 +377,6 @@ const ServiceCard = styled(motion.div)`
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
   }
 
-  @media (max-width: 600px) {
-    padding: 1.5rem;
-  }
 `;
 
 const ServiceIcon = styled.div`
@@ -403,6 +400,8 @@ const ServiceTitle = styled.h3`
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 1rem;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
 `;
 
 const ServiceDescription = styled.p`
@@ -439,14 +438,10 @@ const StrengthsSection = styled(Section)`
 
 const StrengthsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: clamp(1rem, 3vw, 2rem);
   max-width: 1200px;
   margin: 0 auto 3rem;
-
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-  }
 `;
 
 const StrengthCard = styled(motion.div)`
@@ -457,6 +452,7 @@ const StrengthCard = styled(motion.div)`
   display: flex;
   align-items: flex-start;
   gap: 1.25rem;
+  min-width: 0;
   will-change: transform;
   transform: translateZ(0);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -485,6 +481,7 @@ const StrengthIcon = styled.div`
 
 const StrengthContent = styled.div`
   flex: 1;
+  min-width: 0;
 `;
 
 const StrengthTitle = styled.h4`
@@ -627,15 +624,10 @@ const PartnersSection = styled.section`
 
 const IndustryContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: clamp(1.5rem, 4vw, 3rem);
   max-width: 1000px;
   margin: 0 auto;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
 `;
 
 const IndustryGroup = styled(motion.div)`

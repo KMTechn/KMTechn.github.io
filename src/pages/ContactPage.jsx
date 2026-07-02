@@ -25,8 +25,9 @@ const PageContainer = styled.div`
 
 const ContentGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 3rem);
+  min-width: 0;
   
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
@@ -35,15 +36,18 @@ const ContentGrid = styled.div`
 
 const ContactInfoContainer = styled.div`
   background: var(--card-bg);
-  padding: 2.5rem;
-  border-radius: 12px;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  border-radius: 8px;
   border: 1px solid var(--border-color);
+  min-width: 0;
+  overflow-wrap: anywhere;
 `;
 
 const CardTitle = styled.h3`
-  font-size: 1.8rem;
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
   color: var(--accent-amber);
   margin-bottom: 2rem;
+  line-height: 1.25;
 `;
 
 const InfoRow = styled.div`
@@ -53,11 +57,17 @@ const InfoRow = styled.div`
   margin-bottom: 1.5rem;
   font-size: 1.1rem;
   line-height: 1.6;
+  min-width: 0;
 
   svg {
     flex-shrink: 0;
     margin-top: 5px;
     color: var(--accent-amber);
+  }
+
+  span {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 `;
 

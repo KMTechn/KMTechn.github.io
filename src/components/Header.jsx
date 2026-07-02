@@ -28,8 +28,12 @@ const HeaderContainer = styled(motion.header)`
     ? '0 4px 30px rgba(0, 0, 0, 0.1)'
     : 'none'};
 
-  @media (max-width: 768px) {
+  @media (max-width: 1100px) {
     padding: 1rem 1.5rem;
+  }
+
+  @media (max-width: 380px) {
+    padding: 0.75rem 0.875rem;
   }
 `;
 
@@ -39,7 +43,7 @@ const LogoContainer = styled(RouterNavLink)`
   gap: 0.75rem;
 
   img {
-    height: 38px;
+    height: clamp(32px, 6vw, 38px);
     width: auto;
     display: block;
     transition: transform 0.3s ease;
@@ -59,7 +63,7 @@ const LogoText = styled.span`
   background-clip: text;
   display: none;
 
-  @media (min-width: 480px) {
+  @media (min-width: 640px) {
     display: block;
   }
 `;
@@ -69,7 +73,7 @@ const Nav = styled.nav`
   gap: 0.5rem;
   align-items: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1100px) {
     display: none;
   }
 `;
@@ -85,6 +89,9 @@ const MobileNav = styled(motion.nav)`
   left: 0;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+  padding: 5rem 1.25rem 2rem;
   background: linear-gradient(
     135deg,
     rgba(var(--background-rgb, 18, 18, 18), 0.98) 0%,
@@ -148,6 +155,11 @@ const ControlsContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  min-width: 0;
+
+  @media (max-width: 380px) {
+    gap: 0.5rem;
+  }
 `;
 
 const ControlButton = styled(motion.button)`
@@ -156,13 +168,15 @@ const ControlButton = styled(motion.button)`
   color: var(--text-color);
   cursor: pointer;
   padding: 0.6rem;
-  border-radius: 10px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  min-width: 44px;
+  min-height: 44px;
 
   &::before {
     content: '';
@@ -198,10 +212,12 @@ const LanguageSwitcher = styled.div`
     color: var(--text-color);
     cursor: pointer;
     padding: 0.6rem 2.2rem 0.6rem 2.4rem;
-    border-radius: 10px;
+    border-radius: 8px;
     font-size: 0.85rem;
     font-weight: 600;
     transition: all 0.3s ease;
+    min-height: 44px;
+    max-width: 7.25rem;
 
     &:hover {
       background: var(--accent-amber);
@@ -212,6 +228,13 @@ const LanguageSwitcher = styled.div`
     option {
       background: var(--card-bg);
       color: var(--text-color);
+    }
+  }
+
+  @media (max-width: 380px) {
+    select {
+      max-width: 6.25rem;
+      padding: 0.55rem 1.7rem 0.55rem 2rem;
     }
   }
 `;
@@ -236,7 +259,7 @@ const LanguageArrow = styled.span`
 const MobileMenuButton = styled(ControlButton)`
   display: none;
   z-index: 1001;
-  @media (max-width: 768px) {
+  @media (max-width: 1100px) {
     display: flex;
   }
 `;
@@ -250,7 +273,7 @@ const MobileNavClose = styled(motion.button)`
   color: var(--text-color);
   cursor: pointer;
   padding: 0.75rem;
-  border-radius: 12px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -374,9 +397,6 @@ const Header = ({ scrollRootRef }) => {
       <HeaderContainer
         $scrolled={scrolled}
         role="banner"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ type: 'spring', stiffness: 100, damping: 20 }}
       >
         <LogoContainer to="/" onClick={closeMenu} aria-label="KMTECH home">
           <img src="/logo.png?v=1" alt="KMTECH Logo" />

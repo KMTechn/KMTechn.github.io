@@ -12,9 +12,10 @@ const PageContainer = styled.div`
 
 const ContentContainer = styled(motion.div)`
   background-color: var(--card-bg);
-  padding: 3rem 5%;
-  border-radius: 12px;
+  padding: clamp(1.25rem, 4vw, 3rem) clamp(1rem, 5vw, 5%);
+  border-radius: 8px;
   margin-bottom: 4rem;
+  min-width: 0;
 `;
 
 const BizSection = styled.div`
@@ -25,10 +26,13 @@ const BizSection = styled.div`
 `;
 
 const BizTitle = styled.h3`
-  font-size: 2.2rem;
+  font-size: clamp(1.45rem, 5vw, 2.2rem);
   color: var(--accent-amber);
   margin-bottom: 1rem;
   text-align: center;
+  line-height: 1.25;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 `;
 
 const BizDescription = styled.p`
@@ -41,18 +45,19 @@ const BizDescription = styled.p`
 
 const ProductGrid = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: clamp(1rem, 3vw, 2rem);
 `;
 
 const ProductCard = styled(motion.div)`
   background: var(--background-color);
-  padding: 2rem;
-  border-radius: 12px;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  border-radius: 8px;
   border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   transition: transform 0.3s, box-shadow 0.3s;
+  min-width: 0;
 
   &:hover {
     transform: translateY(-10px);
@@ -61,13 +66,21 @@ const ProductCard = styled(motion.div)`
 `;
 
 const ProductTitle = styled.h4`
-  font-size: 1.6rem;
+  font-size: clamp(1.15rem, 4vw, 1.6rem);
   margin-bottom: 1.5rem;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.8rem;
   color: var(--text-color);
   font-weight: 600;
+  line-height: 1.3;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+
+  svg {
+    flex-shrink: 0;
+    margin-top: 0.1em;
+  }
 `;
 
 const ProductList = styled.ul`
@@ -78,6 +91,7 @@ const ProductList = styled.ul`
   li {
     margin-bottom: 0.8rem;
     line-height: 1.6;
+    overflow-wrap: anywhere;
     &::before {
       content: '•';
       color: var(--accent-amber);
@@ -112,6 +126,11 @@ const ProcessStep = styled(motion.div)`
   gap: 1.5rem;
   position: relative;
   padding-left: 50px;
+
+  @media (max-width: 480px) {
+    padding-left: 42px;
+    gap: 1rem;
+  }
 `;
 
 const StepIcon = styled.div`
@@ -132,10 +151,11 @@ const StepIcon = styled.div`
 
 const StepContent = styled.div`
   background: var(--background-color);
-  padding: 1.5rem;
-  border-radius: 12px;
+  padding: clamp(1rem, 4vw, 1.5rem);
+  border-radius: 8px;
   flex: 1;
   border: 1px solid var(--border-color);
+  min-width: 0;
 `;
 
 const StepTitle = styled.h4`

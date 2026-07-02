@@ -22,6 +22,7 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 const AppContainer = styled.div`
   width: 100%;
   height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
 `;

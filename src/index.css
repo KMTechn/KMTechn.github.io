@@ -112,6 +112,27 @@ html, body, #root {
   overflow-x: hidden; /* Prevent horizontal scrollbars */
 }
 
+img,
+svg,
+canvas,
+video {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li,
+a,
+button,
+span {
+  overflow-wrap: break-word;
+}
+
 
 /* Typography System - 8px baseline grid */
 :root {

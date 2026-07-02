@@ -20,7 +20,7 @@ const HeroSection = styled.section`
   background: linear-gradient(165deg,
     var(--background-color) 0%,
     var(--card-bg) 100%);
-  padding: 8rem 5% 6rem;
+  padding: clamp(5.5rem, 9vw, 8rem) clamp(1rem, 5vw, 5%) clamp(4rem, 7vw, 6rem);
   overflow: hidden;
 
   &::after {
@@ -39,9 +39,11 @@ const HeroGrid = styled.div`
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 6rem;
+  gap: clamp(2.5rem, 6vw, 6rem);
   align-items: center;
   width: 100%;
+  min-width: 0;
+  overflow-x: clip;
 
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
@@ -52,6 +54,7 @@ const HeroGrid = styled.div`
 
 const HeroContent = styled(motion.div)`
   max-width: 600px;
+  min-width: 0;
 
   @media (max-width: 1024px) {
     max-width: 100%;
@@ -75,13 +78,15 @@ const HeroTitle = styled(motion.h1)`
   line-height: 1.25;
   color: var(--text-color);
   margin-bottom: 1.5rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
 `;
 
 const HeroDescription = styled(motion.p)`
   font-size: 1.125rem;
   line-height: 1.8;
   color: var(--text-secondary);
+  overflow-wrap: anywhere;
 `;
 
 const HeroVisual = styled(motion.div)`
@@ -97,17 +102,19 @@ const HeroVisual = styled(motion.div)`
 const StatsCard = styled.div`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: 16px;
-  padding: 3rem;
+  border-radius: 8px;
+  padding: clamp(1.5rem, 4vw, 3rem);
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 3vw, 2rem);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  min-width: 0;
 `;
 
 const StatItem = styled.div`
   text-align: center;
-  padding: 1rem;
+  padding: clamp(0.75rem, 2vw, 1rem);
+  min-width: 0;
 
   &:not(:last-child) {
     border-right: 1px solid var(--border-color);
@@ -128,11 +135,12 @@ const StatItem = styled.div`
 `;
 
 const StatNumber = styled.div`
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 2.8vw, 2.5rem);
   font-weight: 700;
   color: var(--text-color);
   line-height: 1;
   margin-bottom: 0.5rem;
+  white-space: nowrap;
 
   span {
     color: var(--accent-amber);
@@ -143,6 +151,8 @@ const StatLabel = styled.div`
   font-size: 0.875rem;
   color: var(--text-secondary);
   font-weight: 500;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 `;
 
 // Philosophy Section
@@ -288,18 +298,10 @@ const SectionDescription = styled.p`
 
 const ValuesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.75rem), 1fr));
+  gap: clamp(1rem, 3vw, 1.5rem);
   max-width: 1200px;
   margin: 0 auto;
-
-  @media (max-width: 1100px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @media (max-width: 600px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
 `;
 
 const ValueCard = styled(motion.div)`
@@ -350,18 +352,10 @@ const StrengthsSection = styled(Section)`
 
 const StrengthsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: clamp(1rem, 3vw, 2rem);
   max-width: 1300px;
   margin: 0 auto;
-
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr;
-  }
 `;
 
 const StrengthCard = styled(motion.div)`
@@ -501,18 +495,9 @@ const OrgLine = styled.div`
 
 const DepartmentsGrid = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 7.5rem), 1fr));
+  gap: clamp(1rem, 3vw, 1.5rem);
   width: 100%;
-
-  @media (max-width: 900px) {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-  }
-
-  @media (max-width: 600px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
 `;
 
 const DepartmentCard = styled(motion.div)`
