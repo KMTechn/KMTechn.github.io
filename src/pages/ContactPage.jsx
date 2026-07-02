@@ -4,7 +4,20 @@ import { useTranslation } from 'react-i18next';
 import { Section, SectionTitle } from '../components/ui/Page';
 import { FaMapMarkerAlt, FaEnvelope } from 'react-icons/fa';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import ContactForm from '../components/ui/ContactForm';
+
+const defaultLeafletIcon = L.icon({
+  iconUrl: icon,
+  shadowUrl: iconShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+});
+
+L.Marker.prototype.options.icon = defaultLeafletIcon;
 
 const PageContainer = styled.div`
   color: var(--text-color);

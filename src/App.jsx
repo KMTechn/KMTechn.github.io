@@ -73,7 +73,7 @@ function App() {
         <ScrollToTop mainContentRef={mainContentRef} />
         <AppContainer>
           <SkipToMain href="#main-content">Skip to main content</SkipToMain>
-          <Header />
+          <Header scrollRootRef={mainContentRef} />
           <MainContent ref={mainContentRef} id="main-content">
             <ErrorBoundary>
               <Suspense fallback={<LoadingFallback />}>
@@ -89,7 +89,7 @@ function App() {
             </ErrorBoundary>
             <Footer />
           </MainContent>
-          <FloatingCTA />
+          <FloatingCTA scrollRootRef={mainContentRef} />
         </AppContainer>
       </Router>
     </ThemeProvider>

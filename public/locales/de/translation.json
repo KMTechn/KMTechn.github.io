@@ -76,8 +76,8 @@
   "contact_form_message": "Ihre Nachricht",
   "contact_form_submit": "Nachricht senden",
   "contact_form_submitting": "Senden...",
-  "contact_form_success_title": "Nachricht gesendet!",
-  "contact_form_success_desc": "Vielen Dank für Ihre Anfrage. Wir werden uns bald bei Ihnen melden.",
+  "contact_form_success_title": "E-Mail-App geöffnet",
+  "contact_form_success_desc": "Ihre Nachricht wurde in Ihrer E-Mail-App vorbereitet. Bitte prüfen Sie sie dort und drücken Sie Senden.",
   "home_services_title": "Unsere Kerndienstleistungen",
   "home_services_3pl_title": "3PL-Lösungen",
   "home_services_3pl_desc": "Wir bieten umfassende 3PL-Dienstleistungen, einschließlich Lagerhaltung, Inspektion und Verpackung, zur Optimierung Ihrer Lieferkette.",
@@ -108,27 +108,54 @@
   "org_ceo_name": "Park Chang-geon",
   "org_marketing_engineering_title": "Marketing/Engineering Abt.",
   "org_marketing_engineering_members": [
-    { "role": "CTO", "name": "Lee Jae-young" },
-    { "role": "Geschäftsführer", "name": "Jang Ik-jin" },
-    { "role": "Direktor", "name": "Lee Dong-yong" }
+    {
+      "role": "CTO",
+      "name": "Lee Jae-young"
+    },
+    {
+      "role": "Geschäftsführer",
+      "name": "Jang Ik-jin"
+    },
+    {
+      "role": "Direktor",
+      "name": "Lee Dong-yong"
+    }
   ],
   "org_qc_technical_title": "Q.C, Technische Abt.",
   "org_qc_technical_members": [
-    { "role": "Direktor", "name": "Lee Seong-woo" }
+    {
+      "role": "Direktor",
+      "name": "Lee Seong-woo"
+    }
   ],
   "org_product_control_title": "Produktkontroll Abt.",
   "org_product_control_members": [
-    { "role": "Direktor", "name": "Seo Dong-gyo" },
-    { "role": "Stellvertretender Leiter", "name": "Park Kwan-ho" }
+    {
+      "role": "Direktor",
+      "name": "Seo Dong-gyo"
+    },
+    {
+      "role": "Stellvertretender Leiter",
+      "name": "Park Kwan-ho"
+    }
   ],
   "org_3pl_title": "3PL Abt.",
   "org_3pl_members": [
-    { "role": "Geschäftsführer", "name": "Jang Ik-jin" },
-    { "role": "Manager", "name": "Kim So-mi" }
+    {
+      "role": "Geschäftsführer",
+      "name": "Jang Ik-jin"
+    },
+    {
+      "role": "Manager",
+      "name": "Kim So-mi"
+    }
   ],
   "org_management_title": "Verwaltungs Abt.",
   "org_management_members": [
-    { "role": "Mitarbeiter", "name": "Song Ik-jun" }
+    {
+      "role": "Mitarbeiter",
+      "name": "Song Ik-jun"
+    }
   ],
   "footer_copyright": "© 2024 KMTech. Alle Rechte vorbehalten.",
   "footer_description": "KMTech ist ein führendes 3PL-Logistikunternehmen, spezialisiert auf Automobil- und Industriesektoren. Wir optimieren Ihre Lieferkette mit modernsten Anlagen und Fachexperten.",
@@ -165,5 +192,23 @@
   "process_home_step3_title": "Prüfung",
   "process_home_step3_desc": "Qualitätskontrolle im Reinraum",
   "process_home_step4_title": "Versand",
-  "process_home_step4_desc": "Individuell verpackt & geliefert"
+  "process_home_step4_desc": "Individuell verpackt & geliefert",
+  "hero_primary_cta": "KMTech kontaktieren",
+  "hero_secondary_cta": "3PL-Services ansehen",
+  "hero_proof_label": "KMTech Logistiknachweise",
+  "hero_proof_facility": "Anlagengröße",
+  "hero_proof_capacity": "Palettenkapazität",
+  "hero_proof_experience": "Automobillogistik",
+  "hero_proof_retention": "Kundenbindung",
+  "home_section_services_label": "Services",
+  "home_section_process_label": "Prozess",
+  "home_section_strengths_label": "Stärken",
+  "home_section_partners_label": "Vertrauen von",
+  "process_step_label": "Schritt {{number}}",
+  "home_strengths_cta": "Logistikbedarf besprechen",
+  "cta_tooltip": "Brauchen Sie einen Logistikpartner?",
+  "error_404_title": "Seite nicht gefunden",
+  "error_404_desc": "Die angeforderte Seite existiert nicht oder wurde verschoben. Nutzen Sie die Schaltflächen unten, um fortzufahren.",
+  "error_404_home": "Zur Startseite",
+  "partners_section_label": "Vertrauen von Branchenführern"
 }

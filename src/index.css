@@ -1,5 +1,4 @@
 /* KMTECH Styling System */
-@import 'leaflet/dist/leaflet.css';
 
 /*
  * Font loading optimization:
@@ -25,6 +24,7 @@
 :root {
   /* Primary accent color - improves WCAG AA contrast ratio */
   --accent-amber: #FFCC00;
+  --accent-amber-rgb: 255, 204, 0;
   --accent-amber-light: #FFD700;
   --accent-amber-glow: rgba(255, 204, 0, 0.4);
   /* Additional colors for semantic meaning */
@@ -41,8 +41,11 @@ html[data-theme='light'],
   --text-color: #1a1a1a;
   --text-secondary: #4b5563;
   --header-bg: #ffffff;
+  --header-bg-rgb: 255, 255, 255;
   --footer-bg: #f0f0f0;
   --card-bg: #ffffff;
+  --card-bg-rgb: 255, 255, 255;
+  --background-rgb: 245, 245, 245;
   --border-color: rgba(0, 0, 0, 0.08);
   /* Light theme uses Continental yellow */
   --accent-amber: #FFCC00;
@@ -55,8 +58,11 @@ html[data-theme='dark'],
   --text-color: #e5e5e5;
   --text-secondary: #a0aec0;
   --header-bg: #1a1a1a;
+  --header-bg-rgb: 26, 26, 26;
   --footer-bg: #1a1a1a;
   --card-bg: #1a1a1a;
+  --card-bg-rgb: 26, 26, 26;
+  --background-rgb: 18, 18, 18;
   --border-color: rgba(255, 255, 255, 0.1);
   /* Dark theme uses bright Continental yellow */
   --accent-amber: #FFCC00;

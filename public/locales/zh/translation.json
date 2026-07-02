@@ -76,8 +76,8 @@
   "contact_form_message": "您的留言",
   "contact_form_submit": "发送留言",
   "contact_form_submitting": "发送中...",
-  "contact_form_success_title": "留言已发送！",
-  "contact_form_success_desc": "感谢您的咨询。我们会尽快回复您。",
+  "contact_form_success_title": "邮件应用已打开",
+  "contact_form_success_desc": "您的消息已在邮件应用中准备好。请在那里确认内容并点击发送。",
   "home_services_title": "核心服务",
   "home_services_3pl_title": "3PL 解决方案",
   "home_services_3pl_desc": "我们提供全面的第三方物流服务，包括仓储、检验和包装，以优化您的供应链。",
@@ -108,27 +108,54 @@
   "org_ceo_name": "朴昌建",
   "org_marketing_engineering_title": "市场及工程部",
   "org_marketing_engineering_members": [
-    { "role": "首席技术官", "name": "李在永" },
-    { "role": "常务理事", "name": "张益镇" },
-    { "role": "理事", "name": "李东勇" }
+    {
+      "role": "首席技术官",
+      "name": "李在永"
+    },
+    {
+      "role": "常务理事",
+      "name": "张益镇"
+    },
+    {
+      "role": "理事",
+      "name": "李东勇"
+    }
   ],
   "org_qc_technical_title": "品控技术部",
   "org_qc_technical_members": [
-    { "role": "理事", "name": "李成宇" }
+    {
+      "role": "理事",
+      "name": "李成宇"
+    }
   ],
   "org_product_control_title": "生产管理部",
   "org_product_control_members": [
-    { "role": "理事", "name": "徐东教" },
-    { "role": "代理", "name": "朴官浩" }
+    {
+      "role": "理事",
+      "name": "徐东教"
+    },
+    {
+      "role": "代理",
+      "name": "朴官浩"
+    }
   ],
   "org_3pl_title": "第三方物流部",
   "org_3pl_members": [
-    { "role": "常务理事", "name": "张益镇" },
-    { "role": "经理", "name": "金素美" }
+    {
+      "role": "常务理事",
+      "name": "张益镇"
+    },
+    {
+      "role": "经理",
+      "name": "金素美"
+    }
   ],
   "org_management_title": "经营管理部",
   "org_management_members": [
-    { "role": "专员", "name": "宋益俊" }
+    {
+      "role": "专员",
+      "name": "宋益俊"
+    }
   ],
   "footer_copyright": "© 2024 KMTech. 版权所有。",
   "footer_description": "KMTech是专注于汽车和工业领域的领先第三方物流公司。我们以最先进的设施和专业团队，优化您的供应链。",
@@ -165,5 +192,23 @@
   "process_home_step3_title": "检验",
   "process_home_step3_desc": "洁净室质量检查",
   "process_home_step4_title": "发货",
-  "process_home_step4_desc": "定制包装后直接配送"
+  "process_home_step4_desc": "定制包装后直接配送",
+  "hero_primary_cta": "联系 KMTech",
+  "hero_secondary_cta": "查看 3PL 服务",
+  "hero_proof_label": "KMTech 物流能力指标",
+  "hero_proof_facility": "设施面积",
+  "hero_proof_capacity": "托盘容量",
+  "hero_proof_experience": "汽车物流经验",
+  "hero_proof_retention": "客户续约率",
+  "home_section_services_label": "服务",
+  "home_section_process_label": "流程",
+  "home_section_strengths_label": "优势",
+  "home_section_partners_label": "客户信赖",
+  "process_step_label": "步骤 {{number}}",
+  "home_strengths_cta": "咨询物流需求",
+  "cta_tooltip": "需要物流合作伙伴吗？",
+  "error_404_title": "找不到页面",
+  "error_404_desc": "您请求的页面不存在或已移动。请使用下方按钮继续浏览。",
+  "error_404_home": "返回首页",
+  "partners_section_label": "行业领导者的信赖"
 }

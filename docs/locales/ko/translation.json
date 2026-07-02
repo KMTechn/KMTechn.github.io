@@ -76,8 +76,8 @@
   "contact_form_message": "문의 내용",
   "contact_form_submit": "메시지 보내기",
   "contact_form_submitting": "전송 중...",
-  "contact_form_success_title": "메시지 전송 완료",
-  "contact_form_success_desc": "문의해주셔서 감사합니다. 곧 회신드리겠습니다.",
+  "contact_form_success_title": "이메일 앱이 열렸습니다",
+  "contact_form_success_desc": "문의 내용이 이메일 앱에 작성되었습니다. 이메일 앱에서 내용을 확인한 뒤 보내기를 눌러주세요.",
   "home_services_title": "핵심 서비스",
   "home_services_3pl_title": "3PL 솔루션",
   "home_services_3pl_desc": "창고 보관, 검수, 포장을 포함한 포괄적인 제3자 물류 서비스를 통해 고객의 공급망을 최적화합니다.",
@@ -108,27 +108,54 @@
   "org_ceo_name": "박창건",
   "org_marketing_engineering_title": "마케팅/엔지니어링팀",
   "org_marketing_engineering_members": [
-    { "role": "CTO", "name": "이재영" },
-    { "role": "상무", "name": "장익진" },
-    { "role": "이사", "name": "이동용" }
+    {
+      "role": "CTO",
+      "name": "이재영"
+    },
+    {
+      "role": "상무",
+      "name": "장익진"
+    },
+    {
+      "role": "이사",
+      "name": "이동용"
+    }
   ],
   "org_qc_technical_title": "품질관리/기술팀",
   "org_qc_technical_members": [
-    { "role": "이사", "name": "이성우" }
+    {
+      "role": "이사",
+      "name": "이성우"
+    }
   ],
   "org_product_control_title": "생산관리팀",
   "org_product_control_members": [
-    { "role": "이사", "name": "서동교" },
-    { "role": "대리", "name": "박관호" }
+    {
+      "role": "이사",
+      "name": "서동교"
+    },
+    {
+      "role": "대리",
+      "name": "박관호"
+    }
   ],
   "org_3pl_title": "3PL팀",
   "org_3pl_members": [
-    { "role": "상무", "name": "장익진" },
-    { "role": "과장", "name": "김소미" }
+    {
+      "role": "상무",
+      "name": "장익진"
+    },
+    {
+      "role": "과장",
+      "name": "김소미"
+    }
   ],
   "org_management_title": "경영관리팀",
   "org_management_members": [
-    { "role": "실무 담당", "name": "송익준" }
+    {
+      "role": "실무 담당",
+      "name": "송익준"
+    }
   ],
   "footer_copyright": "© 2024 KMTech. All rights reserved.",
   "footer_description": "KMTech는 자동차 및 산업 분야의 선도적인 3PL 물류 전문 기업입니다. 최첨단 시설과 전문 인력으로 고객의 공급망 최적화를 지원합니다.",
@@ -165,5 +192,23 @@
   "process_home_step3_title": "검수",
   "process_home_step3_desc": "클린부스에서 품질 검사",
   "process_home_step4_title": "출고",
-  "process_home_step4_desc": "맞춤 포장 후 직배송"
+  "process_home_step4_desc": "맞춤 포장 후 직배송",
+  "hero_primary_cta": "문의하기",
+  "hero_secondary_cta": "3PL 서비스 보기",
+  "hero_proof_label": "KMTech 물류 역량 지표",
+  "hero_proof_facility": "물류센터 규모",
+  "hero_proof_capacity": "팔레트 보관 용량",
+  "hero_proof_experience": "자동차 물류 경력",
+  "hero_proof_retention": "고객 재계약률",
+  "home_section_services_label": "서비스",
+  "home_section_process_label": "프로세스",
+  "home_section_strengths_label": "핵심 역량",
+  "home_section_partners_label": "주요 고객사",
+  "process_step_label": "STEP {{number}}",
+  "home_strengths_cta": "물류 상담 문의하기",
+  "cta_tooltip": "물류 파트너가 필요하신가요?",
+  "error_404_title": "페이지를 찾을 수 없습니다",
+  "error_404_desc": "요청하신 페이지가 존재하지 않거나 이동되었을 수 있습니다. 아래 버튼을 통해 다른 페이지로 이동해 주세요.",
+  "error_404_home": "홈으로 가기",
+  "partners_section_label": "산업 리더가 신뢰하는 파트너"
 }

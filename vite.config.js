@@ -6,15 +6,11 @@ export default defineConfig({
   base: '/',
   build: {
     outDir: 'docs',
-    sourcemap: true,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
-          'i18n-vendor': ['i18next', 'react-i18next', 'i18next-browser-languagedetector', 'i18next-http-backend']
-        }
-      }
+    sourcemap: false,
+    modulePreload: {
+      resolveDependencies(_filename, deps) {
+        return deps.filter((dep) => !dep.includes('Desktop3DGlobe'))
+      },
     }
   }
 })

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 const SEO_CONFIG = {
   siteName: 'KMTech',
-  siteUrl: 'https://kmtechn.github.io',
+  siteUrl: 'https://3pl.kmtecherp.com',
   defaultImage: '/logo.png',
   twitterHandle: '@kmtechn',
 };

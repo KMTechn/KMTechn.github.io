@@ -235,6 +235,7 @@ const Footer = () => {
               href="https://www.linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="KMTech LinkedIn"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >

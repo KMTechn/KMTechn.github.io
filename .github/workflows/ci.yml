@@ -12,27 +12,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Verify dist directory
+      - name: Verify docs directory
         run: |
           echo "=== Build artifacts verification ==="
           echo ""
-          if [ ! -d "dist" ]; then
-            echo "❌ ERROR: dist/ directory not found"
+          if [ ! -d "docs" ]; then
+            echo "❌ ERROR: docs/ directory not found"
             exit 1
           fi
 
-          if [ ! -f "dist/index.html" ]; then
-            echo "❌ ERROR: dist/index.html not found"
+          if [ ! -f "docs/index.html" ]; then
+            echo "❌ ERROR: docs/index.html not found"
             exit 1
           fi
 
-          echo "✓ dist/ directory exists"
-          echo "✓ dist/index.html exists"
+          echo "✓ docs/ directory exists"
+          echo "✓ docs/index.html exists"
           echo ""
           echo "=== Deployment structure ==="
-          ls -lh dist/ | head -15
+          ls -lh docs/ | head -15
           echo ""
           echo "Total size:"
-          du -sh dist/
+          du -sh docs/
           echo ""
-          echo "✓ Ready for GitHub Pages deployment from /dist"
+          echo "✓ Ready for GitHub Pages deployment from /docs"

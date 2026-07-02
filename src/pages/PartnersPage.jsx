@@ -64,7 +64,7 @@ const HeroTitle = styled.h1`
   line-height: 1.2;
   color: var(--text-color);
   margin-bottom: 1.5rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 `;
 
 const HeroDescription = styled.p`
@@ -95,7 +95,7 @@ const StatCard = styled.div`
   padding: 1.5rem;
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: 8px;
 `;
 
 const StatIcon = styled.div`
@@ -105,7 +105,7 @@ const StatIcon = styled.div`
   align-items: center;
   justify-content: center;
   background: rgba(var(--accent-amber-rgb, 255, 193, 7), 0.1);
-  border-radius: 10px;
+  border-radius: 8px;
   margin: 0 auto 1rem;
 
   svg {
@@ -181,7 +181,7 @@ const PartnersGrid = styled(motion.div)`
 const PartnerCard = styled(motion.div)`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border-radius: 8px;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -255,7 +255,7 @@ const CTADescription = styled.p`
   margin-bottom: 2rem;
 `;
 
-const CTAButton = styled(motion.button)`
+const CTAButton = styled(motion(Link))`
   padding: 1rem 2rem;
   border-radius: 8px;
   background: var(--accent-amber);
@@ -263,10 +263,11 @@ const CTAButton = styled(motion.button)`
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  border: none;
+  border: 1px solid transparent;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  text-decoration: none;
   transition: all 0.2s ease;
 
   &:hover {
@@ -367,7 +368,7 @@ const PartnersPage = () => {
           animate={partnersInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          <SectionLabel>Trusted By Industry Leaders</SectionLabel>
+          <SectionLabel>{t('partners_section_label')}</SectionLabel>
           <SectionTitle>{t('partners_section_title')}</SectionTitle>
           <SectionDescription>
             {t('partners_section_desc')}
@@ -400,11 +401,9 @@ const PartnersPage = () => {
           <CTADescription>
             {t('partners_cta_desc')}
           </CTADescription>
-          <Link to="/contact">
-            <CTAButton whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              {t('partners_cta_button')} <FaArrowRight />
-            </CTAButton>
-          </Link>
+          <CTAButton to="/contact" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            {t('partners_cta_button')} <FaArrowRight />
+          </CTAButton>
         </CTAContent>
       </CTASection>
     </Page>

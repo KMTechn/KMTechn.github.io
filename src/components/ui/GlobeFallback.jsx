@@ -165,7 +165,7 @@ const GlobeFallback = () => {
     })), [center.x, center.y]);
 
   return (
-    <Container>
+    <Container aria-hidden="true">
       <PatternWrapper>
         <PatternSVG viewBox="0 0 300 300">
           <defs>

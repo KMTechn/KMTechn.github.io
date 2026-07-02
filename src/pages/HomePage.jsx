@@ -4,7 +4,6 @@ import { motion, AnimatePresence, useInView, useMotionValue, useTransform, anima
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Section, SectionTitle } from '../components/ui/Page';
-import Loader from '../components/ui/Loader';
 import useIsMobile, { usePrefersReducedMotion } from '../hooks/useIsMobile';
 import GlobeFallback from '../components/ui/GlobeFallback';
 import {
@@ -46,8 +45,12 @@ const HeroSection = styled.section`
     grid-template-columns: 1fr;
     text-align: center;
     min-height: auto;
-    padding: 4rem 5%;
-    gap: 3rem;
+    padding: 5rem 5% 3rem;
+    gap: 2rem;
+  }
+
+  @media (max-width: 600px) {
+    padding: 4.5rem 1.25rem 2.5rem;
   }
 `;
 
@@ -59,7 +62,7 @@ const TextContainer = styled(motion.div)`
 
   @media (max-width: 1024px) {
     align-items: center;
-    order: 2;
+    order: 1;
   }
 `;
 
@@ -80,7 +83,12 @@ const Title = styled(motion.h1)`
   margin-bottom: 1.5rem;
   max-width: 600px;
   color: var(--text-color);
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
+
+  @media (max-width: 600px) {
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const Subtitle = styled(motion.p)`
@@ -89,6 +97,11 @@ const Subtitle = styled(motion.p)`
   max-width: 500px;
   margin-bottom: 2.5rem;
   line-height: 1.8;
+
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const ButtonGroup = styled(motion.div)`
@@ -98,6 +111,10 @@ const ButtonGroup = styled(motion.div)`
 
   @media (max-width: 1024px) {
     justify-content: center;
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
   }
 `;
 
@@ -133,7 +150,7 @@ const ContactItem = styled.a`
   }
 `;
 
-const PrimaryButton = styled(motion.button)`
+const PrimaryButton = styled(motion(Link))`
   padding: 1rem 2rem;
   border-radius: 8px;
   background: var(--accent-amber);
@@ -145,7 +162,10 @@ const PrimaryButton = styled(motion.button)`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  border: none;
+  justify-content: center;
+  border: 1px solid transparent;
+  min-height: 48px;
+  text-decoration: none;
 
   &:hover {
     background: #e6a700;
@@ -159,6 +179,11 @@ const PrimaryButton = styled(motion.button)`
 
   &:hover svg {
     transform: translateX(4px);
+  }
+
+  @media (max-width: 600px) {
+    flex: 1 1 100%;
+    width: 100%;
   }
 `;
 
@@ -186,24 +211,67 @@ const ArtworkContainer = styled(motion.div)`
   }
 
   @media (max-width: 1024px) {
-    order: 1;
-    height: 350px;
-    max-width: 400px;
+    order: 2;
+    height: 260px;
+    max-width: 360px;
     margin: 0 auto;
   }
+
+  @media (max-width: 600px) {
+    height: 190px;
+    max-width: 280px;
+  }
+`;
+
+const HeroProofGrid = styled(motion.div)`
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 620px;
+  margin-top: 1.5rem;
+
+  @media (max-width: 700px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+`;
+
+const HeroProofItem = styled.div`
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: rgba(var(--card-bg-rgb, 255, 255, 255), 0.64);
+  padding: 0.85rem;
+`;
+
+const HeroProofValue = styled.div`
+  color: var(--text-color);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.1;
+`;
+
+const HeroProofLabel = styled.div`
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  margin-top: 0.35rem;
 `;
 
 // Stats Section
 const StatsSection = styled.section`
   background: var(--card-bg);
-  padding: 5rem 5%;
+  padding: 4.5rem 5%;
   border-bottom: 1px solid var(--border-color);
+
+  @media (max-width: 600px) {
+    padding: 3rem 1.25rem;
+  }
 `;
 
 const StatsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
   max-width: 1200px;
   margin: 0 auto;
 
@@ -211,18 +279,21 @@ const StatsGrid = styled.div`
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: 500px) {
-    grid-template-columns: 1fr;
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 `;
 
 const StatItem = styled(motion.div)`
   text-align: center;
-  padding: 1.5rem;
+  padding: 1.35rem 1rem;
+  background: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
 `;
 
 const StatNumber = styled.div`
-  font-size: 3rem;
+  font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 700;
   color: var(--text-color);
   line-height: 1;
@@ -243,12 +314,20 @@ const StatLabel = styled.div`
 const ServicesSection = styled(Section)`
   background: var(--background-color);
   padding: 7rem 5%;
+
+  @media (max-width: 600px) {
+    padding: 4.5rem 1.25rem;
+  }
 `;
 
 const SectionHeader = styled(motion.div)`
   text-align: center;
-  max-width: 600px;
-  margin: 0 auto 4rem;
+  max-width: 680px;
+  margin: 0 auto 3.5rem;
+
+  @media (max-width: 600px) {
+    margin-bottom: 2.25rem;
+  }
 `;
 
 const SectionLabel = styled.span`
@@ -282,7 +361,7 @@ const ServicesGrid = styled.div`
 const ServiceCard = styled(motion.div)`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border-radius: 8px;
   padding: 2.5rem;
   cursor: pointer;
   will-change: transform;
@@ -297,6 +376,10 @@ const ServiceCard = styled(motion.div)`
     transform: translateY(-4px) translateZ(0);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
   }
+
+  @media (max-width: 600px) {
+    padding: 1.5rem;
+  }
 `;
 
 const ServiceIcon = styled.div`
@@ -306,7 +389,7 @@ const ServiceIcon = styled.div`
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, var(--accent-amber), #f59e0b);
-  border-radius: 12px;
+  border-radius: 8px;
   margin-bottom: 1.5rem;
 
   svg {
@@ -348,6 +431,10 @@ const ServiceLink = styled.div`
 const StrengthsSection = styled(Section)`
   background: var(--card-bg);
   padding: 7rem 5%;
+
+  @media (max-width: 600px) {
+    padding: 4.5rem 1.25rem;
+  }
 `;
 
 const StrengthsGrid = styled.div`
@@ -365,7 +452,7 @@ const StrengthsGrid = styled.div`
 const StrengthCard = styled(motion.div)`
   background: var(--background-color);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 2rem;
   display: flex;
   align-items: flex-start;
@@ -421,6 +508,10 @@ const CTAContainer = styled(motion.div)`
 const ProcessSection = styled(Section)`
   background: var(--background-color);
   padding: 7rem 5%;
+
+  @media (max-width: 600px) {
+    padding: 4.5rem 1.25rem;
+  }
 `;
 
 const ProcessFlow = styled.div`
@@ -464,7 +555,7 @@ const ProcessIconWrapper = styled.div`
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, var(--accent-amber), #f59e0b);
-  border-radius: 16px;
+  border-radius: 8px;
   margin-bottom: 1rem;
   flex-shrink: 0;
 
@@ -528,6 +619,10 @@ const PartnersSection = styled.section`
   background: var(--background-color);
   padding: 5rem 5%;
   border-top: 1px solid var(--border-color);
+
+  @media (max-width: 600px) {
+    padding: 4rem 1.25rem;
+  }
 `;
 
 const IndustryContainer = styled.div`
@@ -546,7 +641,7 @@ const IndustryContainer = styled.div`
 const IndustryGroup = styled(motion.div)`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border-radius: 8px;
   padding: 2rem;
   transition: border-color 0.2s ease;
 
@@ -641,33 +736,15 @@ const AnimatedCounter = ({ value, suffix = '' }) => {
   );
 };
 
-// Animation variants - optimized for performance
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.05 }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 15 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: "easeOut" }
-  }
-};
-
 const HomePage = () => {
   const { t } = useTranslation();
   const artworkRef = useRef(null);
 
-  // Performance optimization: detect mobile to skip heavy 3D rendering
-  // 768px breakpoint to ensure laptops show 3D globe
-  const isMobile = useIsMobile(768);
+  // Performance optimization: keep the heavy 3D globe on desktop only.
+  const isMobile = useIsMobile(1024);
   const prefersReducedMotion = usePrefersReducedMotion();
-  const shouldUse3DGlobe = !isMobile && !prefersReducedMotion;
+  const hasDesktopViewport = typeof window !== 'undefined' && window.innerWidth >= 1024;
+  const shouldUse3DGlobe = hasDesktopViewport && !isMobile && !prefersReducedMotion;
 
   // Refs for scroll animations
   const heroRef = useRef(null);
@@ -723,6 +800,13 @@ const HomePage = () => {
     { value: 3000, suffix: '+', labelKey: 'stats_pallet_capacity' },
     { value: 15, suffix: '+', labelKey: 'stats_years_experience' },
     { value: 99, suffix: '%', labelKey: 'stats_customer_satisfaction' },
+  ];
+
+  const heroProof = [
+    { value: '2,140㎡', labelKey: 'hero_proof_facility' },
+    { value: '3,000+', labelKey: 'hero_proof_capacity' },
+    { value: '15+', labelKey: 'hero_proof_experience' },
+    { value: '99%', labelKey: 'hero_proof_retention' },
   ];
 
   const partnersByIndustry = [
@@ -785,17 +869,27 @@ const HomePage = () => {
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.5, duration: 0.6 }}
           >
-            <Link to="/about">
-              <PrimaryButton whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                {t('hero_button')} <FaArrowRight />
-              </PrimaryButton>
-            </Link>
-            <Link to="/contact">
-              <SecondaryButton whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                {t('nav_contact')}
-              </SecondaryButton>
-            </Link>
+            <PrimaryButton to="/contact" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              {t('hero_primary_cta')} <FaArrowRight />
+            </PrimaryButton>
+            <SecondaryButton to="/business" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              {t('hero_secondary_cta')}
+            </SecondaryButton>
           </ButtonGroup>
+
+          <HeroProofGrid
+            aria-label={t('hero_proof_label')}
+            initial={{ opacity: 0, y: 16 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.6, duration: 0.5 }}
+          >
+            {heroProof.map((item) => (
+              <HeroProofItem key={item.labelKey}>
+                <HeroProofValue>{item.value}</HeroProofValue>
+                <HeroProofLabel>{t(item.labelKey)}</HeroProofLabel>
+              </HeroProofItem>
+            ))}
+          </HeroProofGrid>
 
           <ContactInfo
             initial={{ opacity: 0 }}
@@ -848,7 +942,7 @@ const HomePage = () => {
           animate={servicesInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          <SectionLabel>Our Services</SectionLabel>
+          <SectionLabel>{t('home_section_services_label')}</SectionLabel>
           <SectionTitle>{t('home_services_title')}</SectionTitle>
           <SectionDescription>{t('home_services_3pl_desc')}</SectionDescription>
         </SectionHeader>
@@ -880,7 +974,7 @@ const HomePage = () => {
           animate={processInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          <SectionLabel>How It Works</SectionLabel>
+          <SectionLabel>{t('home_section_process_label')}</SectionLabel>
           <SectionTitle>{t('process_home_title')}</SectionTitle>
           <SectionDescription>{t('process_home_desc')}</SectionDescription>
         </SectionHeader>
@@ -897,7 +991,7 @@ const HomePage = () => {
                   {step.icon}
                 </ProcessIconWrapper>
                 <ProcessTextWrapper>
-                  <ProcessStepNumber>STEP {index + 1}</ProcessStepNumber>
+                  <ProcessStepNumber>{t('process_step_label', { number: index + 1 })}</ProcessStepNumber>
                   <ProcessStepTitle>{t(step.titleKey)}</ProcessStepTitle>
                   <ProcessStepDesc>{t(step.descKey)}</ProcessStepDesc>
                 </ProcessTextWrapper>
@@ -924,7 +1018,7 @@ const HomePage = () => {
           animate={strengthsInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          <SectionLabel>Why Choose Us</SectionLabel>
+          <SectionLabel>{t('home_section_strengths_label')}</SectionLabel>
           <SectionTitle>{t('home_strengths_title')}</SectionTitle>
         </SectionHeader>
 
@@ -950,11 +1044,9 @@ const HomePage = () => {
           animate={strengthsInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.4, duration: 0.5 }}
         >
-          <Link to="/about">
-            <PrimaryButton whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              {t('hero_button')} <FaArrowRight />
-            </PrimaryButton>
-          </Link>
+          <PrimaryButton to="/contact" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            {t('home_strengths_cta')} <FaArrowRight />
+          </PrimaryButton>
         </CTAContainer>
       </StrengthsSection>
 
@@ -965,7 +1057,7 @@ const HomePage = () => {
           animate={partnersInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          <SectionLabel>Trusted By</SectionLabel>
+          <SectionLabel>{t('home_section_partners_label')}</SectionLabel>
           <SectionTitle>{t('core_customers_title')}</SectionTitle>
         </SectionHeader>
 

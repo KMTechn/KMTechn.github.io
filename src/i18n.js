@@ -10,9 +10,10 @@ i18n
   .init({
     supportedLngs: ['en', 'ko', 'zh', 'de'],
     fallbackLng: 'en',
-    debug: true,
+    debug: false,
     detection: {
-      order: ['queryString', 'cookie'],
+      order: ['querystring', 'cookie'],
+      lookupQuerystring: 'lang',
       cache: ['cookie'],
     },
     interpolation: {

@@ -146,7 +146,14 @@ const Tooltip = styled(motion.div)`
   }
 `;
 
-const FloatingCTA = () => {
+const ActionMenu = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+`;
+
+const FloatingCTA = ({ scrollRootRef }) => {
   const { t } = useTranslation();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
@@ -159,15 +166,21 @@ const FloatingCTA = () => {
   // Show after scrolling down a bit
   useEffect(() => {
     const handleScroll = () => {
-      setIsVisible(window.scrollY > 300);
+      const scrollTop = scrollRootRef?.current ? scrollRootRef.current.scrollTop : window.scrollY;
+      setIsVisible(scrollTop > 300);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    // Initial check
+    const scrollRoot = scrollRootRef?.current;
     handleScroll();
 
+    if (scrollRoot) {
+      scrollRoot.addEventListener('scroll', handleScroll, { passive: true });
+      return () => scrollRoot.removeEventListener('scroll', handleScroll);
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [scrollRootRef]);
 
   // Show tooltip after 3 seconds on first visit
   useEffect(() => {
@@ -198,7 +211,12 @@ const FloatingCTA = () => {
     <Container>
       <AnimatePresence>
         {isOpen && (
-          <>
+          <ActionMenu
+            id="floating-contact-menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
             <ContactLink
               to="/contact"
               as={motion(Link)}
@@ -219,12 +237,13 @@ const FloatingCTA = () => {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 20, scale: 0.8 }}
                 transition={{ delay: 0.05 * (index + 2) }}
+                aria-label={`${btn.label} email`}
               >
                 {btn.icon}
                 {btn.label}
               </ActionButton>
             ))}
-          </>
+          </ActionMenu>
         )}
       </AnimatePresence>
 
@@ -248,6 +267,9 @@ const FloatingCTA = () => {
           }}
           whileTap={{ scale: 0.95 }}
           aria-label={isOpen ? 'Close contact menu' : 'Open contact menu'}
+          aria-expanded={isOpen}
+          aria-controls="floating-contact-menu"
+          type="button"
         >
           <motion.span
             animate={{ rotate: isOpen ? 45 : 0 }}

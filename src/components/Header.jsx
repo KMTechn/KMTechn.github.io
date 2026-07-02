@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { NavLink as RouterNavLink } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Sun, Moon, Menu, X, Globe } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
-
-const shimmer = keyframes`
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-`;
 
 const HeaderContainer = styled(motion.header)`
   position: fixed;
@@ -286,7 +281,7 @@ const MobileNavLogo = styled.div`
   }
 `;
 
-const Header = () => {
+const Header = ({ scrollRootRef }) => {
   const { t, i18n } = useTranslation();
   const { theme, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -303,24 +298,60 @@ const Header = () => {
     i18n.changeLanguage(lng);
   };
 
-  const closeMenu = () => setIsMenuOpen(false);
+  const closeMenu = useCallback(() => setIsMenuOpen(false), []);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const scrollTop = scrollRootRef?.current ? scrollRootRef.current.scrollTop : window.scrollY;
+      setScrolled(scrollTop > 20);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    const scrollRoot = scrollRootRef?.current;
+    handleScroll();
+
+    if (scrollRoot) {
+      scrollRoot.addEventListener('scroll', handleScroll, { passive: true });
+      return () => scrollRoot.removeEventListener('scroll', handleScroll);
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [scrollRootRef]);
 
   useEffect(() => {
+    const scrollRoot = scrollRootRef?.current;
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousRootOverflow = scrollRoot?.style.overflow;
+
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
+      if (scrollRoot) {
+        scrollRoot.style.overflow = 'hidden';
+      }
     }
-  }, [isMenuOpen]);
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      if (scrollRoot) {
+        scrollRoot.style.overflow = previousRootOverflow || '';
+      }
+    };
+  }, [isMenuOpen, scrollRootRef]);
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      return undefined;
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        closeMenu();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [closeMenu, isMenuOpen]);
 
   const mobileNavVariants = {
     hidden: {
@@ -385,13 +416,15 @@ const Header = () => {
           </ControlButton>
           <MobileMenuButton
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            type="button"
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
             title={isMenuOpen ? 'Close menu' : 'Open menu'}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Menu size={22} />
+            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </MobileMenuButton>
         </ControlsContainer>
       </HeaderContainer>
@@ -399,6 +432,7 @@ const Header = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <MobileNav
+            id="mobile-navigation"
             variants={mobileNavVariants}
             initial="hidden"
             animate="visible"
@@ -406,7 +440,7 @@ const Header = () => {
             role="navigation"
             aria-label="Mobile navigation"
           >
-            <MobileNavClose onClick={closeMenu}>
+            <MobileNavClose onClick={closeMenu} type="button" aria-label="Close mobile navigation">
               <X size={24} />
             </MobileNavClose>
             <MobileNavLogo>

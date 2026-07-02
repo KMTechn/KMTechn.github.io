@@ -147,7 +147,7 @@ const Globe = (props) => {
   const globeRef = useRef();
   const cloudsRef = useRef();
 
-  useFrame(({ clock }, delta) => {
+  useFrame((_, delta) => {
     if (globeRef.current) {
       globeRef.current.rotation.y += delta * 0.05;
     }

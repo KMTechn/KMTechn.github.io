@@ -110,13 +110,13 @@ const NotFoundPage = () => {
       >
         <LogoImage src="/logo.png" alt="KMTech" />
         <ErrorCode>404</ErrorCode>
-        <Title>{t('error_404_title') || '페이지를 찾을 수 없습니다'}</Title>
+        <Title>{t('error_404_title', { defaultValue: 'Page not found' })}</Title>
         <Description>
-          {t('error_404_desc') || '요청하신 페이지가 존재하지 않거나 이동되었을 수 있습니다. 아래 버튼을 통해 다른 페이지로 이동해 주세요.'}
+          {t('error_404_desc', { defaultValue: 'The page you requested does not exist or may have moved. Use the buttons below to continue.' })}
         </Description>
         <ButtonGroup>
           <PrimaryButton to="/">
-            <FaHome /> {t('error_404_home') || '홈으로 가기'}
+            <FaHome /> {t('error_404_home', { defaultValue: 'Go home' })}
           </PrimaryButton>
           <SecondaryButton to="/contact">
             <FaEnvelope /> {t('nav_contact') || '문의하기'}
