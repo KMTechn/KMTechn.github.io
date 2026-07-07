@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { motion, useInView } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import Page, { Section, SectionTitle } from '../components/ui/Page';
+import { facilityMetrics, operationHighlights } from '../data/company';
 import {
   FaCheckCircle, FaBuilding, FaBalanceScale,
   FaLeaf, FaBullseye, FaGavel, FaAward, FaBrain, FaUsersCog,
@@ -155,6 +156,126 @@ const StatLabel = styled.div`
   overflow-wrap: anywhere;
 `;
 
+const TrustSection = styled(Section)`
+  background: var(--background-color);
+  padding: clamp(3.5rem, 6vw, 5rem) clamp(1rem, 5vw, 5%);
+`;
+
+const TrustGrid = styled.div`
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(1.25rem, 4vw, 2rem);
+  align-items: stretch;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const TrustIntro = styled.div`
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+`;
+
+const TrustLogo = styled.div`
+  width: 92px;
+  height: 92px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  display: grid;
+  place-items: center;
+  padding: 0.85rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+`;
+
+const TrustTitle = styled.h2`
+  color: var(--text-color);
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+`;
+
+const TrustText = styled.p`
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+`;
+
+const TrustMetrics = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.85rem;
+
+  @media (max-width: 1020px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 520px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const TrustMetric = styled.div`
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  min-width: 0;
+`;
+
+const TrustMetricValue = styled.div`
+  color: var(--text-color);
+  font-size: clamp(1.25rem, 3vw, 1.7rem);
+  font-weight: 800;
+  line-height: 1.1;
+  white-space: nowrap;
+`;
+
+const TrustMetricLabel = styled.div`
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  line-height: 1.35;
+  margin-top: 0.45rem;
+`;
+
+const TrustHighlightGrid = styled.div`
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const TrustHighlight = styled.div`
+  border: 1px solid rgba(var(--accent-amber-rgb), 0.35);
+  background: rgba(var(--accent-amber-rgb), 0.08);
+  border-radius: 8px;
+  padding: 1rem;
+`;
+
+const TrustHighlightValue = styled.div`
+  color: var(--text-color);
+  font-weight: 800;
+  line-height: 1.2;
+`;
+
 // Philosophy Section
 const PhilosophySection = styled(Section)`
   background: var(--card-bg);
@@ -237,7 +358,7 @@ const PrincipleCard = styled(motion.div)`
   padding: 1.5rem;
   background: var(--background-color);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: 8px;
   transition: all 0.3s ease;
 
   &:hover {
@@ -253,7 +374,7 @@ const PrincipleIcon = styled.div`
   align-items: center;
   justify-content: center;
   background: rgba(var(--accent-amber-rgb, 255, 193, 7), 0.1);
-  border-radius: 10px;
+  border-radius: 8px;
   flex-shrink: 0;
 
   svg {
@@ -309,7 +430,7 @@ const ValueCard = styled(motion.div)`
   padding: 2rem 1rem;
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: 8px;
   will-change: transform;
   transform: translateZ(0);
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
@@ -328,7 +449,7 @@ const ValueIcon = styled.div`
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, var(--accent-amber), #f59e0b);
-  border-radius: 12px;
+  border-radius: 8px;
   margin: 0 auto 1.25rem;
 
   svg {
@@ -361,7 +482,7 @@ const StrengthsGrid = styled.div`
 const StrengthCard = styled(motion.div)`
   background: var(--background-color);
   border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border-radius: 8px;
   overflow: hidden;
   will-change: transform;
   transform: translateZ(0);
@@ -524,7 +645,7 @@ const DeptIconWrapper = styled.div`
   justify-content: center;
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: 8px;
   margin: 0 auto 1rem;
   transition: all 0.2s ease;
 
@@ -659,8 +780,8 @@ const AboutUsPage = () => {
           </HeroContent>
 
           <HeroVisual
-            initial={{ opacity: 0, x: 30 }}
-            animate={heroInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 18 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.7 }}
           >
             <StatsCard>
@@ -685,12 +806,46 @@ const AboutUsPage = () => {
         </HeroGrid>
       </HeroSection>
 
+      <TrustSection>
+        <TrustGrid>
+          <TrustIntro>
+            <TrustLogo>
+              <img src="/logo.png" alt="KMTech" />
+            </TrustLogo>
+            <div>
+              <SectionLabel>{t('about_trust_label')}</SectionLabel>
+              <TrustTitle>{t('about_trust_title')}</TrustTitle>
+              <TrustText>{t('about_trust_desc')}</TrustText>
+            </div>
+          </TrustIntro>
+
+          <TrustMetrics>
+            {facilityMetrics.map((metric) => (
+              <TrustMetric key={metric.labelKey}>
+                <TrustMetricValue>{metric.value}</TrustMetricValue>
+                <TrustMetricLabel>{t(metric.labelKey)}</TrustMetricLabel>
+                <TrustMetricLabel>{t(metric.detailKey)}</TrustMetricLabel>
+              </TrustMetric>
+            ))}
+          </TrustMetrics>
+
+          <TrustHighlightGrid>
+            {operationHighlights.map((item) => (
+              <TrustHighlight key={item.labelKey}>
+                <TrustHighlightValue>{item.value}</TrustHighlightValue>
+                <TrustMetricLabel>{t(item.detailKey)}</TrustMetricLabel>
+              </TrustHighlight>
+            ))}
+          </TrustHighlightGrid>
+        </TrustGrid>
+      </TrustSection>
+
       {/* Philosophy Section */}
       <PhilosophySection ref={philosophyRef}>
         <PhilosophyGrid>
           <PhilosophyContent
-            initial={{ opacity: 0, x: -30 }}
-            animate={philosophyInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 18 }}
+            animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
             <PhilosophyLabel>Our Philosophy</PhilosophyLabel>
@@ -699,7 +854,7 @@ const AboutUsPage = () => {
             <QuoteBlock>
               <FaQuoteLeft />
               <QuoteText>
-                {t('about_ideology_desc')}
+                {t('about_trust_statement')}
               </QuoteText>
             </QuoteBlock>
           </PhilosophyContent>
@@ -729,7 +884,7 @@ const AboutUsPage = () => {
         >
           <SectionLabel>Core Values</SectionLabel>
           <SectionTitle>{t('about_pillars_title')}</SectionTitle>
-          <SectionDescription>{t('about_ideology_desc')}</SectionDescription>
+          <SectionDescription>{t('about_values_desc')}</SectionDescription>
         </SectionHeader>
 
         <ValuesGrid>
@@ -756,6 +911,7 @@ const AboutUsPage = () => {
         >
           <SectionLabel>Why Choose Us</SectionLabel>
           <SectionTitle>{t('about_strong_points_title')}</SectionTitle>
+          <SectionDescription>{t('about_strengths_desc')}</SectionDescription>
         </SectionHeader>
 
         <StrengthsGrid>

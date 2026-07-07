@@ -1,235 +1,147 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-// Animations
-const rotate = keyframes`
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-`;
-
-const rotateReverse = keyframes`
-  from { transform: rotate(360deg); }
-  to { transform: rotate(0deg); }
-`;
-
-const pulse = keyframes`
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.6; }
-`;
-
-const float = keyframes`
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-`;
-
-const glow = keyframes`
-  0%, 100% { filter: drop-shadow(0 0 5px var(--accent-amber)); }
-  50% { filter: drop-shadow(0 0 15px var(--accent-amber)); }
+const routeFlow = keyframes`
+  from { stroke-dashoffset: 90; }
+  to { stroke-dashoffset: 0; }
 `;
 
 const Container = styled.div`
   width: 100%;
   height: 100%;
   min-height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
 
   @media (max-width: 768px) {
-    min-height: 280px;
+    min-height: 220px;
   }
 `;
 
-const PatternWrapper = styled.div`
+const VisualFrame = styled.div`
   position: relative;
-  width: 300px;
-  height: 300px;
-
-  @media (max-width: 768px) {
-    width: 260px;
-    height: 260px;
-  }
+  width: min(100%, 520px);
+  aspect-ratio: 1.14;
+  display: grid;
+  place-items: center;
 `;
 
-const PatternSVG = styled.svg`
+const NetworkSvg = styled.svg`
   width: 100%;
   height: 100%;
   overflow: visible;
 `;
 
-const OuterRing = styled.circle`
+const RoutePath = styled.path`
   fill: none;
   stroke: var(--accent-amber);
-  stroke-width: 1;
-  opacity: 0.2;
-  transform-origin: center;
-  animation: ${rotate} 30s linear infinite;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 14 10;
+  animation: ${routeFlow} 4.2s linear infinite;
 `;
 
-const MiddleRing = styled.circle`
+const RouteBase = styled.path`
   fill: none;
-  stroke: var(--accent-amber);
-  stroke-width: 1;
-  stroke-dasharray: 10 5;
-  opacity: 0.3;
-  transform-origin: center;
-  animation: ${rotateReverse} 20s linear infinite;
+  stroke: var(--border-color);
+  stroke-width: 14;
+  stroke-linecap: round;
 `;
 
-const InnerRing = styled.circle`
-  fill: none;
-  stroke: var(--accent-amber);
+const FacilityBlock = styled.rect`
+  fill: var(--card-bg);
+  stroke: var(--border-color);
   stroke-width: 2;
-  opacity: 0.4;
-  transform-origin: center;
-  animation: ${rotate} 15s linear infinite;
+  rx: 8;
 `;
 
-const HexagonGroup = styled.g`
-  transform-origin: center;
-  animation: ${rotateReverse} 25s linear infinite;
-`;
-
-const Hexagon = styled.polygon`
-  fill: none;
-  stroke: var(--accent-amber);
-  stroke-width: 1;
-  opacity: ${props => props.$opacity || 0.3};
-  animation: ${pulse} 3s ease-in-out infinite;
-  animation-delay: ${props => props.$delay || 0}s;
-`;
-
-const CenterCore = styled.g`
-  animation: ${float} 4s ease-in-out infinite;
-`;
-
-const CoreCircle = styled.circle`
+const AmberBlock = styled.rect`
   fill: var(--accent-amber);
-  animation: ${glow} 2s ease-in-out infinite;
+  rx: 8;
 `;
 
-const CoreText = styled.text`
-  fill: #121212;
-  font-size: 16px;
-  font-weight: 700;
-  text-anchor: middle;
+const LabelText = styled.text`
+  fill: var(--text-color);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0;
 `;
 
-const DataNode = styled.circle`
+const SmallText = styled.text`
+  fill: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+`;
+
+const Node = styled.circle`
   fill: var(--accent-amber);
-  opacity: 0.8;
+  stroke: var(--background-color);
+  stroke-width: 5;
 `;
 
-const DataLine = styled.line`
-  stroke: var(--accent-amber);
-  stroke-width: 1;
-  opacity: 0.3;
-`;
+const LogoCard = styled.div`
+  position: absolute;
+  inset: auto 50% 50% auto;
+  transform: translate(50%, 50%);
+  width: clamp(72px, 18vw, 100px);
+  height: clamp(72px, 18vw, 100px);
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  display: grid;
+  place-items: center;
+  padding: 0.8rem;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
 
-const FloatingDot = styled.circle`
-  fill: var(--accent-amber);
-  opacity: ${props => props.$opacity || 0.5};
-  animation: ${pulse} ${props => props.$duration || 2}s ease-in-out infinite;
-  animation-delay: ${props => props.$delay || 0}s;
-`;
-
-// Generate hexagon points
-const createHexagon = (cx, cy, size) => {
-  const points = [];
-  for (let i = 0; i < 6; i++) {
-    const angle = (Math.PI / 3) * i - Math.PI / 2;
-    points.push(`${cx + size * Math.cos(angle)},${cy + size * Math.sin(angle)}`);
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
-  return points.join(' ');
-};
+`;
 
 const GlobeFallback = () => {
-  const center = { x: 150, y: 150 };
-
-  // Memoize random values to prevent re-render flicker
-  const floatingDots = useMemo(() =>
-    Array.from({ length: 12 }, (_, i) => ({
-      x: center.x + Math.cos((Math.PI * 2 * i) / 12) * 110,
-      y: center.y + Math.sin((Math.PI * 2 * i) / 12) * 110,
-      size: 2 + (i % 3),
-      opacity: 0.3 + (i % 4) * 0.1,
-      duration: 2 + (i % 3),
-      delay: (i % 4) * 0.5,
-    })), [center.x, center.y]);
-
-  // Data nodes on middle ring
-  const dataNodes = useMemo(() =>
-    Array.from({ length: 6 }, (_, i) => ({
-      x: center.x + Math.cos((Math.PI * 2 * i) / 6 - Math.PI / 2) * 70,
-      y: center.y + Math.sin((Math.PI * 2 * i) / 6 - Math.PI / 2) * 70,
-    })), [center.x, center.y]);
-
   return (
     <Container aria-hidden="true">
-      <PatternWrapper>
-        <PatternSVG viewBox="0 0 300 300">
-          <defs>
-            <filter id="geoGlow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
+      <VisualFrame>
+        <NetworkSvg viewBox="0 0 520 455" role="img">
+          <RouteBase d="M72 320 C130 190 206 155 260 224 C314 292 389 238 448 118" />
+          <RoutePath d="M72 320 C130 190 206 155 260 224 C314 292 389 238 448 118" />
 
-          {/* Outer decorative ring */}
-          <OuterRing cx={center.x} cy={center.y} r={130} />
+          <FacilityBlock x="40" y="282" width="142" height="92" />
+          <AmberBlock x="60" y="302" width="44" height="18" />
+          <AmberBlock x="112" y="302" width="48" height="18" />
+          <FacilityBlock x="70" y="330" width="82" height="20" />
+          <LabelText x="58" y="405">JIKSAN 3PL</LabelText>
+          <SmallText x="58" y="424">2,140m2 / 3,000 pallet</SmallText>
 
-          {/* Middle dashed ring */}
-          <MiddleRing cx={center.x} cy={center.y} r={100} />
+          <FacilityBlock x="184" y="74" width="152" height="102" />
+          <FacilityBlock x="205" y="99" width="110" height="30" />
+          <AmberBlock x="223" y="142" width="74" height="14" />
+          <LabelText x="206" y="50">QUALITY CHECK</LabelText>
+          <SmallText x="206" y="66">3,000 Class clean booth</SmallText>
 
-          {/* Inner solid ring */}
-          <InnerRing cx={center.x} cy={center.y} r={70} />
+          <FacilityBlock x="356" y="74" width="124" height="88" />
+          <AmberBlock x="374" y="94" width="88" height="18" />
+          <FacilityBlock x="383" y="124" width="70" height="18" />
+          <LabelText x="358" y="196">ERP QR</LabelText>
+          <SmallText x="358" y="214">Scan / repackage</SmallText>
 
-          {/* Hexagon layers */}
-          <HexagonGroup>
-            <Hexagon points={createHexagon(center.x, center.y, 110)} $opacity={0.15} $delay={0} />
-            <Hexagon points={createHexagon(center.x, center.y, 85)} $opacity={0.25} $delay={0.5} />
-            <Hexagon points={createHexagon(center.x, center.y, 55)} $opacity={0.35} $delay={1} />
-          </HexagonGroup>
+          <FacilityBlock x="332" y="292" width="130" height="76" />
+          <AmberBlock x="356" y="316" width="74" height="18" />
+          <FacilityBlock x="374" y="340" width="38" height="10" />
+          <LabelText x="344" y="401">DELIVERY</LabelText>
+          <SmallText x="344" y="419">Loading / outbound</SmallText>
 
-          {/* Data lines from center to nodes */}
-          {dataNodes.map((node, i) => (
-            <DataLine
-              key={`line-${i}`}
-              x1={center.x}
-              y1={center.y}
-              x2={node.x}
-              y2={node.y}
-            />
-          ))}
-
-          {/* Data nodes */}
-          {dataNodes.map((node, i) => (
-            <DataNode key={`node-${i}`} cx={node.x} cy={node.y} r={4} />
-          ))}
-
-          {/* Floating dots */}
-          {floatingDots.map((dot, i) => (
-            <FloatingDot
-              key={`dot-${i}`}
-              cx={dot.x}
-              cy={dot.y}
-              r={dot.size}
-              $opacity={dot.opacity}
-              $duration={dot.duration}
-              $delay={dot.delay}
-            />
-          ))}
-
-          {/* Center core with KM */}
-          <CenterCore>
-            <CoreCircle cx={center.x} cy={center.y} r={35} filter="url(#geoGlow)" />
-            <CoreText x={center.x} y={center.y + 6}>KM</CoreText>
-          </CenterCore>
-        </PatternSVG>
-      </PatternWrapper>
+          <Node cx="72" cy="320" r="12" />
+          <Node cx="260" cy="224" r="12" />
+          <Node cx="448" cy="118" r="12" />
+        </NetworkSvg>
+        <LogoCard>
+          <img src="/logo.png" alt="" />
+        </LogoCard>
+      </VisualFrame>
     </Container>
   );
 };

@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
 import { Section, SectionTitle } from '../components/ui/Page';
-import { FaMapMarkerAlt, FaEnvelope } from 'react-icons/fa';
+import { FaClock, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaRoute } from 'react-icons/fa';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -21,62 +22,196 @@ L.Marker.prototype.options.icon = defaultLeafletIcon;
 
 const PageContainer = styled.div`
   color: var(--text-color);
+  overflow-x: hidden;
 `;
 
-const ContentGrid = styled.div`
+const HeroSection = styled.section`
+  padding: clamp(5.5rem, 9vw, 8rem) clamp(1rem, 5vw, 5%) clamp(2.5rem, 5vw, 4rem);
+  background: linear-gradient(165deg, var(--background-color) 0%, var(--card-bg) 100%);
+  border-bottom: 1px solid var(--border-color);
+`;
+
+const HeroInner = styled.div`
+  width: min(100%, 1080px);
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.8fr);
   gap: clamp(1.5rem, 4vw, 3rem);
-  min-width: 0;
-  
-  @media (max-width: 900px) {
+  align-items: end;
+
+  @media (max-width: 860px) {
     grid-template-columns: 1fr;
+    text-align: center;
   }
 `;
 
-const ContactInfoContainer = styled.div`
-  background: var(--card-bg);
-  padding: clamp(1.25rem, 4vw, 2.5rem);
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  min-width: 0;
-  overflow-wrap: anywhere;
-`;
-
-const CardTitle = styled.h3`
-  font-size: clamp(1.4rem, 4vw, 1.8rem);
+const Eyebrow = styled.span`
+  display: inline-block;
   color: var(--accent-amber);
-  margin-bottom: 2rem;
-  line-height: 1.25;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
 `;
 
-const InfoRow = styled.div`
+const HeroTitle = styled.h1`
+  color: var(--text-color);
+  font-size: clamp(2.2rem, 5vw, 3.25rem);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  letter-spacing: 0;
+`;
+
+const HeroDescription = styled.p`
+  color: var(--text-secondary);
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  line-height: 1.8;
+  margin: 0;
+  max-width: 620px;
+
+  @media (max-width: 860px) {
+    margin: 0 auto;
+  }
+`;
+
+const ContactRail = styled.div`
+  display: grid;
+  gap: 0.75rem;
+`;
+
+const RailItem = styled.a`
+  min-height: 56px;
   display: flex;
-  align-items: start;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  font-size: 1.1rem;
-  line-height: 1.6;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.8rem 1rem;
+  background: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-color);
   min-width: 0;
 
   svg {
-    flex-shrink: 0;
-    margin-top: 5px;
     color: var(--accent-amber);
+    flex: 0 0 auto;
   }
 
   span {
     min-width: 0;
     overflow-wrap: anywhere;
+    line-height: 1.35;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+`;
+
+const ContentLayout = styled.div`
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(20rem, 0.98fr);
+  gap: clamp(1.25rem, 4vw, 2rem);
+  align-items: start;
+
+  @media (max-width: 940px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const Panel = styled(motion.article)`
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  min-width: 0;
+`;
+
+const PanelTitle = styled.h2`
+  color: var(--text-color);
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+`;
+
+const PanelText = styled.p`
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+`;
+
+const LocationStack = styled.div`
+  display: grid;
+  gap: 1rem;
+`;
+
+const LocationCard = styled(Panel)`
+  display: grid;
+  gap: 1rem;
+`;
+
+const LocationHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--border-color);
+`;
+
+const LocationTitle = styled.h3`
+  color: var(--text-color);
+  font-size: 1.2rem;
+  margin: 0;
+  line-height: 1.3;
+`;
+
+const LocationTag = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 32px;
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+  background: rgba(var(--accent-amber-rgb), 0.1);
+  color: var(--text-color);
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+`;
+
+const InfoRows = styled.div`
+  display: grid;
+  gap: 0.8rem;
+`;
+
+const InfoRow = styled.div`
+  display: flex;
+  gap: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  min-width: 0;
+
+  svg {
+    color: var(--accent-amber);
+    margin-top: 0.22rem;
+    flex: 0 0 auto;
+  }
+
+  a,
+  span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    color: inherit;
   }
 `;
 
 const MapWrapper = styled.div`
-  height: 300px;
-  border-radius: 12px;
+  height: clamp(220px, 28vw, 300px);
+  border-radius: 8px;
   overflow: hidden;
   border: 1px solid var(--border-color);
-  margin-top: 2rem;
 
   .leaflet-container {
     height: 100%;
@@ -84,70 +219,103 @@ const MapWrapper = styled.div`
   }
 `;
 
-const ContactSection = styled.div`
-  margin-top: 4rem;
-`;
-
 const ContactPage = () => {
   const { t } = useTranslation();
   const headOfficePos = [37.377156, 127.113823];
   const warehousePos = [36.896990, 127.146803];
 
+  const locations = [
+    {
+      key: 'office',
+      title: t('contact_office_title'),
+      address: t('contact_office_address'),
+      email: t('contact_office_email'),
+      phone: t('contact_office_phone'),
+      pos: headOfficePos,
+      tag: t('contact_office_tag'),
+    },
+    {
+      key: 'warehouse',
+      title: t('contact_warehouse_title'),
+      address: t('contact_warehouse_address'),
+      email: t('contact_warehouse_email'),
+      phone: t('contact_warehouse_phone'),
+      pos: warehousePos,
+      tag: t('contact_warehouse_tag'),
+    },
+  ];
+
   return (
     <PageContainer>
+      <HeroSection>
+        <HeroInner>
+          <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
+            <Eyebrow>{t('contact_hero_label')}</Eyebrow>
+            <HeroTitle>{t('contact_title')}</HeroTitle>
+            <HeroDescription>{t('contact_form_desc')}</HeroDescription>
+          </motion.div>
+          <ContactRail>
+            <RailItem href={`mailto:${t('contact_office_email')}`}>
+              <FaEnvelope />
+              <span>{t('contact_office_email')}</span>
+            </RailItem>
+            <RailItem href={`tel:${t('contact_office_phone')}`}>
+              <FaPhoneAlt />
+              <span>{t('contact_office_phone')}</span>
+            </RailItem>
+            <RailItem as="div">
+              <FaClock />
+              <span>{t('contact_response_note')}</span>
+            </RailItem>
+          </ContactRail>
+        </HeroInner>
+      </HeroSection>
+
       <Section>
-        <SectionTitle>{t('contact_title')}</SectionTitle>
-        
-        <ContentGrid>
-          <ContactInfoContainer>
-            <CardTitle>{t('contact_form_title')}</CardTitle>
-            <p style={{marginBottom: '1.5rem', lineHeight: '1.6'}}>{t('contact_form_desc')}</p>
+        <SectionTitle>{t('contact_section_title')}</SectionTitle>
+        <ContentLayout>
+          <Panel initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+            <PanelTitle>{t('contact_form_title')}</PanelTitle>
+            <PanelText>{t('contact_form_panel_desc')}</PanelText>
             <ContactForm />
-          </ContactInfoContainer>
+          </Panel>
 
-          <div>
-            <ContactInfoContainer>
-              <CardTitle>{t('contact_office_title')}</CardTitle>
-              <InfoRow>
-                <FaMapMarkerAlt size={20} />
-                <span>{t('contact_office_address')}</span>
-              </InfoRow>
-              <InfoRow>
-                <FaEnvelope size={20} />
-                <span>{t('contact_office_email')}</span>
-              </InfoRow>
-              <MapWrapper>
-                <MapContainer center={headOfficePos} zoom={15} scrollWheelZoom={false}>
-                  <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                  <Marker position={headOfficePos}><Popup>{t('contact_office_title')}</Popup></Marker>
-                </MapContainer>
-              </MapWrapper>
-            </ContactInfoContainer>
-          </div>
-        </ContentGrid>
-
-        <ContactSection>
-          <ContentGrid>
-            <MapWrapper style={{marginTop: 0, minHeight: '400px'}}>
-              <MapContainer center={warehousePos} zoom={15} scrollWheelZoom={false}>
-                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                <Marker position={warehousePos}><Popup>{t('contact_warehouse_title')}</Popup></Marker>
-              </MapContainer>
-            </MapWrapper>
-            <ContactInfoContainer>
-              <CardTitle>{t('contact_warehouse_title')}</CardTitle>
-              <InfoRow>
-                <FaMapMarkerAlt size={20} />
-                <span>{t('contact_warehouse_address')}</span>
-              </InfoRow>
-              <InfoRow>
-                <FaEnvelope size={20} />
-                <span>{t('contact_warehouse_email')}</span>
-              </InfoRow>
-            </ContactInfoContainer>
-          </ContentGrid>
-        </ContactSection>
-
+          <LocationStack>
+            {locations.map((location, index) => (
+              <LocationCard
+                key={location.key}
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.08, duration: 0.4 }}
+              >
+                <LocationHeader>
+                  <LocationTitle>{location.title}</LocationTitle>
+                  <LocationTag><FaRoute /> {location.tag}</LocationTag>
+                </LocationHeader>
+                <InfoRows>
+                  <InfoRow>
+                    <FaMapMarkerAlt />
+                    <span>{location.address}</span>
+                  </InfoRow>
+                  <InfoRow>
+                    <FaEnvelope />
+                    <a href={`mailto:${location.email}`}>{location.email}</a>
+                  </InfoRow>
+                  <InfoRow>
+                    <FaPhoneAlt />
+                    <a href={`tel:${location.phone}`}>{location.phone}</a>
+                  </InfoRow>
+                </InfoRows>
+                <MapWrapper>
+                  <MapContainer center={location.pos} zoom={15} scrollWheelZoom={false}>
+                    <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                    <Marker position={location.pos}><Popup>{location.title}</Popup></Marker>
+                  </MapContainer>
+                </MapWrapper>
+              </LocationCard>
+            ))}
+          </LocationStack>
+        </ContentLayout>
       </Section>
     </PageContainer>
   );

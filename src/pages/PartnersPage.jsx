@@ -1,420 +1,429 @@
-import React, { useRef } from 'react';
+import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import Page from '../components/ui/Page';
-import { FaHandshake, FaIndustry, FaGlobeAsia, FaArrowRight } from 'react-icons/fa';
+import { customerPartners } from '../data/company';
+import { FaArrowRight, FaCar, FaFilter, FaHandshake, FaIndustry, FaLayerGroup, FaTv } from 'react-icons/fa';
 
-// Hero Section
 const HeroSection = styled.section`
-  min-height: 50vh;
-  display: flex;
-  align-items: center;
-  position: relative;
+  padding: clamp(5.5rem, 9vw, 8rem) clamp(1rem, 5vw, 5%) clamp(3rem, 6vw, 5rem);
   background: linear-gradient(165deg, var(--background-color) 0%, var(--card-bg) 100%);
-  padding: clamp(5.5rem, 9vw, 8rem) clamp(1rem, 5vw, 5%) clamp(4rem, 7vw, 5rem);
-  overflow: hidden;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border-color), transparent);
-  }
+  border-bottom: 1px solid var(--border-color);
 `;
 
 const HeroContent = styled.div`
-  max-width: 1200px;
+  width: min(100%, 1180px);
   margin: 0 auto;
-  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(19rem, 0.9fr);
   gap: clamp(2rem, 5vw, 4rem);
   align-items: center;
-  min-width: 0;
-  overflow-x: clip;
-  overflow-wrap: anywhere;
 
-  @media (max-width: 900px) {
+  @media (max-width: 920px) {
     grid-template-columns: 1fr;
     text-align: center;
   }
 `;
 
-const HeroText = styled(motion.div)`
-  min-width: 0;
-
-  @media (max-width: 900px) {
-    order: 2;
-  }
-`;
-
-const HeroLabel = styled.span`
+const Eyebrow = styled.span`
   display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
   color: var(--accent-amber);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   margin-bottom: 1rem;
 `;
 
 const HeroTitle = styled.h1`
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
-  line-height: 1.2;
   color: var(--text-color);
-  margin-bottom: 1.5rem;
+  font-size: clamp(2.2rem, 5vw, 3.35rem);
+  line-height: 1.15;
+  margin-bottom: 1rem;
   letter-spacing: 0;
-  overflow-wrap: anywhere;
 `;
 
 const HeroDescription = styled.p`
-  font-size: 1.1rem;
-  line-height: 1.8;
   color: var(--text-secondary);
-  max-width: 500px;
-  overflow-wrap: anywhere;
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  line-height: 1.8;
+  max-width: 620px;
+  margin-bottom: 1.5rem;
 
-  @media (max-width: 900px) {
-    margin: 0 auto;
+  @media (max-width: 920px) {
+    margin-left: auto;
+    margin-right: auto;
   }
 `;
 
 const StatsContainer = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(0.75rem, 2.5vw, 1.5rem);
-  width: 100%;
-  min-width: 0;
+  gap: 0.75rem;
+  max-width: 560px;
 
-  @media (max-width: 900px) {
-    order: 1;
-    max-width: min(100%, 400px);
+  @media (max-width: 920px) {
     margin: 0 auto;
+  }
+
+  @media (max-width: 520px) {
+    grid-template-columns: 1fr;
   }
 `;
 
 const StatCard = styled.div`
-  text-align: center;
-  padding: clamp(1rem, 3vw, 1.5rem) clamp(0.5rem, 2vw, 1.5rem);
-  background: var(--card-bg);
+  background: var(--background-color);
   border: 1px solid var(--border-color);
   border-radius: 8px;
+  padding: 1rem;
   min-width: 0;
 `;
 
 const StatIcon = styled.div`
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(var(--accent-amber-rgb, 255, 193, 7), 0.1);
-  border-radius: 8px;
-  margin: 0 auto 1rem;
-
-  svg {
-    font-size: 1.25rem;
-    color: var(--accent-amber);
-  }
+  color: var(--accent-amber);
+  margin-bottom: 0.6rem;
 `;
 
 const StatNumber = styled.div`
-  font-size: clamp(1.35rem, 5vw, 1.75rem);
-  font-weight: 700;
   color: var(--text-color);
-  margin-bottom: 0.25rem;
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  font-weight: 800;
   line-height: 1.1;
   white-space: nowrap;
 `;
 
 const StatLabel = styled.div`
-  font-size: 0.8rem;
   color: var(--text-secondary);
+  font-size: 0.8rem;
   line-height: 1.35;
-  overflow-wrap: anywhere;
+  margin-top: 0.35rem;
 `;
 
-// Partners Section
+const LogoMosaic = styled(motion.div)`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+
+  @media (max-width: 920px) {
+    max-width: 520px;
+    margin: 0 auto;
+  }
+`;
+
+const MosaicLogo = styled.div`
+  min-height: 92px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: #fff;
+  padding: 1rem;
+  display: grid;
+  place-items: center;
+
+  &:first-child {
+    grid-column: span 2;
+  }
+
+  img {
+    max-width: 180px;
+    max-height: 58px;
+    object-fit: contain;
+  }
+`;
+
 const PartnersSection = styled.section`
-  padding: 6rem 5%;
+  padding: clamp(4rem, 7vw, 6rem) clamp(1rem, 5vw, 5%);
   background: var(--background-color);
 `;
 
-const SectionHeader = styled(motion.div)`
+const SectionHeader = styled.div`
+  width: min(100%, 720px);
+  margin: 0 auto 2rem;
   text-align: center;
-  max-width: 600px;
-  margin: 0 auto 4rem;
-  min-width: 0;
 `;
 
 const SectionLabel = styled.span`
   display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
   color: var(--accent-amber);
-  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.9rem;
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 2rem;
-  font-weight: 700;
   color: var(--text-color);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  line-height: 1.2;
   margin-bottom: 1rem;
 `;
 
 const SectionDescription = styled.p`
-  font-size: 1rem;
-  line-height: 1.7;
   color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+`;
+
+const FilterBar = styled.div`
+  width: min(100%, 760px);
+  margin: 0 auto 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+`;
+
+const FilterButton = styled.button`
+  min-height: 44px;
+  border-radius: 8px;
+  border: 1px solid ${({ $active }) => $active ? 'var(--accent-amber)' : 'var(--border-color)'};
+  background: ${({ $active }) => $active ? 'rgba(var(--accent-amber-rgb), 0.12)' : 'var(--card-bg)'};
+  color: var(--text-color);
+  padding: 0.65rem 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
 `;
 
 const PartnersGrid = styled(motion.div)`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13.5rem), 1fr));
-  gap: clamp(1rem, 3vw, 2rem);
-  max-width: 1100px;
+  width: min(100%, 1180px);
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 1rem;
 `;
 
-const PartnerCard = styled(motion.div)`
+const PartnerCard = styled(motion.article)`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: clamp(1.25rem, 4vw, 2rem);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 180px;
-  will-change: transform;
-  transform: translateZ(0);
+  padding: 1rem;
+  min-width: 0;
+  display: grid;
+  gap: 1rem;
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {
-    border-color: var(--accent-amber);
-    transform: translateY(-4px) translateZ(0);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+    border-color: rgba(var(--accent-amber-rgb), 0.6);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.08);
   }
 `;
 
-const PartnerLogo = styled.img`
-  max-width: min(180px, 100%);
-  max-height: 70px;
-  object-fit: contain;
-  margin-bottom: 1.25rem;
-  border-radius: 6px;
-  transition: background 0.2s ease;
+const PartnerLogoBox = styled.div`
+  min-height: 116px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+  display: grid;
+  place-items: center;
 
-  /* White background for logos that need it in dark mode */
-  ${props => props.$needsBg && `
-    html[data-theme="dark"] & {
-      background: white;
-      padding: 8px 12px;
-    }
-  `}
+  img {
+    max-width: 180px;
+    max-height: 64px;
+    object-fit: contain;
+  }
+`;
+
+const PartnerMeta = styled.div`
+  display: grid;
+  gap: 0.5rem;
 `;
 
 const PartnerName = styled.h3`
-  font-size: 0.9rem;
-  font-weight: 600;
   color: var(--text-color);
-  text-align: center;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  margin: 0;
 `;
 
-const PartnerIndustry = styled.span`
-  font-size: 0.75rem;
+const PartnerIndustry = styled.div`
   color: var(--text-secondary);
-  margin-top: 0.5rem;
+  font-size: 0.86rem;
 `;
 
-// CTA Section
+const ScopeList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+`;
+
+const ScopeChip = styled.span`
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--background-color);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  line-height: 1.2;
+  padding: 0.35rem 0.55rem;
+`;
+
 const CTASection = styled.section`
-  padding: 5rem 5%;
+  padding: clamp(3.5rem, 6vw, 5rem) clamp(1rem, 5vw, 5%);
   background: var(--card-bg);
+  border-top: 1px solid var(--border-color);
   text-align: center;
 `;
 
-const CTAContent = styled(motion.div)`
-  max-width: 600px;
+const CTAContent = styled.div`
+  width: min(100%, 620px);
   margin: 0 auto;
 `;
 
 const CTATitle = styled.h2`
-  font-size: 1.75rem;
-  font-weight: 700;
   color: var(--text-color);
+  font-size: clamp(1.55rem, 3vw, 2rem);
+  line-height: 1.25;
   margin-bottom: 1rem;
 `;
 
 const CTADescription = styled.p`
-  font-size: 1rem;
-  line-height: 1.7;
   color: var(--text-secondary);
-  margin-bottom: 2rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
 `;
 
-const CTAButton = styled(motion(Link))`
-  padding: 1rem 2rem;
+const CTAButton = styled(Link)`
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   border-radius: 8px;
   background: var(--accent-amber);
   color: #121212;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  border: 1px solid transparent;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+  padding: 0.85rem 1.2rem;
+  font-weight: 800;
   text-decoration: none;
-  transition: all 0.2s ease;
-  justify-content: center;
-  min-height: 48px;
-  max-width: 100%;
+
+  &:hover {
+    color: #121212;
+    background: #e6b800;
+  }
 
   @media (max-width: 420px) {
     width: 100%;
   }
-
-  &:hover {
-    background: #e6a700;
-    transform: translateY(-2px);
-  }
-
-  svg {
-    transition: transform 0.2s ease;
-  }
-
-  &:hover svg {
-    transform: translateX(4px);
-  }
 `;
 
-// Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.08 }
-  }
+  visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: "easeOut" }
-  }
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: 'easeOut' } },
 };
 
 const PartnersPage = () => {
   const { t } = useTranslation();
-  const heroRef = useRef(null);
-  const partnersRef = useRef(null);
-  const ctaRef = useRef(null);
+  const [activeIndustry, setActiveIndustry] = useState('all');
+  const industries = ['all', ...new Set(customerPartners.map((partner) => partner.industryKey))];
 
-  const heroInView = useInView(heroRef, { once: true, margin: "-50px" });
-  const partnersInView = useInView(partnersRef, { once: true, margin: "-50px" });
-  const ctaInView = useInView(ctaRef, { once: true, margin: "-50px" });
-
-  const partners = [
-    { name: 'Continental', logo: '/logos/continental_new.png', industry: 'Automotive Parts', needsBg: true },
-    { name: 'Humax', logo: '/logos/humax_new.png', industry: 'Electronics', needsBg: true },
-    { name: 'Hyundai Motor', logo: '/logos/Hyundai_Motor_Company_logo.svg.png', industry: 'Automotive' },
-    { name: 'Kanavi Mobility', logo: '/logos/kanavi_new.png', industry: 'Mobility' },
-    { name: 'Kia', logo: '/logos/KIA_logo3.svg.png', industry: 'Automotive' },
-    { name: 'LG Display', logo: '/logos/lg_display_new.png', industry: 'Display' },
-    { name: 'LG Electronics', logo: '/logos/lg_electronics_new.png', industry: 'Electronics' },
-  ];
+  const filteredPartners = useMemo(() => {
+    if (activeIndustry === 'all') return customerPartners;
+    return customerPartners.filter((partner) => partner.industryKey === activeIndustry);
+  }, [activeIndustry]);
 
   const stats = [
-    { icon: <FaHandshake />, value: '7+', labelKey: 'partners_stat_partners' },
-    { icon: <FaIndustry />, value: '15+', labelKey: 'partners_stat_years' },
-    { icon: <FaGlobeAsia />, value: '99%', labelKey: 'partners_stat_retention' },
+    { icon: <FaHandshake />, value: `${customerPartners.length}+`, label: t('partners_stat_partners') },
+    { icon: <FaIndustry />, value: '2', label: t('partners_stat_industries') },
+    { icon: <FaLayerGroup />, value: '3PL', label: t('partners_stat_service_scope') },
   ];
+
+  const filterIcon = (key) => {
+    if (key === 'partners_industry_automotive') return <FaCar />;
+    if (key === 'partners_industry_electronics') return <FaTv />;
+    return <FaFilter />;
+  };
 
   return (
     <Page>
-      {/* Hero Section */}
-      <HeroSection ref={heroRef}>
+      <HeroSection>
         <HeroContent>
-          <HeroText
-            initial={{ opacity: 0, y: 30 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-          >
-            <HeroLabel>Our Partners</HeroLabel>
+          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
+            <Eyebrow>{t('partners_section_label')}</Eyebrow>
             <HeroTitle>{t('core_customers_title')}</HeroTitle>
-            <HeroDescription>
-              {t('partners_hero_desc')}
-            </HeroDescription>
-          </HeroText>
+            <HeroDescription>{t('partners_hero_desc')}</HeroDescription>
+            <StatsContainer initial="hidden" animate="visible" variants={containerVariants}>
+              {stats.map((stat) => (
+                <StatCard key={stat.label}>
+                  <StatIcon>{stat.icon}</StatIcon>
+                  <StatNumber>{stat.value}</StatNumber>
+                  <StatLabel>{stat.label}</StatLabel>
+                </StatCard>
+              ))}
+            </StatsContainer>
+          </motion.div>
 
-          <StatsContainer
-            initial={{ opacity: 0, x: 30 }}
-            animate={heroInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            {stats.map((stat, index) => (
-              <StatCard key={index}>
-                <StatIcon>{stat.icon}</StatIcon>
-                <StatNumber>{stat.value}</StatNumber>
-                <StatLabel>{t(stat.labelKey)}</StatLabel>
-              </StatCard>
+          <LogoMosaic initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12, duration: 0.45 }}>
+            {customerPartners.slice(0, 5).map((partner) => (
+              <MosaicLogo key={partner.name}>
+                <img src={partner.logo} alt={`${partner.name} logo`} loading="lazy" decoding="async" />
+              </MosaicLogo>
             ))}
-          </StatsContainer>
+          </LogoMosaic>
         </HeroContent>
       </HeroSection>
 
-      {/* Partners Grid Section */}
-      <PartnersSection ref={partnersRef}>
-        <SectionHeader
-          initial={{ opacity: 0, y: 20 }}
-          animate={partnersInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-        >
-          <SectionLabel>{t('partners_section_label')}</SectionLabel>
+      <PartnersSection>
+        <SectionHeader>
+          <SectionLabel>{t('partners_catalog_label')}</SectionLabel>
           <SectionTitle>{t('partners_section_title')}</SectionTitle>
-          <SectionDescription>
-            {t('partners_section_desc')}
-          </SectionDescription>
+          <SectionDescription>{t('partners_section_desc')}</SectionDescription>
         </SectionHeader>
 
-        <PartnersGrid
-          variants={containerVariants}
-          initial="hidden"
-          animate={partnersInView ? "visible" : "hidden"}
-        >
-          {partners.map((partner) => (
+        <FilterBar aria-label={t('partners_filter_label')}>
+          {industries.map((industry) => (
+            <FilterButton
+              key={industry}
+              type="button"
+              $active={activeIndustry === industry}
+              aria-pressed={activeIndustry === industry}
+              onClick={() => setActiveIndustry(industry)}
+            >
+              {filterIcon(industry)}
+              {industry === 'all' ? t('partners_filter_all') : t(industry)}
+            </FilterButton>
+          ))}
+        </FilterBar>
+
+        <PartnersGrid variants={containerVariants} initial="hidden" animate="visible">
+          {filteredPartners.map((partner) => (
             <PartnerCard key={partner.name} variants={itemVariants}>
-              <PartnerLogo src={partner.logo} alt={`${partner.name} logo`} $needsBg={partner.needsBg} />
-              <PartnerName>{partner.name}</PartnerName>
-              <PartnerIndustry>{partner.industry}</PartnerIndustry>
+              <PartnerLogoBox>
+                <img src={partner.logo} alt={`${partner.name} logo`} loading="lazy" decoding="async" />
+              </PartnerLogoBox>
+              <PartnerMeta>
+                <PartnerName>{partner.name}</PartnerName>
+                <PartnerIndustry>{t(partner.industryKey)}</PartnerIndustry>
+                <ScopeList>
+                  {partner.scopes.map((scope) => (
+                    <ScopeChip key={scope}>{t(scope)}</ScopeChip>
+                  ))}
+                </ScopeList>
+              </PartnerMeta>
             </PartnerCard>
           ))}
         </PartnersGrid>
       </PartnersSection>
 
-      {/* CTA Section */}
-      <CTASection ref={ctaRef}>
-        <CTAContent
-          initial={{ opacity: 0, y: 20 }}
-          animate={ctaInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-        >
+      <CTASection>
+        <CTAContent>
           <CTATitle>{t('partners_cta_title')}</CTATitle>
-          <CTADescription>
-            {t('partners_cta_desc')}
-          </CTADescription>
-          <CTAButton to="/contact" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+          <CTADescription>{t('partners_cta_desc')}</CTADescription>
+          <CTAButton to="/contact">
             {t('partners_cta_button')} <FaArrowRight />
           </CTAButton>
         </CTAContent>

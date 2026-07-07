@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, AlertCircle } from 'lucide-react';
+import { CheckCircle, AlertCircle, Send } from 'lucide-react';
 
 const FormContainer = styled(motion.form)`
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
-  margin-top: var(--space-8);
+  gap: var(--space-5);
+  margin-top: var(--space-6);
   position: relative;
 `;
 
@@ -26,7 +26,7 @@ const Label = styled.label`
 
 const inputStyles = css`
   padding: var(--space-4);
-  border-radius: var(--radius-md);
+  border-radius: 8px;
   border: 1px solid ${({ $hasError }) => $hasError ? 'var(--error-color)' : 'var(--border-color)'};
   background-color: var(--background-color);
   color: var(--text-color);
@@ -71,16 +71,21 @@ const ErrorMessage = styled.span`
 
 const SubmitButton = styled.button`
   padding: var(--space-4) var(--space-8);
-  border-radius: var(--radius-full);
+  border-radius: 8px;
   background-color: var(--accent-amber);
   color: #121212;
-  font-size: var(--font-lg);
+  font-size: var(--font-base);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   border: 2px solid var(--accent-amber);
   align-self: flex-start;
   font-family: inherit;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
 
   &:hover:not(:disabled) {
     background-color: transparent;
@@ -100,6 +105,10 @@ const SubmitButton = styled.button`
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+
+  @media (max-width: 520px) {
+    width: 100%;
   }
 `;
 
@@ -124,6 +133,34 @@ const StatusTitle = styled.h3`
   gap: 0.5rem;
 `;
 
+const TypeGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+
+  @media (max-width: 420px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const TypeButton = styled.button`
+  min-height: 44px;
+  border-radius: 8px;
+  border: 1px solid ${({ $active }) => $active ? 'var(--accent-amber)' : 'var(--border-color)'};
+  background: ${({ $active }) => $active ? 'rgba(var(--accent-amber-rgb), 0.12)' : 'var(--background-color)'};
+  color: var(--text-color);
+  font: inherit;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.75rem;
+  text-align: left;
+
+  &:hover {
+    border-color: var(--accent-amber);
+  }
+`;
+
 // Validation helpers
 const validateEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -141,6 +178,13 @@ const validateMessage = (message) => {
 const ContactForm = () => {
   const { t } = useTranslation();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const inquiryTypes = [
+    { value: '3pl', labelKey: 'contact_inquiry_type_3pl' },
+    { value: 'quality', labelKey: 'contact_inquiry_type_quality' },
+    { value: 'partner', labelKey: 'contact_inquiry_type_partner' },
+    { value: 'general', labelKey: 'contact_inquiry_type_general' },
+  ];
+  const [inquiryType, setInquiryType] = useState(inquiryTypes[0].value);
   const [errors, setErrors] = useState({ name: '', email: '', message: '' });
   const [touched, setTouched] = useState({ name: false, email: false, message: false });
   const [status, setStatus] = useState('idle'); // idle, submitting, success, error
@@ -197,10 +241,13 @@ const ContactForm = () => {
 
     // mailto: 방식으로 이메일 앱 열기
     const recipient = 'cgpark@kmtechn.com';
-    const subject = encodeURIComponent(`[KMTech 문의] ${formData.name}님의 문의`);
+    const selectedInquiry = inquiryTypes.find((type) => type.value === inquiryType);
+    const inquiryLabel = t(selectedInquiry?.labelKey || 'contact_inquiry_type_general');
+    const subject = encodeURIComponent(`[KMTech 문의] ${inquiryLabel} - ${formData.name}`);
     const body = encodeURIComponent(
       `보낸 사람: ${formData.name}\n` +
       `이메일: ${formData.email}\n\n` +
+      `문의 유형: ${inquiryLabel}\n\n` +
       `문의 내용:\n${formData.message}`
     );
 
@@ -212,6 +259,7 @@ const ContactForm = () => {
     // 폼 초기화
     setStatus('success');
     setFormData({ name: '', email: '', message: '' });
+    setInquiryType(inquiryTypes[0].value);
     setErrors({ name: '', email: '', message: '' });
     setTouched({ name: false, email: false, message: false });
 
@@ -253,6 +301,24 @@ const ContactForm = () => {
           transition={{ delay: 0.2 }}
           noValidate
         >
+          <FormField>
+            <Label>{t('contact_inquiry_type_label')}</Label>
+            <TypeGrid role="group" aria-label={t('contact_inquiry_type_label')}>
+              {inquiryTypes.map((type) => (
+                <TypeButton
+                  key={type.value}
+                  type="button"
+                  $active={inquiryType === type.value}
+                  aria-pressed={inquiryType === type.value}
+                  onClick={() => setInquiryType(type.value)}
+                  disabled={status === 'submitting'}
+                >
+                  {t(type.labelKey)}
+                </TypeButton>
+              ))}
+            </TypeGrid>
+          </FormField>
+
           <FormField>
             <Label htmlFor="contact-name">{t('contact_form_name')}</Label>
             <Input
@@ -319,6 +385,7 @@ const ContactForm = () => {
           </FormField>
 
           <SubmitButton type="submit" disabled={status === 'submitting'}>
+            <Send size={18} />
             {status === 'submitting' ? t('contact_form_submitting') : t('contact_form_submit')}
           </SubmitButton>
         </FormContainer>

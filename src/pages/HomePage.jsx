@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { Section, SectionTitle } from '../components/ui/Page';
 import useIsMobile, { usePrefersReducedMotion } from '../hooks/useIsMobile';
 import GlobeFallback from '../components/ui/GlobeFallback';
+import { customerPartners } from '../data/company';
 import {
   FaArrowRight, FaWarehouse, FaBrain, FaShippingFast, FaMicroscope, FaSearch, FaTools,
   FaCheckCircle, FaEnvelope, FaCar, FaTv, FaTruckLoading, FaBoxOpen, FaClipboardCheck
@@ -790,38 +791,28 @@ const HomePage = () => {
   const stats = [
     { value: 2140, suffix: '㎡', labelKey: 'stats_warehouse_space' },
     { value: 3000, suffix: '+', labelKey: 'stats_pallet_capacity' },
-    { value: 15, suffix: '+', labelKey: 'stats_years_experience' },
-    { value: 99, suffix: '%', labelKey: 'stats_customer_satisfaction' },
+    { value: 40, suffix: 'ft x2', labelKey: 'metric_container_dock' },
+    { value: 16, suffix: 'CH', labelKey: 'metric_cctv' },
   ];
 
   const heroProof = [
     { value: '2,140㎡', labelKey: 'hero_proof_facility' },
     { value: '3,000+', labelKey: 'hero_proof_capacity' },
-    { value: '15+', labelKey: 'hero_proof_experience' },
-    { value: '99%', labelKey: 'hero_proof_retention' },
+    { value: '40ft x2', labelKey: 'metric_container_dock' },
+    { value: '16CH', labelKey: 'metric_cctv' },
   ];
 
-  const partnersByIndustry = [
-    {
-      industry: t('partners_industry_automotive') || '자동차',
-      icon: <FaCar />,
-      partners: [
-        { name: 'Hyundai', logo: '/logos/Hyundai_Motor_Company_logo.svg.png' },
-        { name: 'Kia', logo: '/logos/KIA_logo3.svg.png' },
-        { name: 'Continental', logo: '/logos/continental_new.png', needsBg: true },
-        { name: 'Kanavi Mobility', logo: '/logos/kanavi_new.png' },
-      ]
-    },
-    {
-      industry: t('partners_industry_electronics') || '전자 / 디스플레이',
-      icon: <FaTv />,
-      partners: [
-        { name: 'LG Display', logo: '/logos/lg_display_new.png' },
-        { name: 'LG Electronics', logo: '/logos/lg_electronics_new.png' },
-        { name: 'Humax', logo: '/logos/humax_new.png', needsBg: true },
-      ]
-    }
-  ];
+  const partnersByIndustry = Object.entries(
+    customerPartners.reduce((groups, partner) => {
+      groups[partner.industryKey] = groups[partner.industryKey] || [];
+      groups[partner.industryKey].push(partner);
+      return groups;
+    }, {})
+  ).map(([industryKey, partners]) => ({
+    industry: t(industryKey),
+    icon: industryKey === 'partners_industry_automotive' ? <FaCar /> : <FaTv />,
+    partners,
+  }));
 
   const partnersRef = useRef(null);
   const partnersInView = useInView(partnersRef, { once: true, margin: "-50px" });
@@ -896,8 +887,8 @@ const HomePage = () => {
 
         <ArtworkContainer
           ref={artworkRef}
-          initial={{ opacity: 0, x: 30 }}
-          animate={heroInView ? { opacity: 1, x: 0 } : {}}
+          initial={{ opacity: 0, y: 18 }}
+          animate={heroInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.3, duration: 0.7 }}
         >
           {shouldUse3DGlobe ? (
