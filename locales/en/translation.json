@@ -18,20 +18,29 @@
   "pillar_customer_orientation": "Customer Orientation",
   "pillar_ethical_behavior": "Ethical Behavior",
   "pillar_company_development": "Company Development",
-  "business_title": "Our Business: 3rd Party Logistics",
+  "business_title": "Our Business: 3PL",
   "tpl_biz_title": "3rd Party Logistics",
   "tpl_biz_desc": "KMTech takes full responsibility for our clients' logistics processes through our 3rd Party Logistics services. We provide one-stop solutions from storage, packaging, and inspection to delivery, utilizing state-of-the-art facilities and systematic processes, allowing our clients to focus on their core business.",
   "tpl_warehouse_title": "Warehouse & Storage",
   "tpl_warehouse_items": [
-    "Total area of 2,140㎡", "Capacity for 3,000 pallets", "Container dock for 2 vehicles (40ft & 20ft)", "16 CCTV systems with recording"
+    "Total area of 2,140㎡",
+    "Capacity for 3,000 pallets",
+    "Container dock for 2 vehicles (40ft & 20ft)",
+    "16 CCTV systems with recording"
   ],
   "tpl_inspection_title": "Inspection",
   "tpl_inspection_items": [
-    "Operates a 3,000 Class Clean Booth", "Precision inspection and repair services", "Visual & Function Test Benches", "In-house resident engineering"
+    "Operates a 3,000 Class Clean Booth",
+    "Precision inspection and repair services",
+    "Visual & Function Test Benches",
+    "In-house resident engineering"
   ],
   "tpl_packaging_title": "Packaging & Rework",
   "tpl_packaging_items": [
-    "Customized repackaging for clients", "Dismantling for 50 pallets at once", "QR code system linked with ERP", "Sorting and classification"
+    "Customized repackaging for clients",
+    "Dismantling for 50 pallets at once",
+    "QR code system linked with ERP",
+    "Sorting and classification"
   ],
   "tpl_work_process_title": "Our Work Process",
   "process_step_1_title": "Warehousing",
@@ -116,5 +125,23 @@
   "stats_warehouse_space": "Warehouse Space",
   "stats_pallet_capacity": "Pallet Capacity",
   "stats_years_experience": "Years Experience",
-  "stats_customer_satisfaction": "Customer Satisfaction"
+  "stats_customer_satisfaction": "Customer Satisfaction",
+  "business_feature_accuracy_title": "Fast, accurate handling",
+  "business_feature_accuracy_desc": "Standardized work to reduce errors and protect quality",
+  "business_feature_trace_title": "Real-time visibility",
+  "business_feature_trace_desc": "ERP QR tracking for inventory and outbound confirmation",
+  "business_feature_flexible_title": "Flexible scalability",
+  "business_feature_flexible_desc": "Operations tailored by volume and product type",
+  "business_warehouse_summary": "Stable operations through controlled storage conditions and systematic inventory management.",
+  "business_inspection_summary": "Accurate inspection workflows help manage quality and quantity before shipment.",
+  "business_packaging_summary": "Custom packaging supports safe, efficient delivery formats for each product.",
+  "business_delivery_summary": "Accurate outbound preparation reduces delivery workload for client teams.",
+  "business_facility_snapshot": "Facility capacity",
+  "business_actual_data_label": "Actual operation data",
+  "business_map_route_label": "Main transport route",
+  "business_map_node_label": "Operation hub",
+  "business_service_more": "View details",
+  "hero_visual_label": "GLOBAL NETWORK",
+  "hero_visual_network": "3PL logistics network connected through the Korea hub",
+  "hero_visual_flow_label": "ONE-STOP 3PL SOLUTION"
 }

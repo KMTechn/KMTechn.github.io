@@ -1,20 +1,16 @@
-import React, { Suspense, useRef, useEffect, useState, lazy } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence, useInView, useMotionValue, useTransform, animate } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Section, SectionTitle } from '../components/ui/Page';
-import useIsMobile, { usePrefersReducedMotion } from '../hooks/useIsMobile';
 import GlobeFallback from '../components/ui/GlobeFallback';
-import { customerPartners } from '../data/company';
+import { customerPartners, facilityMetrics } from '../data/company';
 import {
   FaArrowRight, FaWarehouse, FaBrain, FaShippingFast, FaMicroscope, FaSearch, FaTools,
   FaCheckCircle, FaEnvelope, FaCar, FaTv, FaTruckLoading, FaBoxOpen, FaClipboardCheck
 } from 'react-icons/fa';
 import { HiOutlineChevronRight } from 'react-icons/hi';
-
-// Lazy load heavy 3D Globe only for desktop - saves ~500KB on mobile
-const Desktop3DGlobe = lazy(() => import('../components/ui/Desktop3DGlobe'));
 
 const PageContainer = styled.div`
   width: 100%;
@@ -23,14 +19,13 @@ const PageContainer = styled.div`
 
 // Hero Section - Clean Professional
 const HeroSection = styled.section`
-  min-height: calc(100vh - 80px);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  padding: 2rem 5%;
-  background: linear-gradient(165deg, var(--background-color) 0%, var(--card-bg) 100%);
-  gap: 4rem;
+  min-height: auto;
+  padding: clamp(2.6rem, 5vh, 3.6rem) clamp(1rem, 4vw, 4.5rem) clamp(0.8rem, 2vh, 1.25rem);
+  background:
+    radial-gradient(circle at 77% 18%, rgba(var(--accent-amber-rgb), 0.13), transparent 23rem),
+    linear-gradient(180deg, #f8f9fb 0%, var(--background-color) 100%);
   position: relative;
+  overflow: hidden;
 
   &::after {
     content: '';
@@ -43,15 +38,27 @@ const HeroSection = styled.section`
   }
 
   @media (max-width: 1024px) {
-    grid-template-columns: 1fr;
-    text-align: center;
     min-height: auto;
-    padding: 5rem 5% 3rem;
-    gap: 2rem;
+    padding: 3.25rem 5% 3rem;
   }
 
   @media (max-width: 600px) {
     padding: 4.5rem 1.25rem 2.5rem;
+  }
+`;
+
+const HeroLayout = styled.div`
+  width: min(100%, 1560px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(22rem, 0.62fr) minmax(32rem, 1fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4.5rem);
+
+  @media (max-width: 1120px) {
+    grid-template-columns: 1fr;
+    text-align: center;
+    min-height: auto;
   }
 `;
 
@@ -63,7 +70,7 @@ const TextContainer = styled(motion.div)`
   min-width: 0;
   width: 100%;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1120px) {
     align-items: center;
     order: 1;
   }
@@ -80,18 +87,18 @@ const HeroLabel = styled(motion.span)`
 `;
 
 const Title = styled(motion.h1)`
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 700;
-  line-height: 1.2;
+  font-size: clamp(2.7rem, 4.1vw, 3.65rem);
+  font-weight: 800;
+  line-height: 1.08;
   margin-bottom: 1.5rem;
-  max-width: 600px;
+  max-width: 650px;
   width: 100%;
   color: var(--text-color);
   letter-spacing: 0;
   overflow-wrap: anywhere;
 
   @media (max-width: 600px) {
-    font-size: 2.25rem;
+    font-size: clamp(2.25rem, 11vw, 3rem);
     margin-bottom: 1rem;
   }
 `;
@@ -118,7 +125,7 @@ const ButtonGroup = styled(motion.div)`
   width: 100%;
   max-width: 500px;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1120px) {
     justify-content: center;
   }
 
@@ -211,25 +218,197 @@ const SecondaryButton = styled(PrimaryButton)`
 `;
 
 const ArtworkContainer = styled(motion.div)`
-  height: 500px;
+  height: clamp(28rem, 38vw, 34rem);
   width: 100%;
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(238, 242, 247, 0.92)),
+    radial-gradient(circle at 64% 44%, rgba(var(--accent-amber-rgb), 0.16), transparent 16rem);
+  box-shadow: 0 26px 70px rgba(15, 23, 42, 0.14);
   cursor: grab;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 1.1rem;
+    z-index: -1;
+    border-radius: 10px;
+    background-image:
+      linear-gradient(rgba(15, 23, 42, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 23, 42, 0.055) 1px, transparent 1px);
+    background-size: 34px 34px;
+    mask-image: radial-gradient(circle at 56% 44%, black, transparent 68%);
+  }
 
   &:active {
     cursor: grabbing;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1120px) {
     order: 2;
-    height: 260px;
-    max-width: 360px;
+    height: clamp(27rem, 64vw, 34rem);
+    max-width: 760px;
     margin: 0 auto;
   }
 
   @media (max-width: 600px) {
-    height: 190px;
-    max-width: 280px;
+    height: 25rem;
+    max-width: none;
+    border-radius: 10px;
+  }
+`;
+
+const NetworkBackdrop = styled.img`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.9;
+  filter: saturate(0.94) contrast(0.98) brightness(1.03);
+  z-index: 0;
+`;
+
+const VisualHeader = styled.div`
+  position: absolute;
+  top: clamp(1rem, 2vw, 1.5rem);
+  left: clamp(1rem, 2vw, 1.5rem);
+  z-index: 3;
+  text-align: left;
+`;
+
+const VisualKicker = styled.div`
+  color: #253046;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+`;
+
+const VisualTitle = styled.div`
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  line-height: 1.35;
+  font-weight: 600;
+`;
+
+const GlobeStage = styled.div`
+  position: absolute;
+  right: clamp(0.6rem, 2.2vw, 1.4rem);
+  bottom: clamp(4.1rem, 6vw, 5.4rem);
+  width: clamp(15rem, 28vw, 25rem);
+  height: clamp(15rem, 28vw, 25rem);
+  display: grid;
+  place-items: center;
+  z-index: 2;
+  pointer-events: none;
+
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  @media (max-width: 600px) {
+    right: -1.5rem;
+    bottom: 6.7rem;
+    width: 14.5rem;
+    height: 14.5rem;
+  }
+`;
+
+const VisualMetricDock = styled.div`
+  position: absolute;
+  top: clamp(1rem, 2vw, 1.5rem);
+  right: clamp(1rem, 2vw, 1.5rem);
+  z-index: 3;
+  display: grid;
+  gap: 0.5rem;
+  width: min(30%, 13rem);
+
+  @media (max-width: 720px) {
+    display: none;
+  }
+`;
+
+const VisualMetric = styled.div`
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: center;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(14px);
+  padding: 0.7rem 0.8rem;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+`;
+
+const VisualMetricLabel = styled.span`
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  line-height: 1.25;
+`;
+
+const VisualMetricValue = styled.strong`
+  color: #111827;
+  font-size: 0.95rem;
+  line-height: 1;
+  white-space: nowrap;
+`;
+
+const VisualFlow = styled.div`
+  position: absolute;
+  left: clamp(1rem, 2vw, 1.5rem);
+  right: clamp(1rem, 2vw, 1.5rem);
+  bottom: clamp(1rem, 2vw, 1.35rem);
+  z-index: 4;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.12);
+`;
+
+const VisualFlowLabel = styled.div`
+  color: #253046;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 0.65rem;
+  text-align: left;
+`;
+
+const VisualFlowSteps = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.6rem;
+
+  @media (max-width: 520px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+`;
+
+const VisualFlowStep = styled.div`
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  color: #253046;
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.25;
+  min-width: 0;
+
+  svg {
+    color: var(--accent-amber);
+    font-size: 1.35rem;
   }
 `;
 
@@ -317,10 +496,38 @@ const StatLabel = styled.div`
 // Services Section
 const ServicesSection = styled(Section)`
   background: var(--background-color);
-  padding: 7rem 5%;
+  padding: clamp(2.4rem, 4vw, 3.5rem) 5% 5.5rem;
 
   @media (max-width: 600px) {
     padding: 4.5rem 1.25rem;
+  }
+`;
+
+const ServicesShell = styled.div`
+  width: min(100%, 1500px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.34fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: start;
+
+  @media (max-width: 980px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const ServicesIntro = styled(motion.div)`
+  text-align: left;
+  min-width: 0;
+
+  ${SectionTitle} {
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+  }
+
+  @media (max-width: 980px) {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
   }
 `;
 
@@ -352,17 +559,24 @@ const SectionDescription = styled.p`
 
 const ServicesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
-  gap: clamp(1rem, 3vw, 2rem);
-  max-width: 1200px;
-  margin: 0 auto;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.85rem, 1.4vw, 1.1rem);
+  min-width: 0;
+
+  @media (max-width: 1240px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 620px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const ServiceCard = styled(motion.div)`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: clamp(1.5rem, 4vw, 2.5rem);
+  padding: clamp(1.15rem, 2vw, 1.4rem);
   cursor: pointer;
   will-change: transform;
   transform: translateZ(0);
@@ -381,14 +595,14 @@ const ServiceCard = styled(motion.div)`
 `;
 
 const ServiceIcon = styled.div`
-  width: 56px;
-  height: 56px;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, var(--accent-amber), #f59e0b);
   border-radius: 8px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 
   svg {
     font-size: 1.5rem;
@@ -397,7 +611,7 @@ const ServiceIcon = styled.div`
 `;
 
 const ServiceTitle = styled.h3`
-  font-size: 1.25rem;
+  font-size: 1.08rem;
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 1rem;
@@ -406,10 +620,10 @@ const ServiceTitle = styled.h3`
 `;
 
 const ServiceDescription = styled.p`
-  font-size: 0.95rem;
-  line-height: 1.7;
+  font-size: 0.86rem;
+  line-height: 1.6;
   color: var(--text-secondary);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   flex-grow: 1;
 `;
 
@@ -733,12 +947,6 @@ const HomePage = () => {
   const { t } = useTranslation();
   const artworkRef = useRef(null);
 
-  // Performance optimization: keep the heavy 3D globe on desktop only.
-  const isMobile = useIsMobile(1024);
-  const prefersReducedMotion = usePrefersReducedMotion();
-  const hasDesktopViewport = typeof window !== 'undefined' && window.innerWidth >= 1024;
-  const shouldUse3DGlobe = hasDesktopViewport && !isMobile && !prefersReducedMotion;
-
   // Refs for scroll animations
   const heroRef = useRef(null);
   const statsRef = useRef(null);
@@ -780,6 +988,7 @@ const HomePage = () => {
     { icon: <FaWarehouse />, titleKey: 'home_service_warehouse_title', descKey: 'home_service_warehouse_desc' },
     { icon: <FaSearch />, titleKey: 'home_service_inspection_title', descKey: 'home_service_inspection_desc' },
     { icon: <FaTools />, titleKey: 'home_service_packaging_title', descKey: 'home_service_packaging_desc' },
+    { icon: <FaShippingFast />, titleKey: 'business_delivery_title', descKey: 'business_delivery_summary' },
   ];
 
   const strongPoints = [
@@ -802,6 +1011,8 @@ const HomePage = () => {
     { value: '16CH', labelKey: 'metric_cctv' },
   ];
 
+  const visualMetrics = facilityMetrics.slice(0, 3);
+
   const partnersByIndustry = Object.entries(
     customerPartners.reduce((groups, partner) => {
       groups[partner.industryKey] = groups[partner.industryKey] || [];
@@ -821,85 +1032,141 @@ const HomePage = () => {
     <PageContainer>
       {/* Hero Section */}
       <HeroSection ref={heroRef}>
-        <TextContainer
-          initial={{ opacity: 0, y: 30 }}
-          animate={heroInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          <HeroLabel
-            initial={{ opacity: 0 }}
-            animate={heroInView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.2 }}
-          >
-            Global 3PL Solutions
-          </HeroLabel>
-          <Title
-            initial={{ opacity: 0, y: 20 }}
+        <HeroLayout>
+          <TextContainer
+            initial={{ opacity: 0, y: 30 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ duration: 0.6 }}
           >
-            {t('hero_title')}
-          </Title>
-          <Subtitle
-            initial={{ opacity: 0, y: 20 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            {t('hero_subtitle')}
-          </Subtitle>
-          <ButtonGroup
-            initial={{ opacity: 0, y: 20 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.5, duration: 0.6 }}
-          >
-            <PrimaryButton to="/contact" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              {t('hero_primary_cta')} <FaArrowRight />
-            </PrimaryButton>
-            <SecondaryButton to="/business" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              {t('hero_secondary_cta')}
-            </SecondaryButton>
-          </ButtonGroup>
+            <HeroLabel
+              initial={{ opacity: 0 }}
+              animate={heroInView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.2 }}
+            >
+              Global 3PL Solutions
+            </HeroLabel>
+            <Title
+              initial={{ opacity: 0, y: 20 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
+              {t('hero_title')}
+            </Title>
+            <Subtitle
+              initial={{ opacity: 0, y: 20 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.4, duration: 0.6 }}
+            >
+              {t('hero_subtitle')}
+            </Subtitle>
+            <ButtonGroup
+              initial={{ opacity: 0, y: 20 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.5, duration: 0.6 }}
+            >
+              <PrimaryButton to="/contact" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                {t('hero_primary_cta')} <FaArrowRight />
+              </PrimaryButton>
+              <SecondaryButton to="/business" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                {t('hero_secondary_cta')}
+              </SecondaryButton>
+            </ButtonGroup>
 
-          <HeroProofGrid
-            aria-label={t('hero_proof_label')}
-            initial={{ opacity: 0, y: 16 }}
+            <HeroProofGrid
+              aria-label={t('hero_proof_label')}
+              initial={{ opacity: 0, y: 16 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.6, duration: 0.5 }}
+            >
+              {heroProof.map((item) => (
+                <HeroProofItem key={item.labelKey}>
+                  <HeroProofValue>{item.value}</HeroProofValue>
+                  <HeroProofLabel>{t(item.labelKey)}</HeroProofLabel>
+                </HeroProofItem>
+              ))}
+            </HeroProofGrid>
+
+            <ContactInfo
+              initial={{ opacity: 0 }}
+              animate={heroInView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.7, duration: 0.5 }}
+            >
+              <ContactItem href="mailto:cgpark@kmtechn.com">
+                <FaEnvelope /> cgpark@kmtechn.com
+              </ContactItem>
+            </ContactInfo>
+          </TextContainer>
+
+          <ArtworkContainer
+            ref={artworkRef}
+            initial={{ opacity: 0, y: 18 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.6, duration: 0.5 }}
+            transition={{ delay: 0.3, duration: 0.7 }}
           >
-            {heroProof.map((item) => (
-              <HeroProofItem key={item.labelKey}>
-                <HeroProofValue>{item.value}</HeroProofValue>
-                <HeroProofLabel>{t(item.labelKey)}</HeroProofLabel>
-              </HeroProofItem>
-            ))}
-          </HeroProofGrid>
-
-          <ContactInfo
-            initial={{ opacity: 0 }}
-            animate={heroInView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.7, duration: 0.5 }}
-          >
-            <ContactItem href="mailto:cgpark@kmtechn.com">
-              <FaEnvelope /> cgpark@kmtechn.com
-            </ContactItem>
-          </ContactInfo>
-        </TextContainer>
-
-        <ArtworkContainer
-          ref={artworkRef}
-          initial={{ opacity: 0, y: 18 }}
-          animate={heroInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.3, duration: 0.7 }}
-        >
-          {shouldUse3DGlobe ? (
-            <Suspense fallback={<GlobeFallback />}>
-              <Desktop3DGlobe />
-            </Suspense>
-          ) : (
-            <GlobeFallback />
-          )}
-        </ArtworkContainer>
+            <NetworkBackdrop src="/images/kmtech-home-network-backdrop.png" alt="" loading="eager" decoding="async" />
+            <VisualHeader>
+              <VisualKicker>{t('hero_visual_label')}</VisualKicker>
+              <VisualTitle>{t('hero_visual_network')}</VisualTitle>
+            </VisualHeader>
+            <VisualMetricDock>
+              {visualMetrics.map((metric) => (
+                <VisualMetric key={metric.labelKey}>
+                  <VisualMetricLabel>{t(metric.labelKey)}</VisualMetricLabel>
+                  <VisualMetricValue>{metric.value}</VisualMetricValue>
+                </VisualMetric>
+              ))}
+            </VisualMetricDock>
+            <GlobeStage>
+              <GlobeFallback />
+            </GlobeStage>
+            <VisualFlow>
+              <VisualFlowLabel>{t('hero_visual_flow_label')}</VisualFlowLabel>
+              <VisualFlowSteps>
+                {processSteps.map((step) => (
+                  <VisualFlowStep key={step.titleKey}>
+                    {step.icon}
+                    <span>{t(step.titleKey)}</span>
+                  </VisualFlowStep>
+                ))}
+              </VisualFlowSteps>
+            </VisualFlow>
+          </ArtworkContainer>
+        </HeroLayout>
       </HeroSection>
+
+      {/* Services Section */}
+      <ServicesSection ref={servicesRef}>
+        <ServicesShell>
+          <ServicesIntro
+            initial={{ opacity: 0, y: 20 }}
+            animate={servicesInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5 }}
+          >
+            <SectionLabel>{t('home_section_services_label')}</SectionLabel>
+            <SectionTitle>{t('home_services_title')}</SectionTitle>
+            <SectionDescription>{t('home_services_3pl_desc')}</SectionDescription>
+          </ServicesIntro>
+
+          <ServicesGrid>
+            {services.map((service, index) => (
+              <Link to="/business" key={service.titleKey} style={{ textDecoration: 'none', height: '100%' }}>
+                <ServiceCard
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={servicesInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                >
+                  <ServiceIcon>{service.icon}</ServiceIcon>
+                  <ServiceTitle>{t(service.titleKey)}</ServiceTitle>
+                  <ServiceDescription>{t(service.descKey)}</ServiceDescription>
+                  <ServiceLink>
+                    {t('home_services_button')} <HiOutlineChevronRight />
+                  </ServiceLink>
+                </ServiceCard>
+              </Link>
+            ))}
+          </ServicesGrid>
+        </ServicesShell>
+      </ServicesSection>
 
       {/* Stats Section */}
       <StatsSection ref={statsRef}>
@@ -917,38 +1184,6 @@ const HomePage = () => {
           ))}
         </StatsGrid>
       </StatsSection>
-
-      {/* Services Section */}
-      <ServicesSection ref={servicesRef}>
-        <SectionHeader
-          initial={{ opacity: 0, y: 20 }}
-          animate={servicesInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-        >
-          <SectionLabel>{t('home_section_services_label')}</SectionLabel>
-          <SectionTitle>{t('home_services_title')}</SectionTitle>
-          <SectionDescription>{t('home_services_3pl_desc')}</SectionDescription>
-        </SectionHeader>
-
-        <ServicesGrid>
-          {services.map((service, index) => (
-            <Link to="/business" key={service.titleKey} style={{ textDecoration: 'none', height: '100%' }}>
-              <ServiceCard
-                initial={{ opacity: 0, y: 30 }}
-                animate={servicesInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-              >
-                <ServiceIcon>{service.icon}</ServiceIcon>
-                <ServiceTitle>{t(service.titleKey)}</ServiceTitle>
-                <ServiceDescription>{t(service.descKey)}</ServiceDescription>
-                <ServiceLink>
-                  {t('home_services_button')} <HiOutlineChevronRight />
-                </ServiceLink>
-              </ServiceCard>
-            </Link>
-          ))}
-        </ServicesGrid>
-      </ServicesSection>
 
       {/* Process Section */}
       <ProcessSection ref={processRef}>

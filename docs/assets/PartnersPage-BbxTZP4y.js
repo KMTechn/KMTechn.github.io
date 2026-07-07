@@ -1,8 +1,8 @@
-import{D as h,r as c,F as n,A as r,ah as b,ai as v,aj as u,ak as f,P as o,J as y,B as e,G as j,I as w,al as _,N as k}from"./index-C5ShRxlg.js";const S=e.section`
+import{C as h,r as c,E as n,A as r,ai as b,aj as v,ak as u,al as f,P as o,I as y,B as e,F as j,G as w,am as _,N as k}from"./index-DQuugmUd.js";const S=e.section`
   padding: clamp(5.5rem, 9vw, 8rem) clamp(1rem, 5vw, 5%) clamp(3rem, 6vw, 5rem);
   background: linear-gradient(165deg, var(--background-color) 0%, var(--card-bg) 100%);
   border-bottom: 1px solid var(--border-color);
-`,z=e.div`
+`,C=e.div`
   width: min(100%, 1180px);
   margin: 0 auto;
   display: grid;
@@ -14,7 +14,7 @@ import{D as h,r as c,F as n,A as r,ah as b,ai as v,aj as u,ak as f,P as o,J as y
     grid-template-columns: 1fr;
     text-align: center;
   }
-`,C=e.span`
+`,z=e.span`
   display: inline-block;
   color: var(--accent-amber);
   font-size: 0.78rem;
@@ -99,14 +99,14 @@ import{D as h,r as c,F as n,A as r,ah as b,ai as v,aj as u,ak as f,P as o,J as y
     max-height: 58px;
     object-fit: contain;
   }
-`,D=e.section`
+`,E=e.section`
   padding: clamp(4rem, 7vw, 6rem) clamp(1rem, 5vw, 5%);
   background: var(--background-color);
 `,M=e.div`
   width: min(100%, 720px);
   margin: 0 auto 2rem;
   text-align: center;
-`,E=e.span`
+`,D=e.span`
   display: inline-block;
   color: var(--accent-amber);
   font-size: 0.75rem;
@@ -150,7 +150,7 @@ import{D as h,r as c,F as n,A as r,ah as b,ai as v,aj as u,ak as f,P as o,J as y
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
   gap: 1rem;
-`,J=e(o.article)`
+`,O=e(o.article)`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -165,7 +165,7 @@ import{D as h,r as c,F as n,A as r,ah as b,ai as v,aj as u,ak as f,P as o,J as y
     border-color: rgba(var(--accent-amber-rgb), 0.6);
     box-shadow: 0 14px 36px rgba(0, 0, 0, 0.08);
   }
-`,O=e.div`
+`,Y=e.div`
   min-height: 116px;
   border-radius: 8px;
   background: #fff;
@@ -179,10 +179,10 @@ import{D as h,r as c,F as n,A as r,ah as b,ai as v,aj as u,ak as f,P as o,J as y
     max-height: 64px;
     object-fit: contain;
   }
-`,Y=e.div`
+`,q=e.div`
   display: grid;
   gap: 0.5rem;
-`,q=e.h3`
+`,J=e.h3`
   color: var(--text-color);
   font-size: 1.05rem;
   line-height: 1.35;
@@ -243,4 +243,4 @@ import{D as h,r as c,F as n,A as r,ah as b,ai as v,aj as u,ak as f,P as o,J as y
   @media (max-width: 420px) {
     width: 100%;
   }
-`,l={hidden:{opacity:0},visible:{opacity:1,transition:{staggerChildren:.06}}},tr={hidden:{opacity:0,y:18},visible:{opacity:1,y:0,transition:{duration:.35,ease:"easeOut"}}},nr=()=>{const{t}=h(),[i,d]=c.useState("all"),m=["all",...new Set(n.map(a=>a.industryKey))],p=c.useMemo(()=>i==="all"?n:n.filter(a=>a.industryKey===i),[i]),g=[{icon:r.jsx(b,{}),value:`${n.length}+`,label:t("partners_stat_partners")},{icon:r.jsx(v,{}),value:"2",label:t("partners_stat_industries")},{icon:r.jsx(u,{}),value:"3PL",label:t("partners_stat_service_scope")}],x=a=>a==="partners_industry_automotive"?r.jsx(j,{}):a==="partners_industry_electronics"?r.jsx(w,{}):r.jsx(_,{});return r.jsxs(f,{children:[r.jsx(S,{children:r.jsxs(z,{children:[r.jsxs(o.div,{initial:{opacity:0,y:24},animate:{opacity:1,y:0},transition:{duration:.45},children:[r.jsx(C,{children:t("partners_section_label")}),r.jsx(P,{children:t("core_customers_title")}),r.jsx(F,{children:t("partners_hero_desc")}),r.jsx(T,{initial:"hidden",animate:"visible",variants:l,children:g.map(a=>r.jsxs(L,{children:[r.jsx(A,{children:a.icon}),r.jsx(I,{children:a.value}),r.jsx(H,{children:a.label})]},a.label))})]}),r.jsx($,{initial:{opacity:0,y:18},animate:{opacity:1,y:0},transition:{delay:.12,duration:.45},children:n.slice(0,5).map(a=>r.jsx(B,{children:r.jsx("img",{src:a.logo,alt:`${a.name} logo`,loading:"lazy",decoding:"async"})},a.name))})]})}),r.jsxs(D,{children:[r.jsxs(M,{children:[r.jsx(E,{children:t("partners_catalog_label")}),r.jsx(G,{children:t("partners_section_title")}),r.jsx(K,{children:t("partners_section_desc")})]}),r.jsx(N,{"aria-label":t("partners_filter_label"),children:m.map(a=>r.jsxs(R,{type:"button",$active:i===a,"aria-pressed":i===a,onClick:()=>d(a),children:[x(a),t(a==="all"?"partners_filter_all":a)]},a))}),r.jsx(V,{variants:l,initial:"hidden",animate:"visible",children:p.map(a=>r.jsxs(J,{variants:tr,children:[r.jsx(O,{children:r.jsx("img",{src:a.logo,alt:`${a.name} logo`,loading:"lazy",decoding:"async"})}),r.jsxs(Y,{children:[r.jsx(q,{children:a.name}),r.jsx(Q,{children:t(a.industryKey)}),r.jsx(U,{children:a.scopes.map(s=>r.jsx(W,{children:t(s)},s))})]})]},a.name))})]}),r.jsx(X,{children:r.jsxs(Z,{children:[r.jsx(rr,{children:t("partners_cta_title")}),r.jsx(er,{children:t("partners_cta_desc")}),r.jsxs(ar,{to:"/contact",children:[t("partners_cta_button")," ",r.jsx(y,{})]})]})})]})};export{nr as default};
+`,l={hidden:{opacity:0},visible:{opacity:1,transition:{staggerChildren:.06}}},tr={hidden:{opacity:0,y:18},visible:{opacity:1,y:0,transition:{duration:.35,ease:"easeOut"}}},nr=()=>{const{t}=h(),[i,d]=c.useState("all"),m=["all",...new Set(n.map(a=>a.industryKey))],p=c.useMemo(()=>i==="all"?n:n.filter(a=>a.industryKey===i),[i]),g=[{icon:r.jsx(b,{}),value:`${n.length}+`,label:t("partners_stat_partners")},{icon:r.jsx(v,{}),value:"2",label:t("partners_stat_industries")},{icon:r.jsx(u,{}),value:"3PL",label:t("partners_stat_service_scope")}],x=a=>a==="partners_industry_automotive"?r.jsx(j,{}):a==="partners_industry_electronics"?r.jsx(w,{}):r.jsx(_,{});return r.jsxs(f,{children:[r.jsx(S,{children:r.jsxs(C,{children:[r.jsxs(o.div,{initial:{opacity:0,y:24},animate:{opacity:1,y:0},transition:{duration:.45},children:[r.jsx(z,{children:t("partners_section_label")}),r.jsx(P,{children:t("core_customers_title")}),r.jsx(F,{children:t("partners_hero_desc")}),r.jsx(T,{initial:"hidden",animate:"visible",variants:l,children:g.map(a=>r.jsxs(L,{children:[r.jsx(A,{children:a.icon}),r.jsx(I,{children:a.value}),r.jsx(H,{children:a.label})]},a.label))})]}),r.jsx($,{initial:{opacity:0,y:18},animate:{opacity:1,y:0},transition:{delay:.12,duration:.45},children:n.slice(0,5).map(a=>r.jsx(B,{children:r.jsx("img",{src:a.logo,alt:`${a.name} logo`,loading:"lazy",decoding:"async"})},a.name))})]})}),r.jsxs(E,{children:[r.jsxs(M,{children:[r.jsx(D,{children:t("partners_catalog_label")}),r.jsx(G,{children:t("partners_section_title")}),r.jsx(K,{children:t("partners_section_desc")})]}),r.jsx(N,{"aria-label":t("partners_filter_label"),children:m.map(a=>r.jsxs(R,{type:"button",$active:i===a,"aria-pressed":i===a,onClick:()=>d(a),children:[x(a),t(a==="all"?"partners_filter_all":a)]},a))}),r.jsx(V,{variants:l,initial:"hidden",animate:"visible",children:p.map(a=>r.jsxs(O,{variants:tr,children:[r.jsx(Y,{children:r.jsx("img",{src:a.logo,alt:`${a.name} logo`,loading:"lazy",decoding:"async"})}),r.jsxs(q,{children:[r.jsx(J,{children:a.name}),r.jsx(Q,{children:t(a.industryKey)}),r.jsx(U,{children:a.scopes.map(s=>r.jsx(W,{children:t(s)},s))})]})]},a.name))})]}),r.jsx(X,{children:r.jsxs(Z,{children:[r.jsx(rr,{children:t("partners_cta_title")}),r.jsx(er,{children:t("partners_cta_desc")}),r.jsxs(ar,{to:"/contact",children:[t("partners_cta_button")," ",r.jsx(y,{})]})]})})]})};export{nr as default};

@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useState } from 'react';
-import { Sphere, Stars, CatmullRomLine, Html, useTexture } from '@react-three/drei';
+import { Sphere, CatmullRomLine, Html, useTexture } from '@react-three/drei';
 import { Vector3, NormalBlending } from 'three';
 import { useFrame } from '@react-three/fiber';
 
@@ -15,16 +15,18 @@ const latLonToVector3 = (lat, lon, radius) => {
   return new Vector3(x, y, z);
 };
 
-// --- Data for partners ---
 const locations = [
+  { name: 'Jiksan Hub', lat: 36.881, lon: 127.152 },
   { name: 'Seoul', lat: 37.5665, lon: 126.9780 },
-  { name: 'Berlin', lat: 52.5200, lon: 13.4050 },
-  { name: 'Wuhu', lat: 31.33, lon: 118.38 },
+  { name: 'Shanghai', lat: 31.2304, lon: 121.4737 },
   { name: 'Hong Kong', lat: 22.3193, lon: 114.1694 },
+  { name: 'Frankfurt', lat: 50.1109, lon: 8.6821 },
+  { name: 'Detroit', lat: 42.3314, lon: -83.0458 },
+  { name: 'Southeast Asia', lat: 13.7563, lon: 100.5018 },
 ];
 
 // --- Components for points and arcs ---
-function Point({ position, name }) {
+function Point({ position, name, color }) {
   const [hovered, setHovered] = useState(false);
   const meshRef = useRef();
 
@@ -48,7 +50,7 @@ function Point({ position, name }) {
       onPointerOut={() => setHovered(false)}
     >
       <sphereGeometry args={[0.055, 16, 16]} />
-      <meshBasicMaterial color="gold" toneMapped={false} />
+      <meshBasicMaterial color={color} toneMapped={false} />
       <Html
         as='div'
         distanceFactor={10}
@@ -57,8 +59,8 @@ function Point({ position, name }) {
           opacity: hovered ? 1 : 0,
           pointerEvents: 'none',
           padding: '5px 10px',
-          background: 'rgba(0, 0, 0, 0.7)',
-          color: 'white',
+          background: 'rgba(15, 23, 42, 0.86)',
+          color: '#fff',
           borderRadius: '5px',
           fontSize: '14px',
           whiteSpace: 'nowrap',
@@ -71,7 +73,7 @@ function Point({ position, name }) {
   );
 }
 
-function Points({ points }) {
+function Points({ points, color }) {
   const positions = useMemo(() => {
     return points.map(p => ({
       ...p,
@@ -81,21 +83,22 @@ function Points({ points }) {
 
   return (
     <group>
-      {positions.map((p) => <Point key={p.name} position={p.position} name={p.name} />)}
+      {positions.map((p) => <Point key={p.name} position={p.position} name={p.name} color={color} />)}
     </group>
   );
 }
 
-function Arcs({ points }) {
+function Arcs({ points, color }) {
   const curves = useMemo(() => {
     const result = [];
     // Elevate the arc points slightly more to prevent them from clipping into the globe
     const arcRadius = GLOBE_RADIUS + 0.05;
     const allPointsVec = points.map(p => latLonToVector3(p.lat, p.lon, arcRadius));
+    const hub = allPointsVec[0];
 
-    for (let i = 0; i < allPointsVec.length; i++) {
-      const start = allPointsVec[i];
-      const end = allPointsVec[(i + 1) % allPointsVec.length];
+    for (let i = 1; i < allPointsVec.length; i++) {
+      const start = hub;
+      const end = allPointsVec[i];
 
       const distance = start.distanceTo(end);
       // Adjust arc height based on the distance between points
@@ -113,10 +116,10 @@ function Arcs({ points }) {
         <CatmullRomLine
           key={i}
           points={curvePoints}
-          color="cyan"
-          lineWidth={2}
+          color={color}
+          lineWidth={2.4}
           transparent
-          opacity={0.7}
+          opacity={0.88}
         />
       ))}
     </group>
@@ -126,12 +129,13 @@ function Arcs({ points }) {
 
 const Globe = (props) => {
   const {
-    ambientIntensity = 1.0,
-    directionalIntensity = 12.0,
-    metalness = 0.2,
-    roughness = 0.5,
-    emissiveIntensity = 2.5,
-    cloudsOpacity = 0.25,
+    ambientIntensity = 0.85,
+    directionalIntensity = 7.5,
+    metalness = 0.35,
+    roughness = 0.38,
+    emissiveIntensity = 1.35,
+    cloudsOpacity = 0.18,
+    routeColor = '#ffcc00',
   } = props;
 
   const [
@@ -159,20 +163,29 @@ const Globe = (props) => {
   return (
     <>
       <ambientLight intensity={ambientIntensity} />
-      <directionalLight position={[10, 10, 5]} intensity={directionalIntensity} />
-
-      <Stars radius={300} depth={50} count={2000} factor={4} saturation={0} fade speed={0.5} />
+      <directionalLight position={[8, 8, 6]} intensity={directionalIntensity} />
+      <pointLight position={[-4, -2, 5]} intensity={1.8} color={routeColor} />
 
       <group ref={globeRef}>
         {/* Earth */}
         <Sphere args={[GLOBE_RADIUS, 48, 48]}>
           <meshStandardMaterial
             map={dayMap}
+            color="#cdd5df"
             metalness={metalness}
             roughness={roughness}
             emissiveMap={nightMap}
-            emissive="#ffffff"
+            emissive="#ffcc88"
             emissiveIntensity={emissiveIntensity}
+          />
+        </Sphere>
+
+        <Sphere args={[GLOBE_RADIUS + 0.08, 48, 48]}>
+          <meshBasicMaterial
+            color={routeColor}
+            transparent
+            opacity={0.045}
+            depthWrite={false}
           />
         </Sphere>
 
@@ -191,8 +204,8 @@ const Globe = (props) => {
           />
         </Sphere>
 
-        <Points points={locations} />
-        <Arcs points={locations} />
+        <Points points={locations} color={routeColor} />
+        <Arcs points={locations} color={routeColor} />
       </group>
     </>
   );

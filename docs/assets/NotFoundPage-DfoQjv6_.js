@@ -1,4 +1,4 @@
-import{D as n,A as e,am as a,K as i,B as t,P as c,N as o}from"./index-C5ShRxlg.js";const s=t.div`
+import{C as n,A as e,an as a,J as i,B as t,P as c,N as o}from"./index-DQuugmUd.js";const s=t.div`
   min-height: calc(100vh - 80px);
   display: flex;
   align-items: center;

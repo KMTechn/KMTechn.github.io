@@ -12,9 +12,11 @@ import Loader from './Loader';
 const Desktop3DGlobe = () => {
   return (
     <Canvas
-      camera={{ position: [0, 0, 8], fov: 50 }}
+      camera={{ position: [0, 0, 7.2], fov: 44 }}
       dpr={[1, 1.5]}
       performance={{ min: 0.5 }}
+      gl={{ alpha: true, antialias: true }}
+      style={{ background: 'transparent' }}
     >
       <Suspense fallback={<Loader />}>
         <Globe />
@@ -23,7 +25,7 @@ const Desktop3DGlobe = () => {
         enableZoom={false}
         enablePan={false}
         autoRotate
-        autoRotateSpeed={0.4}
+        autoRotateSpeed={0.28}
         enableDamping
         dampingFactor={0.05}
         mouseButtons={{

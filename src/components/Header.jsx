@@ -3,7 +3,7 @@ import { NavLink as RouterNavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Sun, Moon, Menu, X, Globe } from 'lucide-react';
+import { ArrowRight, Sun, Moon, Menu, X, Globe } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
 
 const HeaderContainer = styled(motion.header)`
@@ -57,10 +57,8 @@ const LogoContainer = styled(RouterNavLink)`
 const LogoText = styled.span`
   font-size: 1.4rem;
   font-weight: 700;
-  background: linear-gradient(135deg, var(--accent-amber) 0%, var(--accent-amber-light) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-color);
+  letter-spacing: 0;
   display: none;
 
   @media (min-width: 640px) {
@@ -159,6 +157,40 @@ const ControlsContainer = styled.div`
 
   @media (max-width: 380px) {
     gap: 0.5rem;
+  }
+`;
+
+const HeaderCTA = styled(RouterNavLink)`
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  background: var(--accent-amber);
+  border: 1px solid var(--accent-amber);
+  color: #121212;
+  font-size: 0.9rem;
+  font-weight: 800;
+  white-space: nowrap;
+  box-shadow: 0 10px 24px rgba(var(--accent-amber-rgb), 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+  &:hover {
+    color: #121212;
+    background: #e6b800;
+    transform: translateY(-1px);
+    box-shadow: 0 14px 28px rgba(var(--accent-amber-rgb), 0.22);
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (max-width: 1100px) {
+    display: none;
   }
 `;
 
@@ -407,8 +439,11 @@ const Header = ({ scrollRootRef }) => {
           <NavLink to="/business" title={t('nav_business')}>{t('nav_business')}</NavLink>
           <NavLink to="/partners" title={t('nav_partners')}>{t('nav_partners')}</NavLink>
           <NavLink to="/contact" title={t('nav_contact')}>{t('nav_contact')}</NavLink>
-        </Nav>
+          </Nav>
         <ControlsContainer>
+          <HeaderCTA to="/contact">
+            {t('partners_cta_button')} <ArrowRight aria-hidden="true" />
+          </HeaderCTA>
           <LanguageSwitcher>
             <LanguageIcon />
             <select
