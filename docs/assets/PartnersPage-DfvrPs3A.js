@@ -1,4 +1,4 @@
-import{C as h,r as c,E as n,A as r,ai as b,aj as v,ak as u,al as f,P as o,I as w,B as e,F as y,G as j,am as _,N as k}from"./index-F1qkWjcP.js";const S=e.section`
+import{C as h,r as c,E as n,A as r,ai as b,aj as v,ak as u,al as f,P as o,I as w,B as e,F as y,G as j,am as _,N as k}from"./index-BY1TtgoX.js";const S=e.section`
   min-height: clamp(500px, 62vh, 640px);
   display: flex;
   align-items: center;

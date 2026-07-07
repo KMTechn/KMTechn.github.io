@@ -258,16 +258,16 @@ const HeroMetricLabel = styled.div`
 
 const TrustSection = styled(Section)`
   background: var(--background-color);
-  padding: clamp(3.5rem, 6vw, 5rem) clamp(1rem, 5vw, 5%);
+  padding: clamp(3rem, 5vw, 4.5rem) clamp(1rem, 5vw, 5%);
 `;
 
 const TrustGrid = styled.div`
-  width: min(100%, 1180px);
+  width: min(100%, 1240px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(17rem, 0.72fr) minmax(0, 1.28fr);
-  gap: clamp(1.25rem, 4vw, 2rem);
-  align-items: stretch;
+  grid-template-columns: minmax(18rem, 0.84fr) minmax(0, 1.16fr);
+  gap: clamp(0.9rem, 2.4vw, 1.4rem);
+  align-items: start;
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
@@ -278,16 +278,22 @@ const TrustIntro = styled.div`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: clamp(1.25rem, 4vw, 2rem);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 1.5rem;
+  padding: clamp(1.1rem, 3vw, 1.6rem);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(1rem, 2.2vw, 1.35rem);
+  align-items: start;
+  min-width: 0;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.04);
+
+  @media (max-width: 620px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const TrustLogo = styled.div`
-  width: 92px;
-  height: 92px;
+  width: clamp(64px, 6vw, 82px);
+  height: clamp(64px, 6vw, 82px);
   border-radius: 8px;
   background: #fff;
   border: 1px solid var(--border-color);
@@ -304,27 +310,39 @@ const TrustLogo = styled.div`
 
 const TrustTitle = styled.h2`
   color: var(--text-color);
-  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  font-size: clamp(1.25rem, 2.2vw, 1.65rem);
   line-height: 1.25;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.65rem;
+  max-width: 17ch;
+
+  @media (max-width: 900px) {
+    max-width: 28ch;
+  }
 `;
 
 const TrustText = styled.p`
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.65;
+  font-size: 0.95rem;
   margin: 0;
 `;
 
 const TrustMetrics = styled.div`
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.85rem;
+  gap: clamp(0.65rem, 1.5vw, 0.85rem);
+  align-items: start;
+  min-width: 0;
 
   @media (max-width: 1020px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   @media (max-width: 520px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 360px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -333,30 +351,55 @@ const TrustMetric = styled.div`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 1rem;
+  padding: clamp(0.9rem, 2vw, 1.15rem);
   min-width: 0;
+  min-height: clamp(142px, 12vw, 170px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.035);
+
+  @media (max-width: 520px) {
+    min-height: auto;
+    padding: 0.9rem;
+  }
 `;
 
 const TrustMetricValue = styled.div`
   color: var(--text-color);
-  font-size: clamp(1.25rem, 3vw, 1.7rem);
-  font-weight: 800;
+  font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+  font-weight: 900;
   line-height: 1.1;
   white-space: nowrap;
 `;
 
 const TrustMetricLabel = styled.div`
   color: var(--text-secondary);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   line-height: 1.35;
-  margin-top: 0.45rem;
+  margin-top: 0.4rem;
+`;
+
+const TrustMetricName = styled(TrustMetricLabel)`
+  color: var(--text-color);
+  font-weight: 700;
+  margin-top: 0.65rem;
+`;
+
+const TrustMetricDetail = styled(TrustMetricLabel)`
+  color: var(--text-secondary);
+  max-width: 15ch;
+
+  @media (max-width: 520px) {
+    max-width: none;
+  }
 `;
 
 const TrustHighlightGrid = styled.div`
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.85rem;
+  gap: clamp(0.65rem, 1.5vw, 0.85rem);
 
   @media (max-width: 700px) {
     grid-template-columns: 1fr;
@@ -367,7 +410,8 @@ const TrustHighlight = styled.div`
   border: 1px solid rgba(var(--accent-amber-rgb), 0.35);
   background: rgba(var(--accent-amber-rgb), 0.08);
   border-radius: 8px;
-  padding: 1rem;
+  padding: 0.9rem 1rem;
+  min-width: 0;
 `;
 
 const TrustHighlightValue = styled.div`
@@ -928,8 +972,8 @@ const AboutUsPage = () => {
             {facilityMetrics.map((metric) => (
               <TrustMetric key={metric.labelKey}>
                 <TrustMetricValue>{metric.value}</TrustMetricValue>
-                <TrustMetricLabel>{t(metric.labelKey)}</TrustMetricLabel>
-                <TrustMetricLabel>{t(metric.detailKey)}</TrustMetricLabel>
+                <TrustMetricName>{t(metric.labelKey)}</TrustMetricName>
+                <TrustMetricDetail>{t(metric.detailKey)}</TrustMetricDetail>
               </TrustMetric>
             ))}
           </TrustMetrics>
