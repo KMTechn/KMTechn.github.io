@@ -1,20 +1,31 @@
-import{C as h,r as c,E as n,A as r,ai as b,aj as v,ak as u,al as f,P as o,I as y,B as e,F as j,G as w,am as _,N as k}from"./index-DQuugmUd.js";const S=e.section`
-  padding: clamp(5.5rem, 9vw, 8rem) clamp(1rem, 5vw, 5%) clamp(3rem, 6vw, 5rem);
-  background: linear-gradient(165deg, var(--background-color) 0%, var(--card-bg) 100%);
+import{C as h,r as c,E as n,A as r,ai as b,aj as v,ak as u,al as f,P as o,I as w,B as e,F as y,G as j,am as _,N as k}from"./index-F1qkWjcP.js";const S=e.section`
+  min-height: clamp(500px, 62vh, 640px);
+  display: flex;
+  align-items: center;
+  padding: clamp(5.75rem, 8vw, 7rem) clamp(1rem, 5vw, 5%) clamp(2.25rem, 4vw, 3.5rem);
+  background:
+    radial-gradient(circle at 83% 18%, rgba(var(--accent-amber-rgb), 0.11), transparent 22rem),
+    linear-gradient(180deg, #ffffff 0%, var(--background-color) 100%);
   border-bottom: 1px solid var(--border-color);
-`,C=e.div`
-  width: min(100%, 1180px);
+  overflow: hidden;
+
+  @media (max-width: 920px) {
+    min-height: auto;
+  }
+`,z=e.div`
+  width: min(100%, 1360px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(19rem, 0.9fr);
+  grid-template-columns: minmax(0, 0.78fr) minmax(20rem, 1fr);
   gap: clamp(2rem, 5vw, 4rem);
   align-items: center;
+  min-width: 0;
 
   @media (max-width: 920px) {
     grid-template-columns: 1fr;
     text-align: center;
   }
-`,z=e.span`
+`,C=e.span`
   display: inline-block;
   color: var(--accent-amber);
   font-size: 0.78rem;
@@ -32,7 +43,7 @@ import{C as h,r as c,E as n,A as r,ai as b,aj as v,ak as u,al as f,P as o,I as y
   color: var(--text-secondary);
   font-size: clamp(1rem, 1.5vw, 1.12rem);
   line-height: 1.8;
-  max-width: 620px;
+  max-width: 560px;
   margin-bottom: 1.5rem;
 
   @media (max-width: 920px) {
@@ -43,24 +54,36 @@ import{C as h,r as c,E as n,A as r,ai as b,aj as v,ak as u,al as f,P as o,I as y
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.75rem;
-  max-width: 560px;
+  max-width: 600px;
+  min-width: 0;
 
   @media (max-width: 920px) {
     margin: 0 auto;
   }
 
   @media (max-width: 520px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.45rem;
   }
 `,L=e.div`
-  background: var(--background-color);
+  background: rgba(255, 255, 255, 0.82);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 1rem;
+  padding: 1rem 1.05rem;
   min-width: 0;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.05);
+
+  @media (max-width: 520px) {
+    padding: 0.78rem 0.55rem;
+    text-align: center;
+  }
 `,A=e.div`
   color: var(--accent-amber);
   margin-bottom: 0.6rem;
+
+  @media (max-width: 520px) {
+    margin-bottom: 0.35rem;
+  }
 `,I=e.div`
   color: var(--text-color);
   font-size: clamp(1.35rem, 3vw, 1.8rem);
@@ -72,36 +95,65 @@ import{C as h,r as c,E as n,A as r,ai as b,aj as v,ak as u,al as f,P as o,I as y
   font-size: 0.8rem;
   line-height: 1.35;
   margin-top: 0.35rem;
+
+  @media (max-width: 520px) {
+    font-size: 0.72rem;
+  }
 `,$=e(o.div)`
+  position: relative;
+  width: 100%;
+  max-width: 620px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
+  gap: 0.8rem;
+  padding: clamp(0.75rem, 2vw, 1rem);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.86)),
+    radial-gradient(circle at 14% 18%, rgba(var(--accent-amber-rgb), 0.13), transparent 16rem);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.12);
+  min-width: 0;
 
   @media (max-width: 920px) {
-    max-width: 520px;
+    max-width: 640px;
     margin: 0 auto;
   }
+
+  @media (max-width: 520px) {
+    grid-template-columns: 1fr;
+  }
 `,B=e.div`
-  min-height: 92px;
+  min-height: clamp(92px, 10vw, 124px);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   background: #fff;
-  padding: 1rem;
+  padding: clamp(0.85rem, 2.2vw, 1.25rem);
   display: grid;
   place-items: center;
+  min-width: 0;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
 
   &:first-child {
     grid-column: span 2;
+    min-height: clamp(108px, 12vw, 142px);
+  }
+
+  @media (max-width: 520px) {
+    &:first-child {
+      grid-column: auto;
+    }
   }
 
   img {
-    max-width: 180px;
+    max-width: min(210px, 100%);
     max-height: 58px;
     object-fit: contain;
   }
 `,E=e.section`
   padding: clamp(4rem, 7vw, 6rem) clamp(1rem, 5vw, 5%);
-  background: var(--background-color);
+  background: linear-gradient(180deg, var(--background-color) 0%, #ffffff 100%);
 `,M=e.div`
   width: min(100%, 720px);
   margin: 0 auto 2rem;
@@ -133,8 +185,8 @@ import{C as h,r as c,E as n,A as r,ai as b,aj as v,ak as u,al as f,P as o,I as y
 `,R=e.button`
   min-height: 44px;
   border-radius: 8px;
-  border: 1px solid ${({$active:t})=>t?"var(--accent-amber)":"var(--border-color)"};
-  background: ${({$active:t})=>t?"rgba(var(--accent-amber-rgb), 0.12)":"var(--card-bg)"};
+  border: 1px solid ${({$active:i})=>i?"var(--accent-amber)":"var(--border-color)"};
+  background: ${({$active:i})=>i?"rgba(var(--accent-amber-rgb), 0.12)":"var(--card-bg)"};
   color: var(--text-color);
   padding: 0.65rem 0.9rem;
   display: inline-flex;
@@ -175,7 +227,7 @@ import{C as h,r as c,E as n,A as r,ai as b,aj as v,ak as u,al as f,P as o,I as y
   place-items: center;
 
   img {
-    max-width: 180px;
+    max-width: min(180px, 100%);
     max-height: 64px;
     object-fit: contain;
   }
@@ -243,4 +295,4 @@ import{C as h,r as c,E as n,A as r,ai as b,aj as v,ak as u,al as f,P as o,I as y
   @media (max-width: 420px) {
     width: 100%;
   }
-`,l={hidden:{opacity:0},visible:{opacity:1,transition:{staggerChildren:.06}}},tr={hidden:{opacity:0,y:18},visible:{opacity:1,y:0,transition:{duration:.35,ease:"easeOut"}}},nr=()=>{const{t}=h(),[i,d]=c.useState("all"),m=["all",...new Set(n.map(a=>a.industryKey))],p=c.useMemo(()=>i==="all"?n:n.filter(a=>a.industryKey===i),[i]),g=[{icon:r.jsx(b,{}),value:`${n.length}+`,label:t("partners_stat_partners")},{icon:r.jsx(v,{}),value:"2",label:t("partners_stat_industries")},{icon:r.jsx(u,{}),value:"3PL",label:t("partners_stat_service_scope")}],x=a=>a==="partners_industry_automotive"?r.jsx(j,{}):a==="partners_industry_electronics"?r.jsx(w,{}):r.jsx(_,{});return r.jsxs(f,{children:[r.jsx(S,{children:r.jsxs(C,{children:[r.jsxs(o.div,{initial:{opacity:0,y:24},animate:{opacity:1,y:0},transition:{duration:.45},children:[r.jsx(z,{children:t("partners_section_label")}),r.jsx(P,{children:t("core_customers_title")}),r.jsx(F,{children:t("partners_hero_desc")}),r.jsx(T,{initial:"hidden",animate:"visible",variants:l,children:g.map(a=>r.jsxs(L,{children:[r.jsx(A,{children:a.icon}),r.jsx(I,{children:a.value}),r.jsx(H,{children:a.label})]},a.label))})]}),r.jsx($,{initial:{opacity:0,y:18},animate:{opacity:1,y:0},transition:{delay:.12,duration:.45},children:n.slice(0,5).map(a=>r.jsx(B,{children:r.jsx("img",{src:a.logo,alt:`${a.name} logo`,loading:"lazy",decoding:"async"})},a.name))})]})}),r.jsxs(E,{children:[r.jsxs(M,{children:[r.jsx(D,{children:t("partners_catalog_label")}),r.jsx(G,{children:t("partners_section_title")}),r.jsx(K,{children:t("partners_section_desc")})]}),r.jsx(N,{"aria-label":t("partners_filter_label"),children:m.map(a=>r.jsxs(R,{type:"button",$active:i===a,"aria-pressed":i===a,onClick:()=>d(a),children:[x(a),t(a==="all"?"partners_filter_all":a)]},a))}),r.jsx(V,{variants:l,initial:"hidden",animate:"visible",children:p.map(a=>r.jsxs(O,{variants:tr,children:[r.jsx(Y,{children:r.jsx("img",{src:a.logo,alt:`${a.name} logo`,loading:"lazy",decoding:"async"})}),r.jsxs(q,{children:[r.jsx(J,{children:a.name}),r.jsx(Q,{children:t(a.industryKey)}),r.jsx(U,{children:a.scopes.map(s=>r.jsx(W,{children:t(s)},s))})]})]},a.name))})]}),r.jsx(X,{children:r.jsxs(Z,{children:[r.jsx(rr,{children:t("partners_cta_title")}),r.jsx(er,{children:t("partners_cta_desc")}),r.jsxs(ar,{to:"/contact",children:[t("partners_cta_button")," ",r.jsx(y,{})]})]})})]})};export{nr as default};
+`,d={hidden:{opacity:0},visible:{opacity:1,transition:{staggerChildren:.06}}},ir={hidden:{opacity:0,y:18},visible:{opacity:1,y:0,transition:{duration:.35,ease:"easeOut"}}},nr=()=>{const{t:i}=h(),[t,l]=c.useState("all"),m=["all",...new Set(n.map(a=>a.industryKey))],p=c.useMemo(()=>t==="all"?n:n.filter(a=>a.industryKey===t),[t]),x=[{icon:r.jsx(b,{}),value:`${n.length}+`,label:i("partners_stat_partners")},{icon:r.jsx(v,{}),value:"2",label:i("partners_stat_industries")},{icon:r.jsx(u,{}),value:"3PL",label:i("partners_stat_service_scope")}],g=a=>a==="partners_industry_automotive"?r.jsx(y,{}):a==="partners_industry_electronics"?r.jsx(j,{}):r.jsx(_,{});return r.jsxs(f,{children:[r.jsx(S,{children:r.jsxs(z,{children:[r.jsxs(o.div,{initial:{opacity:0,y:24},animate:{opacity:1,y:0},transition:{duration:.45},children:[r.jsx(C,{children:i("partners_section_label")}),r.jsx(P,{children:i("core_customers_title")}),r.jsx(F,{children:i("partners_hero_desc")}),r.jsx(T,{initial:"hidden",animate:"visible",variants:d,children:x.map(a=>r.jsxs(L,{children:[r.jsx(A,{children:a.icon}),r.jsx(I,{children:a.value}),r.jsx(H,{children:a.label})]},a.label))})]}),r.jsx($,{initial:{opacity:0,y:18},animate:{opacity:1,y:0},transition:{delay:.12,duration:.45},children:n.slice(0,5).map(a=>r.jsx(B,{children:r.jsx("img",{src:a.logo,alt:`${a.name} logo`,loading:"lazy",decoding:"async"})},a.name))})]})}),r.jsxs(E,{children:[r.jsxs(M,{children:[r.jsx(D,{children:i("partners_catalog_label")}),r.jsx(G,{children:i("partners_section_title")}),r.jsx(K,{children:i("partners_section_desc")})]}),r.jsx(N,{"aria-label":i("partners_filter_label"),children:m.map(a=>r.jsxs(R,{type:"button",$active:t===a,"aria-pressed":t===a,onClick:()=>l(a),children:[g(a),i(a==="all"?"partners_filter_all":a)]},a))}),r.jsx(V,{variants:d,initial:"hidden",animate:"visible",children:p.map(a=>r.jsxs(O,{variants:ir,children:[r.jsx(Y,{children:r.jsx("img",{src:a.logo,alt:`${a.name} logo`,loading:"lazy",decoding:"async"})}),r.jsxs(q,{children:[r.jsx(J,{children:a.name}),r.jsx(Q,{children:i(a.industryKey)}),r.jsx(U,{children:a.scopes.map(s=>r.jsx(W,{children:i(s)},s))})]})]},a.name))})]}),r.jsx(X,{children:r.jsxs(Z,{children:[r.jsx(rr,{children:i("partners_cta_title")}),r.jsx(er,{children:i("partners_cta_desc")}),r.jsxs(ar,{to:"/contact",children:[i("partners_cta_button")," ",r.jsx(w,{})]})]})})]})};export{nr as default};

@@ -8,18 +8,29 @@ import { customerPartners } from '../data/company';
 import { FaArrowRight, FaCar, FaFilter, FaHandshake, FaIndustry, FaLayerGroup, FaTv } from 'react-icons/fa';
 
 const HeroSection = styled.section`
-  padding: clamp(5.5rem, 9vw, 8rem) clamp(1rem, 5vw, 5%) clamp(3rem, 6vw, 5rem);
-  background: linear-gradient(165deg, var(--background-color) 0%, var(--card-bg) 100%);
+  min-height: clamp(500px, 62vh, 640px);
+  display: flex;
+  align-items: center;
+  padding: clamp(5.75rem, 8vw, 7rem) clamp(1rem, 5vw, 5%) clamp(2.25rem, 4vw, 3.5rem);
+  background:
+    radial-gradient(circle at 83% 18%, rgba(var(--accent-amber-rgb), 0.11), transparent 22rem),
+    linear-gradient(180deg, #ffffff 0%, var(--background-color) 100%);
   border-bottom: 1px solid var(--border-color);
+  overflow: hidden;
+
+  @media (max-width: 920px) {
+    min-height: auto;
+  }
 `;
 
 const HeroContent = styled.div`
-  width: min(100%, 1180px);
+  width: min(100%, 1360px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(19rem, 0.9fr);
+  grid-template-columns: minmax(0, 0.78fr) minmax(20rem, 1fr);
   gap: clamp(2rem, 5vw, 4rem);
   align-items: center;
+  min-width: 0;
 
   @media (max-width: 920px) {
     grid-template-columns: 1fr;
@@ -49,7 +60,7 @@ const HeroDescription = styled.p`
   color: var(--text-secondary);
   font-size: clamp(1rem, 1.5vw, 1.12rem);
   line-height: 1.8;
-  max-width: 620px;
+  max-width: 560px;
   margin-bottom: 1.5rem;
 
   @media (max-width: 920px) {
@@ -62,28 +73,40 @@ const StatsContainer = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.75rem;
-  max-width: 560px;
+  max-width: 600px;
+  min-width: 0;
 
   @media (max-width: 920px) {
     margin: 0 auto;
   }
 
   @media (max-width: 520px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.45rem;
   }
 `;
 
 const StatCard = styled.div`
-  background: var(--background-color);
+  background: rgba(255, 255, 255, 0.82);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 1rem;
+  padding: 1rem 1.05rem;
   min-width: 0;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.05);
+
+  @media (max-width: 520px) {
+    padding: 0.78rem 0.55rem;
+    text-align: center;
+  }
 `;
 
 const StatIcon = styled.div`
   color: var(--accent-amber);
   margin-bottom: 0.6rem;
+
+  @media (max-width: 520px) {
+    margin-bottom: 0.35rem;
+  }
 `;
 
 const StatNumber = styled.div`
@@ -99,34 +122,63 @@ const StatLabel = styled.div`
   font-size: 0.8rem;
   line-height: 1.35;
   margin-top: 0.35rem;
+
+  @media (max-width: 520px) {
+    font-size: 0.72rem;
+  }
 `;
 
 const LogoMosaic = styled(motion.div)`
+  position: relative;
+  width: 100%;
+  max-width: 620px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
+  gap: 0.8rem;
+  padding: clamp(0.75rem, 2vw, 1rem);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.86)),
+    radial-gradient(circle at 14% 18%, rgba(var(--accent-amber-rgb), 0.13), transparent 16rem);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.12);
+  min-width: 0;
 
   @media (max-width: 920px) {
-    max-width: 520px;
+    max-width: 640px;
     margin: 0 auto;
+  }
+
+  @media (max-width: 520px) {
+    grid-template-columns: 1fr;
   }
 `;
 
 const MosaicLogo = styled.div`
-  min-height: 92px;
+  min-height: clamp(92px, 10vw, 124px);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   background: #fff;
-  padding: 1rem;
+  padding: clamp(0.85rem, 2.2vw, 1.25rem);
   display: grid;
   place-items: center;
+  min-width: 0;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
 
   &:first-child {
     grid-column: span 2;
+    min-height: clamp(108px, 12vw, 142px);
+  }
+
+  @media (max-width: 520px) {
+    &:first-child {
+      grid-column: auto;
+    }
   }
 
   img {
-    max-width: 180px;
+    max-width: min(210px, 100%);
     max-height: 58px;
     object-fit: contain;
   }
@@ -134,7 +186,7 @@ const MosaicLogo = styled.div`
 
 const PartnersSection = styled.section`
   padding: clamp(4rem, 7vw, 6rem) clamp(1rem, 5vw, 5%);
-  background: var(--background-color);
+  background: linear-gradient(180deg, var(--background-color) 0%, #ffffff 100%);
 `;
 
 const SectionHeader = styled.div`
@@ -226,7 +278,7 @@ const PartnerLogoBox = styled.div`
   place-items: center;
 
   img {
-    max-width: 180px;
+    max-width: min(180px, 100%);
     max-height: 64px;
     object-fit: contain;
   }

@@ -12,17 +12,26 @@ import {
 } from 'react-icons/fa';
 import { HiOutlineChevronRight } from 'react-icons/hi';
 
-// Hero Section - Clean and Professional
 const HeroSection = styled.section`
-  min-height: 60vh;
+  position: relative;
+  min-height: clamp(600px, 72vh, 720px);
   display: flex;
   align-items: center;
-  position: relative;
-  background: linear-gradient(165deg,
-    var(--background-color) 0%,
-    var(--card-bg) 100%);
-  padding: clamp(5.5rem, 9vw, 8rem) clamp(1rem, 5vw, 5%) clamp(4rem, 7vw, 6rem);
+  background:
+    linear-gradient(115deg, rgba(245, 245, 245, 0.98) 0%, rgba(245, 245, 245, 0.94) 38%, rgba(255, 255, 255, 0.42) 100%),
+    radial-gradient(circle at 82% 18%, rgba(var(--accent-amber-rgb), 0.14), transparent 22rem),
+    var(--background-color);
+  padding: clamp(5.75rem, 8vw, 7.5rem) clamp(1rem, 5vw, 5%) clamp(2.35rem, 4vw, 3.5rem);
   overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 34%;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.05) 100%);
+    pointer-events: none;
+  }
 
   &::after {
     content: '';
@@ -33,14 +42,21 @@ const HeroSection = styled.section`
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--border-color), transparent);
   }
+
+  @media (max-width: 1024px) {
+    min-height: auto;
+    padding-top: clamp(5.75rem, 12vw, 7rem);
+  }
 `;
 
 const HeroGrid = styled.div`
-  max-width: 1400px;
+  position: relative;
+  z-index: 1;
+  max-width: 1480px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2.5rem, 6vw, 6rem);
+  grid-template-columns: minmax(0, 0.72fr) minmax(24rem, 1.08fr);
+  gap: clamp(1.75rem, 5vw, 5.5rem);
   align-items: center;
   width: 100%;
   min-width: 0;
@@ -48,13 +64,12 @@ const HeroGrid = styled.div`
 
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
-    gap: 3rem;
-    text-align: center;
+    gap: 2rem;
   }
 `;
 
 const HeroContent = styled(motion.div)`
-  max-width: 600px;
+  max-width: 620px;
   min-width: 0;
 
   @media (max-width: 1024px) {
@@ -66,19 +81,19 @@ const HeroContent = styled(motion.div)`
 const HeroLabel = styled(motion.span)`
   display: inline-block;
   font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
+  font-weight: 800;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent-amber);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.1rem;
 `;
 
 const HeroTitle = styled(motion.h1)`
-  font-size: clamp(2.25rem, 4vw, 3.25rem);
-  font-weight: 700;
-  line-height: 1.25;
+  font-size: clamp(2.35rem, 5vw, 4.35rem);
+  font-weight: 800;
+  line-height: 1.08;
   color: var(--text-color);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
   letter-spacing: 0;
   overflow-wrap: anywhere;
 `;
@@ -88,72 +103,157 @@ const HeroDescription = styled(motion.p)`
   line-height: 1.8;
   color: var(--text-secondary);
   overflow-wrap: anywhere;
+  max-width: 560px;
+`;
+
+const HeroProofGrid = styled(motion.div)`
+  margin-top: clamp(1.35rem, 3vw, 2rem);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+  max-width: 620px;
+
+  @media (max-width: 640px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.45rem;
+  }
+`;
+
+const HeroProofCard = styled.div`
+  min-width: 0;
+  min-height: 94px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.76);
+  padding: 0.85rem;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.06);
+`;
+
+const HeroProofValue = styled.div`
+  color: var(--text-color);
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 900;
+  line-height: 1.12;
+  white-space: nowrap;
+`;
+
+const HeroProofLabel = styled.div`
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  line-height: 1.42;
+  margin-top: 0.45rem;
+
+  @media (max-width: 640px) {
+    font-size: 0.68rem;
+    line-height: 1.34;
+  }
 `;
 
 const HeroVisual = styled(motion.div)`
   position: relative;
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  isolation: isolate;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 74%;
+    height: 72%;
+    right: -1.4rem;
+    bottom: -1.4rem;
+    border-radius: 8px;
+    background: var(--accent-amber);
+    opacity: 0.9;
+    z-index: -1;
+  }
 
   @media (max-width: 1024px) {
-    display: none;
+    max-width: 820px;
+    margin: 0 auto;
+
+    &::before {
+      right: -0.65rem;
+      bottom: -0.65rem;
+    }
   }
 `;
 
-const StatsCard = styled.div`
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
+const HeroImageFrame = styled.div`
+  position: relative;
   border-radius: 8px;
-  padding: clamp(1.5rem, 4vw, 3rem);
+  min-height: clamp(390px, 42vw, 580px);
+  overflow: hidden;
+  background: #111;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.22);
+
+  img {
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.32) 0%, transparent 45%),
+      linear-gradient(180deg, transparent 46%, rgba(0, 0, 0, 0.72) 100%);
+    pointer-events: none;
+  }
+
+  @media (max-width: 640px) {
+    min-height: 340px;
+  }
+`;
+
+const HeroMetricRail = styled.div`
+  position: absolute;
+  left: clamp(0.85rem, 2vw, 1.25rem);
+  right: clamp(0.85rem, 2vw, 1.25rem);
+  bottom: clamp(0.85rem, 2vw, 1.25rem);
+  z-index: 2;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1rem, 3vw, 2rem);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-  min-width: 0;
-`;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.65rem;
 
-const StatItem = styled.div`
-  text-align: center;
-  padding: clamp(0.75rem, 2vw, 1rem);
-  min-width: 0;
-
-  &:not(:last-child) {
-    border-right: 1px solid var(--border-color);
+  @media (max-width: 720px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  &:nth-child(2) {
-    border-right: none;
-  }
-
-  &:nth-child(3), &:nth-child(4) {
-    border-top: 1px solid var(--border-color);
-    padding-top: 2rem;
-  }
-
-  &:nth-child(3) {
-    border-right: 1px solid var(--border-color);
+  @media (max-width: 460px) {
+    position: static;
+    margin-top: 0.7rem;
+    grid-template-columns: 1fr;
   }
 `;
 
-const StatNumber = styled.div`
-  font-size: clamp(1.5rem, 2.8vw, 2.5rem);
-  font-weight: 700;
-  color: var(--text-color);
-  line-height: 1;
-  margin-bottom: 0.5rem;
+const HeroMetricCard = styled.div`
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 0.82rem;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.16);
+`;
+
+const HeroMetricValue = styled.div`
+  color: #111;
+  font-size: clamp(1rem, 2vw, 1.45rem);
+  font-weight: 900;
+  line-height: 1.1;
   white-space: nowrap;
-
-  span {
-    color: var(--accent-amber);
-  }
 `;
 
-const StatLabel = styled.div`
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-  font-weight: 500;
-  line-height: 1.35;
-  overflow-wrap: anywhere;
+const HeroMetricLabel = styled.div`
+  color: #565656;
+  font-size: 0.75rem;
+  line-height: 1.32;
+  margin-top: 0.4rem;
 `;
 
 const TrustSection = styled(Section)`
@@ -761,22 +861,34 @@ const AboutUsPage = () => {
               animate={heroInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.2 }}
             >
-              About KMTech
+              {t('about_trust_label')}
             </HeroLabel>
             <HeroTitle
               initial={{ opacity: 0, y: 20 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              {t('about_ideology_title')}
+              {t('nav_about')}
             </HeroTitle>
             <HeroDescription
               initial={{ opacity: 0, y: 20 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.4, duration: 0.6 }}
             >
-              {t('about_ideology_desc')}
+              {t('about_trust_title')}
             </HeroDescription>
+            <HeroProofGrid
+              initial={{ opacity: 0, y: 18 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.52, duration: 0.55 }}
+            >
+              {operationHighlights.map((item) => (
+                <HeroProofCard key={item.labelKey}>
+                  <HeroProofValue>{item.value}</HeroProofValue>
+                  <HeroProofLabel>{t(item.detailKey)}</HeroProofLabel>
+                </HeroProofCard>
+              ))}
+            </HeroProofGrid>
           </HeroContent>
 
           <HeroVisual
@@ -784,24 +896,17 @@ const AboutUsPage = () => {
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.7 }}
           >
-            <StatsCard>
-              <StatItem>
-                <StatNumber>2,140<span>㎡</span></StatNumber>
-                <StatLabel>{t('stats_warehouse_space')}</StatLabel>
-              </StatItem>
-              <StatItem>
-                <StatNumber>3,000<span>+</span></StatNumber>
-                <StatLabel>{t('stats_pallet_capacity')}</StatLabel>
-              </StatItem>
-              <StatItem>
-                <StatNumber>15<span>+</span></StatNumber>
-                <StatLabel>{t('stats_years_experience')}</StatLabel>
-              </StatItem>
-              <StatItem>
-                <StatNumber>99<span>%</span></StatNumber>
-                <StatLabel>{t('stats_customer_satisfaction')}</StatLabel>
-              </StatItem>
-            </StatsCard>
+            <HeroImageFrame>
+              <img src="/images/kmtech-about-warehouse-hero.png" alt="KMTech warehouse operations" />
+              <HeroMetricRail>
+                {facilityMetrics.map((metric) => (
+                  <HeroMetricCard key={metric.labelKey}>
+                    <HeroMetricValue>{metric.value}</HeroMetricValue>
+                    <HeroMetricLabel>{t(metric.labelKey)}</HeroMetricLabel>
+                  </HeroMetricCard>
+                ))}
+              </HeroMetricRail>
+            </HeroImageFrame>
           </HeroVisual>
         </HeroGrid>
       </HeroSection>

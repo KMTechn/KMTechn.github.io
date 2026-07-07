@@ -23,25 +23,55 @@ L.Marker.prototype.options.icon = defaultLeafletIcon;
 const PageContainer = styled.div`
   color: var(--text-color);
   overflow-x: hidden;
+  background: var(--background-color);
 `;
 
 const HeroSection = styled.section`
-  padding: clamp(5.5rem, 9vw, 8rem) clamp(1rem, 5vw, 5%) clamp(2.5rem, 5vw, 4rem);
-  background: linear-gradient(165deg, var(--background-color) 0%, var(--card-bg) 100%);
-  border-bottom: 1px solid var(--border-color);
+  position: relative;
+  min-height: clamp(520px, 68vh, 680px);
+  display: flex;
+  align-items: center;
+  padding: clamp(6rem, 9vw, 8rem) clamp(1rem, 5vw, 5%) clamp(4rem, 7vw, 6rem);
+  background:
+    linear-gradient(90deg, rgba(8, 10, 12, 0.9) 0%, rgba(8, 10, 12, 0.74) 42%, rgba(8, 10, 12, 0.28) 100%),
+    url('/images/kmtech-contact-warehouse-hero.png') center / cover no-repeat;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 38%;
+    background: linear-gradient(180deg, transparent 0%, rgba(245, 245, 245, 0.96) 100%);
+    pointer-events: none;
+  }
+
+  @media (max-width: 860px) {
+    min-height: auto;
+    background-position: 58% center;
+  }
+
+  @media (min-width: 861px) {
+    min-height: clamp(380px, 48vh, 500px);
+    padding-top: clamp(5.5rem, 7vw, 7rem);
+    padding-bottom: clamp(2.75rem, 4vw, 3.75rem);
+  }
 `;
 
 const HeroInner = styled.div`
-  width: min(100%, 1080px);
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1240px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.8fr);
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.72fr);
   gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: end;
+  align-items: center;
+  min-width: 0;
 
   @media (max-width: 860px) {
     grid-template-columns: 1fr;
-    text-align: center;
   }
 `;
 
@@ -56,15 +86,16 @@ const Eyebrow = styled.span`
 `;
 
 const HeroTitle = styled.h1`
-  color: var(--text-color);
-  font-size: clamp(2.2rem, 5vw, 3.25rem);
-  line-height: 1.15;
+  color: #fff;
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  line-height: 1.08;
   margin-bottom: 1rem;
   letter-spacing: 0;
+  text-shadow: 0 12px 30px rgba(0, 0, 0, 0.42);
 `;
 
 const HeroDescription = styled.p`
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.82);
   font-size: clamp(1rem, 1.5vw, 1.12rem);
   line-height: 1.8;
   margin: 0;
@@ -78,6 +109,13 @@ const HeroDescription = styled.p`
 const ContactRail = styled.div`
   display: grid;
   gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.11);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+  min-width: 0;
 `;
 
 const RailItem = styled.a`
@@ -86,11 +124,11 @@ const RailItem = styled.a`
   align-items: center;
   gap: 0.85rem;
   padding: 0.8rem 1rem;
-  background: var(--background-color);
-  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.58);
   border-radius: 8px;
   text-decoration: none;
-  color: var(--text-color);
+  color: #111;
   min-width: 0;
 
   svg {
@@ -105,6 +143,14 @@ const RailItem = styled.a`
     font-weight: 600;
     font-size: 0.95rem;
   }
+`;
+
+const ContactMainSection = styled(Section)`
+  position: relative;
+  z-index: 2;
+  margin-top: clamp(-3rem, -4vw, -2rem);
+  padding-top: 0;
+  background: transparent;
 `;
 
 const ContentLayout = styled.div`
@@ -126,6 +172,7 @@ const Panel = styled(motion.article)`
   border-radius: 8px;
   padding: clamp(1.25rem, 4vw, 2rem);
   min-width: 0;
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.08);
 `;
 
 const PanelTitle = styled.h2`
@@ -271,7 +318,7 @@ const ContactPage = () => {
         </HeroInner>
       </HeroSection>
 
-      <Section>
+      <ContactMainSection>
         <SectionTitle>{t('contact_section_title')}</SectionTitle>
         <ContentLayout>
           <Panel initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
@@ -316,7 +363,7 @@ const ContactPage = () => {
             ))}
           </LocationStack>
         </ContentLayout>
-      </Section>
+      </ContactMainSection>
     </PageContainer>
   );
 };
