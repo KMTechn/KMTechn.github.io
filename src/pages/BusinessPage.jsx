@@ -4,13 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Section } from '../components/ui/Page';
-import { customerPartners, facilityMetrics } from '../data/company';
+import { customerPartners, facilityMetrics, operationHighlights } from '../data/company';
 import {
   FaArrowRight,
   FaBoxes,
   FaBuilding,
   FaCheckCircle,
-  FaDownload,
   FaExpandArrowsAlt,
   FaQrcode,
   FaRegHandshake,
@@ -279,7 +278,7 @@ const CapabilityValue = styled.strong`
   color: var(--text-color);
   font-size: clamp(1.2rem, 2vw, 1.55rem);
   line-height: 1;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 `;
 
 const CapabilityLabel = styled.span`
@@ -462,32 +461,44 @@ const ServiceList = styled.ul`
   }
 `;
 
-const ServiceMore = styled(Link)`
-  color: var(--accent-amber);
-  font-size: 0.88rem;
-  font-weight: 800;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  width: fit-content;
+const ModuleFacts = styled.div`
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-color);
+`;
+
+const ModuleFact = styled.div`
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: 0.65rem;
+  align-items: start;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  min-width: 0;
+
+  @media (max-width: 520px) {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+`;
+
+const ModuleFactLabel = styled.strong`
+  color: var(--text-color);
+  font-size: 0.76rem;
+  line-height: 1.4;
 `;
 
 const MetricsBar = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
   border: 1px solid var(--border-color);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.96);
   box-shadow: 0 12px 36px rgba(15, 23, 42, 0.05);
   overflow: hidden;
-
-  @media (max-width: 800px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  @media (max-width: 460px) {
-    grid-template-columns: 1fr;
-  }
 `;
 
 const MetricCell = styled.div`
@@ -498,27 +509,10 @@ const MetricCell = styled.div`
   padding: 1rem clamp(1rem, 2vw, 1.35rem);
   min-width: 0;
   border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
 
   &:last-child {
     border-right: 0;
-  }
-
-  @media (max-width: 800px) {
-    &:nth-child(2) {
-      border-right: 0;
-    }
-
-    &:nth-child(-n + 2) {
-      border-bottom: 1px solid var(--border-color);
-    }
-  }
-
-  @media (max-width: 460px) {
-    border-right: 0;
-
-    &:nth-child(-n + 3) {
-      border-bottom: 1px solid var(--border-color);
-    }
   }
 `;
 
@@ -541,7 +535,7 @@ const MetricValue = styled.div`
   font-size: clamp(1.2rem, 2vw, 1.55rem);
   font-weight: 900;
   line-height: 1.05;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 `;
 
 const MetricLabel = styled.div`
@@ -683,6 +677,78 @@ const PartnerLogoCard = styled.div`
   }
 `;
 
+const ConsultationSection = styled(Section)`
+  background:
+    radial-gradient(circle at 80% 0%, rgba(var(--accent-amber-rgb), 0.12), transparent 24rem),
+    var(--card-bg);
+  border-top: 1px solid var(--border-color);
+`;
+
+const ConsultationGrid = styled.div`
+  width: min(100%, 1120px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.42fr) minmax(0, 1fr);
+  gap: clamp(1.25rem, 4vw, 2rem);
+  align-items: start;
+
+  @media (max-width: 880px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const ConsultationIntro = styled.div`
+  ${SectionHeading} {
+    margin-bottom: 0.85rem;
+  }
+`;
+
+const ChecklistGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+
+  @media (max-width: 620px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const ChecklistCard = styled.article`
+  min-height: 132px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: #fff;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: start;
+`;
+
+const ChecklistIcon = styled.div`
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: var(--accent-amber);
+  background: rgba(var(--accent-amber-rgb), 0.11);
+`;
+
+const ChecklistTitle = styled.h3`
+  color: var(--text-color);
+  font-size: 1rem;
+  line-height: 1.35;
+  margin: 0 0 0.45rem;
+`;
+
+const ChecklistText = styled.p`
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  line-height: 1.55;
+  margin: 0;
+`;
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
@@ -708,10 +774,34 @@ const BusinessPage = () => {
   ];
 
   const services = [
-    { icon: <FaWarehouse />, title: t('tpl_warehouse_title'), descKey: 'business_warehouse_summary', items: getSafeArray('tpl_warehouse_items').slice(0, 4) },
-    { icon: <FaSearch />, title: t('tpl_inspection_title'), descKey: 'business_inspection_summary', items: getSafeArray('tpl_inspection_items').slice(0, 4) },
-    { icon: <FaBoxes />, title: t('tpl_packaging_title'), descKey: 'business_packaging_summary', items: getSafeArray('tpl_packaging_items').slice(0, 4) },
-    { icon: <FaShippingFast />, title: t('business_delivery_title'), descKey: 'business_delivery_summary', items: getSafeArray('business_delivery_items').slice(0, 4) },
+    {
+      icon: <FaWarehouse />,
+      title: t('tpl_warehouse_title'),
+      descKey: 'business_warehouse_summary',
+      items: getSafeArray('tpl_warehouse_items').slice(0, 3),
+      facts: ['business_warehouse_target', 'business_warehouse_operation', 'business_warehouse_output'],
+    },
+    {
+      icon: <FaSearch />,
+      title: t('tpl_inspection_title'),
+      descKey: 'business_inspection_summary',
+      items: getSafeArray('tpl_inspection_items').slice(0, 3),
+      facts: ['business_inspection_target', 'business_inspection_operation', 'business_inspection_output'],
+    },
+    {
+      icon: <FaBoxes />,
+      title: t('tpl_packaging_title'),
+      descKey: 'business_packaging_summary',
+      items: getSafeArray('tpl_packaging_items').slice(0, 3),
+      facts: ['business_packaging_target', 'business_packaging_operation', 'business_packaging_output'],
+    },
+    {
+      icon: <FaShippingFast />,
+      title: t('business_delivery_title'),
+      descKey: 'business_delivery_summary',
+      items: getSafeArray('business_delivery_items').slice(0, 3),
+      facts: ['business_delivery_target', 'business_delivery_operation', 'business_delivery_output'],
+    },
   ];
 
   const panelFlow = [
@@ -732,7 +822,16 @@ const BusinessPage = () => {
     { icon: <FaArrowRight />, titleKey: 'process_step_8_title', descKey: 'process_step_8_desc' },
   ];
 
-  const metricIcons = [<FaBuilding />, <FaExpandArrowsAlt />, <FaTruckLoading />, <FaShieldAlt />];
+  const capabilityIcons = [<FaBuilding />, <FaExpandArrowsAlt />, <FaTruckLoading />, <FaShieldAlt />];
+  const metricItems = [...facilityMetrics.slice(0, 2), ...operationHighlights];
+  const metricIcons = [<FaBuilding />, <FaExpandArrowsAlt />, <FaSearch />, <FaQrcode />, <FaTools />];
+  const factLabels = ['business_module_target', 'business_module_operation', 'business_module_output'];
+  const consultationChecks = [
+    { icon: <FaBoxes />, titleKey: 'business_consult_check_volume_title', descKey: 'business_consult_check_volume_desc' },
+    { icon: <FaBuilding />, titleKey: 'business_consult_check_product_title', descKey: 'business_consult_check_product_desc' },
+    { icon: <FaCheckCircle />, titleKey: 'business_consult_check_quality_title', descKey: 'business_consult_check_quality_desc' },
+    { icon: <FaTruckLoading />, titleKey: 'business_consult_check_delivery_title', descKey: 'business_consult_check_delivery_desc' },
+  ];
 
   return (
     <PageContainer>
@@ -759,7 +858,7 @@ const BusinessPage = () => {
                   {t('business_consult_cta')} <FaArrowRight />
                 </PrimaryLink>
                 <SecondaryLink to="/partners">
-                  {t('business_partner_cta')} <FaDownload />
+                  {t('business_partner_cta')} <FaArrowRight />
                 </SecondaryLink>
               </HeroActions>
             </HeroCopy>
@@ -774,7 +873,7 @@ const BusinessPage = () => {
                   <CapabilityGrid>
                     {facilityMetrics.slice(0, 4).map((metric, index) => (
                       <CapabilityCard key={metric.labelKey}>
-                        {metricIcons[index]}
+                        {capabilityIcons[index]}
                         <CapabilityValue>{metric.value}</CapabilityValue>
                         <CapabilityLabel>{t(metric.labelKey)}</CapabilityLabel>
                       </CapabilityCard>
@@ -828,16 +927,21 @@ const BusinessPage = () => {
                       <li key={item}><FaCheckCircle /> <span>{item}</span></li>
                     ))}
                   </ServiceList>
-                  <ServiceMore to="/contact">
-                    {t('business_service_more')} <FaArrowRight />
-                  </ServiceMore>
+                  <ModuleFacts>
+                    {service.facts.map((factKey, factIndex) => (
+                      <ModuleFact key={factKey}>
+                        <ModuleFactLabel>{t(factLabels[factIndex])}</ModuleFactLabel>
+                        <span>{t(factKey)}</span>
+                      </ModuleFact>
+                    ))}
+                  </ModuleFacts>
                 </div>
               </ServiceCard>
             ))}
           </ServicesGrid>
 
           <MetricsBar>
-            {facilityMetrics.map((metric, index) => (
+            {metricItems.map((metric, index) => (
               <MetricCell key={metric.labelKey}>
                 <MetricIcon>{metricIcons[index]}</MetricIcon>
                 <div>
@@ -885,6 +989,27 @@ const BusinessPage = () => {
           ))}
         </PartnersPreview>
       </PartnersSection>
+
+      <ConsultationSection>
+        <ConsultationGrid>
+          <ConsultationIntro>
+            <SectionKicker>{t('business_consult_ready_label')}</SectionKicker>
+            <SectionHeading>{t('business_consult_ready_title')}</SectionHeading>
+            <SectionDescription>{t('business_consult_ready_desc')}</SectionDescription>
+          </ConsultationIntro>
+          <ChecklistGrid>
+            {consultationChecks.map((item) => (
+              <ChecklistCard key={item.titleKey}>
+                <ChecklistIcon>{item.icon}</ChecklistIcon>
+                <div>
+                  <ChecklistTitle>{t(item.titleKey)}</ChecklistTitle>
+                  <ChecklistText>{t(item.descKey)}</ChecklistText>
+                </div>
+              </ChecklistCard>
+            ))}
+          </ChecklistGrid>
+        </ConsultationGrid>
+      </ConsultationSection>
     </PageContainer>
   );
 };

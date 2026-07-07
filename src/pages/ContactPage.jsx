@@ -152,6 +152,57 @@ const RailItem = styled.a`
   }
 `;
 
+const QuickActionGrid = styled.nav`
+  width: min(100%, 1180px);
+  margin: 0 auto clamp(1.2rem, 3vw, 1.8rem);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+
+  @media (max-width: 760px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 420px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const QuickAction = styled.a`
+  min-height: 58px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--card-bg);
+  color: var(--text-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+  min-width: 0;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    color: var(--text-color);
+    border-color: rgba(var(--accent-amber-rgb), 0.6);
+    transform: translateY(-2px);
+  }
+
+  svg {
+    color: var(--accent-amber);
+    flex: 0 0 auto;
+  }
+
+  span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font-size: 0.9rem;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+`;
+
 const ContactMainSection = styled(Section)`
   position: relative;
   z-index: 2;
@@ -235,6 +286,13 @@ const LocationTag = styled.span`
   white-space: nowrap;
 `;
 
+const LocationRole = styled.p`
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  margin: -0.35rem 0 0;
+`;
+
 const InfoRows = styled.div`
   display: grid;
   gap: 0.8rem;
@@ -258,6 +316,33 @@ const InfoRow = styled.div`
     min-width: 0;
     overflow-wrap: anywhere;
     color: inherit;
+  }
+`;
+
+const LocationActions = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+`;
+
+const LocationAction = styled.a`
+  min-height: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--background-color);
+  color: var(--text-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.6rem 0.75rem;
+  text-decoration: none;
+  font-size: 0.84rem;
+  font-weight: 800;
+
+  &:hover {
+    color: var(--text-color);
+    border-color: rgba(var(--accent-amber-rgb), 0.6);
   }
 `;
 
@@ -287,6 +372,7 @@ const ContactPage = () => {
       phone: t('contact_office_phone'),
       pos: headOfficePos,
       tag: t('contact_office_tag'),
+      role: t('contact_office_role'),
     },
     {
       key: 'warehouse',
@@ -296,6 +382,7 @@ const ContactPage = () => {
       phone: t('contact_warehouse_phone'),
       pos: warehousePos,
       tag: t('contact_warehouse_tag'),
+      role: t('contact_warehouse_role'),
     },
   ];
 
@@ -326,15 +413,33 @@ const ContactPage = () => {
       </HeroSection>
 
       <ContactMainSection>
+        <QuickActionGrid aria-label={t('contact_section_title')}>
+          <QuickAction href={`mailto:${t('contact_office_email')}`}>
+            <FaEnvelope />
+            <span>{t('contact_quick_email')}</span>
+          </QuickAction>
+          <QuickAction href={`tel:${t('contact_office_phone')}`}>
+            <FaPhoneAlt />
+            <span>{t('contact_quick_phone')}</span>
+          </QuickAction>
+          <QuickAction href="#contact-form">
+            <FaClock />
+            <span>{t('contact_quick_form')}</span>
+          </QuickAction>
+          <QuickAction href="#locations">
+            <FaRoute />
+            <span>{t('contact_quick_locations')}</span>
+          </QuickAction>
+        </QuickActionGrid>
         <SectionTitle>{t('contact_section_title')}</SectionTitle>
         <ContentLayout>
-          <Panel initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+          <Panel id="contact-form" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
             <PanelTitle>{t('contact_form_title')}</PanelTitle>
             <PanelText>{t('contact_form_panel_desc')}</PanelText>
             <ContactForm />
           </Panel>
 
-          <LocationStack>
+          <LocationStack id="locations">
             {locations.map((location, index) => (
               <LocationCard
                 key={location.key}
@@ -346,6 +451,7 @@ const ContactPage = () => {
                   <LocationTitle>{location.title}</LocationTitle>
                   <LocationTag><FaRoute /> {location.tag}</LocationTag>
                 </LocationHeader>
+                <LocationRole>{location.role}</LocationRole>
                 <InfoRows>
                   <InfoRow>
                     <FaMapMarkerAlt />
@@ -360,6 +466,14 @@ const ContactPage = () => {
                     <a href={`tel:${location.phone}`}>{location.phone}</a>
                   </InfoRow>
                 </InfoRows>
+                <LocationActions>
+                  <LocationAction href={`tel:${location.phone}`}>
+                    <FaPhoneAlt /> {t('contact_quick_phone')}
+                  </LocationAction>
+                  <LocationAction href={`https://www.google.com/maps/search/?api=1&query=${location.pos[0]},${location.pos[1]}`} target="_blank" rel="noreferrer">
+                    <FaMapMarkerAlt /> {t('contact_open_map')}
+                  </LocationAction>
+                </LocationActions>
                 <MapWrapper>
                   <MapContainer center={location.pos} zoom={15} scrollWheelZoom={false}>
                     <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />

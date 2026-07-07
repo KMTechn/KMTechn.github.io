@@ -6,8 +6,8 @@ import Page, { Section, SectionTitle } from '../components/ui/Page';
 import { facilityMetrics, operationHighlights } from '../data/company';
 import {
   FaCheckCircle, FaBuilding, FaBalanceScale,
-  FaLeaf, FaBullseye, FaGavel, FaAward, FaBrain, FaUsersCog,
-  FaUserTie, FaShippingFast, FaMicroscope, FaCogs, FaSearchPlus,
+  FaLeaf, FaBullseye, FaGavel, FaAward, FaBrain,
+  FaShippingFast, FaCogs, FaSearchPlus,
   FaSitemap, FaUsers, FaQuoteLeft
 } from 'react-icons/fa';
 import { HiOutlineChevronRight } from 'react-icons/hi';
@@ -134,7 +134,7 @@ const HeroProofValue = styled.div`
   font-size: clamp(1.05rem, 2vw, 1.35rem);
   font-weight: 900;
   line-height: 1.12;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 `;
 
 const HeroProofLabel = styled.div`
@@ -276,7 +276,7 @@ const HeroMetricValue = styled.div`
   font-size: clamp(1rem, 2vw, 1.45rem);
   font-weight: 900;
   line-height: 1.1;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 `;
 
 const HeroMetricLabel = styled.div`
@@ -400,7 +400,7 @@ const TrustMetricValue = styled.div`
   font-size: clamp(1.2rem, 2.4vw, 1.7rem);
   font-weight: 900;
   line-height: 1.1;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 `;
 
 const TrustMetricLabel = styled.div`
@@ -593,18 +593,27 @@ const SectionDescription = styled.p`
 
 const ValuesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.75rem), 1fr));
-  gap: clamp(1rem, 3vw, 1.5rem);
-  max-width: 1200px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.8rem, 2vw, 1rem);
+  max-width: 980px;
   margin: 0 auto;
+
+  @media (max-width: 760px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const ValueCard = styled(motion.div)`
-  text-align: center;
-  padding: 2rem 1rem;
+  text-align: left;
+  padding: 1rem;
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: center;
+  min-width: 0;
   will-change: transform;
   transform: translateZ(0);
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
@@ -617,17 +626,17 @@ const ValueCard = styled(motion.div)`
 `;
 
 const ValueIcon = styled.div`
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, var(--accent-amber), #f59e0b);
   border-radius: 8px;
-  margin: 0 auto 1.25rem;
+  margin: 0;
 
   svg {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     color: #121212;
   }
 `;
@@ -647,10 +656,14 @@ const StrengthsSection = styled(Section)`
 
 const StrengthsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
-  gap: clamp(1rem, 3vw, 2rem);
-  max-width: 1300px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.9rem, 2vw, 1.25rem);
+  max-width: 1180px;
   margin: 0 auto;
+
+  @media (max-width: 920px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const StrengthCard = styled(motion.div)`
@@ -906,16 +919,12 @@ const AboutUsPage = () => {
     { icon: <FaBuilding />, titleKey: 'pillar_company_development' },
   ];
 
-  // Optimized Unsplash images with smaller size for faster loading
-  // Using w=800 instead of w=2070 reduces image size by ~60%
   const strongPoints = [
-    { icon: <FaAward />, img: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?q=75&w=800&auto=format&fit=crop', titleKey: 'strong_point_1_title', descKey: 'strong_point_1_desc' },
-    { icon: <FaBrain />, img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=75&w=800&auto=format&fit=crop', titleKey: 'strong_point_2_title', descKey: 'strong_point_2_desc' },
-    { icon: <FaUsersCog />, img: 'https://images.unsplash.com/photo-1553413077-190dd305871c?q=75&w=800&auto=format&fit=crop', titleKey: 'strong_point_3_title', descKey: 'strong_point_3_desc' },
-    { icon: <FaUserTie />, img: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=75&w=800&auto=format&fit=crop', titleKey: 'strong_point_4_title', descKey: 'strong_point_4_desc' },
-    { icon: <FaShippingFast />, img: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=75&w=800&auto=format&fit=crop', titleKey: 'strong_point_5_title', descKey: 'strong_point_5_desc' },
-    { icon: <FaMicroscope />, img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=75&w=800&auto=format&fit=crop', titleKey: 'strong_point_6_title', descKey: 'strong_point_6_desc' },
+    { icon: <FaAward />, img: '/images/kmtech-about-warehouse-hero-960.webp', titleKey: 'strong_point_1_title', descKey: 'strong_point_1_desc' },
+    { icon: <FaBrain />, img: '/images/kmtech-home-network-backdrop-960.webp', titleKey: 'strong_point_2_title', descKey: 'strong_point_2_desc' },
+    { icon: <FaShippingFast />, img: '/images/kmtech-contact-warehouse-hero-960.webp', titleKey: 'strong_point_5_title', descKey: 'strong_point_5_desc' },
   ];
+  const proofPoints = strongPoints.slice(0, 3);
 
   const organization = orgStructure || { ceo: { titleKey: 'org_ceo', nameKey: 'org_ceo_name' }, departments: [] };
 
@@ -1034,7 +1043,7 @@ const AboutUsPage = () => {
             animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <PhilosophyLabel>Our Philosophy</PhilosophyLabel>
+            <PhilosophyLabel>{t('about_philosophy_label')}</PhilosophyLabel>
             <PhilosophyTitle>{t('about_ideology_title')}</PhilosophyTitle>
             <PhilosophyText>{t('about_ideology_desc')}</PhilosophyText>
             <QuoteBlock>
@@ -1068,7 +1077,7 @@ const AboutUsPage = () => {
           animate={valuesInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          <SectionLabel>Core Values</SectionLabel>
+          <SectionLabel>{t('about_values_label')}</SectionLabel>
           <SectionTitle>{t('about_pillars_title')}</SectionTitle>
           <SectionDescription>{t('about_values_desc')}</SectionDescription>
         </SectionHeader>
@@ -1095,13 +1104,13 @@ const AboutUsPage = () => {
           animate={strengthsInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          <SectionLabel>Why Choose Us</SectionLabel>
+          <SectionLabel>{t('about_strengths_label')}</SectionLabel>
           <SectionTitle>{t('about_strong_points_title')}</SectionTitle>
           <SectionDescription>{t('about_strengths_desc')}</SectionDescription>
         </SectionHeader>
 
         <StrengthsGrid>
-          {strongPoints.map((item, index) => (
+          {proofPoints.map((item, index) => (
             <StrengthCard
               key={index}
               initial={{ opacity: 0, y: 30 }}
@@ -1131,7 +1140,7 @@ const AboutUsPage = () => {
           animate={orgInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          <SectionLabel>Organization</SectionLabel>
+          <SectionLabel>{t('about_org_label')}</SectionLabel>
           <SectionTitle>{t('about_org_title')}</SectionTitle>
           <SectionDescription>{t('about_org_desc')}</SectionDescription>
         </SectionHeader>

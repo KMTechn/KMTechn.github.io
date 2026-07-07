@@ -1,4 +1,4 @@
-import{C as n,A as e,an as a,J as i,B as t,P as c,N as o}from"./index-B3zR7FmB.js";const s=t.div`
+import{u as n,j as e,W as a,f as i,d as t,m as c,L as o}from"./index-9--Ztt39.js";const s=t.div`
   min-height: calc(100vh - 80px);
   display: flex;
   align-items: center;
@@ -50,7 +50,7 @@ import{C as n,A as e,an as a,J as i,B as t,P as c,N as o}from"./index-B3zR7FmB.j
     transform: translateY(-2px);
     box-shadow: 0 4px 20px rgba(255, 204, 0, 0.3);
   }
-`,h=t(o)`
+`,u=t(o)`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -68,9 +68,9 @@ import{C as n,A as e,an as a,J as i,B as t,P as c,N as o}from"./index-B3zR7FmB.j
     border-color: var(--accent-amber);
     color: var(--accent-amber);
   }
-`,u=t.img`
+`,h=t.img`
   height: 60px;
   width: auto;
   margin-bottom: 2rem;
   opacity: 0.8;
-`,f=()=>{const{t:r}=n();return e.jsx(s,{children:e.jsxs(l,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.5},children:[e.jsx(u,{src:"/logo.png",alt:"KMTech"}),e.jsx(d,{children:"404"}),e.jsx(m,{children:r("error_404_title",{defaultValue:"Page not found"})}),e.jsx(g,{children:r("error_404_desc",{defaultValue:"The page you requested does not exist or may have moved. Use the buttons below to continue."})}),e.jsxs(x,{children:[e.jsxs(p,{to:"/",children:[e.jsx(a,{})," ",r("error_404_home",{defaultValue:"Go home"})]}),e.jsxs(h,{to:"/contact",children:[e.jsx(i,{})," ",r("nav_contact")||"문의하기"]})]})]})})};export{f as default};
+`,f=()=>{const{t:r}=n();return e.jsx(s,{children:e.jsxs(l,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.5},children:[e.jsx(h,{src:"/logo.png",alt:"KMTech"}),e.jsx(d,{children:"404"}),e.jsx(m,{children:r("error_404_title",{defaultValue:"Page not found"})}),e.jsx(g,{children:r("error_404_desc",{defaultValue:"The page you requested does not exist or may have moved. Use the buttons below to continue."})}),e.jsxs(x,{children:[e.jsxs(p,{to:"/",children:[e.jsx(a,{})," ",r("error_404_home",{defaultValue:"Go home"})]}),e.jsxs(u,{to:"/contact",children:[e.jsx(i,{})," ",r("nav_contact")||"문의하기"]})]})]})})};export{f as default};

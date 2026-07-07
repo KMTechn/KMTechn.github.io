@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import Page from '../components/ui/Page';
 import { customerPartners } from '../data/company';
-import { FaArrowRight, FaCar, FaFilter, FaHandshake, FaIndustry, FaLayerGroup, FaTv } from 'react-icons/fa';
+import { FaArrowRight, FaCar, FaCheckCircle, FaFilter, FaHandshake, FaIndustry, FaLayerGroup, FaTv } from 'react-icons/fa';
 
 const HeroSection = styled.section`
   min-height: clamp(500px, 62vh, 640px);
@@ -133,7 +133,6 @@ const LogoMosaic = styled(motion.div)`
   width: 100%;
   max-width: 620px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.8rem;
   padding: clamp(0.75rem, 2vw, 1rem);
   border: 1px solid var(--border-color);
@@ -148,38 +147,79 @@ const LogoMosaic = styled(motion.div)`
     max-width: 640px;
     margin: 0 auto;
   }
+`;
+
+const MosaicHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 0.35rem 0.25rem 0.2rem;
 
   @media (max-width: 520px) {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+`;
+
+const MosaicTitle = styled.h2`
+  color: var(--text-color);
+  font-size: 1.05rem;
+  line-height: 1.35;
+  margin: 0;
+`;
+
+const MosaicCount = styled.span`
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  line-height: 1.35;
+  white-space: nowrap;
+`;
+
+const HeroScopeGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+`;
+
+const HeroScopeChip = styled.span`
+  min-height: 30px;
+  border: 1px solid rgba(var(--accent-amber-rgb), 0.34);
+  border-radius: 8px;
+  background: rgba(var(--accent-amber-rgb), 0.08);
+  color: var(--text-color);
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.55rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1.2;
+`;
+
+const MosaicLogoGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+
+  @media (max-width: 520px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 `;
 
 const MosaicLogo = styled.div`
-  min-height: clamp(92px, 10vw, 124px);
+  min-height: clamp(72px, 7vw, 92px);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   background: #fff;
-  padding: clamp(0.85rem, 2.2vw, 1.25rem);
+  padding: clamp(0.65rem, 1.6vw, 0.95rem);
   display: grid;
   place-items: center;
   min-width: 0;
   overflow: hidden;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
 
-  &:first-child {
-    grid-column: span 2;
-    min-height: clamp(108px, 12vw, 142px);
-  }
-
-  @media (max-width: 520px) {
-    &:first-child {
-      grid-column: auto;
-    }
-  }
-
   img {
-    max-width: min(210px, 100%);
-    max-height: 58px;
+    max-width: min(150px, 100%);
+    max-height: 42px;
     object-fit: contain;
   }
 `;
@@ -249,6 +289,49 @@ const PartnersGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
   gap: 1rem;
+`;
+
+const IndustryReferenceGroup = styled.section`
+  width: min(100%, 1180px);
+  margin: 0 auto clamp(1.5rem, 4vw, 2.5rem);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+const IndustryGroupHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+
+  @media (max-width: 560px) {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+`;
+
+const IndustryGroupTitle = styled.h3`
+  color: var(--text-color);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 1.08rem;
+  line-height: 1.35;
+  margin: 0;
+
+  svg {
+    color: var(--accent-amber);
+  }
+`;
+
+const IndustryGroupCount = styled.span`
+  color: var(--text-secondary);
+  font-size: 0.84rem;
 `;
 
 const PartnerCard = styled(motion.article)`
@@ -327,6 +410,59 @@ const CTASection = styled.section`
   text-align: center;
 `;
 
+const MatrixSection = styled.section`
+  padding: clamp(4rem, 7vw, 6rem) clamp(1rem, 5vw, 5%);
+  background: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+`;
+
+const MatrixWrap = styled.div`
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: #fff;
+`;
+
+const MatrixTable = styled.table`
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+`;
+
+const MatrixTh = styled.th`
+  text-align: left;
+  color: var(--text-color);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  padding: 0.85rem;
+  background: rgba(var(--accent-amber-rgb), 0.08);
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+`;
+
+const MatrixTd = styled.td`
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  padding: 0.85rem;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+`;
+
+const ScopeCheck = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  color: ${({ $active }) => $active ? '#121212' : 'transparent'};
+  background: ${({ $active }) => $active ? 'var(--accent-amber)' : 'var(--background-color)'};
+  border: 1px solid ${({ $active }) => $active ? 'var(--accent-amber)' : 'var(--border-color)'};
+`;
+
 const CTAContent = styled.div`
   width: min(100%, 620px);
   margin: 0 auto;
@@ -388,10 +524,24 @@ const PartnersPage = () => {
     return customerPartners.filter((partner) => partner.industryKey === activeIndustry);
   }, [activeIndustry]);
 
+  const scopeKeys = useMemo(() => (
+    [...new Set(customerPartners.flatMap((partner) => partner.scopes))]
+  ), []);
+
+  const groupedPartners = useMemo(() => {
+    return Object.entries(
+      filteredPartners.reduce((groups, partner) => {
+        groups[partner.industryKey] = groups[partner.industryKey] || [];
+        groups[partner.industryKey].push(partner);
+        return groups;
+      }, {})
+    ).map(([industryKey, partners]) => ({ industryKey, partners }));
+  }, [filteredPartners]);
+
   const stats = [
     { icon: <FaHandshake />, value: `${customerPartners.length}+`, label: t('partners_stat_partners') },
     { icon: <FaIndustry />, value: '2', label: t('partners_stat_industries') },
-    { icon: <FaLayerGroup />, value: '3PL', label: t('partners_stat_service_scope') },
+    { icon: <FaLayerGroup />, value: `${scopeKeys.length}`, label: t('partners_stat_service_scope') },
   ];
 
   const filterIcon = (key) => {
@@ -420,11 +570,22 @@ const PartnersPage = () => {
           </motion.div>
 
           <LogoMosaic initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12, duration: 0.45 }}>
-            {customerPartners.slice(0, 5).map((partner) => (
-              <MosaicLogo key={partner.name}>
-                <img src={partner.logo} alt={`${partner.name} logo`} loading="lazy" decoding="async" />
-              </MosaicLogo>
-            ))}
+            <MosaicHeader>
+              <MosaicTitle>{t('partners_matrix_title')}</MosaicTitle>
+              <MosaicCount>{customerPartners.length} {t('partners_stat_partners')}</MosaicCount>
+            </MosaicHeader>
+            <HeroScopeGrid>
+              {scopeKeys.map((scope) => (
+                <HeroScopeChip key={scope}>{t(scope)}</HeroScopeChip>
+              ))}
+            </HeroScopeGrid>
+            <MosaicLogoGrid>
+              {customerPartners.slice(0, 6).map((partner) => (
+                <MosaicLogo key={partner.name}>
+                  <img src={partner.logo} alt={`${partner.name} logo`} loading="lazy" decoding="async" />
+                </MosaicLogo>
+              ))}
+            </MosaicLogoGrid>
           </LogoMosaic>
         </HeroContent>
       </HeroSection>
@@ -432,8 +593,8 @@ const PartnersPage = () => {
       <PartnersSection>
         <SectionHeader>
           <SectionLabel>{t('partners_catalog_label')}</SectionLabel>
-          <SectionTitle>{t('partners_section_title')}</SectionTitle>
-          <SectionDescription>{t('partners_section_desc')}</SectionDescription>
+          <SectionTitle>{t('partners_reference_title')}</SectionTitle>
+          <SectionDescription>{t('partners_reference_desc')}</SectionDescription>
         </SectionHeader>
 
         <FilterBar aria-label={t('partners_filter_label')}>
@@ -451,25 +612,72 @@ const PartnersPage = () => {
           ))}
         </FilterBar>
 
-        <PartnersGrid variants={containerVariants} initial="hidden" animate="visible">
-          {filteredPartners.map((partner) => (
-            <PartnerCard key={partner.name} variants={itemVariants}>
-              <PartnerLogoBox>
-                <img src={partner.logo} alt={`${partner.name} logo`} loading="lazy" decoding="async" />
-              </PartnerLogoBox>
-              <PartnerMeta>
-                <PartnerName>{partner.name}</PartnerName>
-                <PartnerIndustry>{t(partner.industryKey)}</PartnerIndustry>
-                <ScopeList>
-                  {partner.scopes.map((scope) => (
-                    <ScopeChip key={scope}>{t(scope)}</ScopeChip>
-                  ))}
-                </ScopeList>
-              </PartnerMeta>
-            </PartnerCard>
-          ))}
-        </PartnersGrid>
+        {groupedPartners.map((group) => (
+          <IndustryReferenceGroup key={group.industryKey}>
+            <IndustryGroupHeader>
+              <IndustryGroupTitle>
+                {filterIcon(group.industryKey)}
+                {t(group.industryKey)}
+              </IndustryGroupTitle>
+              <IndustryGroupCount>{group.partners.length} {t('partners_stat_partners')}</IndustryGroupCount>
+            </IndustryGroupHeader>
+            <PartnersGrid variants={containerVariants} initial="hidden" animate="visible">
+              {group.partners.map((partner) => (
+                <PartnerCard key={partner.name} variants={itemVariants}>
+                  <PartnerLogoBox>
+                    <img src={partner.logo} alt={`${partner.name} logo`} loading="lazy" decoding="async" />
+                  </PartnerLogoBox>
+                  <PartnerMeta>
+                    <PartnerName>{partner.name}</PartnerName>
+                    <PartnerIndustry>{t(partner.industryKey)}</PartnerIndustry>
+                    <ScopeList>
+                      {partner.scopes.map((scope) => (
+                        <ScopeChip key={scope}>{t(scope)}</ScopeChip>
+                      ))}
+                    </ScopeList>
+                  </PartnerMeta>
+                </PartnerCard>
+              ))}
+            </PartnersGrid>
+          </IndustryReferenceGroup>
+        ))}
       </PartnersSection>
+
+      <MatrixSection>
+        <SectionHeader>
+          <SectionLabel>{t('partners_matrix_label')}</SectionLabel>
+          <SectionTitle>{t('partners_matrix_title')}</SectionTitle>
+          <SectionDescription>{t('partners_matrix_desc')}</SectionDescription>
+        </SectionHeader>
+        <MatrixWrap>
+          <MatrixTable>
+            <thead>
+              <tr>
+                <MatrixTh>{t('partners_stat_partners')}</MatrixTh>
+                <MatrixTh>{t('partners_stat_industries')}</MatrixTh>
+                {scopeKeys.map((scope) => (
+                  <MatrixTh key={scope}>{t(scope)}</MatrixTh>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {customerPartners.map((partner) => (
+                <tr key={partner.name}>
+                  <MatrixTd><strong>{partner.name}</strong></MatrixTd>
+                  <MatrixTd>{t(partner.industryKey)}</MatrixTd>
+                  {scopeKeys.map((scope) => (
+                    <MatrixTd key={scope}>
+                      <ScopeCheck $active={partner.scopes.includes(scope)} aria-label={partner.scopes.includes(scope) ? t(scope) : ''}>
+                        <FaCheckCircle />
+                      </ScopeCheck>
+                    </MatrixTd>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </MatrixTable>
+        </MatrixWrap>
+      </MatrixSection>
 
       <CTASection>
         <CTAContent>

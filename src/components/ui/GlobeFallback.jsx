@@ -44,7 +44,6 @@ const GlobeFallback = () => {
           alt=""
           loading="eager"
           decoding="async"
-          fetchPriority="high"
         />
       </GlobePicture>
     </Container>

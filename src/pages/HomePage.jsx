@@ -1,11 +1,11 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
-import { motion, AnimatePresence, useInView, useMotionValue, useTransform, animate } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Section, SectionTitle } from '../components/ui/Page';
 import GlobeFallback from '../components/ui/GlobeFallback';
-import { customerPartners, facilityMetrics } from '../data/company';
+import { customerPartners, facilityMetrics, operationHighlights } from '../data/company';
 import {
   FaArrowRight, FaWarehouse, FaBrain, FaShippingFast, FaMicroscope, FaSearch, FaTools,
   FaCheckCircle, FaEnvelope, FaCar, FaTv, FaTruckLoading, FaBoxOpen, FaClipboardCheck
@@ -461,7 +461,7 @@ const HeroProofLabel = styled.div`
 // Stats Section
 const StatsSection = styled.section`
   background: var(--card-bg);
-  padding: 4.5rem 5%;
+  padding: clamp(3.5rem, 6vw, 5.5rem) 5%;
   border-bottom: 1px solid var(--border-color);
 
   @media (max-width: 600px) {
@@ -469,28 +469,63 @@ const StatsSection = styled.section`
   }
 `;
 
+const StatsShell = styled.div`
+  width: min(100%, 1240px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.42fr) minmax(0, 1fr);
+  gap: clamp(1.25rem, 4vw, 2.5rem);
+  align-items: start;
+
+  @media (max-width: 920px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const StatsIntro = styled(motion.div)`
+  text-align: left;
+  min-width: 0;
+
+  ${SectionTitle} {
+    font-size: clamp(1.65rem, 3vw, 2.25rem);
+  }
+
+  @media (max-width: 920px) {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+`;
+
 const StatsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.75rem), 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(0.75rem, 2vw, 1rem);
-  max-width: 1200px;
-  margin: 0 auto;
+
+  @media (max-width: 1180px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const StatItem = styled(motion.div)`
-  text-align: center;
-  padding: 1.35rem 1rem;
+  text-align: left;
+  padding: 1.15rem;
   background: var(--background-color);
   border: 1px solid var(--border-color);
   border-radius: 8px;
+  min-width: 0;
 `;
 
 const StatNumber = styled.div`
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  font-weight: 700;
+  font-size: clamp(1.45rem, 2.8vw, 2.25rem);
+  font-weight: 800;
   color: var(--text-color);
   line-height: 1;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.55rem;
   white-space: nowrap;
 
   span {
@@ -504,6 +539,41 @@ const StatLabel = styled.div`
   font-weight: 500;
   line-height: 1.35;
   overflow-wrap: anywhere;
+`;
+
+const StatDetail = styled.p`
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  margin-top: 0.65rem;
+`;
+
+const OperationProofGrid = styled.div`
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.75rem, 2vw, 1rem);
+  margin-top: 0.25rem;
+
+  @media (max-width: 780px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const OperationProof = styled(motion.div)`
+  border: 1px solid rgba(var(--accent-amber-rgb), 0.35);
+  border-radius: 8px;
+  background: rgba(var(--accent-amber-rgb), 0.08);
+  padding: 1rem;
+  min-width: 0;
+`;
+
+const OperationProofValue = styled.strong`
+  display: block;
+  color: var(--text-color);
+  font-size: 1.05rem;
+  line-height: 1.2;
+  margin-bottom: 0.45rem;
 `;
 
 // Services Section
@@ -607,6 +677,22 @@ const ServiceCard = styled(motion.div)`
 
 `;
 
+const ServiceMeta = styled.span`
+  width: fit-content;
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid rgba(var(--accent-amber-rgb), 0.35);
+  background: rgba(var(--accent-amber-rgb), 0.08);
+  color: var(--text-color);
+  font-size: 0.74rem;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 0.35rem 0.55rem;
+  margin-bottom: 0.85rem;
+`;
+
 const ServiceIcon = styled.div`
   width: 50px;
   height: 50px;
@@ -636,8 +722,23 @@ const ServiceDescription = styled.p`
   font-size: 0.86rem;
   line-height: 1.6;
   color: var(--text-secondary);
-  margin-bottom: 1rem;
+  margin-bottom: 0.9rem;
   flex-grow: 1;
+`;
+
+const ServiceProof = styled.p`
+  color: var(--text-color);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  margin-bottom: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-color);
+
+  strong {
+    color: var(--accent-amber);
+    font-size: 0.74rem;
+    margin-right: 0.35rem;
+  }
 `;
 
 const ServiceLink = styled.div`
@@ -899,6 +1000,73 @@ const PartnersGrid = styled.div`
   gap: 1.5rem;
 `;
 
+const PartnerRouteGrid = styled.div`
+  width: min(100%, 1000px);
+  margin: clamp(1.25rem, 3vw, 2rem) auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+
+  @media (max-width: 820px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const PartnerRouteCard = styled(Link)`
+  min-height: 132px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--card-bg);
+  color: inherit;
+  text-decoration: none;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: start;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    color: inherit;
+    transform: translateY(-3px);
+    border-color: rgba(var(--accent-amber-rgb), 0.6);
+    box-shadow: 0 12px 34px rgba(15, 23, 42, 0.08);
+  }
+`;
+
+const PartnerRouteIcon = styled.div`
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: rgba(var(--accent-amber-rgb), 0.12);
+  color: var(--accent-amber);
+`;
+
+const PartnerRouteTitle = styled.h3`
+  color: var(--text-color);
+  font-size: 1rem;
+  line-height: 1.3;
+  margin: 0 0 0.45rem;
+`;
+
+const PartnerRouteText = styled.p`
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+  line-height: 1.55;
+  margin: 0 0 0.8rem;
+`;
+
+const PartnerRouteAction = styled.span`
+  color: var(--accent-amber);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+`;
+
 const PartnerLogo = styled(motion.img).attrs({
   loading: 'lazy',
   decoding: 'async',
@@ -922,39 +1090,6 @@ const PartnerLogo = styled(motion.img).attrs({
     transform: scale(1.05);
   }
 `;
-
-// Animated counter component
-const AnimatedCounter = ({ value, suffix = '' }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, latest => Math.round(latest));
-  const [displayValue, setDisplayValue] = useState(0);
-
-  useEffect(() => {
-    if (isInView) {
-      const controls = animate(count, value, {
-        duration: 2,
-        ease: 'easeOut',
-      });
-
-      const unsubscribe = rounded.on('change', latest => {
-        setDisplayValue(latest);
-      });
-
-      return () => {
-        controls.stop();
-        unsubscribe();
-      };
-    }
-  }, [isInView, value, count, rounded]);
-
-  return (
-    <StatNumber ref={ref}>
-      {displayValue.toLocaleString()}<span>{suffix}</span>
-    </StatNumber>
-  );
-};
 
 const HomePage = () => {
   const { t } = useTranslation();
@@ -998,23 +1133,16 @@ const HomePage = () => {
   ];
 
   const services = [
-    { icon: <FaWarehouse />, titleKey: 'home_service_warehouse_title', descKey: 'home_service_warehouse_desc' },
-    { icon: <FaSearch />, titleKey: 'home_service_inspection_title', descKey: 'home_service_inspection_desc' },
-    { icon: <FaTools />, titleKey: 'home_service_packaging_title', descKey: 'home_service_packaging_desc' },
-    { icon: <FaShippingFast />, titleKey: 'business_delivery_title', descKey: 'business_delivery_summary' },
+    { icon: <FaWarehouse />, titleKey: 'home_service_warehouse_title', descKey: 'home_service_warehouse_desc', proofKey: 'metric_capacity_detail' },
+    { icon: <FaSearch />, titleKey: 'home_service_inspection_title', descKey: 'home_service_inspection_desc', proofKey: 'metric_clean_booth_detail' },
+    { icon: <FaTools />, titleKey: 'home_service_packaging_title', descKey: 'home_service_packaging_desc', proofKey: 'metric_rework_detail' },
+    { icon: <FaShippingFast />, titleKey: 'business_delivery_title', descKey: 'business_delivery_summary', proofKey: 'metric_qr_detail' },
   ];
 
   const strongPoints = [
     { icon: <FaBrain />, titleKey: 'strong_point_2_title', descKey: 'strong_point_2_desc' },
     { icon: <FaShippingFast />, titleKey: 'strong_point_5_title', descKey: 'strong_point_5_desc' },
     { icon: <FaMicroscope />, titleKey: 'strong_point_6_title', descKey: 'strong_point_6_desc' },
-  ];
-
-  const stats = [
-    { value: 2140, suffix: '㎡', labelKey: 'stats_warehouse_space' },
-    { value: 3000, suffix: '+', labelKey: 'stats_pallet_capacity' },
-    { value: 40, suffix: 'ft x2', labelKey: 'metric_container_dock' },
-    { value: 16, suffix: 'CH', labelKey: 'metric_cctv' },
   ];
 
   const heroProof = [
@@ -1040,6 +1168,12 @@ const HomePage = () => {
 
   const partnersRef = useRef(null);
   const partnersInView = useInView(partnersRef, { once: true, margin: "-50px" });
+
+  const routeCards = [
+    { to: '/business', icon: <FaWarehouse />, titleKey: 'home_route_business_title', descKey: 'home_route_business_desc' },
+    { to: '/partners', icon: <FaCar />, titleKey: 'home_route_partners_title', descKey: 'home_route_partners_desc' },
+    { to: '/contact', icon: <FaEnvelope />, titleKey: 'home_route_contact_title', descKey: 'home_route_contact_desc' },
+  ];
 
   return (
     <PageContainer>
@@ -1123,7 +1257,6 @@ const HomePage = () => {
               alt=""
               loading="eager"
               decoding="async"
-              fetchPriority="high"
             />
             <VisualHeader>
               <VisualKicker>{t('hero_visual_label')}</VisualKicker>
@@ -1163,9 +1296,9 @@ const HomePage = () => {
             animate={servicesInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
           >
-            <SectionLabel>{t('home_section_services_label')}</SectionLabel>
-            <SectionTitle>{t('home_services_title')}</SectionTitle>
-            <SectionDescription>{t('home_services_3pl_desc')}</SectionDescription>
+            <SectionLabel>{t('home_problem_label')}</SectionLabel>
+            <SectionTitle>{t('home_problem_title')}</SectionTitle>
+            <SectionDescription>{t('home_problem_desc')}</SectionDescription>
           </ServicesIntro>
 
           <ServicesGrid>
@@ -1176,9 +1309,14 @@ const HomePage = () => {
                   animate={servicesInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
                 >
+                  <ServiceMeta>{t('home_section_services_label')}</ServiceMeta>
                   <ServiceIcon>{service.icon}</ServiceIcon>
                   <ServiceTitle>{t(service.titleKey)}</ServiceTitle>
                   <ServiceDescription>{t(service.descKey)}</ServiceDescription>
+                  <ServiceProof>
+                    <strong>{t('home_problem_proof_label')}</strong>
+                    {t(service.proofKey)}
+                  </ServiceProof>
                   <ServiceLink>
                     {t('home_services_button')} <HiOutlineChevronRight />
                   </ServiceLink>
@@ -1191,19 +1329,45 @@ const HomePage = () => {
 
       {/* Stats Section */}
       <StatsSection ref={statsRef}>
-        <StatsGrid>
-          {stats.map((stat, index) => (
-            <StatItem
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={statsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-            >
-              <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-              <StatLabel>{t(stat.labelKey)}</StatLabel>
-            </StatItem>
-          ))}
-        </StatsGrid>
+        <StatsShell>
+          <StatsIntro
+            initial={{ opacity: 0, y: 20 }}
+            animate={statsInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5 }}
+          >
+            <SectionLabel>{t('home_facility_label')}</SectionLabel>
+            <SectionTitle>{t('home_facility_title')}</SectionTitle>
+            <SectionDescription>{t('home_facility_desc')}</SectionDescription>
+          </StatsIntro>
+
+          <StatsGrid>
+            {facilityMetrics.map((metric, index) => (
+              <StatItem
+                key={metric.labelKey}
+                initial={{ opacity: 0, y: 20 }}
+                animate={statsInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: index * 0.08, duration: 0.5 }}
+              >
+                <StatNumber>{metric.value}</StatNumber>
+                <StatLabel>{t(metric.labelKey)}</StatLabel>
+                <StatDetail>{t(metric.detailKey)}</StatDetail>
+              </StatItem>
+            ))}
+            <OperationProofGrid>
+              {operationHighlights.map((item, index) => (
+                <OperationProof
+                  key={item.labelKey}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={statsInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.25 + index * 0.08, duration: 0.45 }}
+                >
+                  <OperationProofValue>{item.value}</OperationProofValue>
+                  <StatLabel>{t(item.detailKey)}</StatLabel>
+                </OperationProof>
+              ))}
+            </OperationProofGrid>
+          </StatsGrid>
+        </StatsShell>
       </StatsSection>
 
       {/* Process Section */}
@@ -1257,7 +1421,7 @@ const HomePage = () => {
           animate={strengthsInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          <SectionLabel>{t('home_section_strengths_label')}</SectionLabel>
+          <SectionLabel>{t('home_outcome_label')}</SectionLabel>
           <SectionTitle>{t('home_strengths_title')}</SectionTitle>
         </SectionHeader>
 
@@ -1298,6 +1462,7 @@ const HomePage = () => {
         >
           <SectionLabel>{t('home_section_partners_label')}</SectionLabel>
           <SectionTitle>{t('core_customers_title')}</SectionTitle>
+          <SectionDescription>{t('home_partner_desc')}</SectionDescription>
         </SectionHeader>
 
         <IndustryContainer>
@@ -1328,6 +1493,18 @@ const HomePage = () => {
             </IndustryGroup>
           ))}
         </IndustryContainer>
+        <PartnerRouteGrid>
+          {routeCards.map((route) => (
+            <PartnerRouteCard to={route.to} key={route.titleKey}>
+              <PartnerRouteIcon>{route.icon}</PartnerRouteIcon>
+              <div>
+                <PartnerRouteTitle>{t(route.titleKey)}</PartnerRouteTitle>
+                <PartnerRouteText>{t(route.descKey)}</PartnerRouteText>
+                <PartnerRouteAction>{t('home_route_cta')} <FaArrowRight /></PartnerRouteAction>
+              </div>
+            </PartnerRouteCard>
+          ))}
+        </PartnerRouteGrid>
       </PartnersSection>
     </PageContainer>
   );
