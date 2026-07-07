@@ -35,6 +35,13 @@ const HeroSection = styled.section`
   background:
     linear-gradient(90deg, rgba(8, 10, 12, 0.9) 0%, rgba(8, 10, 12, 0.74) 42%, rgba(8, 10, 12, 0.28) 100%),
     url('/images/kmtech-contact-warehouse-hero.png') center / cover no-repeat;
+  background:
+    linear-gradient(90deg, rgba(8, 10, 12, 0.9) 0%, rgba(8, 10, 12, 0.74) 42%, rgba(8, 10, 12, 0.28) 100%),
+    image-set(
+      url('/images/kmtech-contact-warehouse-hero-960.webp') 1x type('image/webp'),
+      url('/images/kmtech-contact-warehouse-hero-1440.webp') 2x type('image/webp'),
+      url('/images/kmtech-contact-warehouse-hero.png') 2x type('image/png')
+    ) center / cover no-repeat;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   overflow: hidden;
 

@@ -209,6 +209,24 @@ const HeroImageFrame = styled.div`
   @media (max-width: 640px) {
     min-height: 340px;
   }
+
+  @media (max-width: 460px) {
+    min-height: 0;
+    background: #fff;
+
+    img {
+      height: 340px;
+      min-height: 0;
+    }
+
+    &::after {
+      inset: 0 0 auto;
+      height: 340px;
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.18) 0%, transparent 46%),
+        linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.34) 100%);
+    }
+  }
 `;
 
 const HeroMetricRail = styled.div`
@@ -226,9 +244,14 @@ const HeroMetricRail = styled.div`
   }
 
   @media (max-width: 460px) {
-    position: static;
-    margin-top: 0.7rem;
-    grid-template-columns: 1fr;
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+    padding: 0.65rem;
+    background: #fff;
   }
 `;
 
@@ -239,6 +262,13 @@ const HeroMetricCard = styled.div`
   background: rgba(255, 255, 255, 0.92);
   padding: 0.82rem;
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.16);
+
+  @media (max-width: 460px) {
+    border-color: var(--border-color);
+    background: #fff;
+    padding: 0.72rem;
+    box-shadow: none;
+  }
 `;
 
 const HeroMetricValue = styled.div`
@@ -849,7 +879,6 @@ const AboutUsPage = () => {
   const strengthsRef = useRef(null);
   const orgRef = useRef(null);
 
-  const heroInView = useInView(heroRef, { once: true, margin: "-50px" });
   const philosophyInView = useInView(philosophyRef, { once: true, margin: "-50px" });
   const valuesInView = useInView(valuesRef, { once: true, margin: "-50px" });
   const strengthsInView = useInView(strengthsRef, { once: true, margin: "-50px" });
@@ -897,33 +926,33 @@ const AboutUsPage = () => {
         <HeroGrid>
           <HeroContent
             initial={{ opacity: 0, y: 30 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
             <HeroLabel
               initial={{ opacity: 0 }}
-              animate={heroInView ? { opacity: 1 } : {}}
+              animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
             >
               {t('about_trust_label')}
             </HeroLabel>
             <HeroTitle
               initial={{ opacity: 0, y: 20 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
               {t('nav_about')}
             </HeroTitle>
             <HeroDescription
               initial={{ opacity: 0, y: 20 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
             >
               {t('about_trust_title')}
             </HeroDescription>
             <HeroProofGrid
               initial={{ opacity: 0, y: 18 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.52, duration: 0.55 }}
             >
               {operationHighlights.map((item) => (
@@ -937,11 +966,19 @@ const AboutUsPage = () => {
 
           <HeroVisual
             initial={{ opacity: 0, y: 18 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.7 }}
           >
             <HeroImageFrame>
-              <img src="/images/kmtech-about-warehouse-hero.png" alt="KMTech warehouse operations" />
+              <img
+                src="/images/kmtech-about-warehouse-hero.png"
+                srcSet="/images/kmtech-about-warehouse-hero-960.webp 960w, /images/kmtech-about-warehouse-hero-1440.webp 1440w, /images/kmtech-about-warehouse-hero.png 1672w"
+                sizes="(max-width: 1024px) 100vw, 52vw"
+                alt="KMTech warehouse operations"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
+              />
               <HeroMetricRail>
                 {facilityMetrics.map((metric) => (
                   <HeroMetricCard key={metric.labelKey}>

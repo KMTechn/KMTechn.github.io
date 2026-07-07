@@ -43,7 +43,7 @@ const HeroSection = styled.section`
   }
 
   @media (max-width: 600px) {
-    padding: 4.5rem 1.25rem 2.5rem;
+    padding: 3.35rem 1.25rem 2.25rem;
   }
 `;
 
@@ -98,7 +98,7 @@ const Title = styled(motion.h1)`
   overflow-wrap: anywhere;
 
   @media (max-width: 600px) {
-    font-size: clamp(2.25rem, 11vw, 3rem);
+    font-size: clamp(2.1rem, 10vw, 2.75rem);
     margin-bottom: 1rem;
   }
 `;
@@ -114,7 +114,7 @@ const Subtitle = styled(motion.p)`
 
   @media (max-width: 600px) {
     font-size: 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -144,6 +144,10 @@ const ContactInfo = styled(motion.div)`
 
   @media (max-width: 1024px) {
     justify-content: center;
+  }
+
+  @media (max-width: 600px) {
+    display: none;
   }
 `;
 
@@ -256,9 +260,10 @@ const ArtworkContainer = styled(motion.div)`
   }
 
   @media (max-width: 600px) {
-    height: 25rem;
+    height: 20rem;
     max-width: none;
     border-radius: 10px;
+    margin-top: 0.25rem;
   }
 `;
 
@@ -272,6 +277,10 @@ const NetworkBackdrop = styled.img`
   opacity: 0.9;
   filter: saturate(0.94) contrast(0.98) brightness(1.03);
   z-index: 0;
+
+  @media (max-width: 600px) {
+    object-position: 46% center;
+  }
 `;
 
 const VisualHeader = styled.div`
@@ -315,10 +324,10 @@ const GlobeStage = styled.div`
   }
 
   @media (max-width: 600px) {
-    right: -1.5rem;
-    bottom: 6.7rem;
-    width: 14.5rem;
-    height: 14.5rem;
+    right: -0.55rem;
+    bottom: 5.7rem;
+    width: 12.75rem;
+    height: 12.75rem;
   }
 `;
 
@@ -419,6 +428,10 @@ const HeroProofGrid = styled(motion.div)`
   width: 100%;
   max-width: 620px;
   margin-top: 1.5rem;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 
 const HeroProofItem = styled.div`
@@ -1103,7 +1116,15 @@ const HomePage = () => {
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.7 }}
           >
-            <NetworkBackdrop src="/images/kmtech-home-network-backdrop.png" alt="" loading="eager" decoding="async" />
+            <NetworkBackdrop
+              src="/images/kmtech-home-network-backdrop.png"
+              srcSet="/images/kmtech-home-network-backdrop-960.webp 960w, /images/kmtech-home-network-backdrop-1440.webp 1440w, /images/kmtech-home-network-backdrop.png 1672w"
+              sizes="(max-width: 1120px) 100vw, 58vw"
+              alt=""
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+            />
             <VisualHeader>
               <VisualKicker>{t('hero_visual_label')}</VisualKicker>
               <VisualTitle>{t('hero_visual_network')}</VisualTitle>

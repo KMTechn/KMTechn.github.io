@@ -799,7 +799,15 @@ const BusinessPage = () => {
               </PanelColumn>
 
               <MapPanel>
-                <img src="/images/kmtech-korea-operations-map.png" alt="" loading="eager" />
+                <img
+                  src="/images/kmtech-korea-operations-map.png"
+                  srcSet="/images/kmtech-korea-operations-map-960.webp 960w, /images/kmtech-korea-operations-map-1440.webp 1440w, /images/kmtech-korea-operations-map.png 1672w"
+                  sizes="(max-width: 760px) 100vw, 46vw"
+                  alt=""
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
+                />
                 <MapLabel>
                   <LegendLine>{t('business_map_route_label')}</LegendLine>
                   <LegendLine>{t('business_map_node_label')}</LegendLine>

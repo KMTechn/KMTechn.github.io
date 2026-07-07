@@ -13,6 +13,13 @@ const Container = styled.div`
   }
 `;
 
+const GlobePicture = styled.picture`
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+`;
+
 const GlobeImage = styled.img`
   width: 100%;
   height: 100%;
@@ -26,7 +33,20 @@ const GlobeImage = styled.img`
 const GlobeFallback = () => {
   return (
     <Container aria-hidden="true">
-      <GlobeImage src="/images/kmtech-globe-logistics-alpha.png" alt="" loading="eager" decoding="async" />
+      <GlobePicture>
+        <source
+          type="image/webp"
+          srcSet="/images/kmtech-globe-logistics-alpha-640.webp 640w, /images/kmtech-globe-logistics-alpha-960.webp 960w"
+          sizes="(max-width: 600px) 232px, (max-width: 1120px) 380px, 460px"
+        />
+        <GlobeImage
+          src="/images/kmtech-globe-logistics-alpha.png"
+          alt=""
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+        />
+      </GlobePicture>
     </Container>
   );
 };

@@ -1,4 +1,4 @@
-import{C as I,A as e,T as c,X as p,a1 as n,Z as M,I as l,a2 as B,K as x,a3 as g,E as D,B as r,P as s,a4 as h,a5 as b,a6 as R,a7 as V,a8 as E,Q as d,Y as G,N as F,a0 as P}from"./index-BY1TtgoX.js";const N=r.div`
+import{C as I,A as e,T as c,X as p,a1 as n,Z as M,I as l,a2 as B,K as x,a3 as g,E as D,B as r,P as s,a4 as h,a5 as b,a6 as R,a7 as V,a8 as E,Q as d,Y as G,N as F,a0 as P}from"./index-B3zR7FmB.js";const N=r.div`
   color: var(--text-color);
   overflow-x: hidden;
   background: var(--background-color);
@@ -178,7 +178,7 @@ import{C as I,A as e,T as c,X as p,a1 as n,Z as M,I as l,a2 as B,K as x,a3 as g,
   font-size: 1.02rem;
   line-height: 1.25;
   margin: 0;
-`,f=r.span`
+`,y=r.span`
   color: var(--text-secondary);
   font-size: 0.72rem;
   white-space: nowrap;
@@ -273,7 +273,7 @@ import{C as I,A as e,T as c,X as p,a1 as n,Z as M,I as l,a2 as B,K as x,a3 as g,
   border-radius: 8px;
   padding: 0.75rem 0.9rem;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-`,y=r.span`
+`,f=r.span`
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
@@ -341,7 +341,7 @@ import{C as I,A as e,T as c,X as p,a1 as n,Z as M,I as l,a2 as B,K as x,a3 as g,
   font-size: 0.88rem;
   line-height: 1.55;
   margin: 0 0 0.85rem;
-`,fe=r.ul`
+`,ye=r.ul`
   list-style: none;
   display: grid;
   gap: 0.4rem;
@@ -362,7 +362,7 @@ import{C as I,A as e,T as c,X as p,a1 as n,Z as M,I as l,a2 as B,K as x,a3 as g,
     flex: 0 0 auto;
     margin-top: 0.17rem;
   }
-`,ye=r(F)`
+`,fe=r(F)`
   color: var(--accent-amber);
   font-size: 0.88rem;
   font-weight: 800;
@@ -370,7 +370,7 @@ import{C as I,A as e,T as c,X as p,a1 as n,Z as M,I as l,a2 as B,K as x,a3 as g,
   align-items: center;
   gap: 0.45rem;
   width: fit-content;
-`,je=r.div`
+`,we=r.div`
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   border: 1px solid var(--border-color);
@@ -386,7 +386,7 @@ import{C as I,A as e,T as c,X as p,a1 as n,Z as M,I as l,a2 as B,K as x,a3 as g,
   @media (max-width: 460px) {
     grid-template-columns: 1fr;
   }
-`,we=r.div`
+`,je=r.div`
   display: grid;
   grid-template-columns: 46px minmax(0, 1fr);
   gap: 0.85rem;
@@ -434,14 +434,14 @@ import{C as I,A as e,T as c,X as p,a1 as n,Z as M,I as l,a2 as B,K as x,a3 as g,
   font-weight: 900;
   line-height: 1.05;
   white-space: nowrap;
-`,j=r.div`
+`,w=r.div`
   color: var(--text-secondary);
   font-size: 0.78rem;
   line-height: 1.35;
   margin-top: 0.25rem;
 `,ze=r(P)`
   background: var(--card-bg);
-`,w=r.div`
+`,j=r.div`
   width: min(100%, 760px);
   margin: 0 auto clamp(2rem, 5vw, 3rem);
   text-align: center;
@@ -541,4 +541,4 @@ import{C as I,A as e,T as c,X as p,a1 as n,Z as M,I as l,a2 as B,K as x,a3 as g,
     max-height: 58px;
     object-fit: contain;
   }
-`,Be={hidden:{opacity:0},visible:{opacity:1,transition:{staggerChildren:.06}}},S={hidden:{opacity:0,y:18},visible:{opacity:1,y:0,transition:{duration:.35,ease:"easeOut"}}},Re=()=>{const{t}=I(),o=i=>{const a=t(i,{returnObjects:!0});return Array.isArray(a)?a:[a]},L=[{icon:e.jsx(h,{}),titleKey:"business_feature_accuracy_title",descKey:"business_feature_accuracy_desc"},{icon:e.jsx(b,{}),titleKey:"business_feature_trace_title",descKey:"business_feature_trace_desc"},{icon:e.jsx(R,{}),titleKey:"business_feature_flexible_title",descKey:"business_feature_flexible_desc"}],T=[{icon:e.jsx(c,{}),title:t("tpl_warehouse_title"),descKey:"business_warehouse_summary",items:o("tpl_warehouse_items").slice(0,4)},{icon:e.jsx(p,{}),title:t("tpl_inspection_title"),descKey:"business_inspection_summary",items:o("tpl_inspection_items").slice(0,4)},{icon:e.jsx(n,{}),title:t("tpl_packaging_title"),descKey:"business_packaging_summary",items:o("tpl_packaging_items").slice(0,4)},{icon:e.jsx(M,{}),title:t("business_delivery_title"),descKey:"business_delivery_summary",items:o("business_delivery_items").slice(0,4)}],H=[{icon:e.jsx(d,{}),labelKey:"process_step_1_title"},{icon:e.jsx(p,{}),labelKey:"process_step_5_title"},{icon:e.jsx(c,{}),labelKey:"process_step_3_title"},{icon:e.jsx(n,{}),labelKey:"process_step_7_title"}],A=[{icon:e.jsx(c,{}),titleKey:"process_step_1_title",descKey:"process_step_1_desc"},{icon:e.jsx(d,{}),titleKey:"process_step_2_title",descKey:"process_step_2_desc"},{icon:e.jsx(n,{}),titleKey:"process_step_3_title",descKey:"process_step_3_desc"},{icon:e.jsx(G,{}),titleKey:"process_step_4_title",descKey:"process_step_4_desc"},{icon:e.jsx(g,{}),titleKey:"process_step_5_title",descKey:"process_step_5_desc"},{icon:e.jsx(b,{}),titleKey:"process_step_6_title",descKey:"process_step_6_desc"},{icon:e.jsx(n,{}),titleKey:"process_step_7_title",descKey:"process_step_7_desc"},{icon:e.jsx(l,{}),titleKey:"process_step_8_title",descKey:"process_step_8_desc"}],m=[e.jsx(V,{}),e.jsx(E,{}),e.jsx(d,{}),e.jsx(h,{})];return e.jsxs(N,{children:[e.jsx(O,{children:e.jsxs(Y,{children:[e.jsxs(Q,{children:[e.jsxs(W,{initial:{opacity:0,y:24},animate:{opacity:1,y:0},transition:{duration:.45},children:[e.jsx(X,{children:t("business_hero_label")}),e.jsx(Z,{children:t("business_title")}),e.jsx($,{children:t("tpl_biz_desc")}),e.jsx(q,{children:L.map(i=>e.jsxs(J,{children:[e.jsx(U,{children:i.icon}),e.jsxs("div",{children:[e.jsx(ee,{children:t(i.titleKey)}),e.jsx(re,{children:t(i.descKey)})]})]},i.titleKey))}),e.jsxs(ie,{children:[e.jsxs(C,{to:"/contact",children:[t("business_consult_cta")," ",e.jsx(l,{})]}),e.jsxs(te,{to:"/partners",children:[t("business_partner_cta")," ",e.jsx(B,{})]})]})]}),e.jsxs(ae,{initial:{opacity:0,y:18},animate:{opacity:1,y:0},transition:{delay:.15,duration:.45},children:[e.jsxs(se,{children:[e.jsxs(u,{children:[e.jsxs(v,{children:[e.jsx(_,{children:t("business_facility_snapshot")}),e.jsx(f,{children:t("business_actual_data_label")})]}),e.jsx(oe,{children:x.slice(0,4).map((i,a)=>e.jsxs(ne,{children:[m[a],e.jsx(ce,{children:i.value}),e.jsx(le,{children:t(i.labelKey)})]},i.labelKey))})]}),e.jsxs(u,{children:[e.jsxs(v,{children:[e.jsx(_,{children:t("business_flow_label")}),e.jsx(f,{children:t("tpl_work_process_title")})]}),e.jsx(de,{children:H.map(i=>e.jsxs(me,{children:[i.icon,e.jsx(pe,{children:t(i.labelKey)})]},i.labelKey))})]})]}),e.jsxs(xe,{children:[e.jsx("img",{src:"/images/kmtech-korea-operations-map.png",alt:"",loading:"eager"}),e.jsxs(ge,{children:[e.jsx(y,{children:t("business_map_route_label")}),e.jsx(y,{children:t("business_map_node_label")})]})]})]})]}),e.jsx(he,{variants:Be,initial:"hidden",animate:"visible",children:T.map(i=>e.jsxs(be,{variants:S,children:[e.jsx(ue,{children:i.icon}),e.jsxs("div",{children:[e.jsx(ve,{children:i.title}),e.jsx(_e,{children:t(i.descKey)}),e.jsx(fe,{children:i.items.map(a=>e.jsxs("li",{children:[e.jsx(g,{})," ",e.jsx("span",{children:a})]},a))}),e.jsxs(ye,{to:"/contact",children:[t("business_service_more")," ",e.jsx(l,{})]})]})]},i.title))}),e.jsx(je,{children:x.map((i,a)=>e.jsxs(we,{children:[e.jsx(ke,{children:m[a]}),e.jsxs("div",{children:[e.jsx(Ke,{children:i.value}),e.jsx(j,{children:t(i.labelKey)}),e.jsx(j,{children:t(i.detailKey)})]})]},i.labelKey))})]})}),e.jsxs(ze,{children:[e.jsxs(w,{children:[e.jsx(k,{children:t("business_flow_label")}),e.jsx(K,{children:t("tpl_work_process_title")}),e.jsx(z,{children:t("business_flow_desc")})]}),e.jsx(Se,{children:A.map((i,a)=>e.jsxs(Fe,{variants:S,initial:"hidden",whileInView:"visible",viewport:{once:!0,margin:"-60px"},children:[e.jsxs(Pe,{children:[e.jsx(Ce,{children:t("process_step_label",{number:a+1})}),e.jsx(Le,{children:i.icon})]}),e.jsx(Te,{children:t(i.titleKey)}),e.jsx(He,{children:t(i.descKey)})]},i.titleKey))})]}),e.jsxs(Ae,{children:[e.jsxs(w,{children:[e.jsx(k,{children:t("home_section_partners_label")}),e.jsx(K,{children:t("core_customers_title")}),e.jsx(z,{children:t("partners_section_desc")})]}),e.jsx(Ie,{children:D.map(i=>e.jsx(Me,{children:e.jsx("img",{src:i.logo,alt:`${i.name} logo`,loading:"lazy",decoding:"async"})},i.name))})]})]})};export{Re as default};
+`,Be={hidden:{opacity:0},visible:{opacity:1,transition:{staggerChildren:.06}}},S={hidden:{opacity:0,y:18},visible:{opacity:1,y:0,transition:{duration:.35,ease:"easeOut"}}},Re=()=>{const{t}=I(),o=i=>{const a=t(i,{returnObjects:!0});return Array.isArray(a)?a:[a]},L=[{icon:e.jsx(h,{}),titleKey:"business_feature_accuracy_title",descKey:"business_feature_accuracy_desc"},{icon:e.jsx(b,{}),titleKey:"business_feature_trace_title",descKey:"business_feature_trace_desc"},{icon:e.jsx(R,{}),titleKey:"business_feature_flexible_title",descKey:"business_feature_flexible_desc"}],T=[{icon:e.jsx(c,{}),title:t("tpl_warehouse_title"),descKey:"business_warehouse_summary",items:o("tpl_warehouse_items").slice(0,4)},{icon:e.jsx(p,{}),title:t("tpl_inspection_title"),descKey:"business_inspection_summary",items:o("tpl_inspection_items").slice(0,4)},{icon:e.jsx(n,{}),title:t("tpl_packaging_title"),descKey:"business_packaging_summary",items:o("tpl_packaging_items").slice(0,4)},{icon:e.jsx(M,{}),title:t("business_delivery_title"),descKey:"business_delivery_summary",items:o("business_delivery_items").slice(0,4)}],H=[{icon:e.jsx(d,{}),labelKey:"process_step_1_title"},{icon:e.jsx(p,{}),labelKey:"process_step_5_title"},{icon:e.jsx(c,{}),labelKey:"process_step_3_title"},{icon:e.jsx(n,{}),labelKey:"process_step_7_title"}],A=[{icon:e.jsx(c,{}),titleKey:"process_step_1_title",descKey:"process_step_1_desc"},{icon:e.jsx(d,{}),titleKey:"process_step_2_title",descKey:"process_step_2_desc"},{icon:e.jsx(n,{}),titleKey:"process_step_3_title",descKey:"process_step_3_desc"},{icon:e.jsx(G,{}),titleKey:"process_step_4_title",descKey:"process_step_4_desc"},{icon:e.jsx(g,{}),titleKey:"process_step_5_title",descKey:"process_step_5_desc"},{icon:e.jsx(b,{}),titleKey:"process_step_6_title",descKey:"process_step_6_desc"},{icon:e.jsx(n,{}),titleKey:"process_step_7_title",descKey:"process_step_7_desc"},{icon:e.jsx(l,{}),titleKey:"process_step_8_title",descKey:"process_step_8_desc"}],m=[e.jsx(V,{}),e.jsx(E,{}),e.jsx(d,{}),e.jsx(h,{})];return e.jsxs(N,{children:[e.jsx(O,{children:e.jsxs(Y,{children:[e.jsxs(Q,{children:[e.jsxs(W,{initial:{opacity:0,y:24},animate:{opacity:1,y:0},transition:{duration:.45},children:[e.jsx(X,{children:t("business_hero_label")}),e.jsx(Z,{children:t("business_title")}),e.jsx($,{children:t("tpl_biz_desc")}),e.jsx(q,{children:L.map(i=>e.jsxs(J,{children:[e.jsx(U,{children:i.icon}),e.jsxs("div",{children:[e.jsx(ee,{children:t(i.titleKey)}),e.jsx(re,{children:t(i.descKey)})]})]},i.titleKey))}),e.jsxs(ie,{children:[e.jsxs(C,{to:"/contact",children:[t("business_consult_cta")," ",e.jsx(l,{})]}),e.jsxs(te,{to:"/partners",children:[t("business_partner_cta")," ",e.jsx(B,{})]})]})]}),e.jsxs(ae,{initial:{opacity:0,y:18},animate:{opacity:1,y:0},transition:{delay:.15,duration:.45},children:[e.jsxs(se,{children:[e.jsxs(u,{children:[e.jsxs(v,{children:[e.jsx(_,{children:t("business_facility_snapshot")}),e.jsx(y,{children:t("business_actual_data_label")})]}),e.jsx(oe,{children:x.slice(0,4).map((i,a)=>e.jsxs(ne,{children:[m[a],e.jsx(ce,{children:i.value}),e.jsx(le,{children:t(i.labelKey)})]},i.labelKey))})]}),e.jsxs(u,{children:[e.jsxs(v,{children:[e.jsx(_,{children:t("business_flow_label")}),e.jsx(y,{children:t("tpl_work_process_title")})]}),e.jsx(de,{children:H.map(i=>e.jsxs(me,{children:[i.icon,e.jsx(pe,{children:t(i.labelKey)})]},i.labelKey))})]})]}),e.jsxs(xe,{children:[e.jsx("img",{src:"/images/kmtech-korea-operations-map.png",srcSet:"/images/kmtech-korea-operations-map-960.webp 960w, /images/kmtech-korea-operations-map-1440.webp 1440w, /images/kmtech-korea-operations-map.png 1672w",sizes:"(max-width: 760px) 100vw, 46vw",alt:"",loading:"eager",decoding:"async",fetchPriority:"high"}),e.jsxs(ge,{children:[e.jsx(f,{children:t("business_map_route_label")}),e.jsx(f,{children:t("business_map_node_label")})]})]})]})]}),e.jsx(he,{variants:Be,initial:"hidden",animate:"visible",children:T.map(i=>e.jsxs(be,{variants:S,children:[e.jsx(ue,{children:i.icon}),e.jsxs("div",{children:[e.jsx(ve,{children:i.title}),e.jsx(_e,{children:t(i.descKey)}),e.jsx(ye,{children:i.items.map(a=>e.jsxs("li",{children:[e.jsx(g,{})," ",e.jsx("span",{children:a})]},a))}),e.jsxs(fe,{to:"/contact",children:[t("business_service_more")," ",e.jsx(l,{})]})]})]},i.title))}),e.jsx(we,{children:x.map((i,a)=>e.jsxs(je,{children:[e.jsx(ke,{children:m[a]}),e.jsxs("div",{children:[e.jsx(Ke,{children:i.value}),e.jsx(w,{children:t(i.labelKey)}),e.jsx(w,{children:t(i.detailKey)})]})]},i.labelKey))})]})}),e.jsxs(ze,{children:[e.jsxs(j,{children:[e.jsx(k,{children:t("business_flow_label")}),e.jsx(K,{children:t("tpl_work_process_title")}),e.jsx(z,{children:t("business_flow_desc")})]}),e.jsx(Se,{children:A.map((i,a)=>e.jsxs(Fe,{variants:S,initial:"hidden",whileInView:"visible",viewport:{once:!0,margin:"-60px"},children:[e.jsxs(Pe,{children:[e.jsx(Ce,{children:t("process_step_label",{number:a+1})}),e.jsx(Le,{children:i.icon})]}),e.jsx(Te,{children:t(i.titleKey)}),e.jsx(He,{children:t(i.descKey)})]},i.titleKey))})]}),e.jsxs(Ae,{children:[e.jsxs(j,{children:[e.jsx(k,{children:t("home_section_partners_label")}),e.jsx(K,{children:t("core_customers_title")}),e.jsx(z,{children:t("partners_section_desc")})]}),e.jsx(Ie,{children:D.map(i=>e.jsx(Me,{children:e.jsx("img",{src:i.logo,alt:`${i.name} logo`,loading:"lazy",decoding:"async"})},i.name))})]})]})};export{Re as default};
