@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Section } from '../components/ui/Page';
-import { FaBoxes, FaClock, FaEnvelope, FaHeadset, FaMapMarkerAlt, FaPhoneAlt, FaRoute, FaShieldAlt, FaTruckLoading } from 'react-icons/fa';
+import { FaBoxes, FaChevronDown, FaClock, FaEnvelope, FaHeadset, FaMapMarkerAlt, FaPhoneAlt, FaRoute, FaShieldAlt, FaTruckLoading, FaWarehouse } from 'react-icons/fa';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -197,6 +197,7 @@ const RailItem = styled.a`
     border-bottom: 1px solid var(--border-color);
 
     &:last-child {
+      display: none;
       border-bottom: 0;
     }
   }
@@ -256,9 +257,37 @@ const QuickAction = styled.a`
 const ContactMainSection = styled(Section)`
   position: relative;
   z-index: 2;
-  margin-top: clamp(-1rem, -1.5vw, -0.5rem);
+  margin-top: 0;
   padding-top: 0;
   background: transparent;
+`;
+
+const SecurityNotice = styled.div`
+  width: min(100%, 1180px);
+  margin: clamp(1.55rem, 2.4vw, 2.15rem) auto clamp(1.35rem, 2.4vw, 1.75rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  text-align: center;
+
+  svg {
+    color: var(--text-color);
+    flex: 0 0 auto;
+  }
+
+  @media (max-width: 820px) {
+    margin-top: 1.25rem;
+    margin-bottom: 1rem;
+    padding: 0 0.75rem;
+    text-align: left;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: 0.82rem;
+  }
 `;
 
 const ContentLayout = styled.div`
@@ -280,7 +309,16 @@ const Panel = styled(motion.article)`
   border-radius: 8px;
   padding: clamp(0.9rem, 2.4vw, 1.25rem);
   min-width: 0;
-  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.06);
+`;
+
+const FormPanel = styled(Panel)`
+  order: 1;
+
+  @media (max-width: 820px) {
+    order: 3;
+    display: ${({ $mobileOpen }) => $mobileOpen ? 'block' : 'none'};
+  }
 `;
 
 const PanelTitle = styled.h2`
@@ -309,16 +347,43 @@ const LocationStack = styled.div`
 const InquiryPanel = styled(Panel)`
   display: grid;
   gap: 1rem;
+  order: 2;
+
+  @media (max-width: 820px) {
+    order: 1;
+  }
+`;
+
+const MobileFormToggle = styled.button`
+  display: none;
+
+  @media (max-width: 820px) {
+    order: 2;
+    display: flex;
+    min-height: 50px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--accent-amber);
+    color: #121212;
+    padding: 0.8rem 1rem;
+    font: inherit;
+    font-weight: 800;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    cursor: pointer;
+
+    svg {
+      transition: transform 0.2s ease;
+      transform: rotate(${({ $open }) => $open ? '180deg' : '0deg'});
+    }
+  }
 `;
 
 const InquiryGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.75rem;
-
-  @media (max-width: 420px) {
-    grid-template-columns: 1fr;
-  }
 `;
 
 const InquiryType = styled.a`
@@ -386,15 +451,17 @@ const LocationsSection = styled.section`
 
 const LocationCard = styled(Panel)`
   display: grid;
-  gap: 1rem;
+  gap: 0.9rem;
 `;
 
 const LocationMedia = styled.div`
-  height: clamp(104px, 10vw, 132px);
+  width: min(188px, 38%);
+  height: clamp(78px, 8vw, 106px);
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid var(--border-color);
   background: var(--background-color);
+  flex: 0 0 auto;
 
   img {
     width: 100%;
@@ -402,15 +469,25 @@ const LocationMedia = styled.div`
     object-fit: cover;
     display: block;
   }
+
+  @media (max-width: 560px) {
+    width: min(104px, 30%);
+    height: 72px;
+  }
+`;
+
+const LocationSummary = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.85rem;
 `;
 
 const LocationHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-bottom: 0.9rem;
-  border-bottom: 1px solid var(--border-color);
+  display: grid;
+  justify-items: start;
+  gap: 0.45rem;
+  min-width: 0;
 `;
 
 const LocationTitle = styled.h3`
@@ -438,12 +515,12 @@ const LocationRole = styled.p`
   color: var(--text-secondary);
   font-size: 0.88rem;
   line-height: 1.55;
-  margin: -0.35rem 0 0;
+  margin: 0.25rem 0 0;
 `;
 
 const InfoRows = styled.div`
   display: grid;
-  gap: 0.8rem;
+  gap: 0.58rem;
 `;
 
 const InfoRow = styled.div`
@@ -465,19 +542,21 @@ const InfoRow = styled.div`
     overflow-wrap: anywhere;
     color: inherit;
   }
+
+  @media (max-width: 560px) {
+    display: ${({ $mobileOptional }) => $mobileOptional ? 'none' : 'flex'};
+  }
 `;
 
 const LocationActions = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
+  display: grid;
 `;
 
 const LocationAction = styled.a`
-  min-height: 40px;
+  min-height: 42px;
   border-radius: 8px;
   border: 1px solid var(--border-color);
-  background: var(--background-color);
+  background: #fff;
   color: var(--text-color);
   display: inline-flex;
   align-items: center;
@@ -487,6 +566,7 @@ const LocationAction = styled.a`
   text-decoration: none;
   font-size: 0.84rem;
   font-weight: 800;
+  width: 100%;
 
   &:hover {
     color: var(--text-color);
@@ -504,10 +584,15 @@ const MapWrapper = styled.div`
     height: 100%;
     width: 100%;
   }
+
+  @media (max-width: 620px) {
+    display: none;
+  }
 `;
 
 const ContactPage = () => {
   const { t } = useTranslation();
+  const [isMobileFormOpen, setIsMobileFormOpen] = useState(false);
   const headOfficePos = [37.377156, 127.113823];
   const warehousePos = [36.896990, 127.146803];
 
@@ -540,9 +625,9 @@ const ContactPage = () => {
 
   const inquiryTypes = [
     { icon: <FaBoxes />, title: t('contact_inquiry_type_3pl'), text: '견적·계약 문의' },
-    { icon: <FaTruckLoading />, title: t('contact_inquiry_type_partner'), text: '입고·검수 기준' },
-    { icon: <FaShieldAlt />, title: t('contact_inquiry_type_quality'), text: '품질·보안 문의' },
-    { icon: <FaHeadset />, title: t('contact_inquiry_type_general'), text: '기타 일반 문의' },
+    { icon: <FaTruckLoading />, title: '입고·검수 문의', text: '입고 예약, 검수 기준' },
+    { icon: <FaWarehouse />, title: '운영 문의', text: '재고, 출고, 시스템' },
+    { icon: <FaHeadset />, title: '기타 문의', text: '기타 일반 문의' },
   ];
 
   return (
@@ -576,6 +661,10 @@ const ContactPage = () => {
       </HeroSection>
 
       <ContactMainSection>
+        <SecurityNotice>
+          <FaShieldAlt />
+          <span>보내주신 정보는 안전하게 보호되며, 영업 목적의 연락은 하지 않습니다.</span>
+        </SecurityNotice>
         <QuickActionGrid aria-label={t('contact_section_title')}>
           <QuickAction href={`mailto:${t('contact_office_email')}`}>
             <FaEnvelope />
@@ -595,11 +684,16 @@ const ContactPage = () => {
           </QuickAction>
         </QuickActionGrid>
         <ContentLayout>
-          <Panel id="contact-form" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+          <FormPanel
+            id="contact-form"
+            $mobileOpen={isMobileFormOpen}
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
             <PanelTitle>{t('contact_form_title')}</PanelTitle>
-            <PanelText>{t('contact_form_panel_desc')}</PanelText>
             <ContactForm />
-          </Panel>
+          </FormPanel>
 
           <InquiryPanel initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08, duration: 0.4 }}>
             <PanelTitle>{t('contact_inquiry_type_label')}</PanelTitle>
@@ -621,6 +715,16 @@ const ContactPage = () => {
               </ul>
             </InquiryNotice>
           </InquiryPanel>
+          <MobileFormToggle
+            type="button"
+            $open={isMobileFormOpen}
+            aria-expanded={isMobileFormOpen}
+            aria-controls="contact-form"
+            onClick={() => setIsMobileFormOpen((open) => !open)}
+          >
+            문의 내용 남기기
+            <FaChevronDown />
+          </MobileFormToggle>
         </ContentLayout>
 
         <LocationsSection id="locations">
@@ -634,46 +738,48 @@ const ContactPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.08, duration: 0.4 }}
               >
-                <LocationHeader>
-                  <LocationTitle>{location.title}</LocationTitle>
-                  <LocationTag><FaRoute /> {location.tag}</LocationTag>
-                </LocationHeader>
-                <LocationMedia>
-                  <img
-                    src={location.image}
-                    srcSet={location.srcSet}
-                    sizes="(max-width: 820px) 100vw, 42vw"
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </LocationMedia>
-                <LocationRole>{location.role}</LocationRole>
-                <InfoRows>
-                  <InfoRow>
-                    <FaMapMarkerAlt />
-                    <span>{location.address}</span>
-                  </InfoRow>
-                  <InfoRow>
-                    <FaEnvelope />
-                    <a href={`mailto:${location.email}`}>{location.email}</a>
-                  </InfoRow>
-                  <InfoRow>
-                    <FaPhoneAlt />
-                    <a href={`tel:${location.phone}`}>{location.phone}</a>
-                  </InfoRow>
-                </InfoRows>
-                <LocationActions>
-                  <LocationAction href={`https://www.google.com/maps/search/?api=1&query=${location.pos[0]},${location.pos[1]}`} target="_blank" rel="noreferrer">
-                    <FaMapMarkerAlt /> 길찾기
-                  </LocationAction>
-                </LocationActions>
+                <LocationSummary>
+                  <LocationHeader>
+                    <LocationTag><FaRoute /> {location.tag}</LocationTag>
+                    <LocationTitle>{location.title}</LocationTitle>
+                    <LocationRole>{location.role}</LocationRole>
+                    <InfoRows>
+                      <InfoRow>
+                        <FaMapMarkerAlt />
+                        <span>{location.address}</span>
+                      </InfoRow>
+                      <InfoRow $mobileOptional>
+                        <FaEnvelope />
+                        <a href={`mailto:${location.email}`}>{location.email}</a>
+                      </InfoRow>
+                      <InfoRow $mobileOptional>
+                        <FaPhoneAlt />
+                        <a href={`tel:${location.phone}`}>{location.phone}</a>
+                      </InfoRow>
+                    </InfoRows>
+                  </LocationHeader>
+                  <LocationMedia>
+                    <img
+                      src={location.image}
+                      srcSet={location.srcSet}
+                      sizes="(max-width: 620px) 35vw, 188px"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </LocationMedia>
+                </LocationSummary>
                 <MapWrapper>
                   <MapContainer center={location.pos} zoom={15} scrollWheelZoom={false}>
                     <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
                     <Marker position={location.pos}><Popup>{location.title}</Popup></Marker>
                   </MapContainer>
                 </MapWrapper>
+                <LocationActions>
+                  <LocationAction href={`https://www.google.com/maps/search/?api=1&query=${location.pos[0]},${location.pos[1]}`} target="_blank" rel="noreferrer">
+                    <FaMapMarkerAlt /> 길찾기
+                  </LocationAction>
+                </LocationActions>
               </LocationCard>
             ))}
           </LocationStack>

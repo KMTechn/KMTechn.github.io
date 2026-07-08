@@ -7,8 +7,8 @@ import { CheckCircle, AlertCircle, Send } from 'lucide-react';
 const FormContainer = styled(motion.form)`
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-  margin-top: var(--space-5);
+  gap: 0.78rem;
+  margin-top: 0.95rem;
   position: relative;
 `;
 
@@ -21,7 +21,7 @@ const FieldGrid = styled.div`
 const FormField = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: 0.38rem;
 `;
 
 const Label = styled.label`
@@ -31,10 +31,10 @@ const Label = styled.label`
 `;
 
 const inputStyles = css`
-  padding: 0.85rem 1rem;
+  padding: 0.72rem 0.92rem;
   border-radius: 8px;
   border: 1px solid ${({ $hasError }) => $hasError ? 'var(--error-color)' : 'var(--border-color)'};
-  background-color: var(--background-color);
+  background-color: #fff;
   color: var(--text-color);
   font-size: var(--font-base);
   transition: border-color 0.3s, box-shadow 0.3s;
@@ -63,7 +63,7 @@ const Input = styled.input`
 const Textarea = styled.textarea`
   ${inputStyles}
   line-height: var(--line-height-relaxed);
-  min-height: 158px;
+  min-height: 136px;
   resize: vertical;
 `;
 
@@ -144,7 +144,7 @@ const Select = styled.select`
   background:
     linear-gradient(45deg, transparent 50%, var(--text-secondary) 50%) calc(100% - 18px) 52% / 6px 6px no-repeat,
     linear-gradient(135deg, var(--text-secondary) 50%, transparent 50%) calc(100% - 13px) 52% / 6px 6px no-repeat,
-    var(--background-color);
+    #fff;
   color: var(--text-color);
 `;
 
