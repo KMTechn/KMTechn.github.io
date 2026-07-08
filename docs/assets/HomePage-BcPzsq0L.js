@@ -1,4 +1,4 @@
-import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g as C,S as n,L as _,H,o as X,R as J,m as o,h as Q,i as v,k as U,l as ee,n as re,p as te,q as T,s as G,t as ie,v as j}from"./index-do66z6EZ.js";const ae=r.div`
+import{j as e,d as r,u as N,r as c,a as d,c as Y,F as C,b as Z,e as y,f as T,g as H,S as n,L as k,H as G,R as X,o as J,m as o,h as Q,i as u,k as U,l as v,n as ee,p as f,q as re,s as te,t as ie,v as K}from"./index-BO5CLzz_.js";const ae=r.div`
   width: 100%;
   height: 100%;
   min-height: 300px;
@@ -24,11 +24,11 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
 `,se=()=>e.jsx(ae,{"aria-hidden":"true",children:e.jsxs(oe,{children:[e.jsx("source",{type:"image/webp",srcSet:"/images/kmtech-globe-logistics-alpha-640.webp 640w, /images/kmtech-globe-logistics-alpha-960.webp 960w",sizes:"(max-width: 600px) 232px, (max-width: 1120px) 380px, 460px"}),e.jsx(ne,{src:"/images/kmtech-globe-logistics-alpha.png",alt:"",loading:"eager",decoding:"async"})]})}),ce=r.div`
   width: 100%;
   overflow-x: hidden;
-`,le=r.section`
+`,de=r.section`
   min-height: auto;
-  padding: clamp(1rem, 2.6vh, 1.8rem) clamp(1rem, 4vw, 2.5rem) clamp(0.5rem, 1.5vh, 0.9rem);
+  padding: clamp(2.35rem, 4.8vw, 4.25rem) clamp(1rem, 4vw, 2.5rem) clamp(1.2rem, 2.2vw, 1.65rem);
   background:
-    radial-gradient(circle at 77% 18%, rgba(var(--accent-amber-rgb), 0.13), transparent 23rem),
+    radial-gradient(circle at 82% 18%, rgba(var(--accent-amber-rgb), 0.12), transparent 25rem),
     linear-gradient(180deg, #f8f9fb 0%, var(--background-color) 100%);
   position: relative;
   overflow: clip;
@@ -51,13 +51,13 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   @media (max-width: 600px) {
     padding: 3.35rem 1.25rem 2.25rem;
   }
-`,de=r.div`
+`,le=r.div`
   width: min(100%, var(--page-max-width));
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(18rem, 0.46fr) minmax(25rem, 0.9fr);
-  align-items: center;
-  gap: clamp(1.3rem, 3vw, 2.5rem);
+  grid-template-columns: minmax(20rem, 0.48fr) minmax(34rem, 1fr);
+  align-items: end;
+  gap: clamp(0.8rem, 2vw, 1.4rem);
 
   @media (max-width: 820px) {
     grid-template-columns: 1fr;
@@ -85,7 +85,7 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   color: var(--accent-amber);
   margin-bottom: 1.5rem;
 `,he=r(o.h1)`
-  font-size: clamp(2.05rem, 3.6vw, 3rem);
+  font-size: clamp(2.75rem, 5.1vw, 4.45rem);
   font-weight: 800;
   line-height: 1.08;
   margin-bottom: 1rem;
@@ -142,7 +142,7 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   @media (max-width: 600px) {
     display: none;
   }
-`,ye=r.a`
+`,we=r.a`
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -159,7 +159,7 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   &:hover {
     color: var(--accent-amber);
   }
-`,f=r(o(_))`
+`,j=r(o(k))`
   padding: 0.78rem 1.25rem;
   border-radius: 8px;
   background: var(--accent-amber);
@@ -195,7 +195,7 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
     flex: 1 1 100%;
     width: 100%;
   }
-`,we=r(f)`
+`,ye=r(j)`
   background: transparent;
   border: 2px solid var(--border-color);
   color: var(--text-color);
@@ -206,18 +206,16 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
     background: transparent;
     box-shadow: none;
   }
-`,ve=r(o.div)`
-  height: clamp(22rem, 32vw, 28rem);
+`,ue=r(o.div)`
+  height: clamp(25rem, 38vw, 35rem);
   width: 100%;
   position: relative;
   isolation: isolate;
   overflow: clip;
-  border: 1px solid rgba(15, 23, 42, 0.12);
-  border-radius: 12px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(238, 242, 247, 0.92)),
-    radial-gradient(circle at 64% 44%, rgba(var(--accent-amber-rgb), 0.16), transparent 16rem);
-  box-shadow: 0 26px 70px rgba(15, 23, 42, 0.14);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   cursor: grab;
 
   &::before {
@@ -250,7 +248,7 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
     border-radius: 10px;
     margin-top: 0.25rem;
   }
-`,ue=r.img`
+`,ve=r.img`
   position: absolute;
   inset: 0;
   width: 100%;
@@ -284,10 +282,10 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   font-weight: 600;
 `,ke=r.div`
   position: absolute;
-  right: clamp(0.6rem, 2.2vw, 1.4rem);
-  bottom: clamp(4.1rem, 6vw, 5.4rem);
-  width: clamp(14rem, 25vw, 21rem);
-  height: clamp(14rem, 25vw, 21rem);
+  right: clamp(-2.4rem, -2.4vw, -0.5rem);
+  bottom: clamp(2.5rem, 4.6vw, 4.5rem);
+  width: clamp(19rem, 31vw, 28rem);
+  height: clamp(19rem, 31vw, 28rem);
   display: grid;
   place-items: center;
   z-index: 2;
@@ -309,7 +307,7 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   top: clamp(1rem, 2vw, 1.5rem);
   right: clamp(1rem, 2vw, 1.5rem);
   z-index: 3;
-  display: grid;
+  display: none;
   gap: 0.5rem;
   width: min(30%, 13rem);
 
@@ -346,6 +344,7 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   right: clamp(1rem, 2vw, 1.5rem);
   bottom: clamp(1rem, 2vw, 1.35rem);
   z-index: 4;
+  display: none;
   border: 1px solid rgba(15, 23, 42, 0.1);
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.9);
@@ -383,24 +382,45 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
     font-size: 1.35rem;
   }
 `,Ce=r(o.div)`
-  display: none;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
   width: 100%;
-  max-width: 500px;
-  margin-top: 1.25rem;
-
-  @media (max-width: 600px) {
-    display: none;
-  }
-`,He=r.div`
-  border: 1px solid rgba(15, 23, 42, 0.1);
+  max-width: none;
+  margin-top: clamp(-1.75rem, -2.3vw, -1rem);
+  position: relative;
+  z-index: 5;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.96);
-  padding: 0.9rem 0.95rem;
-  min-width: 0;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 22px 58px rgba(15, 23, 42, 0.1);
+  overflow: hidden;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 0.75rem;
+  }
+
+  @media (max-width: 820px) {
+    order: 3;
+  }
 `,Te=r.div`
+  border-right: 1px solid var(--border-color);
+  background: transparent;
+  padding: 1.1rem 1.45rem;
+  min-width: 0;
+
+  &:last-child {
+    border-right: 0;
+  }
+
+  @media (max-width: 600px) {
+    border-right: 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+`,He=r.div`
   color: var(--text-color);
   font-size: 1.22rem;
   font-weight: 900;
@@ -414,7 +434,7 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   overflow-wrap: anywhere;
 `,Le=r.section`
   background: var(--card-bg);
-  padding: clamp(2.6rem, 4.5vw, 4rem) 5%;
+  padding: clamp(2rem, 3.6vw, 3.1rem) 5%;
   border-bottom: 1px solid var(--border-color);
 
   @media (max-width: 600px) {
@@ -424,46 +444,73 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   width: min(100%, 1240px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(18rem, 0.42fr) minmax(0, 1fr);
-  gap: clamp(1.25rem, 4vw, 2.5rem);
+  grid-template-columns: minmax(0, 0.95fr) minmax(20rem, 0.82fr);
+  gap: clamp(1rem, 2.6vw, 1.65rem);
   align-items: start;
 
-  @media (max-width: 820px) {
+  @media (max-width: 1080px) {
     grid-template-columns: 1fr;
   }
 `,Me=r(o.div)`
+  grid-column: 1 / -1;
   text-align: left;
   min-width: 0;
+  max-width: 720px;
 
   ${n} {
     font-size: clamp(1.65rem, 3vw, 2.25rem);
   }
 
   @media (max-width: 820px) {
-    text-align: center;
+    text-align: left;
     max-width: 680px;
-    margin: 0 auto;
+    margin: 0;
   }
 `,$e=r.div`
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(0.75rem, 2vw, 1rem);
+  grid-template-columns: 1fr;
+  gap: 0;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--background-color);
 
-  @media (max-width: 1180px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  @media (max-width: 1080px) {
+    grid-template-columns: 1fr;
   }
 
   @media (max-width: 560px) {
     grid-template-columns: 1fr;
   }
 `,De=r(o.div)`
-  text-align: left;
-  padding: 1.15rem;
-  background: var(--background-color);
-  border: 1px solid var(--border-color);
+  min-height: clamp(18rem, 27vw, 24rem);
   border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  background: #111;
+  box-shadow: 0 18px 46px rgba(15, 23, 42, 0.1);
+
+  img {
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+  }
+`,Oe=r(o.div)`
+  text-align: left;
+  padding: 1rem 1.15rem;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 0;
   min-width: 0;
-`,Oe=r.div`
+
+  &:last-of-type {
+    border-bottom: 0;
+  }
+`,qe=r.div`
   font-size: clamp(1.45rem, 2.8vw, 2.25rem);
   font-weight: 800;
   color: var(--text-color);
@@ -487,7 +534,7 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   margin-top: 0.65rem;
 `,We=r.div`
   grid-column: 1 / -1;
-  display: grid;
+  display: none;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(0.75rem, 2vw, 1rem);
   margin-top: 0.25rem;
@@ -495,42 +542,45 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   @media (max-width: 780px) {
     grid-template-columns: 1fr;
   }
-`,qe=r(o.div)`
+`,Ee=r(o.div)`
   border: 1px solid rgba(var(--accent-amber-rgb), 0.35);
   border-radius: 8px;
   background: rgba(var(--accent-amber-rgb), 0.08);
   padding: 1rem;
   min-width: 0;
-`,Ee=r.strong`
+`,Ne=r.strong`
   display: block;
   color: var(--text-color);
   font-size: 1.05rem;
   line-height: 1.2;
   margin-bottom: 0.45rem;
-`,Ne=r(j)`
+`,Ye=r(K)`
   background: var(--background-color);
-  padding: clamp(1.45rem, 2.6vw, 2.1rem) 5%;
+  padding: clamp(2rem, 3.5vw, 3rem) 5%;
 
   @media (max-width: 600px) {
-    padding: 4.5rem 1.25rem;
+    padding: 3rem 1.25rem;
   }
-`,Ye=r.div`
+`,Ze=r.div`
   width: min(100%, var(--page-max-width));
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(15rem, 0.28fr) minmax(0, 1fr);
-  gap: clamp(1rem, 2.5vw, 1.8rem);
+  grid-template-columns: 1fr;
+  gap: clamp(1.3rem, 2.8vw, 2rem);
   align-items: start;
 
   @media (max-width: 1100px) {
     grid-template-columns: 1fr;
   }
-`,Ze=r(o.div)`
+`,Xe=r(o.div)`
   text-align: left;
   min-width: 0;
+  max-width: 740px;
 
   ${n} {
-    font-size: clamp(1.45rem, 2.6vw, 2rem);
+    font-size: clamp(1.7rem, 3vw, 2.35rem);
+    text-align: left;
+    margin-bottom: 0.65rem;
   }
 
   @media (max-width: 1100px) {
@@ -542,7 +592,7 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
       margin-bottom: 0.75rem;
     }
   }
-`,u=r(o.div)`
+`,_=r(o.div)`
   text-align: center;
   max-width: 680px;
   margin: 0 auto clamp(2rem, 4vw, 3rem);
@@ -550,7 +600,7 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   @media (max-width: 600px) {
     margin-bottom: 2.25rem;
   }
-`,d=r.span`
+`,l=r.span`
   display: inline-block;
   font-size: 0.75rem;
   font-weight: 600;
@@ -558,14 +608,14 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   text-transform: uppercase;
   color: var(--accent-amber);
   margin-bottom: 1rem;
-`,p=r.p`
+`,h=r.p`
   font-size: 0.95rem;
   line-height: 1.62;
   color: var(--text-secondary);
-`,Xe=r.div`
+`,Je=r.div`
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: clamp(0.65rem, 1vw, 0.85rem);
+  gap: clamp(0.75rem, 1.2vw, 1rem);
   min-width: 0;
 
   @media (max-width: 1080px) {
@@ -579,7 +629,7 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: clamp(0.8rem, 1.4vw, 1rem);
+  padding: clamp(1rem, 1.65vw, 1.25rem);
   cursor: pointer;
   will-change: transform;
   transform: translateZ(0);
@@ -587,6 +637,7 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-height: 190px;
   min-width: 0;
 
   &:hover {
@@ -595,7 +646,7 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
   }
 
-`,Je=r.span`
+`,Qe=r.span`
   width: fit-content;
   min-height: 28px;
   display: inline-flex;
@@ -609,7 +660,8 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   line-height: 1.2;
   padding: 0.35rem 0.55rem;
   margin-bottom: 0.7rem;
-`,Qe=r.div`
+  display: none;
+`,Ue=r.div`
   width: 40px;
   height: 40px;
   display: flex;
@@ -623,14 +675,14 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
     font-size: 1.5rem;
     color: #121212;
   }
-`,Ue=r.h3`
+`,er=r.h3`
   font-size: 1rem;
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 0.65rem;
   line-height: 1.3;
   overflow-wrap: anywhere;
-`,er=r.p`
+`,rr=r.p`
   font-size: 0.72rem;
   line-height: 1.45;
   color: var(--text-secondary);
@@ -640,7 +692,7 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-`,rr=r.p`
+`,tr=r.p`
   color: var(--text-color);
   font-size: 0.74rem;
   line-height: 1.38;
@@ -659,7 +711,7 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   }
 
   display: none;
-`,tr=r.div`
+`,ir=r.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -671,22 +723,29 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   ${B}:hover & {
     gap: 0.75rem;
   }
-`,ir=r(j)`
-  background: var(--card-bg);
-  padding: clamp(3rem, 5vw, 4.5rem) 5%;
+`,ar=r(K)`
+  background:
+    linear-gradient(90deg, rgba(16, 16, 16, 0.95), rgba(16, 16, 16, 0.84)),
+    url('/images/kmtech-about-warehouse-hero-1440.webp') center / cover no-repeat;
+  padding: clamp(2.1rem, 4vw, 3.35rem) 5%;
+  color: #fff;
+
+  ${n} {
+    color: #fff;
+  }
 
   @media (max-width: 600px) {
-    padding: 4.5rem 1.25rem;
+    padding: 3rem 1.25rem;
   }
-`,ar=r.div`
+`,or=r.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
   gap: clamp(1rem, 3vw, 2rem);
   max-width: 1200px;
-  margin: 0 auto 3rem;
-`,or=r(o.div)`
-  background: var(--background-color);
-  border: 1px solid var(--border-color);
+  margin: 0 auto 2rem;
+`,nr=r(o.div)`
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 204, 0, 0.22);
   border-radius: 8px;
   padding: clamp(1.25rem, 2.5vw, 1.65rem);
   display: flex;
@@ -699,9 +758,9 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
 
   &:hover {
     border-color: var(--accent-amber);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
   }
-`,nr=r.div`
+`,sr=r.div`
   width: 48px;
   height: 48px;
   display: flex;
@@ -715,48 +774,48 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
     font-size: 1.25rem;
     color: var(--accent-amber);
   }
-`,sr=r.div`
+`,cr=r.div`
   flex: 1;
   min-width: 0;
-`,cr=r.h4`
+`,dr=r.h4`
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--text-color);
+  color: #fff;
   margin-bottom: 0.5rem;
 `,lr=r.p`
   font-size: 0.9rem;
   line-height: 1.6;
-  color: var(--text-secondary);
-`,dr=r(o.div)`
+  color: rgba(255, 255, 255, 0.72);
+`,mr=r(o.div)`
   text-align: center;
-`,mr=r(j)`
+`,pr=r(K)`
   background: var(--background-color);
-  padding: clamp(3rem, 5vw, 4.5rem) 5%;
+  padding: clamp(2rem, 3.6vw, 3rem) 5%;
 
   @media (max-width: 600px) {
-    padding: 4.5rem 1.25rem;
+    padding: 3rem 1.25rem;
   }
-`,pr=r.div`
+`,hr=r.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  max-width: 1000px;
+  gap: 0.65rem;
+  max-width: 1120px;
   margin: 0 auto;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 0;
   }
-`,hr=r(o.div)`
+`,xr=r(o.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   flex: 1;
-  min-width: 140px;
-  max-width: 200px;
+  min-width: 0;
+  max-width: 150px;
 
   @media (max-width: 768px) {
     flex-direction: row;
@@ -766,19 +825,20 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
     gap: 1rem;
     padding: 1rem 0;
   }
-`,xr=r.div`
-  width: 64px;
-  height: 64px;
+`,gr=r.div`
+  width: 52px;
+  height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--accent-amber), #f59e0b);
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  background: #fff8db;
+  border: 1px solid var(--accent-amber);
+  border-radius: 50%;
+  margin-bottom: 0.75rem;
   flex-shrink: 0;
 
   svg {
-    font-size: 1.5rem;
+    font-size: 1.15rem;
     color: #121212;
   }
 
@@ -787,8 +847,8 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
     height: 56px;
     margin-bottom: 0;
   }
-`,gr=r.span`
-  font-size: 0.7rem;
+`,br=r.span`
+  font-size: 0.66rem;
   font-weight: 700;
   color: var(--accent-amber);
   letter-spacing: 0.1em;
@@ -797,44 +857,44 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   @media (max-width: 768px) {
     display: none;
   }
-`,br=r.h4`
-  font-size: 1rem;
+`,wr=r.h4`
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-color);
   margin: 0 0 0.25rem 0;
 `,yr=r.p`
-  font-size: 0.85rem;
+  font-size: 0.76rem;
   color: var(--text-secondary);
   margin: 0;
   line-height: 1.4;
-`,wr=r.div`
+`,ur=r.div`
   @media (max-width: 768px) {
     flex: 1;
   }
 `,vr=r(o.div)`
-  color: var(--border-color);
-  font-size: 1.5rem;
+  color: #c8cdd5;
+  font-size: 1.1rem;
   flex-shrink: 0;
 
   @media (max-width: 768px) {
     transform: rotate(90deg);
     margin: 0.5rem 0;
   }
-`,ur=r.section`
+`,fr=r.section`
   background: var(--background-color);
-  padding: clamp(3rem, 5vw, 4.5rem) 5%;
+  padding: clamp(2rem, 3.6vw, 3.2rem) 5%;
   border-top: 1px solid var(--border-color);
 
   @media (max-width: 600px) {
-    padding: 4rem 1.25rem;
+    padding: 3rem 1.25rem;
   }
-`,fr=r.div`
+`,_r=r.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
   gap: clamp(1.5rem, 4vw, 3rem);
   max-width: 1000px;
   margin: 0 auto;
-`,_r=r(o.div)`
+`,jr=r(o.div)`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -844,7 +904,7 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   &:hover {
     border-color: var(--accent-amber);
   }
-`,jr=r.div`
+`,kr=r.div`
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -856,18 +916,18 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
     font-size: 1.25rem;
     color: var(--accent-amber);
   }
-`,kr=r.h4`
+`,Kr=r.h4`
   font-size: 1rem;
   font-weight: 600;
   color: var(--text-color);
   margin: 0;
-`,Kr=r.div`
+`,zr=r.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 1.5rem;
-`,zr=r.div`
+`,Sr=r.div`
   width: min(100%, 1000px);
   margin: clamp(1.25rem, 3vw, 2rem) auto 0;
   display: grid;
@@ -877,7 +937,7 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   @media (max-width: 820px) {
     grid-template-columns: 1fr;
   }
-`,Sr=r(_)`
+`,Pr=r(k)`
   min-height: 132px;
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -897,7 +957,7 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
     border-color: rgba(var(--accent-amber-rgb), 0.6);
     box-shadow: 0 12px 34px rgba(15, 23, 42, 0.08);
   }
-`,Pr=r.div`
+`,Rr=r.div`
   width: 42px;
   height: 42px;
   border-radius: 8px;
@@ -905,24 +965,24 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   place-items: center;
   background: rgba(var(--accent-amber-rgb), 0.12);
   color: var(--accent-amber);
-`,Rr=r.h3`
+`,Fr=r.h3`
   color: var(--text-color);
   font-size: 1rem;
   line-height: 1.3;
   margin: 0 0 0.45rem;
-`,Fr=r.p`
+`,Ir=r.p`
   color: var(--text-secondary);
   font-size: 0.84rem;
   line-height: 1.55;
   margin: 0 0 0.8rem;
-`,Ir=r.span`
+`,Vr=r.span`
   color: var(--accent-amber);
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   font-size: 0.82rem;
   font-weight: 800;
-`,Vr=r(o.img).attrs({loading:"lazy",decoding:"async"})`
+`,Cr=r(o.img).attrs({loading:"lazy",decoding:"async"})`
   height: 50px;
   max-width: 140px;
   object-fit: contain;
@@ -941,4 +1001,4 @@ import{j as e,d as r,u as N,r as c,a as l,c as Y,F as I,b as Z,e as w,f as V,g a
   &:hover {
     transform: scale(1.05);
   }
-`,Hr=()=>{const{t:i}=N(),M=c.useRef(null),k=c.useRef(null),K=c.useRef(null),z=c.useRef(null),S=c.useRef(null),P=c.useRef(null),s=l(k,{once:!0,margin:"-50px"}),h=l(K,{once:!0,margin:"-50px"}),R=l(z,{once:!0,margin:"-50px"}),x=l(P,{once:!0,margin:"-50px"}),g=l(S,{once:!0,margin:"-50px"}),b=[{icon:e.jsx(Q,{}),titleKey:"process_home_step1_title",descKey:"process_home_step1_desc"},{icon:e.jsx(v,{}),titleKey:"process_home_step2_title",descKey:"process_home_step2_desc"},{icon:e.jsx(U,{}),titleKey:"process_home_step3_title",descKey:"process_home_step3_desc"},{icon:e.jsx(ee,{}),titleKey:"process_home_step4_title",descKey:"process_home_step4_desc"}],$=[{icon:e.jsx(v,{}),titleKey:"home_service_warehouse_title",descKey:"home_service_warehouse_desc",proofKey:"metric_capacity_detail"},{icon:e.jsx(re,{}),titleKey:"home_service_inspection_title",descKey:"home_service_inspection_desc",proofKey:"metric_clean_booth_detail"},{icon:e.jsx(te,{}),titleKey:"home_service_packaging_title",descKey:"home_service_packaging_desc",proofKey:"metric_rework_detail"},{icon:e.jsx(T,{}),titleKey:"business_delivery_title",descKey:"business_delivery_summary",proofKey:"metric_qr_detail"},{icon:e.jsx(G,{}),titleKey:"home_service_visibility_title",descKey:"home_service_visibility_desc",proofKey:"metric_qr_detail"}],D=[{icon:e.jsx(G,{}),titleKey:"strong_point_2_title",descKey:"strong_point_2_desc"},{icon:e.jsx(T,{}),titleKey:"strong_point_5_title",descKey:"strong_point_5_desc"},{icon:e.jsx(ie,{}),titleKey:"strong_point_6_title",descKey:"strong_point_6_desc"}],O=[{value:"2,140㎡",labelKey:"hero_proof_facility"},{value:"3,000+",labelKey:"hero_proof_capacity"},{value:"40ft x2",labelKey:"metric_container_dock"},{value:"16CH",labelKey:"metric_cctv"}],A=C.slice(0,3),W=Object.entries(Y.reduce((t,a)=>(t[a.industryKey]=t[a.industryKey]||[],t[a.industryKey].push(a),t),{})).map(([t,a])=>({industry:i(t),icon:t==="partners_industry_automotive"?e.jsx(I,{}):e.jsx(Z,{}),partners:a})),F=c.useRef(null),y=l(F,{once:!0,margin:"-50px"}),q=[{to:"/business",icon:e.jsx(v,{}),titleKey:"home_route_business_title",descKey:"home_route_business_desc"},{to:"/partners",icon:e.jsx(I,{}),titleKey:"home_route_partners_title",descKey:"home_route_partners_desc"},{to:"/contact",icon:e.jsx(V,{}),titleKey:"home_route_contact_title",descKey:"home_route_contact_desc"}];return e.jsxs(ce,{children:[e.jsx(le,{ref:k,children:e.jsxs(de,{children:[e.jsxs(me,{initial:{opacity:0,y:30},animate:s?{opacity:1,y:0}:{},transition:{duration:.6},children:[e.jsx(pe,{initial:{opacity:0},animate:s?{opacity:1}:{},transition:{delay:.2},children:"Global 3PL Solutions"}),e.jsx(he,{initial:{opacity:0,y:20},animate:s?{opacity:1,y:0}:{},transition:{delay:.3,duration:.6},children:i("hero_title")}),e.jsx(xe,{initial:{opacity:0,y:20},animate:s?{opacity:1,y:0}:{},transition:{delay:.4,duration:.6},children:i("hero_subtitle")}),e.jsxs(ge,{initial:{opacity:0,y:20},animate:s?{opacity:1,y:0}:{},transition:{delay:.5,duration:.6},children:[e.jsxs(f,{to:"/contact",whileHover:{scale:1.02},whileTap:{scale:.98},children:[i("hero_primary_cta")," ",e.jsx(w,{})]}),e.jsx(we,{to:"/business",whileHover:{scale:1.02},whileTap:{scale:.98},children:i("hero_secondary_cta")})]}),e.jsx(Ce,{"aria-label":i("hero_proof_label"),initial:{opacity:1,y:0},animate:{opacity:1,y:0},children:O.map(t=>e.jsxs(He,{children:[e.jsx(Te,{children:t.value}),e.jsx(Ge,{children:i(t.labelKey)})]},t.labelKey))}),e.jsx(be,{initial:{opacity:0},animate:s?{opacity:1}:{},transition:{delay:.7,duration:.5},children:e.jsxs(ye,{href:"mailto:cgpark@kmtechn.com",children:[e.jsx(V,{})," cgpark@kmtechn.com"]})})]}),e.jsxs(ve,{ref:M,initial:{opacity:0,y:18},animate:s?{opacity:1,y:0}:{},transition:{delay:.3,duration:.7},children:[e.jsx(ue,{src:"/images/kmtech-home-network-backdrop.png",srcSet:"/images/kmtech-home-network-backdrop-960.webp 960w, /images/kmtech-home-network-backdrop-1440.webp 1440w, /images/kmtech-home-network-backdrop.png 1672w",sizes:"(max-width: 820px) 100vw, 58vw",alt:"",loading:"eager",decoding:"async"}),e.jsxs(fe,{children:[e.jsx(_e,{children:i("hero_visual_label")}),e.jsx(je,{children:i("hero_visual_network")})]}),e.jsx(Ke,{children:A.map(t=>e.jsxs(ze,{children:[e.jsx(Se,{children:i(t.labelKey)}),e.jsx(Pe,{children:t.value})]},t.labelKey))}),e.jsx(ke,{children:e.jsx(se,{})}),e.jsxs(Re,{children:[e.jsx(Fe,{children:i("hero_visual_flow_label")}),e.jsx(Ie,{children:b.map(t=>e.jsxs(Ve,{children:[t.icon,e.jsx("span",{children:i(t.titleKey)})]},t.titleKey))})]})]})]})}),e.jsx(Ne,{ref:z,children:e.jsxs(Ye,{children:[e.jsxs(Ze,{initial:{opacity:0,y:20},animate:R?{opacity:1,y:0}:{},transition:{duration:.5},children:[e.jsx(d,{children:i("home_problem_label")}),e.jsx(n,{children:i("home_problem_title")}),e.jsx(p,{children:i("home_problem_desc")})]}),e.jsx(Xe,{children:$.map((t,a)=>e.jsx(_,{to:"/business",style:{textDecoration:"none",height:"100%"},children:e.jsxs(B,{initial:{opacity:0,y:30},animate:R?{opacity:1,y:0}:{},transition:{delay:a*.1,duration:.5},children:[e.jsx(Je,{children:i("home_section_services_label")}),e.jsx(Qe,{children:t.icon}),e.jsx(Ue,{children:i(t.titleKey)}),e.jsx(er,{children:i(t.descKey)}),e.jsxs(rr,{children:[e.jsx("strong",{children:i("home_problem_proof_label")}),i(t.proofKey)]}),e.jsxs(tr,{children:[i("home_services_button")," ",e.jsx(H,{})]})]})},t.titleKey))})]})}),e.jsx(Le,{ref:K,children:e.jsxs(Be,{children:[e.jsxs(Me,{initial:{opacity:0,y:20},animate:h?{opacity:1,y:0}:{},transition:{duration:.5},children:[e.jsx(d,{children:i("home_facility_label")}),e.jsx(n,{children:i("home_facility_title")}),e.jsx(p,{children:i("home_facility_desc")})]}),e.jsxs($e,{children:[C.map((t,a)=>e.jsxs(De,{initial:{opacity:0,y:20},animate:h?{opacity:1,y:0}:{},transition:{delay:a*.08,duration:.5},children:[e.jsx(Oe,{children:t.value}),e.jsx(L,{children:i(t.labelKey)}),e.jsx(Ae,{children:i(t.detailKey)})]},t.labelKey)),e.jsx(We,{children:X.map((t,a)=>e.jsxs(qe,{initial:{opacity:0,y:16},animate:h?{opacity:1,y:0}:{},transition:{delay:.25+a*.08,duration:.45},children:[e.jsx(Ee,{children:t.value}),e.jsx(L,{children:i(t.detailKey)})]},t.labelKey))})]})]})}),e.jsxs(mr,{ref:P,children:[e.jsxs(u,{initial:{opacity:0,y:20},animate:x?{opacity:1,y:0}:{},transition:{duration:.5},children:[e.jsx(d,{children:i("home_section_process_label")}),e.jsx(n,{children:i("process_home_title")}),e.jsx(p,{children:i("process_home_desc")})]}),e.jsx(pr,{children:b.map((t,a)=>e.jsxs(J.Fragment,{children:[e.jsxs(hr,{initial:{opacity:0,y:20},animate:x?{opacity:1,y:0}:{},transition:{delay:a*.15,duration:.5},children:[e.jsx(xr,{children:t.icon}),e.jsxs(wr,{children:[e.jsx(gr,{children:i("process_step_label",{number:a+1})}),e.jsx(br,{children:i(t.titleKey)}),e.jsx(yr,{children:i(t.descKey)})]})]}),a<b.length-1&&e.jsx(vr,{initial:{opacity:0},animate:x?{opacity:1}:{},transition:{delay:a*.15+.1,duration:.3},children:e.jsx(H,{})})]},t.titleKey))})]}),e.jsxs(ir,{ref:S,children:[e.jsxs(u,{initial:{opacity:0,y:20},animate:g?{opacity:1,y:0}:{},transition:{duration:.5},children:[e.jsx(d,{children:i("home_outcome_label")}),e.jsx(n,{children:i("home_strengths_title")})]}),e.jsx(ar,{children:D.map((t,a)=>e.jsxs(or,{initial:{opacity:0,y:20},animate:g?{opacity:1,y:0}:{},transition:{delay:a*.1,duration:.5},children:[e.jsx(nr,{children:t.icon}),e.jsxs(sr,{children:[e.jsx(cr,{children:i(t.titleKey)}),e.jsx(lr,{children:i(t.descKey)})]})]},a))}),e.jsx(dr,{initial:{opacity:0,y:20},animate:g?{opacity:1,y:0}:{},transition:{delay:.4,duration:.5},children:e.jsxs(f,{to:"/contact",whileHover:{scale:1.02},whileTap:{scale:.98},children:[i("home_strengths_cta")," ",e.jsx(w,{})]})})]}),e.jsxs(ur,{ref:F,children:[e.jsxs(u,{initial:{opacity:0,y:20},animate:y?{opacity:1,y:0}:{},transition:{duration:.5},children:[e.jsx(d,{children:i("home_section_partners_label")}),e.jsx(n,{children:i("core_customers_title")}),e.jsx(p,{children:i("home_partner_desc")})]}),e.jsx(fr,{children:W.map((t,a)=>e.jsxs(_r,{initial:{opacity:0,y:20},animate:y?{opacity:1,y:0}:{},transition:{delay:a*.15,duration:.5},children:[e.jsxs(jr,{children:[t.icon,e.jsx(kr,{children:t.industry})]}),e.jsx(Kr,{children:t.partners.map((m,E)=>e.jsx(Vr,{src:m.logo,alt:`${m.name} logo`,$needsBg:m.needsBg,initial:{opacity:0},animate:y?{opacity:1}:{},transition:{delay:a*.15+E*.05,duration:.4}},m.name))})]},t.industry))}),e.jsx(zr,{children:q.map(t=>e.jsxs(Sr,{to:t.to,children:[e.jsx(Pr,{children:t.icon}),e.jsxs("div",{children:[e.jsx(Rr,{children:i(t.titleKey)}),e.jsx(Fr,{children:i(t.descKey)}),e.jsxs(Ir,{children:[i("home_route_cta")," ",e.jsx(w,{})]})]})]},t.titleKey))})]})]})};export{Hr as default};
+`,Hr=()=>{const{t:i}=N(),M=c.useRef(null),z=c.useRef(null),S=c.useRef(null),P=c.useRef(null),R=c.useRef(null),F=c.useRef(null),s=d(z,{once:!0,margin:"-50px"}),m=d(S,{once:!0,margin:"-50px"}),I=d(P,{once:!0,margin:"-50px"}),x=d(F,{once:!0,margin:"-50px"}),g=d(R,{once:!0,margin:"-50px"}),b=[{icon:e.jsx(Q,{}),titleKey:"process_home_step1_title",descKey:"process_home_step1_desc"},{icon:e.jsx(u,{}),titleKey:"process_home_step2_title",descKey:"process_home_step2_desc"},{icon:e.jsx(U,{}),titleKey:"process_home_step3_title",descKey:"process_home_step3_desc"},{icon:e.jsx(v,{}),titleKey:"metric_qr_system",descKey:"metric_qr_detail"},{icon:e.jsx(ee,{}),titleKey:"process_home_step4_title",descKey:"process_home_step4_desc"},{icon:e.jsx(f,{}),titleKey:"business_delivery_title",descKey:"business_delivery_summary"}],$=[{icon:e.jsx(u,{}),titleKey:"home_service_warehouse_title",descKey:"home_service_warehouse_desc",proofKey:"metric_capacity_detail"},{icon:e.jsx(re,{}),titleKey:"home_service_inspection_title",descKey:"home_service_inspection_desc",proofKey:"metric_clean_booth_detail"},{icon:e.jsx(te,{}),titleKey:"home_service_packaging_title",descKey:"home_service_packaging_desc",proofKey:"metric_rework_detail"},{icon:e.jsx(f,{}),titleKey:"business_delivery_title",descKey:"business_delivery_summary",proofKey:"metric_qr_detail"},{icon:e.jsx(v,{}),titleKey:"home_service_visibility_title",descKey:"home_service_visibility_desc",proofKey:"metric_qr_detail"}],D=[{icon:e.jsx(v,{}),titleKey:"strong_point_2_title",descKey:"strong_point_2_desc"},{icon:e.jsx(f,{}),titleKey:"strong_point_5_title",descKey:"strong_point_5_desc"},{icon:e.jsx(ie,{}),titleKey:"strong_point_6_title",descKey:"strong_point_6_desc"}],O=[{value:"2,140㎡",labelKey:"hero_proof_facility"},{value:"3,000+",labelKey:"hero_proof_capacity"},{value:"40ft x2",labelKey:"metric_container_dock"},{value:"16CH",labelKey:"metric_cctv"}],q=H.slice(0,3),A=Object.entries(Y.reduce((t,a)=>(t[a.industryKey]=t[a.industryKey]||[],t[a.industryKey].push(a),t),{})).map(([t,a])=>({industry:i(t),icon:t==="partners_industry_automotive"?e.jsx(C,{}):e.jsx(Z,{}),partners:a})),V=c.useRef(null),w=d(V,{once:!0,margin:"-50px"}),W=[{to:"/business",icon:e.jsx(u,{}),titleKey:"home_route_business_title",descKey:"home_route_business_desc"},{to:"/partners",icon:e.jsx(C,{}),titleKey:"home_route_partners_title",descKey:"home_route_partners_desc"},{to:"/contact",icon:e.jsx(T,{}),titleKey:"home_route_contact_title",descKey:"home_route_contact_desc"}];return e.jsxs(ce,{children:[e.jsx(de,{ref:z,children:e.jsxs(le,{children:[e.jsxs(me,{initial:{opacity:0,y:30},animate:s?{opacity:1,y:0}:{},transition:{duration:.6},children:[e.jsx(pe,{initial:{opacity:0},animate:s?{opacity:1}:{},transition:{delay:.2},children:"Global 3PL Solutions"}),e.jsx(he,{initial:{opacity:0,y:20},animate:s?{opacity:1,y:0}:{},transition:{delay:.3,duration:.6},children:i("hero_title")}),e.jsx(xe,{initial:{opacity:0,y:20},animate:s?{opacity:1,y:0}:{},transition:{delay:.4,duration:.6},children:i("hero_subtitle")}),e.jsxs(ge,{initial:{opacity:0,y:20},animate:s?{opacity:1,y:0}:{},transition:{delay:.5,duration:.6},children:[e.jsxs(j,{to:"/contact",whileHover:{scale:1.02},whileTap:{scale:.98},children:[i("hero_primary_cta")," ",e.jsx(y,{})]}),e.jsx(ye,{to:"/business",whileHover:{scale:1.02},whileTap:{scale:.98},children:i("hero_secondary_cta")})]}),e.jsx(be,{initial:{opacity:0},animate:s?{opacity:1}:{},transition:{delay:.7,duration:.5},children:e.jsxs(we,{href:"mailto:cgpark@kmtechn.com",children:[e.jsx(T,{})," cgpark@kmtechn.com"]})})]}),e.jsxs(ue,{ref:M,initial:{opacity:0,y:18},animate:s?{opacity:1,y:0}:{},transition:{delay:.3,duration:.7},children:[e.jsx(ve,{src:"/images/kmtech-home-network-backdrop.png",srcSet:"/images/kmtech-home-network-backdrop-960.webp 960w, /images/kmtech-home-network-backdrop-1440.webp 1440w, /images/kmtech-home-network-backdrop.png 1672w",sizes:"(max-width: 820px) 100vw, 58vw",alt:"",loading:"eager",decoding:"async"}),e.jsxs(fe,{children:[e.jsx(_e,{children:i("hero_visual_label")}),e.jsx(je,{children:i("hero_visual_network")})]}),e.jsx(Ke,{children:q.map(t=>e.jsxs(ze,{children:[e.jsx(Se,{children:i(t.labelKey)}),e.jsx(Pe,{children:t.value})]},t.labelKey))}),e.jsx(ke,{children:e.jsx(se,{})}),e.jsxs(Re,{children:[e.jsx(Fe,{children:i("hero_visual_flow_label")}),e.jsx(Ie,{children:b.map(t=>e.jsxs(Ve,{children:[t.icon,e.jsx("span",{children:i(t.titleKey)})]},t.titleKey))})]})]}),e.jsx(Ce,{"aria-label":i("hero_proof_label"),initial:{opacity:1,y:0},animate:{opacity:1,y:0},children:O.map(t=>e.jsxs(Te,{children:[e.jsx(He,{children:t.value}),e.jsx(Ge,{children:i(t.labelKey)})]},t.labelKey))})]})}),e.jsx(Ye,{ref:P,children:e.jsxs(Ze,{children:[e.jsxs(Xe,{initial:{opacity:0,y:20},animate:I?{opacity:1,y:0}:{},transition:{duration:.5},children:[e.jsx(l,{children:i("home_problem_label")}),e.jsx(n,{children:i("home_problem_title")}),e.jsx(h,{children:i("home_problem_desc")})]}),e.jsx(Je,{children:$.map((t,a)=>e.jsx(k,{to:"/business",style:{textDecoration:"none",height:"100%"},children:e.jsxs(B,{initial:{opacity:0,y:30},animate:I?{opacity:1,y:0}:{},transition:{delay:a*.1,duration:.5},children:[e.jsx(Qe,{children:i("home_section_services_label")}),e.jsx(Ue,{children:t.icon}),e.jsx(er,{children:i(t.titleKey)}),e.jsx(rr,{children:i(t.descKey)}),e.jsxs(tr,{children:[e.jsx("strong",{children:i("home_problem_proof_label")}),i(t.proofKey)]}),e.jsxs(ir,{children:[i("home_services_button")," ",e.jsx(G,{})]})]})},t.titleKey))})]})}),e.jsxs(pr,{ref:F,children:[e.jsxs(_,{initial:{opacity:0,y:20},animate:x?{opacity:1,y:0}:{},transition:{duration:.5},children:[e.jsx(l,{children:i("home_section_process_label")}),e.jsx(n,{children:i("process_home_title")}),e.jsx(h,{children:i("process_home_desc")})]}),e.jsx(hr,{children:b.map((t,a)=>e.jsxs(X.Fragment,{children:[e.jsxs(xr,{initial:{opacity:0,y:20},animate:x?{opacity:1,y:0}:{},transition:{delay:a*.1,duration:.45},children:[e.jsx(gr,{children:t.icon}),e.jsxs(ur,{children:[e.jsx(br,{children:i("process_step_label",{number:a+1})}),e.jsx(wr,{children:i(t.titleKey)}),e.jsx(yr,{children:i(t.descKey)})]})]}),a<b.length-1&&e.jsx(vr,{initial:{opacity:0},animate:x?{opacity:1}:{},transition:{delay:a*.1+.08,duration:.3},children:e.jsx(G,{})})]},t.titleKey))})]}),e.jsx(Le,{ref:S,children:e.jsxs(Be,{children:[e.jsxs(Me,{initial:{opacity:0,y:20},animate:m?{opacity:1,y:0}:{},transition:{duration:.5},children:[e.jsx(l,{children:i("home_facility_label")}),e.jsx(n,{children:i("home_facility_title")}),e.jsx(h,{children:i("home_facility_desc")})]}),e.jsx(De,{initial:{opacity:0,y:20},animate:m?{opacity:1,y:0}:{},transition:{delay:.08,duration:.5},children:e.jsx("img",{src:"/images/kmtech-about-warehouse-hero.png",srcSet:"/images/kmtech-about-warehouse-hero-960.webp 960w, /images/kmtech-about-warehouse-hero-1440.webp 1440w, /images/kmtech-about-warehouse-hero.png 1672w",sizes:"(max-width: 1080px) 100vw, 38vw",alt:"KMTech 직산 물류센터 내부",loading:"lazy",decoding:"async"})}),e.jsxs($e,{children:[H.map((t,a)=>e.jsxs(Oe,{initial:{opacity:0,y:20},animate:m?{opacity:1,y:0}:{},transition:{delay:a*.08,duration:.5},children:[e.jsx(qe,{children:t.value}),e.jsx(L,{children:i(t.labelKey)}),e.jsx(Ae,{children:i(t.detailKey)})]},t.labelKey)),e.jsx(We,{children:J.map((t,a)=>e.jsxs(Ee,{initial:{opacity:0,y:16},animate:m?{opacity:1,y:0}:{},transition:{delay:.25+a*.08,duration:.45},children:[e.jsx(Ne,{children:t.value}),e.jsx(L,{children:i(t.detailKey)})]},t.labelKey))})]})]})}),e.jsxs(ar,{ref:R,children:[e.jsxs(_,{initial:{opacity:0,y:20},animate:g?{opacity:1,y:0}:{},transition:{duration:.5},children:[e.jsx(l,{children:i("home_outcome_label")}),e.jsx(n,{children:i("home_strengths_title")})]}),e.jsx(or,{children:D.map((t,a)=>e.jsxs(nr,{initial:{opacity:0,y:20},animate:g?{opacity:1,y:0}:{},transition:{delay:a*.1,duration:.5},children:[e.jsx(sr,{children:t.icon}),e.jsxs(cr,{children:[e.jsx(dr,{children:i(t.titleKey)}),e.jsx(lr,{children:i(t.descKey)})]})]},a))}),e.jsx(mr,{initial:{opacity:0,y:20},animate:g?{opacity:1,y:0}:{},transition:{delay:.4,duration:.5},children:e.jsxs(j,{to:"/contact",whileHover:{scale:1.02},whileTap:{scale:.98},children:[i("home_strengths_cta")," ",e.jsx(y,{})]})})]}),e.jsxs(fr,{ref:V,children:[e.jsxs(_,{initial:{opacity:0,y:20},animate:w?{opacity:1,y:0}:{},transition:{duration:.5},children:[e.jsx(l,{children:i("home_section_partners_label")}),e.jsx(n,{children:i("core_customers_title")}),e.jsx(h,{children:i("home_partner_desc")})]}),e.jsx(_r,{children:A.map((t,a)=>e.jsxs(jr,{initial:{opacity:0,y:20},animate:w?{opacity:1,y:0}:{},transition:{delay:a*.15,duration:.5},children:[e.jsxs(kr,{children:[t.icon,e.jsx(Kr,{children:t.industry})]}),e.jsx(zr,{children:t.partners.map((p,E)=>e.jsx(Cr,{src:p.logo,alt:`${p.name} logo`,$needsBg:p.needsBg,initial:{opacity:0},animate:w?{opacity:1}:{},transition:{delay:a*.15+E*.05,duration:.4}},p.name))})]},t.industry))}),e.jsx(Sr,{children:W.map(t=>e.jsxs(Pr,{to:t.to,children:[e.jsx(Rr,{children:t.icon}),e.jsxs("div",{children:[e.jsx(Fr,{children:i(t.titleKey)}),e.jsx(Ir,{children:i(t.descKey)}),e.jsxs(Vr,{children:[i("home_route_cta")," ",e.jsx(y,{})]})]})]},t.titleKey))})]})]})};export{Hr as default};

@@ -8,10 +8,10 @@ import { customerPartners } from '../data/company';
 import { FaArrowRight, FaCar, FaCheckCircle, FaFilter, FaHandshake, FaIndustry, FaLayerGroup, FaTv } from 'react-icons/fa';
 
 const HeroSection = styled.section`
-  min-height: clamp(360px, 48vh, 500px);
+  min-height: clamp(330px, 43vh, 460px);
   display: flex;
   align-items: center;
-  padding: clamp(3.6rem, 5.8vw, 5rem) clamp(1rem, 5vw, 5%) clamp(1.4rem, 3vw, 2.3rem);
+  padding: clamp(3.2rem, 5vw, 4.35rem) clamp(1rem, 5vw, 5%) clamp(1.25rem, 2.4vw, 1.8rem);
   background:
     radial-gradient(circle at 83% 18%, rgba(var(--accent-amber-rgb), 0.11), transparent 22rem),
     linear-gradient(180deg, #ffffff 0%, var(--background-color) 100%);
@@ -136,13 +136,11 @@ const LogoMosaic = styled(motion.div)`
   max-width: 620px;
   display: grid;
   gap: 0.8rem;
-  padding: clamp(0.75rem, 2vw, 1rem);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.86)),
-    radial-gradient(circle at 14% 18%, rgba(var(--accent-amber-rgb), 0.13), transparent 16rem);
-  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.12);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   min-width: 0;
 
   @media (max-width: 820px) {
@@ -153,7 +151,7 @@ const LogoMosaic = styled(motion.div)`
 
 const MosaicImage = styled.div`
   position: relative;
-  min-height: clamp(150px, 20vw, 230px);
+  min-height: clamp(240px, 28vw, 330px);
   border-radius: 8px;
   overflow: hidden;
   background: #111;
@@ -178,7 +176,7 @@ const MosaicImage = styled.div`
 `;
 
 const MosaicHeader = styled.div`
-  display: flex;
+  display: none;
   justify-content: space-between;
   gap: 1rem;
   align-items: flex-start;
@@ -204,7 +202,7 @@ const MosaicCount = styled.span`
 `;
 
 const HeroScopeGrid = styled.div`
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   gap: 0.45rem;
 `;
@@ -224,7 +222,7 @@ const HeroScopeChip = styled.span`
 `;
 
 const MosaicLogoGrid = styled.div`
-  display: grid;
+  display: none;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.55rem;
 
@@ -253,7 +251,7 @@ const MosaicLogo = styled.div`
 `;
 
 const PartnersSection = styled.section`
-  padding: clamp(2.2rem, 4vw, 3.5rem) clamp(1rem, 5vw, 5%);
+  padding: clamp(2rem, 3.6vw, 3.1rem) clamp(1rem, 5vw, 5%);
   background: linear-gradient(180deg, var(--background-color) 0%, #ffffff 100%);
 `;
 
@@ -315,7 +313,7 @@ const PartnersGrid = styled(motion.div)`
   width: min(100%, 1180px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18.5rem), 1fr));
   gap: 1rem;
 `;
 
@@ -366,7 +364,7 @@ const PartnerCard = styled(motion.article)`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 1rem;
+  padding: 1.15rem;
   min-width: 0;
   display: grid;
   gap: 1rem;
@@ -380,7 +378,7 @@ const PartnerCard = styled(motion.article)`
 `;
 
 const PartnerLogoBox = styled.div`
-  min-height: 116px;
+  min-height: 126px;
   border-radius: 8px;
   background: #fff;
   border: 1px solid var(--border-color);
@@ -432,14 +430,16 @@ const ScopeChip = styled.span`
 `;
 
 const CTASection = styled.section`
-  padding: clamp(3rem, 5vw, 4.2rem) clamp(1rem, 5vw, 5%);
-  background: var(--card-bg);
-  border-top: 1px solid var(--border-color);
+  padding: clamp(3rem, 5.4vw, 4.5rem) clamp(1rem, 5vw, 5%);
+  background:
+    linear-gradient(90deg, rgba(16, 16, 16, 0.94), rgba(16, 16, 16, 0.72)),
+    url('/images/kmtech-contact-warehouse-hero-1440.webp') center / cover no-repeat;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
 `;
 
 const MatrixSection = styled.section`
-  padding: clamp(3rem, 5vw, 4.6rem) clamp(1rem, 5vw, 5%);
+  padding: clamp(1.8rem, 3.4vw, 2.8rem) clamp(1rem, 5vw, 5%);
   background: var(--card-bg);
   border-top: 1px solid var(--border-color);
 `;
@@ -541,14 +541,14 @@ const CTAContent = styled.div`
 `;
 
 const CTATitle = styled.h2`
-  color: var(--text-color);
+  color: #fff;
   font-size: clamp(1.55rem, 3vw, 2rem);
   line-height: 1.25;
   margin-bottom: 1rem;
 `;
 
 const CTADescription = styled.p`
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.72);
   line-height: 1.7;
   margin-bottom: 1.5rem;
 `;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Section, SectionTitle } from '../components/ui/Page';
-import { FaClock, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaRoute } from 'react-icons/fa';
+import { FaBoxes, FaClock, FaEnvelope, FaHeadset, FaMapMarkerAlt, FaPhoneAlt, FaRoute, FaShieldAlt, FaTruckLoading } from 'react-icons/fa';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -28,10 +28,10 @@ const PageContainer = styled.div`
 
 const HeroSection = styled.section`
   position: relative;
-  min-height: clamp(300px, 40vh, 380px);
+  min-height: clamp(360px, 44vh, 430px);
   display: flex;
   align-items: center;
-  padding: clamp(3.2rem, 5vw, 4.4rem) clamp(1rem, 5vw, 5%) clamp(1.45rem, 3vw, 2.2rem);
+  padding: clamp(3.6rem, 5.6vw, 4.8rem) clamp(1rem, 5vw, 5%) clamp(4.2rem, 6vw, 5.4rem);
   background:
     linear-gradient(90deg, rgba(8, 10, 12, 0.9) 0%, rgba(8, 10, 12, 0.74) 42%, rgba(8, 10, 12, 0.28) 100%),
     url('/images/kmtech-contact-warehouse-hero.png') center / cover no-repeat;
@@ -60,9 +60,9 @@ const HeroSection = styled.section`
   }
 
   @media (min-width: 821px) {
-    min-height: clamp(280px, 34vh, 340px);
+    min-height: clamp(360px, 38vh, 430px);
     padding-top: clamp(3.2rem, 4.5vw, 4.4rem);
-    padding-bottom: clamp(1.15rem, 2.2vw, 1.8rem);
+    padding-bottom: clamp(4.2rem, 5.6vw, 5.4rem);
   }
 `;
 
@@ -72,7 +72,7 @@ const HeroInner = styled.div`
   width: min(100%, 1240px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.72fr);
+  grid-template-columns: 1fr;
   gap: clamp(1.5rem, 4vw, 3rem);
   align-items: center;
   min-width: 0;
@@ -116,6 +116,7 @@ const HeroDescription = styled.p`
 
 const ContactRail = styled.div`
   display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.55rem;
   padding: 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.22);
@@ -124,6 +125,13 @@ const ContactRail = styled.div`
   backdrop-filter: blur(12px);
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
   min-width: 0;
+  width: min(100%, 1120px);
+  transform: translateY(clamp(3.2rem, 4.8vw, 4.4rem));
+
+  @media (max-width: 820px) {
+    grid-template-columns: 1fr;
+    transform: none;
+  }
 `;
 
 const RailItem = styled.a`
@@ -157,7 +165,7 @@ const RailItem = styled.a`
 const QuickActionGrid = styled.nav`
   width: min(100%, 1180px);
   margin: 0 auto clamp(0.8rem, 2vw, 1.2rem);
-  display: grid;
+  display: none;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.75rem;
 
@@ -208,7 +216,7 @@ const QuickAction = styled.a`
 const ContactMainSection = styled(Section)`
   position: relative;
   z-index: 2;
-  margin-top: clamp(-2.6rem, -3.5vw, -1.8rem);
+  margin-top: clamp(-1rem, -1.5vw, -0.5rem);
   padding-top: 0;
   background: transparent;
 `;
@@ -250,7 +258,77 @@ const PanelText = styled.p`
 
 const LocationStack = styled.div`
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
+
+  @media (max-width: 820px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const InquiryPanel = styled(Panel)`
+  display: grid;
+  gap: 1rem;
+`;
+
+const InquiryGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+
+  @media (max-width: 420px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const InquiryType = styled.a`
+  min-height: 116px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--background-color);
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 1rem;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 0.55rem;
+
+  &:hover {
+    color: var(--text-color);
+    border-color: rgba(var(--accent-amber-rgb), 0.65);
+  }
+
+  svg {
+    color: var(--text-color);
+    font-size: 1.75rem;
+  }
+
+  strong {
+    font-size: 0.96rem;
+    line-height: 1.3;
+  }
+
+  span {
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    line-height: 1.35;
+  }
+`;
+
+const InquiryNotice = styled.div`
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(var(--accent-amber-rgb), 0.16), rgba(var(--accent-amber-rgb), 0.05));
+  border: 1px solid rgba(var(--accent-amber-rgb), 0.26);
+  padding: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  font-size: 0.9rem;
+`;
+
+const LocationsSection = styled.section`
+  width: min(100%, 1180px);
+  margin: clamp(1.8rem, 3.4vw, 2.8rem) auto 0;
 `;
 
 const LocationCard = styled(Panel)`
@@ -388,27 +466,38 @@ const ContactPage = () => {
     },
   ];
 
+  const inquiryTypes = [
+    { icon: <FaBoxes />, title: t('contact_inquiry_type_3pl'), text: '견적·계약 문의' },
+    { icon: <FaTruckLoading />, title: t('contact_inquiry_type_partner'), text: '입고·검수 기준' },
+    { icon: <FaShieldAlt />, title: t('contact_inquiry_type_quality'), text: '품질·보안 문의' },
+    { icon: <FaHeadset />, title: t('contact_inquiry_type_general'), text: '기타 일반 문의' },
+  ];
+
   return (
     <PageContainer>
       <HeroSection>
         <HeroInner>
           <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
             <Eyebrow>{t('contact_hero_label')}</Eyebrow>
-            <HeroTitle>{t('contact_title')}</HeroTitle>
+            <HeroTitle>3PL 상담과 방문 위치 안내</HeroTitle>
             <HeroDescription>{t('contact_form_desc')}</HeroDescription>
           </motion.div>
           <ContactRail>
-            <RailItem href={`mailto:${t('contact_office_email')}`}>
-              <FaEnvelope />
-              <span>{t('contact_office_email')}</span>
-            </RailItem>
             <RailItem href={`tel:${t('contact_office_phone')}`}>
               <FaPhoneAlt />
               <span>{t('contact_office_phone')}</span>
             </RailItem>
+            <RailItem href={`mailto:${t('contact_office_email')}`}>
+              <FaEnvelope />
+              <span>{t('contact_office_email')}</span>
+            </RailItem>
+            <RailItem href="#contact-form">
+              <FaHeadset />
+              <span>{t('contact_quick_form')}</span>
+            </RailItem>
             <RailItem as="div">
               <FaClock />
-              <span>{t('contact_response_note')}</span>
+              <span>평일 09:00 - 18:00</span>
             </RailItem>
           </ContactRail>
         </HeroInner>
@@ -441,7 +530,27 @@ const ContactPage = () => {
             <ContactForm />
           </Panel>
 
-          <LocationStack id="locations">
+          <InquiryPanel initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08, duration: 0.4 }}>
+            <PanelTitle>{t('contact_inquiry_type_label')}</PanelTitle>
+            <InquiryGrid>
+              {inquiryTypes.map((item) => (
+                <InquiryType href="#contact-form" key={item.title}>
+                  {item.icon}
+                  <strong>{item.title}</strong>
+                  <span>{item.text}</span>
+                </InquiryType>
+              ))}
+            </InquiryGrid>
+            <InquiryNotice>
+              빠른 답변을 위해 물량, 제품군, 검수·포장 요구사항을 함께 남겨주세요.
+            </InquiryNotice>
+          </InquiryPanel>
+        </ContentLayout>
+
+        <LocationsSection id="locations">
+          <PanelTitle>{t('contact_quick_locations')}</PanelTitle>
+          <PanelText>방문 목적에 맞는 위치를 선택하시면 상세 정보를 확인할 수 있습니다.</PanelText>
+          <LocationStack>
             {locations.map((location, index) => (
               <LocationCard
                 key={location.key}
@@ -485,7 +594,7 @@ const ContactPage = () => {
               </LocationCard>
             ))}
           </LocationStack>
-        </ContentLayout>
+        </LocationsSection>
       </ContactMainSection>
     </PageContainer>
   );

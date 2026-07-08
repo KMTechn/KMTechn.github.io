@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const PageContainer = styled.div`
   width: 100%;
-  padding: 0 0 3rem;
+  padding: 0;
   background-color: var(--background-color);
   color: var(--text-color);
   min-height: calc(100dvh - 120px);
@@ -13,7 +13,7 @@ const PageContainer = styled.div`
 const MotionContainer = styled(motion.div)``;
 
 export const Section = styled.section`
-  padding: clamp(2.2rem, 4vw, 3.6rem) clamp(1rem, 5vw, 5%);
+  padding: clamp(1.65rem, 3.2vw, 2.85rem) clamp(1rem, 5vw, 5%);
   background-color: ${props => props.bg || 'transparent'};
   overflow-x: clip;
 `;

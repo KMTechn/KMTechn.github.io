@@ -6,10 +6,12 @@ import { useTranslation } from 'react-i18next';
 import { FaMapMarkerAlt, FaEnvelope, FaLinkedin, FaGlobe, FaWarehouse } from 'react-icons/fa';
 
 const FooterContainer = styled.footer`
-  background: linear-gradient(180deg, var(--footer-bg) 0%, var(--background-color) 100%);
-  color: var(--text-secondary);
-  padding: 4rem 5% 2rem;
-  border-top: 1px solid var(--border-color);
+  background:
+    linear-gradient(135deg, rgba(255, 204, 0, 0.07), transparent 38%),
+    linear-gradient(180deg, #191919 0%, #101010 100%);
+  color: rgba(255, 255, 255, 0.68);
+  padding: clamp(2rem, 4vw, 3.2rem) 5% clamp(1.35rem, 2.6vw, 2rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
   overflow: hidden;
 
@@ -26,13 +28,14 @@ const FooterContainer = styled.footer`
 `;
 
 const FooterContent = styled.div`
-  max-width: 1400px;
+  max-width: var(--page-max-width);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 3rem;
+  grid-template-columns: 1.35fr repeat(3, minmax(9rem, 0.75fr));
+  gap: clamp(1.5rem, 4vw, 3rem);
 
   @media (max-width: 768px) {
+    grid-template-columns: 1fr;
     gap: 2rem;
   }
 `;
@@ -45,17 +48,17 @@ const FooterSection = styled.div`
 const FooterLogo = styled(Link)`
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
+  gap: 0.65rem;
+  margin-bottom: 0.85rem;
 
   img {
-    height: 40px;
+    height: 34px;
     width: auto;
   }
 `;
 
 const LogoText = styled.span`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 700;
   background: linear-gradient(135deg, var(--accent-amber) 0%, var(--accent-amber-light) 100%);
   -webkit-background-clip: text;
@@ -64,17 +67,18 @@ const LogoText = styled.span`
 `;
 
 const FooterDescription = styled.p`
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   line-height: 1.7;
-  color: var(--text-secondary);
-  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.66);
+  margin-bottom: 1rem;
+  max-width: 31rem;
 `;
 
 const FooterTitle = styled.h4`
-  font-size: 1.1rem;
+  font-size: 0.98rem;
   font-weight: 600;
-  color: var(--text-color);
-  margin-bottom: 1.5rem;
+  color: #fff;
+  margin-bottom: 1rem;
   position: relative;
   padding-bottom: 0.75rem;
 
@@ -97,11 +101,11 @@ const FooterLinks = styled.ul`
 `;
 
 const FooterLink = styled.li`
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.55rem;
 
   a {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.86rem;
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
@@ -118,8 +122,8 @@ const ContactItem = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
+  margin-bottom: 0.72rem;
+  font-size: 0.86rem;
   line-height: 1.6;
 
   svg {
@@ -129,7 +133,7 @@ const ContactItem = styled.div`
   }
 
   a {
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.68);
     transition: color 0.3s ease;
 
     &:hover {
@@ -145,15 +149,15 @@ const SocialLinks = styled.div`
 `;
 
 const SocialLink = styled(motion.a)`
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
   background: rgba(255, 204, 0, 0.1);
   border: 1px solid rgba(255, 204, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-color);
+  color: #fff;
   transition: all 0.3s ease;
 
   &:hover {
@@ -164,9 +168,10 @@ const SocialLink = styled(motion.a)`
 `;
 
 const FooterBottom = styled.div`
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--border-color);
+  max-width: var(--page-max-width);
+  margin: clamp(1.6rem, 3vw, 2.4rem) auto 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -180,8 +185,8 @@ const FooterBottom = styled.div`
 `;
 
 const Copyright = styled.p`
-  font-size: 0.85rem;
-  color: var(--text-secondary);
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.52);
 `;
 
 const FooterBottomLinks = styled.div`
@@ -189,8 +194,8 @@ const FooterBottomLinks = styled.div`
   gap: 1.5rem;
 
   a {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.52);
     transition: color 0.3s ease;
 
     &:hover {
@@ -203,11 +208,11 @@ const Badge = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.45rem 0.8rem;
   background: rgba(255, 204, 0, 0.1);
   border: 1px solid rgba(255, 204, 0, 0.2);
-  border-radius: 50px;
-  font-size: 0.8rem;
+  border-radius: 999px;
+  font-size: 0.76rem;
   color: var(--accent-amber);
   margin-top: 1rem;
 `;

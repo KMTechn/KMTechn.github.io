@@ -28,10 +28,15 @@ const PageContainer = styled.div`
 `;
 
 const HeroSection = styled.section`
-  padding: clamp(3.5rem, 5.5vw, 4.8rem) clamp(1rem, 4vw, 3rem) clamp(1rem, 2.4vw, 1.5rem);
+  padding: clamp(3.2rem, 5vw, 4.3rem) clamp(1rem, 4vw, 3rem) clamp(1.2rem, 2.4vw, 1.7rem);
   background:
-    radial-gradient(circle at 82% 12%, rgba(var(--accent-amber-rgb), 0.08), transparent 24rem),
-    linear-gradient(180deg, var(--background-color) 0%, #fff 52%, var(--background-color) 100%);
+    linear-gradient(90deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.94) 43%, rgba(255, 255, 255, 0.55) 62%, rgba(255, 255, 255, 0.08) 100%),
+    image-set(
+      url('/images/kmtech-about-warehouse-hero-960.webp') 1x type('image/webp'),
+      url('/images/kmtech-about-warehouse-hero-1440.webp') 2x type('image/webp'),
+      url('/images/kmtech-about-warehouse-hero.png') 2x type('image/png')
+    ) right top / min(68%, 930px) clamp(300px, 35vw, 430px) no-repeat,
+    #fff;
   border-bottom: 1px solid var(--border-color);
 
   @media (max-width: 760px) {
@@ -43,14 +48,15 @@ const HeroShell = styled.div`
   width: min(100%, var(--page-max-width));
   margin: 0 auto;
   display: grid;
-  gap: clamp(1.25rem, 2vw, 1.8rem);
+  gap: clamp(1.05rem, 2vw, 1.55rem);
 `;
 
 const HeroGrid = styled.div`
   display: grid;
-  grid-template-columns: minmax(18rem, 0.43fr) minmax(0, 0.9fr);
+  grid-template-columns: minmax(22rem, 0.48fr) minmax(0, 1fr);
   gap: clamp(1.25rem, 3vw, 2.25rem);
-  align-items: stretch;
+  align-items: center;
+  min-height: clamp(250px, 31vw, 390px);
 
   @media (max-width: 820px) {
     grid-template-columns: 1fr;
@@ -102,7 +108,7 @@ const HeroDescription = styled.p`
 `;
 
 const FeatureRow = styled.div`
-  display: grid;
+  display: none;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.75rem;
   margin-bottom: 1.35rem;
@@ -199,13 +205,14 @@ const SecondaryLink = styled(PrimaryLink)`
 `;
 
 const OperationsPanel = styled(motion.div)`
+  display: none;
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: clamp(0.85rem, 1.6vw, 1.1rem);
   box-shadow: 0 16px 42px rgba(15, 23, 42, 0.08);
   min-width: 0;
-  display: grid;
+  display: none;
   grid-template-columns: minmax(15rem, 0.74fr) minmax(0, 1fr);
   gap: 0;
 
@@ -398,7 +405,7 @@ const LegendLine = styled.span`
 const ServicesGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(0.9rem, 2vw, 1.25rem);
+  gap: clamp(0.85rem, 1.7vw, 1.1rem);
 
   @media (max-width: 900px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -413,11 +420,11 @@ const ServiceCard = styled(motion.article)`
   background: #fff;
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: clamp(1rem, 1.8vw, 1.25rem);
+  padding: 0;
   min-width: 0;
   display: grid;
   grid-template-columns: 52px minmax(0, 1fr);
-  gap: 1rem;
+  gap: 0;
   align-items: start;
   box-shadow: 0 12px 34px rgba(15, 23, 42, 0.04);
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
@@ -427,11 +434,16 @@ const ServiceCard = styled(motion.article)`
     border-color: rgba(var(--accent-amber-rgb), 0.65);
     box-shadow: 0 16px 42px rgba(15, 23, 42, 0.08);
   }
+
+  & > div:last-child {
+    min-width: 0;
+    padding: 1rem 1rem 1rem 0.4rem;
+  }
 `;
 
 const ServiceIcon = styled.div`
-  width: 52px;
-  height: 52px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -439,19 +451,22 @@ const ServiceIcon = styled.div`
   background: rgba(var(--accent-amber-rgb), 0.2);
   border: 1px solid rgba(var(--accent-amber-rgb), 0.4);
 
+  margin: 1rem 0 0 1rem;
+
   svg {
-    font-size: 1.65rem;
+    font-size: 1.05rem;
   }
 `;
 
 const ServiceTitle = styled.h3`
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   color: var(--text-color);
   margin: 0 0 0.55rem;
   line-height: 1.25;
 `;
 
 const ServiceDescription = styled.p`
+  display: none;
   color: var(--text-secondary);
   font-size: 0.88rem;
   line-height: 1.55;
@@ -460,12 +475,12 @@ const ServiceDescription = styled.p`
 
 const ServiceThumbnail = styled.div`
   width: 100%;
-  height: clamp(88px, 11vw, 122px);
+  height: clamp(92px, 11vw, 124px);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   overflow: hidden;
   background: var(--background-color);
-  margin: 0.3rem 0 0.85rem;
+  margin: 0.45rem 0 0;
 
   img {
     width: 100%;
@@ -477,7 +492,7 @@ const ServiceThumbnail = styled.div`
 
 const ServiceList = styled.ul`
   list-style: none;
-  display: grid;
+  display: none;
   gap: 0.4rem;
   margin: 0 0 0.9rem;
   padding: 0;
@@ -500,21 +515,26 @@ const ServiceList = styled.ul`
 
 const ModuleFacts = styled.div`
   display: grid;
-  gap: 0.5rem;
-  margin-top: 0.8rem;
-  padding-top: 0.85rem;
+  gap: 0;
+  margin-top: 0.75rem;
   border-top: 1px solid var(--border-color);
 `;
 
 const ModuleFact = styled.div`
   display: grid;
-  grid-template-columns: 5.5rem minmax(0, 1fr);
+  grid-template-columns: 5.2rem minmax(0, 1fr);
   gap: 0.65rem;
   align-items: start;
   color: var(--text-secondary);
-  font-size: 0.82rem;
-  line-height: 1.5;
+  font-size: 0.78rem;
+  line-height: 1.45;
   min-width: 0;
+  padding: 0.62rem 0;
+  border-bottom: 1px solid var(--border-color);
+
+  &:last-child {
+    border-bottom: 0;
+  }
 
   @media (max-width: 520px) {
     grid-template-columns: 1fr;
@@ -530,23 +550,27 @@ const ModuleFactLabel = styled.strong`
 
 const MetricsBar = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.05);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 16px 46px rgba(15, 23, 42, 0.12);
   overflow: hidden;
+
+  @media (max-width: 820px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 `;
 
 const MetricCell = styled.div`
   display: grid;
-  grid-template-columns: 46px minmax(0, 1fr);
+  grid-template-columns: 42px minmax(0, 1fr);
   gap: 0.85rem;
   align-items: center;
-  padding: 1rem clamp(1rem, 2vw, 1.35rem);
+  padding: 1.05rem clamp(0.9rem, 2vw, 1.25rem);
   min-width: 0;
   border-right: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 0;
 
   &:last-child {
     border-right: 0;
@@ -554,13 +578,13 @@ const MetricCell = styled.div`
 `;
 
 const MetricIcon = styled.div`
-  width: 46px;
-  height: 46px;
+  width: 42px;
+  height: 42px;
   border-radius: 8px;
   display: grid;
   place-items: center;
-  color: var(--text-color);
-  background: rgba(var(--accent-amber-rgb), 0.14);
+  color: var(--accent-amber);
+  background: rgba(var(--accent-amber-rgb), 0.12);
 
   svg {
     font-size: 1.35rem;
@@ -685,6 +709,95 @@ const StepDescription = styled.p`
   font-size: 0.9rem;
   line-height: 1.6;
   margin: 0;
+`;
+
+const MeaningSection = styled(Section)`
+  background: var(--background-color);
+`;
+
+const MeaningGrid = styled.div`
+  width: min(100%, 1120px);
+  margin: 0 auto clamp(1rem, 2.5vw, 1.6rem);
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.75rem;
+
+  @media (max-width: 1080px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (max-width: 620px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+`;
+
+const MeaningCard = styled.article`
+  min-height: 112px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: #fff;
+  padding: 0.95rem;
+  display: grid;
+  gap: 0.45rem;
+
+  svg {
+    color: var(--text-color);
+    font-size: 1rem;
+  }
+
+  strong {
+    color: var(--text-color);
+    font-size: 0.86rem;
+    line-height: 1.35;
+  }
+
+  span {
+    color: var(--text-secondary);
+    font-size: 0.74rem;
+    line-height: 1.42;
+  }
+`;
+
+const DarkMetricBand = styled.div`
+  width: min(100%, 1120px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  border-radius: 8px;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(14, 14, 14, 0.88), rgba(14, 14, 14, 0.72)),
+    url('/images/kmtech-about-warehouse-hero-1440.webp') center / cover no-repeat;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  @media (max-width: 980px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (max-width: 560px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+`;
+
+const DarkMetric = styled.div`
+  min-height: 104px;
+  padding: 1rem;
+  display: grid;
+  align-content: center;
+  gap: 0.3rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.16);
+
+  strong {
+    color: #fff;
+    font-size: clamp(1rem, 2vw, 1.45rem);
+    line-height: 1;
+  }
+
+  span {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.78rem;
+    line-height: 1.3;
+  }
 `;
 
 const PartnersSection = styled(Section)`
@@ -865,8 +978,17 @@ const BusinessPage = () => {
   ];
 
   const capabilityIcons = [<FaBuilding />, <FaExpandArrowsAlt />, <FaTruckLoading />, <FaShieldAlt />];
-  const metricItems = [...facilityMetrics.slice(0, 2), ...operationHighlights];
-  const metricIcons = [<FaBuilding />, <FaExpandArrowsAlt />, <FaSearch />, <FaQrcode />, <FaTools />];
+  const metricItems = facilityMetrics;
+  const metricIcons = [<FaBuilding />, <FaExpandArrowsAlt />, <FaTruckLoading />, <FaShieldAlt />];
+  const meaningItems = [
+    { icon: <FaWarehouse />, title: '3,000 Class 클린 보관 환경', text: '전자·부품 검수와 보관 작업 대응' },
+    { icon: <FaQrcode />, title: 'ERP QR 기반 입출고 관리', text: '실시간 재고/위치/이력 데이터 연동' },
+    { icon: <FaTruckLoading />, title: '40ft 컨테이너 2대 동시 하역', text: '대량 입고와 리드타임 단축' },
+    { icon: <FaShieldAlt />, title: '16채널 CCTV 24시간 보안', text: '상시 녹화 및 출입 통제' },
+    { icon: <FaBoxes />, title: '50 Pallet 동시 재포장 대응', text: '대량 해체·소분·라벨링 가능' },
+    { icon: <FaCheckCircle />, title: '표준 운영 리포트', text: '검수·출고 결과를 기준화' },
+  ];
+  const darkMetricItems = [...facilityMetrics, operationHighlights[0], operationHighlights[2]];
   const factLabels = ['business_module_target', 'business_module_operation', 'business_module_output'];
   const consultationChecks = [
     { icon: <FaBoxes />, titleKey: 'business_consult_check_volume_title', descKey: 'business_consult_check_volume_desc' },
@@ -957,6 +1079,19 @@ const BusinessPage = () => {
             </OperationsPanel>
           </HeroGrid>
 
+          <MetricsBar>
+            {metricItems.map((metric, index) => (
+              <MetricCell key={metric.labelKey}>
+                <MetricIcon>{metricIcons[index]}</MetricIcon>
+                <div>
+                  <MetricValue>{metric.value}</MetricValue>
+                  <MetricLabel>{t(metric.labelKey)}</MetricLabel>
+                  <MetricLabel>{t(metric.detailKey)}</MetricLabel>
+                </div>
+              </MetricCell>
+            ))}
+          </MetricsBar>
+
           <ServicesGrid variants={containerVariants} initial="hidden" animate="visible">
             {services.map((service) => (
               <ServiceCard key={service.title} variants={itemVariants}>
@@ -984,19 +1119,6 @@ const BusinessPage = () => {
               </ServiceCard>
             ))}
           </ServicesGrid>
-
-          <MetricsBar>
-            {metricItems.map((metric, index) => (
-              <MetricCell key={metric.labelKey}>
-                <MetricIcon>{metricIcons[index]}</MetricIcon>
-                <div>
-                  <MetricValue>{metric.value}</MetricValue>
-                  <MetricLabel>{t(metric.labelKey)}</MetricLabel>
-                  <MetricLabel>{t(metric.detailKey)}</MetricLabel>
-                </div>
-              </MetricCell>
-            ))}
-          </MetricsBar>
         </HeroShell>
       </HeroSection>
 
@@ -1019,6 +1141,31 @@ const BusinessPage = () => {
           ))}
         </ProcessGrid>
       </ProcessSection>
+
+      <MeaningSection>
+        <SectionHeader>
+          <SectionKicker>운영 증명</SectionKicker>
+          <SectionHeading>시설 역량의 의미</SectionHeading>
+          <SectionDescription>KMTech 직산 물류센터의 실제 운영 기준입니다.</SectionDescription>
+        </SectionHeader>
+        <MeaningGrid>
+          {meaningItems.map((item) => (
+            <MeaningCard key={item.title}>
+              {item.icon}
+              <strong>{item.title}</strong>
+              <span>{item.text}</span>
+            </MeaningCard>
+          ))}
+        </MeaningGrid>
+        <DarkMetricBand>
+          {darkMetricItems.map((metric) => (
+            <DarkMetric key={metric.labelKey}>
+              <strong>{metric.value}</strong>
+              <span>{t(metric.labelKey)}</span>
+            </DarkMetric>
+          ))}
+        </DarkMetricBand>
+      </MeaningSection>
 
       <PartnersSection>
         <SectionHeader>

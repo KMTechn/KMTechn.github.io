@@ -109,7 +109,7 @@ const HeroDescription = styled(motion.p)`
 
 const HeroProofGrid = styled(motion.div)`
   margin-top: clamp(1rem, 2.2vw, 1.4rem);
-  display: grid;
+  display: none;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.7rem;
   max-width: 620px;
@@ -236,7 +236,7 @@ const HeroMetricRail = styled.div`
   right: clamp(0.85rem, 2vw, 1.25rem);
   bottom: clamp(0.85rem, 2vw, 1.25rem);
   z-index: 2;
-  display: grid;
+  display: none;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.65rem;
 
@@ -290,15 +290,15 @@ const HeroMetricLabel = styled.div`
 
 const TrustSection = styled(Section)`
   background: var(--background-color);
-  padding: clamp(1.5rem, 3vw, 2.3rem) clamp(1rem, 5vw, 5%);
+  padding: clamp(1rem, 2vw, 1.35rem) clamp(1rem, 5vw, 5%) clamp(1.35rem, 2.4vw, 1.8rem);
 `;
 
 const TrustGrid = styled.div`
   width: min(100%, 1240px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(18rem, 0.84fr) minmax(0, 1.16fr);
-  gap: clamp(0.9rem, 2.4vw, 1.4rem);
+  grid-template-columns: 1fr;
+  gap: 0;
   align-items: start;
 
   @media (max-width: 820px) {
@@ -311,7 +311,7 @@ const TrustIntro = styled.div`
   border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: clamp(0.95rem, 2.4vw, 1.25rem);
-  display: grid;
+  display: none;
   grid-template-columns: auto minmax(0, 1fr);
   gap: clamp(1rem, 2.2vw, 1.35rem);
   align-items: start;
@@ -362,9 +362,15 @@ const TrustText = styled.p`
 const TrustMetrics = styled.div`
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(0.65rem, 1.5vw, 0.85rem);
+  gap: 0;
   align-items: start;
   min-width: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(255, 204, 0, 0.07), transparent 38%),
+    linear-gradient(180deg, #1c1c1c, #101010);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 
   @media (max-width: 1020px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -380,16 +386,21 @@ const TrustMetrics = styled.div`
 `;
 
 const TrustMetric = styled.div`
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: clamp(0.78rem, 1.6vw, 1rem);
+  background: transparent;
+  border: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 0;
+  padding: clamp(1rem, 2.2vw, 1.35rem);
   min-width: 0;
   min-height: clamp(118px, 10vw, 142px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.035);
+  box-shadow: none;
+
+  &:last-child {
+    border-right: 0;
+  }
 
   @media (max-width: 520px) {
     min-height: auto;
@@ -398,7 +409,7 @@ const TrustMetric = styled.div`
 `;
 
 const TrustMetricValue = styled.div`
-  color: var(--text-color);
+  color: #fff;
   font-size: clamp(1.2rem, 2.4vw, 1.7rem);
   font-weight: 900;
   line-height: 1.1;
@@ -414,13 +425,13 @@ const TrustMetricLabel = styled.div`
 `;
 
 const TrustMetricName = styled(TrustMetricLabel)`
-  color: var(--text-color);
+  color: rgba(255, 255, 255, 0.86);
   font-weight: 700;
   margin-top: 0.65rem;
 `;
 
 const TrustMetricDetail = styled(TrustMetricLabel)`
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.62);
   max-width: 15ch;
 
   @media (max-width: 520px) {
@@ -430,7 +441,7 @@ const TrustMetricDetail = styled(TrustMetricLabel)`
 
 const TrustHighlightGrid = styled.div`
   grid-column: 1 / -1;
-  display: grid;
+  display: none;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(0.65rem, 1.5vw, 0.85rem);
 
@@ -454,10 +465,88 @@ const TrustHighlightValue = styled.div`
   word-break: keep-all;
 `;
 
+const BasisRow = styled.div`
+  width: min(100%, 1240px);
+  margin: clamp(1.3rem, 2.6vw, 1.9rem) auto 0;
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.45fr) minmax(0, 1fr);
+  gap: clamp(1rem, 2.4vw, 1.5rem);
+  align-items: start;
+
+  @media (max-width: 820px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const BasisIntro = styled.div`
+  h2 {
+    color: var(--text-color);
+    font-size: clamp(1.35rem, 2.3vw, 1.75rem);
+    margin-bottom: 0.65rem;
+    line-height: 1.25;
+  }
+
+  p {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    margin: 0;
+  }
+`;
+
+const BasisItems = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 520px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const BasisItem = styled.div`
+  padding: 1rem;
+  border-right: 1px solid var(--border-color);
+  min-width: 0;
+
+  &:last-child {
+    border-right: 0;
+  }
+
+  svg {
+    color: var(--text-color);
+    margin-bottom: 0.55rem;
+  }
+
+  strong {
+    display: block;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    line-height: 1.35;
+    margin-bottom: 0.35rem;
+  }
+
+  span {
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+`;
+
 // Philosophy Section
 const PhilosophySection = styled(Section)`
-  background: var(--card-bg);
-  padding: clamp(2.2rem, 4vw, 3.4rem) 5%;
+  background:
+    linear-gradient(90deg, rgba(17, 17, 17, 0.96) 0%, rgba(17, 17, 17, 0.9) 44%, rgba(17, 17, 17, 0.48) 100%),
+    url('/images/kmtech-contact-warehouse-hero-1440.webp') center / cover no-repeat;
+  padding: clamp(2rem, 3.8vw, 3.25rem) 5%;
+  color: #fff;
 `;
 
 const PhilosophyGrid = styled.div`
@@ -489,7 +578,7 @@ const PhilosophyLabel = styled.span`
 const PhilosophyTitle = styled.h2`
   font-size: clamp(1.55rem, 3vw, 2rem);
   font-weight: 700;
-  color: var(--text-color);
+  color: #fff;
   margin-bottom: 1.5rem;
   line-height: 1.3;
 `;
@@ -497,7 +586,7 @@ const PhilosophyTitle = styled.h2`
 const PhilosophyText = styled.p`
   font-size: 0.98rem;
   line-height: 1.72;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.72);
 `;
 
 const QuoteBlock = styled.div`
@@ -519,7 +608,7 @@ const QuoteBlock = styled.div`
 const QuoteText = styled.p`
   font-size: 1.1rem;
   font-style: italic;
-  color: var(--text-color);
+  color: #fff;
   line-height: 1.7;
 `;
 
@@ -534,8 +623,8 @@ const PrincipleCard = styled(motion.div)`
   align-items: center;
   gap: 1.25rem;
   padding: 1.05rem 1.15rem;
-  background: var(--background-color);
-  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 204, 0, 0.22);
   border-radius: 8px;
   transition: all 0.3s ease;
 
@@ -564,13 +653,13 @@ const PrincipleIcon = styled.div`
 const PrincipleText = styled.span`
   font-size: 1rem;
   font-weight: 600;
-  color: var(--text-color);
+  color: #fff;
 `;
 
 // Core Values Section
 const ValuesSection = styled(Section)`
   background: var(--background-color);
-  padding: clamp(2.2rem, 4vw, 3.5rem) 5%;
+  padding: clamp(1.8rem, 3.4vw, 2.8rem) 5%;
 `;
 
 const SectionHeader = styled(motion.div)`
@@ -597,22 +686,32 @@ const SectionDescription = styled.p`
 
 const ValuesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(0.8rem, 2vw, 1rem);
-  max-width: 980px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  max-width: 1100px;
   margin: 0 auto;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
 
-  @media (max-width: 760px) {
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 560px) {
     grid-template-columns: 1fr;
   }
 `;
 
 const ValueCard = styled(motion.div)`
   text-align: left;
-  padding: 1rem;
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  background: #fff;
+  border: 0;
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 0;
   display: grid;
   grid-template-columns: 52px minmax(0, 1fr);
   gap: 0.85rem;
@@ -623,24 +722,24 @@ const ValueCard = styled(motion.div)`
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {
-    border-color: var(--accent-amber);
-    transform: translateY(-4px) translateZ(0);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    border-color: var(--border-color);
+    transform: none;
+    box-shadow: none;
   }
 `;
 
 const ValueIcon = styled.div`
-  width: 52px;
-  height: 52px;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--accent-amber), #f59e0b);
+  background: rgba(var(--accent-amber-rgb), 0.16);
   border-radius: 8px;
   margin: 0;
 
   svg {
-    font-size: 1.25rem;
+    font-size: 1rem;
     color: #121212;
   }
 `;
@@ -655,7 +754,7 @@ const ValueTitle = styled.h4`
 // Strengths Section
 const StrengthsSection = styled(Section)`
   background: var(--card-bg);
-  padding: clamp(3rem, 5vw, 4.6rem) 5%;
+  padding: clamp(2rem, 3.8vw, 3.2rem) 5%;
 `;
 
 const StrengthsGrid = styled.div`
@@ -747,7 +846,7 @@ const StrengthDescription = styled.p`
 // Organization Section - Modern Minimal Design
 const OrgSection = styled(Section)`
   background: var(--background-color);
-  padding: clamp(3rem, 5vw, 4.6rem) 5%;
+  padding: clamp(2rem, 3.8vw, 3.2rem) 5%;
 `;
 
 const OrgContainer = styled.div`
@@ -929,6 +1028,12 @@ const AboutUsPage = () => {
     { icon: <FaShippingFast />, img: '/images/kmtech-contact-warehouse-hero-960.webp', titleKey: 'strong_point_5_title', descKey: 'strong_point_5_desc' },
   ];
   const proofPoints = strongPoints.slice(0, 3);
+  const basisItems = [
+    { icon: <FaSearchPlus />, title: '표준 운영 프로세스', text: '입고부터 출고까지 표준 절차 기반 운영' },
+    { icon: <FaCogs />, title: 'WMS 기반 실시간 관리', text: '재고·위치·작업 현황을 실시간으로 가시화' },
+    { icon: <FaCheckCircle />, title: '품질과 안전 준수', text: '안전한 작업 환경과 품질 표준 준수' },
+    { icon: <FaBrain />, title: '지속적 개선', text: '데이터 분석과 개선 활동으로 운영 품질 향상' },
+  ];
 
   const organization = orgStructure || { ceo: { titleKey: 'org_ceo', nameKey: 'org_ceo_name' }, departments: [] };
 
@@ -1037,6 +1142,21 @@ const AboutUsPage = () => {
             ))}
           </TrustHighlightGrid>
         </TrustGrid>
+        <BasisRow>
+          <BasisIntro>
+            <h2>운영 기반</h2>
+            <p>표준화된 운영 시스템과 데이터 기반 관리로 정확하고 일관된 물류를 제공합니다.</p>
+          </BasisIntro>
+          <BasisItems>
+            {basisItems.map((item) => (
+              <BasisItem key={item.title}>
+                {item.icon}
+                <strong>{item.title}</strong>
+                <span>{item.text}</span>
+              </BasisItem>
+            ))}
+          </BasisItems>
+        </BasisRow>
       </TrustSection>
 
       {/* Philosophy Section */}

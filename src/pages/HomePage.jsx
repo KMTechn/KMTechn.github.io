@@ -20,9 +20,9 @@ const PageContainer = styled.div`
 // Hero Section - Clean Professional
 const HeroSection = styled.section`
   min-height: auto;
-  padding: clamp(1rem, 2.6vh, 1.8rem) clamp(1rem, 4vw, 2.5rem) clamp(0.5rem, 1.5vh, 0.9rem);
+  padding: clamp(2.35rem, 4.8vw, 4.25rem) clamp(1rem, 4vw, 2.5rem) clamp(1.2rem, 2.2vw, 1.65rem);
   background:
-    radial-gradient(circle at 77% 18%, rgba(var(--accent-amber-rgb), 0.13), transparent 23rem),
+    radial-gradient(circle at 82% 18%, rgba(var(--accent-amber-rgb), 0.12), transparent 25rem),
     linear-gradient(180deg, #f8f9fb 0%, var(--background-color) 100%);
   position: relative;
   overflow: clip;
@@ -51,9 +51,9 @@ const HeroLayout = styled.div`
   width: min(100%, var(--page-max-width));
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(18rem, 0.46fr) minmax(25rem, 0.9fr);
-  align-items: center;
-  gap: clamp(1.3rem, 3vw, 2.5rem);
+  grid-template-columns: minmax(20rem, 0.48fr) minmax(34rem, 1fr);
+  align-items: end;
+  gap: clamp(0.8rem, 2vw, 1.4rem);
 
   @media (max-width: 820px) {
     grid-template-columns: 1fr;
@@ -87,7 +87,7 @@ const HeroLabel = styled(motion.span)`
 `;
 
 const Title = styled(motion.h1)`
-  font-size: clamp(2.05rem, 3.6vw, 3rem);
+  font-size: clamp(2.75rem, 5.1vw, 4.45rem);
   font-weight: 800;
   line-height: 1.08;
   margin-bottom: 1rem;
@@ -223,17 +223,15 @@ const SecondaryButton = styled(PrimaryButton)`
 `;
 
 const ArtworkContainer = styled(motion.div)`
-  height: clamp(22rem, 32vw, 28rem);
+  height: clamp(25rem, 38vw, 35rem);
   width: 100%;
   position: relative;
   isolation: isolate;
   overflow: clip;
-  border: 1px solid rgba(15, 23, 42, 0.12);
-  border-radius: 12px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(238, 242, 247, 0.92)),
-    radial-gradient(circle at 64% 44%, rgba(var(--accent-amber-rgb), 0.16), transparent 16rem);
-  box-shadow: 0 26px 70px rgba(15, 23, 42, 0.14);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   cursor: grab;
 
   &::before {
@@ -310,10 +308,10 @@ const VisualTitle = styled.div`
 
 const GlobeStage = styled.div`
   position: absolute;
-  right: clamp(0.6rem, 2.2vw, 1.4rem);
-  bottom: clamp(4.1rem, 6vw, 5.4rem);
-  width: clamp(14rem, 25vw, 21rem);
-  height: clamp(14rem, 25vw, 21rem);
+  right: clamp(-2.4rem, -2.4vw, -0.5rem);
+  bottom: clamp(2.5rem, 4.6vw, 4.5rem);
+  width: clamp(19rem, 31vw, 28rem);
+  height: clamp(19rem, 31vw, 28rem);
   display: grid;
   place-items: center;
   z-index: 2;
@@ -337,7 +335,7 @@ const VisualMetricDock = styled.div`
   top: clamp(1rem, 2vw, 1.5rem);
   right: clamp(1rem, 2vw, 1.5rem);
   z-index: 3;
-  display: grid;
+  display: none;
   gap: 0.5rem;
   width: min(30%, 13rem);
 
@@ -382,6 +380,7 @@ const VisualFlow = styled.div`
   right: clamp(1rem, 2vw, 1.5rem);
   bottom: clamp(1rem, 2vw, 1.35rem);
   z-index: 4;
+  display: none;
   border: 1px solid rgba(15, 23, 42, 0.1);
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.9);
@@ -427,25 +426,46 @@ const VisualFlowStep = styled.div`
 `;
 
 const HeroProofGrid = styled(motion.div)`
-  display: none;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
   width: 100%;
-  max-width: 500px;
-  margin-top: 1.25rem;
+  max-width: none;
+  margin-top: clamp(-1.75rem, -2.3vw, -1rem);
+  position: relative;
+  z-index: 5;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 22px 58px rgba(15, 23, 42, 0.1);
+  overflow: hidden;
 
   @media (max-width: 600px) {
-    display: none;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 0.75rem;
+  }
+
+  @media (max-width: 820px) {
+    order: 3;
   }
 `;
 
 const HeroProofItem = styled.div`
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.96);
-  padding: 0.9rem 0.95rem;
+  border-right: 1px solid var(--border-color);
+  background: transparent;
+  padding: 1.1rem 1.45rem;
   min-width: 0;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+
+  &:last-child {
+    border-right: 0;
+  }
+
+  @media (max-width: 600px) {
+    border-right: 0;
+    border-bottom: 1px solid var(--border-color);
+  }
 `;
 
 const HeroProofValue = styled.div`
@@ -467,7 +487,7 @@ const HeroProofLabel = styled.div`
 // Stats Section
 const StatsSection = styled.section`
   background: var(--card-bg);
-  padding: clamp(2.6rem, 4.5vw, 4rem) 5%;
+  padding: clamp(2rem, 3.6vw, 3.1rem) 5%;
   border-bottom: 1px solid var(--border-color);
 
   @media (max-width: 600px) {
@@ -479,37 +499,43 @@ const StatsShell = styled.div`
   width: min(100%, 1240px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(18rem, 0.42fr) minmax(0, 1fr);
-  gap: clamp(1.25rem, 4vw, 2.5rem);
+  grid-template-columns: minmax(0, 0.95fr) minmax(20rem, 0.82fr);
+  gap: clamp(1rem, 2.6vw, 1.65rem);
   align-items: start;
 
-  @media (max-width: 820px) {
+  @media (max-width: 1080px) {
     grid-template-columns: 1fr;
   }
 `;
 
 const StatsIntro = styled(motion.div)`
+  grid-column: 1 / -1;
   text-align: left;
   min-width: 0;
+  max-width: 720px;
 
   ${SectionTitle} {
     font-size: clamp(1.65rem, 3vw, 2.25rem);
   }
 
   @media (max-width: 820px) {
-    text-align: center;
+    text-align: left;
     max-width: 680px;
-    margin: 0 auto;
+    margin: 0;
   }
 `;
 
 const StatsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(0.75rem, 2vw, 1rem);
+  grid-template-columns: 1fr;
+  gap: 0;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--background-color);
 
-  @media (max-width: 1180px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  @media (max-width: 1080px) {
+    grid-template-columns: 1fr;
   }
 
   @media (max-width: 560px) {
@@ -517,13 +543,36 @@ const StatsGrid = styled.div`
   }
 `;
 
+const FacilityMedia = styled(motion.div)`
+  min-height: clamp(18rem, 27vw, 24rem);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  background: #111;
+  box-shadow: 0 18px 46px rgba(15, 23, 42, 0.1);
+
+  img {
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+  }
+`;
+
 const StatItem = styled(motion.div)`
   text-align: left;
-  padding: 1.15rem;
-  background: var(--background-color);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
+  padding: 1rem 1.15rem;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 0;
   min-width: 0;
+
+  &:last-of-type {
+    border-bottom: 0;
+  }
 `;
 
 const StatNumber = styled.div`
@@ -556,7 +605,7 @@ const StatDetail = styled.p`
 
 const OperationProofGrid = styled.div`
   grid-column: 1 / -1;
-  display: grid;
+  display: none;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(0.75rem, 2vw, 1rem);
   margin-top: 0.25rem;
@@ -585,10 +634,10 @@ const OperationProofValue = styled.strong`
 // Services Section
 const ServicesSection = styled(Section)`
   background: var(--background-color);
-  padding: clamp(1.45rem, 2.6vw, 2.1rem) 5%;
+  padding: clamp(2rem, 3.5vw, 3rem) 5%;
 
   @media (max-width: 600px) {
-    padding: 4.5rem 1.25rem;
+    padding: 3rem 1.25rem;
   }
 `;
 
@@ -596,8 +645,8 @@ const ServicesShell = styled.div`
   width: min(100%, var(--page-max-width));
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(15rem, 0.28fr) minmax(0, 1fr);
-  gap: clamp(1rem, 2.5vw, 1.8rem);
+  grid-template-columns: 1fr;
+  gap: clamp(1.3rem, 2.8vw, 2rem);
   align-items: start;
 
   @media (max-width: 1100px) {
@@ -608,9 +657,12 @@ const ServicesShell = styled.div`
 const ServicesIntro = styled(motion.div)`
   text-align: left;
   min-width: 0;
+  max-width: 740px;
 
   ${SectionTitle} {
-    font-size: clamp(1.45rem, 2.6vw, 2rem);
+    font-size: clamp(1.7rem, 3vw, 2.35rem);
+    text-align: left;
+    margin-bottom: 0.65rem;
   }
 
   @media (max-width: 1100px) {
@@ -653,7 +705,7 @@ const SectionDescription = styled.p`
 const ServicesGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: clamp(0.65rem, 1vw, 0.85rem);
+  gap: clamp(0.75rem, 1.2vw, 1rem);
   min-width: 0;
 
   @media (max-width: 1080px) {
@@ -669,7 +721,7 @@ const ServiceCard = styled(motion.div)`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: clamp(0.8rem, 1.4vw, 1rem);
+  padding: clamp(1rem, 1.65vw, 1.25rem);
   cursor: pointer;
   will-change: transform;
   transform: translateZ(0);
@@ -677,6 +729,7 @@ const ServiceCard = styled(motion.div)`
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-height: 190px;
   min-width: 0;
 
   &:hover {
@@ -701,6 +754,7 @@ const ServiceMeta = styled.span`
   line-height: 1.2;
   padding: 0.35rem 0.55rem;
   margin-bottom: 0.7rem;
+  display: none;
 `;
 
 const ServiceIcon = styled.div`
@@ -777,11 +831,18 @@ const ServiceLink = styled.div`
 
 // Strengths Section
 const StrengthsSection = styled(Section)`
-  background: var(--card-bg);
-  padding: clamp(3rem, 5vw, 4.5rem) 5%;
+  background:
+    linear-gradient(90deg, rgba(16, 16, 16, 0.95), rgba(16, 16, 16, 0.84)),
+    url('/images/kmtech-about-warehouse-hero-1440.webp') center / cover no-repeat;
+  padding: clamp(2.1rem, 4vw, 3.35rem) 5%;
+  color: #fff;
+
+  ${SectionTitle} {
+    color: #fff;
+  }
 
   @media (max-width: 600px) {
-    padding: 4.5rem 1.25rem;
+    padding: 3rem 1.25rem;
   }
 `;
 
@@ -790,12 +851,12 @@ const StrengthsGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
   gap: clamp(1rem, 3vw, 2rem);
   max-width: 1200px;
-  margin: 0 auto 3rem;
+  margin: 0 auto 2rem;
 `;
 
 const StrengthCard = styled(motion.div)`
-  background: var(--background-color);
-  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 204, 0, 0.22);
   border-radius: 8px;
   padding: clamp(1.25rem, 2.5vw, 1.65rem);
   display: flex;
@@ -808,7 +869,7 @@ const StrengthCard = styled(motion.div)`
 
   &:hover {
     border-color: var(--accent-amber);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
   }
 `;
 
@@ -836,14 +897,14 @@ const StrengthContent = styled.div`
 const StrengthTitle = styled.h4`
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--text-color);
+  color: #fff;
   margin-bottom: 0.5rem;
 `;
 
 const StrengthDescription = styled.p`
   font-size: 0.9rem;
   line-height: 1.6;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.72);
 `;
 
 const CTAContainer = styled(motion.div)`
@@ -853,10 +914,10 @@ const CTAContainer = styled(motion.div)`
 // Process Section
 const ProcessSection = styled(Section)`
   background: var(--background-color);
-  padding: clamp(3rem, 5vw, 4.5rem) 5%;
+  padding: clamp(2rem, 3.6vw, 3rem) 5%;
 
   @media (max-width: 600px) {
-    padding: 4.5rem 1.25rem;
+    padding: 3rem 1.25rem;
   }
 `;
 
@@ -864,10 +925,10 @@ const ProcessFlow = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  max-width: 1000px;
+  gap: 0.65rem;
+  max-width: 1120px;
   margin: 0 auto;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -881,8 +942,8 @@ const ProcessStep = styled(motion.div)`
   align-items: center;
   text-align: center;
   flex: 1;
-  min-width: 140px;
-  max-width: 200px;
+  min-width: 0;
+  max-width: 150px;
 
   @media (max-width: 768px) {
     flex-direction: row;
@@ -895,18 +956,19 @@ const ProcessStep = styled(motion.div)`
 `;
 
 const ProcessIconWrapper = styled.div`
-  width: 64px;
-  height: 64px;
+  width: 52px;
+  height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--accent-amber), #f59e0b);
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  background: #fff8db;
+  border: 1px solid var(--accent-amber);
+  border-radius: 50%;
+  margin-bottom: 0.75rem;
   flex-shrink: 0;
 
   svg {
-    font-size: 1.5rem;
+    font-size: 1.15rem;
     color: #121212;
   }
 
@@ -918,7 +980,7 @@ const ProcessIconWrapper = styled.div`
 `;
 
 const ProcessStepNumber = styled.span`
-  font-size: 0.7rem;
+  font-size: 0.66rem;
   font-weight: 700;
   color: var(--accent-amber);
   letter-spacing: 0.1em;
@@ -930,14 +992,14 @@ const ProcessStepNumber = styled.span`
 `;
 
 const ProcessStepTitle = styled.h4`
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-color);
   margin: 0 0 0.25rem 0;
 `;
 
 const ProcessStepDesc = styled.p`
-  font-size: 0.85rem;
+  font-size: 0.76rem;
   color: var(--text-secondary);
   margin: 0;
   line-height: 1.4;
@@ -950,8 +1012,8 @@ const ProcessTextWrapper = styled.div`
 `;
 
 const ProcessArrow = styled(motion.div)`
-  color: var(--border-color);
-  font-size: 1.5rem;
+  color: #c8cdd5;
+  font-size: 1.1rem;
   flex-shrink: 0;
 
   @media (max-width: 768px) {
@@ -963,11 +1025,11 @@ const ProcessArrow = styled(motion.div)`
 // Partners Section
 const PartnersSection = styled.section`
   background: var(--background-color);
-  padding: clamp(3rem, 5vw, 4.5rem) 5%;
+  padding: clamp(2rem, 3.6vw, 3.2rem) 5%;
   border-top: 1px solid var(--border-color);
 
   @media (max-width: 600px) {
-    padding: 4rem 1.25rem;
+    padding: 3rem 1.25rem;
   }
 `;
 
@@ -1146,9 +1208,19 @@ const HomePage = () => {
       descKey: 'process_home_step3_desc'
     },
     {
+      icon: <FaBrain />,
+      titleKey: 'metric_qr_system',
+      descKey: 'metric_qr_detail'
+    },
+    {
       icon: <FaBoxOpen />,
       titleKey: 'process_home_step4_title',
       descKey: 'process_home_step4_desc'
+    },
+    {
+      icon: <FaShippingFast />,
+      titleKey: 'business_delivery_title',
+      descKey: 'business_delivery_summary'
     }
   ];
 
@@ -1240,19 +1312,6 @@ const HomePage = () => {
               </SecondaryButton>
             </ButtonGroup>
 
-            <HeroProofGrid
-              aria-label={t('hero_proof_label')}
-              initial={{ opacity: 1, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
-              {heroProof.map((item) => (
-                <HeroProofItem key={item.labelKey}>
-                  <HeroProofValue>{item.value}</HeroProofValue>
-                  <HeroProofLabel>{t(item.labelKey)}</HeroProofLabel>
-                </HeroProofItem>
-              ))}
-            </HeroProofGrid>
-
             <ContactInfo
               initial={{ opacity: 0 }}
               animate={heroInView ? { opacity: 1 } : {}}
@@ -1305,6 +1364,18 @@ const HomePage = () => {
               </VisualFlowSteps>
             </VisualFlow>
           </ArtworkContainer>
+          <HeroProofGrid
+            aria-label={t('hero_proof_label')}
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            {heroProof.map((item) => (
+              <HeroProofItem key={item.labelKey}>
+                <HeroProofValue>{item.value}</HeroProofValue>
+                <HeroProofLabel>{t(item.labelKey)}</HeroProofLabel>
+              </HeroProofItem>
+            ))}
+          </HeroProofGrid>
         </HeroLayout>
       </HeroSection>
 
@@ -1347,6 +1418,50 @@ const HomePage = () => {
         </ServicesShell>
       </ServicesSection>
 
+      {/* Process Section */}
+      <ProcessSection ref={processRef}>
+        <SectionHeader
+          initial={{ opacity: 0, y: 20 }}
+          animate={processInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+        >
+          <SectionLabel>{t('home_section_process_label')}</SectionLabel>
+          <SectionTitle>{t('process_home_title')}</SectionTitle>
+          <SectionDescription>{t('process_home_desc')}</SectionDescription>
+        </SectionHeader>
+
+        <ProcessFlow>
+          {processSteps.map((step, index) => (
+            <React.Fragment key={step.titleKey}>
+              <ProcessStep
+                initial={{ opacity: 0, y: 20 }}
+                animate={processInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: index * 0.1, duration: 0.45 }}
+              >
+                <ProcessIconWrapper>
+                  {step.icon}
+                </ProcessIconWrapper>
+                <ProcessTextWrapper>
+                  <ProcessStepNumber>{t('process_step_label', { number: index + 1 })}</ProcessStepNumber>
+                  <ProcessStepTitle>{t(step.titleKey)}</ProcessStepTitle>
+                  <ProcessStepDesc>{t(step.descKey)}</ProcessStepDesc>
+                </ProcessTextWrapper>
+              </ProcessStep>
+
+              {index < processSteps.length - 1 && (
+                <ProcessArrow
+                  initial={{ opacity: 0 }}
+                  animate={processInView ? { opacity: 1 } : {}}
+                  transition={{ delay: index * 0.1 + 0.08, duration: 0.3 }}
+                >
+                  <HiOutlineChevronRight />
+                </ProcessArrow>
+              )}
+            </React.Fragment>
+          ))}
+        </ProcessFlow>
+      </ProcessSection>
+
       {/* Stats Section */}
       <StatsSection ref={statsRef}>
         <StatsShell>
@@ -1359,6 +1474,21 @@ const HomePage = () => {
             <SectionTitle>{t('home_facility_title')}</SectionTitle>
             <SectionDescription>{t('home_facility_desc')}</SectionDescription>
           </StatsIntro>
+
+          <FacilityMedia
+            initial={{ opacity: 0, y: 20 }}
+            animate={statsInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.08, duration: 0.5 }}
+          >
+            <img
+              src="/images/kmtech-about-warehouse-hero.png"
+              srcSet="/images/kmtech-about-warehouse-hero-960.webp 960w, /images/kmtech-about-warehouse-hero-1440.webp 1440w, /images/kmtech-about-warehouse-hero.png 1672w"
+              sizes="(max-width: 1080px) 100vw, 38vw"
+              alt="KMTech 직산 물류센터 내부"
+              loading="lazy"
+              decoding="async"
+            />
+          </FacilityMedia>
 
           <StatsGrid>
             {facilityMetrics.map((metric, index) => (
@@ -1389,50 +1519,6 @@ const HomePage = () => {
           </StatsGrid>
         </StatsShell>
       </StatsSection>
-
-      {/* Process Section */}
-      <ProcessSection ref={processRef}>
-        <SectionHeader
-          initial={{ opacity: 0, y: 20 }}
-          animate={processInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-        >
-          <SectionLabel>{t('home_section_process_label')}</SectionLabel>
-          <SectionTitle>{t('process_home_title')}</SectionTitle>
-          <SectionDescription>{t('process_home_desc')}</SectionDescription>
-        </SectionHeader>
-
-        <ProcessFlow>
-          {processSteps.map((step, index) => (
-            <React.Fragment key={step.titleKey}>
-              <ProcessStep
-                initial={{ opacity: 0, y: 20 }}
-                animate={processInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: index * 0.15, duration: 0.5 }}
-              >
-                <ProcessIconWrapper>
-                  {step.icon}
-                </ProcessIconWrapper>
-                <ProcessTextWrapper>
-                  <ProcessStepNumber>{t('process_step_label', { number: index + 1 })}</ProcessStepNumber>
-                  <ProcessStepTitle>{t(step.titleKey)}</ProcessStepTitle>
-                  <ProcessStepDesc>{t(step.descKey)}</ProcessStepDesc>
-                </ProcessTextWrapper>
-              </ProcessStep>
-
-              {index < processSteps.length - 1 && (
-                <ProcessArrow
-                  initial={{ opacity: 0 }}
-                  animate={processInView ? { opacity: 1 } : {}}
-                  transition={{ delay: index * 0.15 + 0.1, duration: 0.3 }}
-                >
-                  <HiOutlineChevronRight />
-                </ProcessArrow>
-              )}
-            </React.Fragment>
-          ))}
-        </ProcessFlow>
-      </ProcessSection>
 
       {/* Strengths Section */}
       <StrengthsSection ref={strengthsRef}>
