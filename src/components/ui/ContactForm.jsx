@@ -2,20 +2,100 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, AlertCircle, Send } from 'lucide-react';
+import { AlertCircle, CheckCircle, Headphones, Package, Send, ShieldCheck, Truck, Warehouse } from 'lucide-react';
 
 const FormContainer = styled(motion.form)`
   display: flex;
   flex-direction: column;
-  gap: 0.78rem;
-  margin-top: 0.95rem;
+  gap: 1rem;
+  margin-top: 1rem;
   position: relative;
 `;
 
 const FieldGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem 1rem;
+
+  @media (max-width: 620px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const TypeGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 0.15rem;
+
+  @media (max-width: 520px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const TypeOption = styled.button`
+  min-height: 94px;
+  border-radius: 8px;
+  border: 1px solid ${({ $active }) => $active ? 'var(--accent-amber)' : 'var(--border-color)'};
+  background: ${({ $active }) => $active ? 'linear-gradient(135deg, rgba(var(--accent-amber-rgb), 0.14), #fff 72%)' : '#fff'};
+  color: var(--text-color);
+  padding: 0.85rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  box-shadow: ${({ $active }) => $active ? '0 12px 28px rgba(var(--accent-amber-rgb), 0.14)' : 'none'};
+
+  &:hover {
+    border-color: rgba(var(--accent-amber-rgb), 0.72);
+  }
+
+  svg {
+    width: 28px;
+    height: 28px;
+    color: var(--text-color);
+  }
+
+  @media (max-width: 520px) {
+    min-height: 78px;
+  }
+`;
+
+const TypeText = styled.span`
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+
+  strong {
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+  small {
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    line-height: 1.35;
+  }
+`;
+
+const TypeIndicator = styled.span`
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid ${({ $active }) => $active ? 'var(--accent-amber)' : 'rgba(17, 24, 39, 0.18)'};
+  background: ${({ $active }) => $active ? 'var(--accent-amber)' : '#fff'};
+  color: #121212;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
 `;
 
 const FormField = styled.div`
@@ -63,7 +143,7 @@ const Input = styled.input`
 const Textarea = styled.textarea`
   ${inputStyles}
   line-height: var(--line-height-relaxed);
-  min-height: 136px;
+  min-height: 128px;
   resize: vertical;
 `;
 
@@ -137,17 +217,6 @@ const StatusTitle = styled.h3`
   gap: 0.5rem;
 `;
 
-const Select = styled.select`
-  ${inputStyles}
-  min-height: 48px;
-  appearance: none;
-  background:
-    linear-gradient(45deg, transparent 50%, var(--text-secondary) 50%) calc(100% - 18px) 52% / 6px 6px no-repeat,
-    linear-gradient(135deg, var(--text-secondary) 50%, transparent 50%) calc(100% - 13px) 52% / 6px 6px no-repeat,
-    #fff;
-  color: var(--text-color);
-`;
-
 const ConsentLabel = styled.label`
   display: flex;
   align-items: flex-start;
@@ -159,6 +228,34 @@ const ConsentLabel = styled.label`
   input {
     margin-top: 0.2rem;
     accent-color: var(--accent-amber);
+    flex: 0 0 auto;
+  }
+`;
+
+const PrivacyPanel = styled.div`
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+`;
+
+const SecurityCopy = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: var(--font-sm);
+  line-height: 1.45;
+
+  svg {
+    color: var(--text-color);
     flex: 0 0 auto;
   }
 `;
@@ -193,10 +290,10 @@ const ContactForm = () => {
     privacy: false,
   });
   const inquiryTypes = [
-    { value: '3pl', labelKey: 'contact_inquiry_type_3pl' },
-    { value: 'quality', labelKey: 'contact_inquiry_type_quality' },
-    { value: 'partner', labelKey: 'contact_inquiry_type_partner' },
-    { value: 'general', labelKey: 'contact_inquiry_type_general' },
+    { value: '3pl', labelKey: 'contact_inquiry_type_3pl', text: '견적·계약 문의', icon: Package },
+    { value: 'partner', label: '입고·검수', labelKey: 'contact_inquiry_type_partner', text: '입고 예약, 검수 기준', icon: Truck },
+    { value: 'quality', label: '운영 문의', labelKey: 'contact_inquiry_type_quality', text: '재고, 출고, 시스템', icon: Warehouse },
+    { value: 'general', label: '기타 문의', labelKey: 'contact_inquiry_type_general', text: '기타 일반 문의', icon: Headphones },
   ];
   const [inquiryType, setInquiryType] = useState(inquiryTypes[0].value);
   const [errors, setErrors] = useState({ name: '', email: '', phone: '', message: '', privacy: '' });
@@ -263,7 +360,7 @@ const ContactForm = () => {
     // mailto: 방식으로 이메일 앱 열기
     const recipient = 'cgpark@kmtechn.com';
     const selectedInquiry = inquiryTypes.find((type) => type.value === inquiryType);
-    const inquiryLabel = t(selectedInquiry?.labelKey || 'contact_inquiry_type_general');
+    const inquiryLabel = selectedInquiry?.label || t(selectedInquiry?.labelKey || 'contact_inquiry_type_general');
     const subjectText = formData.subject.trim() || inquiryLabel;
     const subject = encodeURIComponent(`[KMTech 문의] ${subjectText} - ${formData.name}`);
     const body = encodeURIComponent(
@@ -326,24 +423,31 @@ const ContactForm = () => {
           transition={{ delay: 0.2 }}
           noValidate
         >
-          <FormField>
-            <Label htmlFor="contact-inquiry-type">{t('contact_inquiry_type_label')}</Label>
-            <Select
-              id="contact-inquiry-type"
-              value={inquiryType}
-              onChange={(event) => setInquiryType(event.target.value)}
-              disabled={status === 'submitting'}
-            >
-              {inquiryTypes.map((type) => (
-                <option
+          <TypeGrid aria-label={t('contact_inquiry_type_label')}>
+            {inquiryTypes.map((type) => {
+              const Icon = type.icon;
+              const active = inquiryType === type.value;
+              return (
+                <TypeOption
                   key={type.value}
-                  value={type.value}
+                  type="button"
+                  $active={active}
+                  aria-pressed={active}
+                  onClick={() => setInquiryType(type.value)}
+                  disabled={status === 'submitting'}
                 >
-                  {t(type.labelKey)}
-                </option>
-              ))}
-            </Select>
-          </FormField>
+                  <Icon aria-hidden="true" />
+                  <TypeText>
+                    <strong>{type.label || t(type.labelKey)}</strong>
+                    <small>{type.text}</small>
+                  </TypeText>
+                  <TypeIndicator $active={active} aria-hidden="true">
+                    {active && <CheckCircle />}
+                  </TypeIndicator>
+                </TypeOption>
+              );
+            })}
+          </TypeGrid>
 
           <FieldGrid>
             <FormField>
@@ -359,30 +463,6 @@ const ContactForm = () => {
               />
             </FormField>
 
-            <FormField>
-              <Label htmlFor="contact-name">{t('contact_form_name')} *</Label>
-              <Input
-                id="contact-name"
-                type="text"
-                name="name"
-                placeholder={t('contact_form_name')}
-                value={formData.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                disabled={status === 'submitting'}
-                $hasError={touched.name && errors.name}
-                aria-invalid={touched.name && errors.name ? 'true' : 'false'}
-                aria-describedby={errors.name ? 'name-error' : undefined}
-              />
-              {touched.name && errors.name && (
-                <ErrorMessage id="name-error" role="alert">
-                  <AlertCircle size={14} /> {errors.name}
-                </ErrorMessage>
-              )}
-            </FormField>
-          </FieldGrid>
-
-          <FieldGrid>
             <FormField>
               <Label htmlFor="contact-email">{t('contact_form_email')} *</Label>
               <Input
@@ -401,6 +481,30 @@ const ContactForm = () => {
               {touched.email && errors.email && (
                 <ErrorMessage id="email-error" role="alert">
                   <AlertCircle size={14} /> {errors.email}
+                </ErrorMessage>
+              )}
+            </FormField>
+          </FieldGrid>
+
+          <FieldGrid>
+            <FormField>
+              <Label htmlFor="contact-name">{t('contact_form_name')} *</Label>
+              <Input
+                id="contact-name"
+                type="text"
+                name="name"
+                placeholder={t('contact_form_name')}
+                value={formData.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                disabled={status === 'submitting'}
+                $hasError={touched.name && errors.name}
+                aria-invalid={touched.name && errors.name ? 'true' : 'false'}
+                aria-describedby={errors.name ? 'name-error' : undefined}
+              />
+              {touched.name && errors.name && (
+                <ErrorMessage id="name-error" role="alert">
+                  <AlertCircle size={14} /> {errors.name}
                 </ErrorMessage>
               )}
             </FormField>
@@ -462,26 +566,32 @@ const ContactForm = () => {
             )}
           </FormField>
 
-          <FormField>
-            <ConsentLabel htmlFor="contact-privacy">
-              <input
-                id="contact-privacy"
-                type="checkbox"
-                name="privacy"
-                checked={formData.privacy}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                disabled={status === 'submitting'}
-                aria-invalid={touched.privacy && errors.privacy ? 'true' : 'false'}
-              />
-              <span>{t('contact_form_privacy')}</span>
-            </ConsentLabel>
-            {touched.privacy && errors.privacy && (
-              <ErrorMessage id="privacy-error" role="alert">
-                <AlertCircle size={14} /> {errors.privacy}
-              </ErrorMessage>
-            )}
-          </FormField>
+          <PrivacyPanel>
+            <FormField>
+              <ConsentLabel htmlFor="contact-privacy">
+                <input
+                  id="contact-privacy"
+                  type="checkbox"
+                  name="privacy"
+                  checked={formData.privacy}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  disabled={status === 'submitting'}
+                  aria-invalid={touched.privacy && errors.privacy ? 'true' : 'false'}
+                />
+                <span>{t('contact_form_privacy')}</span>
+              </ConsentLabel>
+              {touched.privacy && errors.privacy && (
+                <ErrorMessage id="privacy-error" role="alert">
+                  <AlertCircle size={14} /> {errors.privacy}
+                </ErrorMessage>
+              )}
+            </FormField>
+            <SecurityCopy>
+              <ShieldCheck size={18} />
+              <span>보내주신 정보는 안전하게 보호되며, 영업 목적의 연락은 하지 않습니다.</span>
+            </SecurityCopy>
+          </PrivacyPanel>
 
           <SubmitButton type="submit" disabled={status === 'submitting'}>
             <Send size={18} />

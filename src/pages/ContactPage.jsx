@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Section } from '../components/ui/Page';
-import { FaBoxes, FaChevronDown, FaClock, FaEnvelope, FaHeadset, FaMapMarkerAlt, FaPhoneAlt, FaRoute, FaShieldAlt, FaTruckLoading, FaWarehouse } from 'react-icons/fa';
+import { FaClock, FaEnvelope, FaHeadset, FaMapMarkerAlt, FaPhoneAlt, FaRoute, FaShieldAlt } from 'react-icons/fa';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -291,16 +291,12 @@ const SecurityNotice = styled.div`
 `;
 
 const ContentLayout = styled.div`
-  width: min(100%, 1180px);
+  width: min(100%, 960px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 1.02fr) minmax(20rem, 0.98fr);
-  gap: clamp(1.25rem, 4vw, 2rem);
+  grid-template-columns: 1fr;
+  gap: 0;
   align-items: start;
-
-  @media (max-width: 820px) {
-    grid-template-columns: 1fr;
-  }
 `;
 
 const Panel = styled(motion.article)`
@@ -313,12 +309,7 @@ const Panel = styled(motion.article)`
 `;
 
 const FormPanel = styled(Panel)`
-  order: 1;
-
-  @media (max-width: 820px) {
-    order: 3;
-    display: ${({ $mobileOpen }) => $mobileOpen ? 'block' : 'none'};
-  }
+  padding: clamp(1.05rem, 2.6vw, 2rem);
 `;
 
 const PanelTitle = styled.h2`
@@ -334,6 +325,22 @@ const PanelText = styled.p`
   margin: 0;
 `;
 
+const FormTitle = styled.h2`
+  color: var(--text-color);
+  font-size: clamp(2.05rem, 4vw, 3rem);
+  line-height: 1.08;
+  margin-bottom: 0.85rem;
+  letter-spacing: 0;
+  word-break: keep-all;
+`;
+
+const FormIntro = styled.p`
+  color: var(--text-secondary);
+  font-size: clamp(0.96rem, 1.5vw, 1.08rem);
+  line-height: 1.6;
+  margin: 0;
+`;
+
 const LocationStack = styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -341,106 +348,6 @@ const LocationStack = styled.div`
 
   @media (max-width: 820px) {
     grid-template-columns: 1fr;
-  }
-`;
-
-const InquiryPanel = styled(Panel)`
-  display: grid;
-  gap: 1rem;
-  order: 2;
-
-  @media (max-width: 820px) {
-    order: 1;
-  }
-`;
-
-const MobileFormToggle = styled.button`
-  display: none;
-
-  @media (max-width: 820px) {
-    order: 2;
-    display: flex;
-    min-height: 50px;
-    border: 0;
-    border-radius: 8px;
-    background: var(--accent-amber);
-    color: #121212;
-    padding: 0.8rem 1rem;
-    font: inherit;
-    font-weight: 800;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    cursor: pointer;
-
-    svg {
-      transition: transform 0.2s ease;
-      transform: rotate(${({ $open }) => $open ? '180deg' : '0deg'});
-    }
-  }
-`;
-
-const InquiryGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
-`;
-
-const InquiryType = styled.a`
-  min-height: 116px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  background: var(--background-color);
-  color: var(--text-color);
-  text-decoration: none;
-  padding: 1rem;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  gap: 0.55rem;
-
-  &:hover {
-    color: var(--text-color);
-    border-color: rgba(var(--accent-amber-rgb), 0.65);
-  }
-
-  svg {
-    color: var(--text-color);
-    font-size: 1.75rem;
-  }
-
-  strong {
-    font-size: 0.96rem;
-    line-height: 1.3;
-  }
-
-  span {
-    color: var(--text-secondary);
-    font-size: 0.78rem;
-    line-height: 1.35;
-  }
-`;
-
-const InquiryNotice = styled.div`
-  border-radius: 8px;
-  background: linear-gradient(135deg, rgba(var(--accent-amber-rgb), 0.16), rgba(var(--accent-amber-rgb), 0.05));
-  border: 1px solid rgba(var(--accent-amber-rgb), 0.26);
-  padding: 1.15rem;
-  color: var(--text-secondary);
-  line-height: 1.65;
-  font-size: 0.9rem;
-
-  strong {
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
-    color: var(--text-color);
-    margin-bottom: 0.55rem;
-  }
-
-  ul {
-    margin: 0;
-    padding-left: 1.1rem;
   }
 `;
 
@@ -592,7 +499,6 @@ const MapWrapper = styled.div`
 
 const ContactPage = () => {
   const { t } = useTranslation();
-  const [isMobileFormOpen, setIsMobileFormOpen] = useState(false);
   const headOfficePos = [37.377156, 127.113823];
   const warehousePos = [36.896990, 127.146803];
 
@@ -621,13 +527,6 @@ const ContactPage = () => {
       image: '/images/kmtech-business-outbound-v2.png',
       srcSet: '/images/kmtech-business-outbound-v2-960.webp 960w, /images/kmtech-business-outbound-v2-1440.webp 1440w, /images/kmtech-business-outbound-v2.png 1536w',
     },
-  ];
-
-  const inquiryTypes = [
-    { icon: <FaBoxes />, title: t('contact_inquiry_type_3pl'), text: '견적·계약 문의' },
-    { icon: <FaTruckLoading />, title: '입고·검수 문의', text: '입고 예약, 검수 기준' },
-    { icon: <FaWarehouse />, title: '운영 문의', text: '재고, 출고, 시스템' },
-    { icon: <FaHeadset />, title: '기타 문의', text: '기타 일반 문의' },
   ];
 
   return (
@@ -686,45 +585,14 @@ const ContactPage = () => {
         <ContentLayout>
           <FormPanel
             id="contact-form"
-            $mobileOpen={isMobileFormOpen}
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <PanelTitle>{t('contact_form_title')}</PanelTitle>
+            <FormTitle>{t('contact_form_title')}</FormTitle>
+            <FormIntro>필수 정보만 남겨주시면 담당자가 확인 후 연락드립니다.</FormIntro>
             <ContactForm />
           </FormPanel>
-
-          <InquiryPanel initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08, duration: 0.4 }}>
-            <PanelTitle>{t('contact_inquiry_type_label')}</PanelTitle>
-            <InquiryGrid>
-              {inquiryTypes.map((item) => (
-                <InquiryType href="#contact-form" key={item.title}>
-                  {item.icon}
-                  <strong>{item.title}</strong>
-                  <span>{item.text}</span>
-                </InquiryType>
-              ))}
-            </InquiryGrid>
-            <InquiryNotice>
-              <strong><FaShieldAlt /> 빠른 답변을 위해 확인해주세요</strong>
-              <ul>
-                <li>문의 유형을 선택하시면 담당자에게 더 빠르게 전달됩니다.</li>
-                <li>입고/검수/운영 방문은 물류센터로 문의 부탁드립니다.</li>
-                <li>계약/견적 상담은 본사로 문의 부탁드립니다.</li>
-              </ul>
-            </InquiryNotice>
-          </InquiryPanel>
-          <MobileFormToggle
-            type="button"
-            $open={isMobileFormOpen}
-            aria-expanded={isMobileFormOpen}
-            aria-controls="contact-form"
-            onClick={() => setIsMobileFormOpen((open) => !open)}
-          >
-            문의 내용 남기기
-            <FaChevronDown />
-          </MobileFormToggle>
         </ContentLayout>
 
         <LocationsSection id="locations">
