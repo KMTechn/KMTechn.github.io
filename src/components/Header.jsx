@@ -3,8 +3,7 @@ import { NavLink as RouterNavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, Sun, Moon, Menu, X, Globe } from 'lucide-react';
-import { useTheme } from '../hooks/useTheme';
+import { ArrowRight, Menu, X, Globe } from 'lucide-react';
 
 const HeaderContainer = styled(motion.header)`
   position: fixed;
@@ -343,7 +342,6 @@ const MobileNavLogo = styled.div`
 
 const Header = ({ scrollRootRef }) => {
   const { t, i18n } = useTranslation();
-  const { theme, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -465,15 +463,6 @@ const Header = ({ scrollRootRef }) => {
             </select>
             <LanguageArrow>▼</LanguageArrow>
           </LanguageSwitcher>
-          <ControlButton
-            onClick={toggleTheme}
-            aria-label={theme === 'light' ? 'Enable dark mode' : 'Enable light mode'}
-            title={theme === 'light' ? 'Enable dark mode' : 'Enable light mode'}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
-          </ControlButton>
           <MobileMenuButton
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             type="button"

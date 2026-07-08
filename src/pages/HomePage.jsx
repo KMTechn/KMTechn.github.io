@@ -1241,12 +1241,9 @@ const PartnerLogo = styled(motion.img).attrs({
   will-change: transform;
   border-radius: 6px;
 
-  /* White background for logos that need it in dark mode */
   ${props => props.$needsBg && `
-    html[data-theme="dark"] & {
-      background: white;
-      padding: 8px 12px;
-    }
+    background: white;
+    padding: 8px 12px;
   `}
 
   &:hover {

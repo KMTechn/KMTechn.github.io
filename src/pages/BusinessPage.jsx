@@ -784,7 +784,7 @@ const MeaningCard = styled.article`
   }
 `;
 
-const DarkMetricBand = styled.div`
+const RiskMetricBand = styled.div`
   width: min(100%, 1120px);
   margin: 0 auto;
   display: grid;
@@ -805,7 +805,7 @@ const DarkMetricBand = styled.div`
   }
 `;
 
-const DarkMetric = styled.div`
+const RiskMetric = styled.div`
   min-height: 104px;
   padding: 1rem;
   display: grid;
@@ -1118,7 +1118,7 @@ const BusinessPage = () => {
     { icon: <FaBoxes />, title: '50 Pallet 동시 재포장 대응', text: '대량 해체·소분·라벨링 가능' },
     { icon: <FaCheckCircle />, title: '표준 운영 리포트', text: '검수·출고 결과를 기준화' },
   ];
-  const darkMetricItems = [...facilityMetrics, operationHighlights[0], operationHighlights[2]];
+  const riskMetricItems = [...facilityMetrics, operationHighlights[0], operationHighlights[2]];
   const factLabels = ['business_module_target', 'business_module_operation', 'business_module_output'];
   const consultationChecks = [
     { icon: <FaBoxes />, titleKey: 'business_consult_check_volume_title', descKey: 'business_consult_check_volume_desc' },
@@ -1307,14 +1307,14 @@ const BusinessPage = () => {
             </MeaningCard>
           ))}
         </MeaningGrid>
-        <DarkMetricBand>
-          {darkMetricItems.map((metric) => (
-            <DarkMetric key={metric.labelKey}>
+        <RiskMetricBand>
+          {riskMetricItems.map((metric) => (
+            <RiskMetric key={metric.labelKey}>
               <strong>{metric.value}</strong>
               <span>{t(metric.labelKey)}</span>
-            </DarkMetric>
+            </RiskMetric>
           ))}
-        </DarkMetricBand>
+        </RiskMetricBand>
       </MeaningSection>
 
       <IndustrySection>

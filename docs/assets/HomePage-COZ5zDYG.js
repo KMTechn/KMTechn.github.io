@@ -1,4 +1,4 @@
-import{j as e,d as r,u as Q,r as c,a as d,c as X,F as I,b as J,e as y,f as H,g as T,S as n,L as _,H as V,R as U,o as ee,m as o,h as re,i as l,k as te,l as f,n as G,p as M,q as ie,s as L,t as N,v as ae,w as k}from"./index-3JTIRJAz.js";const oe=r.div`
+import{j as e,d as r,u as Q,r as c,a as d,c as X,F as I,b as J,e as y,f as H,g as T,S as n,L as _,H as V,R as U,o as ee,m as o,h as re,i as l,k as te,l as f,n as G,p as M,q as ie,s as L,t as N,v as ae,w as k}from"./index-ZLMcub5k.js";const oe=r.div`
   width: 100%;
   height: 100%;
   min-height: 300px;
@@ -1156,12 +1156,9 @@ import{j as e,d as r,u as Q,r as c,a as d,c as X,F as I,b as J,e as y,f as H,g a
   will-change: transform;
   border-radius: 6px;
 
-  /* White background for logos that need it in dark mode */
   ${i=>i.$needsBg&&`
-    html[data-theme="dark"] & {
-      background: white;
-      padding: 8px 12px;
-    }
+    background: white;
+    padding: 8px 12px;
   `}
 
   &:hover {
