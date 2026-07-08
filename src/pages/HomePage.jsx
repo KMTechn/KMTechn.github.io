@@ -20,12 +20,12 @@ const PageContainer = styled.div`
 // Hero Section - Clean Professional
 const HeroSection = styled.section`
   min-height: auto;
-  padding: clamp(2.6rem, 5vh, 3.6rem) clamp(1rem, 4vw, 4.5rem) clamp(0.8rem, 2vh, 1.25rem);
+  padding: clamp(1rem, 2.6vh, 1.8rem) clamp(1rem, 4vw, 2.5rem) clamp(0.5rem, 1.5vh, 0.9rem);
   background:
     radial-gradient(circle at 77% 18%, rgba(var(--accent-amber-rgb), 0.13), transparent 23rem),
     linear-gradient(180deg, #f8f9fb 0%, var(--background-color) 100%);
   position: relative;
-  overflow: hidden;
+  overflow: clip;
 
   &::after {
     content: '';
@@ -37,7 +37,7 @@ const HeroSection = styled.section`
     background: linear-gradient(90deg, transparent, var(--border-color), transparent);
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 820px) {
     min-height: auto;
     padding: 3.25rem 5% 3rem;
   }
@@ -48,14 +48,14 @@ const HeroSection = styled.section`
 `;
 
 const HeroLayout = styled.div`
-  width: min(100%, 1560px);
+  width: min(100%, var(--page-max-width));
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(22rem, 0.62fr) minmax(32rem, 1fr);
+  grid-template-columns: minmax(18rem, 0.46fr) minmax(25rem, 0.9fr);
   align-items: center;
-  gap: clamp(2rem, 5vw, 4.5rem);
+  gap: clamp(1.3rem, 3vw, 2.5rem);
 
-  @media (max-width: 1120px) {
+  @media (max-width: 820px) {
     grid-template-columns: 1fr;
     text-align: center;
     min-height: auto;
@@ -70,7 +70,7 @@ const TextContainer = styled(motion.div)`
   min-width: 0;
   width: 100%;
 
-  @media (max-width: 1120px) {
+  @media (max-width: 820px) {
     align-items: center;
     order: 1;
   }
@@ -87,15 +87,16 @@ const HeroLabel = styled(motion.span)`
 `;
 
 const Title = styled(motion.h1)`
-  font-size: clamp(2.7rem, 4.1vw, 3.65rem);
+  font-size: clamp(2.05rem, 3.6vw, 3rem);
   font-weight: 800;
   line-height: 1.08;
-  margin-bottom: 1.5rem;
-  max-width: 650px;
+  margin-bottom: 1rem;
+  max-width: 590px;
   width: 100%;
   color: var(--text-color);
   letter-spacing: 0;
-  overflow-wrap: anywhere;
+  word-break: keep-all;
+  overflow-wrap: normal;
 
   @media (max-width: 600px) {
     font-size: clamp(2.1rem, 10vw, 2.75rem);
@@ -104,12 +105,12 @@ const Title = styled(motion.h1)`
 `;
 
 const Subtitle = styled(motion.p)`
-  font-size: 1.125rem;
+  font-size: 1.02rem;
   color: var(--text-secondary);
   max-width: 500px;
   width: 100%;
-  margin-bottom: 2.5rem;
-  line-height: 1.8;
+  margin-bottom: 1.45rem;
+  line-height: 1.72;
   overflow-wrap: anywhere;
 
   @media (max-width: 600px) {
@@ -125,7 +126,7 @@ const ButtonGroup = styled(motion.div)`
   width: 100%;
   max-width: 500px;
 
-  @media (max-width: 1120px) {
+  @media (max-width: 820px) {
     justify-content: center;
   }
 
@@ -135,14 +136,14 @@ const ButtonGroup = styled(motion.div)`
 `;
 
 const ContactInfo = styled(motion.div)`
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   gap: 1.5rem;
   margin-top: 2rem;
   padding-top: 2rem;
   border-top: 1px solid var(--border-color);
 
-  @media (max-width: 1024px) {
+  @media (max-width: 820px) {
     justify-content: center;
   }
 
@@ -171,7 +172,7 @@ const ContactItem = styled.a`
 `;
 
 const PrimaryButton = styled(motion(Link))`
-  padding: 1rem 2rem;
+  padding: 0.78rem 1.25rem;
   border-radius: 8px;
   background: var(--accent-amber);
   color: #121212;
@@ -184,7 +185,7 @@ const PrimaryButton = styled(motion(Link))`
   gap: 0.5rem;
   justify-content: center;
   border: 1px solid transparent;
-  min-height: 48px;
+  min-height: 44px;
   min-width: 0;
   text-decoration: none;
 
@@ -222,11 +223,11 @@ const SecondaryButton = styled(PrimaryButton)`
 `;
 
 const ArtworkContainer = styled(motion.div)`
-  height: clamp(28rem, 38vw, 34rem);
+  height: clamp(22rem, 32vw, 28rem);
   width: 100%;
   position: relative;
   isolation: isolate;
-  overflow: hidden;
+  overflow: clip;
   border: 1px solid rgba(15, 23, 42, 0.12);
   border-radius: 12px;
   background:
@@ -252,7 +253,7 @@ const ArtworkContainer = styled(motion.div)`
     cursor: grabbing;
   }
 
-  @media (max-width: 1120px) {
+  @media (max-width: 820px) {
     order: 2;
     height: clamp(27rem, 64vw, 34rem);
     max-width: 760px;
@@ -311,8 +312,8 @@ const GlobeStage = styled.div`
   position: absolute;
   right: clamp(0.6rem, 2.2vw, 1.4rem);
   bottom: clamp(4.1rem, 6vw, 5.4rem);
-  width: clamp(15rem, 28vw, 25rem);
-  height: clamp(15rem, 28vw, 25rem);
+  width: clamp(14rem, 25vw, 21rem);
+  height: clamp(14rem, 25vw, 21rem);
   display: grid;
   place-items: center;
   z-index: 2;
@@ -341,6 +342,10 @@ const VisualMetricDock = styled.div`
   width: min(30%, 13rem);
 
   @media (max-width: 720px) {
+    display: none;
+  }
+
+  @media (max-width: 980px) {
     display: none;
   }
 `;
@@ -381,7 +386,7 @@ const VisualFlow = styled.div`
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(16px);
-  padding: clamp(0.75rem, 1.5vw, 1rem);
+  padding: clamp(0.62rem, 1.2vw, 0.85rem);
   box-shadow: 0 18px 38px rgba(15, 23, 42, 0.12);
 `;
 
@@ -422,12 +427,12 @@ const VisualFlowStep = styled.div`
 `;
 
 const HeroProofGrid = styled(motion.div)`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 7.5rem), 1fr));
+  display: none;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.75rem;
   width: 100%;
-  max-width: 620px;
-  margin-top: 1.5rem;
+  max-width: 500px;
+  margin-top: 1.25rem;
 
   @media (max-width: 600px) {
     display: none;
@@ -435,17 +440,18 @@ const HeroProofGrid = styled(motion.div)`
 `;
 
 const HeroProofItem = styled.div`
-  border: 1px solid var(--border-color);
+  border: 1px solid rgba(15, 23, 42, 0.1);
   border-radius: 8px;
-  background: rgba(var(--card-bg-rgb, 255, 255, 255), 0.64);
-  padding: 0.85rem;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 0.9rem 0.95rem;
   min-width: 0;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
 `;
 
 const HeroProofValue = styled.div`
   color: var(--text-color);
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 1.22rem;
+  font-weight: 900;
   line-height: 1.1;
   white-space: nowrap;
 `;
@@ -461,7 +467,7 @@ const HeroProofLabel = styled.div`
 // Stats Section
 const StatsSection = styled.section`
   background: var(--card-bg);
-  padding: clamp(3.5rem, 6vw, 5.5rem) 5%;
+  padding: clamp(2.6rem, 4.5vw, 4rem) 5%;
   border-bottom: 1px solid var(--border-color);
 
   @media (max-width: 600px) {
@@ -477,7 +483,7 @@ const StatsShell = styled.div`
   gap: clamp(1.25rem, 4vw, 2.5rem);
   align-items: start;
 
-  @media (max-width: 920px) {
+  @media (max-width: 820px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -490,7 +496,7 @@ const StatsIntro = styled(motion.div)`
     font-size: clamp(1.65rem, 3vw, 2.25rem);
   }
 
-  @media (max-width: 920px) {
+  @media (max-width: 820px) {
     text-align: center;
     max-width: 680px;
     margin: 0 auto;
@@ -579,7 +585,7 @@ const OperationProofValue = styled.strong`
 // Services Section
 const ServicesSection = styled(Section)`
   background: var(--background-color);
-  padding: clamp(2.4rem, 4vw, 3.5rem) 5% 5.5rem;
+  padding: clamp(1.45rem, 2.6vw, 2.1rem) 5%;
 
   @media (max-width: 600px) {
     padding: 4.5rem 1.25rem;
@@ -587,14 +593,14 @@ const ServicesSection = styled(Section)`
 `;
 
 const ServicesShell = styled.div`
-  width: min(100%, 1500px);
+  width: min(100%, var(--page-max-width));
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(18rem, 0.34fr) minmax(0, 1fr);
-  gap: clamp(1.5rem, 3vw, 2.5rem);
+  grid-template-columns: minmax(15rem, 0.28fr) minmax(0, 1fr);
+  gap: clamp(1rem, 2.5vw, 1.8rem);
   align-items: start;
 
-  @media (max-width: 980px) {
+  @media (max-width: 1100px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -604,20 +610,24 @@ const ServicesIntro = styled(motion.div)`
   min-width: 0;
 
   ${SectionTitle} {
-    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    font-size: clamp(1.45rem, 2.6vw, 2rem);
   }
 
-  @media (max-width: 980px) {
-    text-align: center;
-    max-width: 720px;
-    margin: 0 auto;
+  @media (max-width: 1100px) {
+    text-align: left;
+    max-width: 100%;
+    margin: 0;
+
+    ${SectionTitle} {
+      margin-bottom: 0.75rem;
+    }
   }
 `;
 
 const SectionHeader = styled(motion.div)`
   text-align: center;
   max-width: 680px;
-  margin: 0 auto 3.5rem;
+  margin: 0 auto clamp(2rem, 4vw, 3rem);
 
   @media (max-width: 600px) {
     margin-bottom: 2.25rem;
@@ -635,22 +645,22 @@ const SectionLabel = styled.span`
 `;
 
 const SectionDescription = styled.p`
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 0.95rem;
+  line-height: 1.62;
   color: var(--text-secondary);
 `;
 
 const ServicesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(0.85rem, 1.4vw, 1.1rem);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(0.65rem, 1vw, 0.85rem);
   min-width: 0;
 
-  @media (max-width: 1240px) {
+  @media (max-width: 1080px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  @media (max-width: 620px) {
+  @media (max-width: 520px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -659,7 +669,7 @@ const ServiceCard = styled(motion.div)`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: clamp(1.15rem, 2vw, 1.4rem);
+  padding: clamp(0.8rem, 1.4vw, 1rem);
   cursor: pointer;
   will-change: transform;
   transform: translateZ(0);
@@ -690,18 +700,18 @@ const ServiceMeta = styled.span`
   font-weight: 700;
   line-height: 1.2;
   padding: 0.35rem 0.55rem;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.7rem;
 `;
 
 const ServiceIcon = styled.div`
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, var(--accent-amber), #f59e0b);
   border-radius: 8px;
-  margin-bottom: 1rem;
+  margin-bottom: 0.65rem;
 
   svg {
     font-size: 1.5rem;
@@ -710,35 +720,45 @@ const ServiceIcon = styled.div`
 `;
 
 const ServiceTitle = styled.h3`
-  font-size: 1.08rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--text-color);
-  margin-bottom: 1rem;
+  margin-bottom: 0.65rem;
   line-height: 1.3;
   overflow-wrap: anywhere;
 `;
 
 const ServiceDescription = styled.p`
-  font-size: 0.86rem;
-  line-height: 1.6;
+  font-size: 0.72rem;
+  line-height: 1.45;
   color: var(--text-secondary);
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.75rem;
   flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;
 
 const ServiceProof = styled.p`
   color: var(--text-color);
-  font-size: 0.8rem;
-  line-height: 1.45;
-  margin-bottom: 1rem;
-  padding-top: 0.85rem;
+  font-size: 0.74rem;
+  line-height: 1.38;
+  margin-bottom: 0.8rem;
+  padding-top: 0.7rem;
   border-top: 1px solid var(--border-color);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 
   strong {
     color: var(--accent-amber);
     font-size: 0.74rem;
     margin-right: 0.35rem;
   }
+
+  display: none;
 `;
 
 const ServiceLink = styled.div`
@@ -758,7 +778,7 @@ const ServiceLink = styled.div`
 // Strengths Section
 const StrengthsSection = styled(Section)`
   background: var(--card-bg);
-  padding: 7rem 5%;
+  padding: clamp(3rem, 5vw, 4.5rem) 5%;
 
   @media (max-width: 600px) {
     padding: 4.5rem 1.25rem;
@@ -777,7 +797,7 @@ const StrengthCard = styled(motion.div)`
   background: var(--background-color);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 2rem;
+  padding: clamp(1.25rem, 2.5vw, 1.65rem);
   display: flex;
   align-items: flex-start;
   gap: 1.25rem;
@@ -833,7 +853,7 @@ const CTAContainer = styled(motion.div)`
 // Process Section
 const ProcessSection = styled(Section)`
   background: var(--background-color);
-  padding: 7rem 5%;
+  padding: clamp(3rem, 5vw, 4.5rem) 5%;
 
   @media (max-width: 600px) {
     padding: 4.5rem 1.25rem;
@@ -943,7 +963,7 @@ const ProcessArrow = styled(motion.div)`
 // Partners Section
 const PartnersSection = styled.section`
   background: var(--background-color);
-  padding: 5rem 5%;
+  padding: clamp(3rem, 5vw, 4.5rem) 5%;
   border-top: 1px solid var(--border-color);
 
   @media (max-width: 600px) {
@@ -975,7 +995,7 @@ const IndustryHeader = styled.div`
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.9rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--border-color);
 
@@ -1137,6 +1157,7 @@ const HomePage = () => {
     { icon: <FaSearch />, titleKey: 'home_service_inspection_title', descKey: 'home_service_inspection_desc', proofKey: 'metric_clean_booth_detail' },
     { icon: <FaTools />, titleKey: 'home_service_packaging_title', descKey: 'home_service_packaging_desc', proofKey: 'metric_rework_detail' },
     { icon: <FaShippingFast />, titleKey: 'business_delivery_title', descKey: 'business_delivery_summary', proofKey: 'metric_qr_detail' },
+    { icon: <FaBrain />, titleKey: 'home_service_visibility_title', descKey: 'home_service_visibility_desc', proofKey: 'metric_qr_detail' },
   ];
 
   const strongPoints = [
@@ -1221,9 +1242,8 @@ const HomePage = () => {
 
             <HeroProofGrid
               aria-label={t('hero_proof_label')}
-              initial={{ opacity: 0, y: 16 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.6, duration: 0.5 }}
+              initial={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
             >
               {heroProof.map((item) => (
                 <HeroProofItem key={item.labelKey}>
@@ -1253,7 +1273,7 @@ const HomePage = () => {
             <NetworkBackdrop
               src="/images/kmtech-home-network-backdrop.png"
               srcSet="/images/kmtech-home-network-backdrop-960.webp 960w, /images/kmtech-home-network-backdrop-1440.webp 1440w, /images/kmtech-home-network-backdrop.png 1672w"
-              sizes="(max-width: 1120px) 100vw, 58vw"
+              sizes="(max-width: 820px) 100vw, 58vw"
               alt=""
               loading="eager"
               decoding="async"

@@ -28,10 +28,10 @@ const PageContainer = styled.div`
 
 const HeroSection = styled.section`
   position: relative;
-  min-height: clamp(520px, 68vh, 680px);
+  min-height: clamp(300px, 40vh, 380px);
   display: flex;
   align-items: center;
-  padding: clamp(6rem, 9vw, 8rem) clamp(1rem, 5vw, 5%) clamp(4rem, 7vw, 6rem);
+  padding: clamp(3.2rem, 5vw, 4.4rem) clamp(1rem, 5vw, 5%) clamp(1.45rem, 3vw, 2.2rem);
   background:
     linear-gradient(90deg, rgba(8, 10, 12, 0.9) 0%, rgba(8, 10, 12, 0.74) 42%, rgba(8, 10, 12, 0.28) 100%),
     url('/images/kmtech-contact-warehouse-hero.png') center / cover no-repeat;
@@ -54,15 +54,15 @@ const HeroSection = styled.section`
     pointer-events: none;
   }
 
-  @media (max-width: 860px) {
+  @media (max-width: 820px) {
     min-height: auto;
     background-position: 58% center;
   }
 
-  @media (min-width: 861px) {
-    min-height: clamp(380px, 48vh, 500px);
-    padding-top: clamp(5.5rem, 7vw, 7rem);
-    padding-bottom: clamp(2.75rem, 4vw, 3.75rem);
+  @media (min-width: 821px) {
+    min-height: clamp(280px, 34vh, 340px);
+    padding-top: clamp(3.2rem, 4.5vw, 4.4rem);
+    padding-bottom: clamp(1.15rem, 2.2vw, 1.8rem);
   }
 `;
 
@@ -77,7 +77,7 @@ const HeroInner = styled.div`
   align-items: center;
   min-width: 0;
 
-  @media (max-width: 860px) {
+  @media (max-width: 820px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -94,29 +94,30 @@ const Eyebrow = styled.span`
 
 const HeroTitle = styled.h1`
   color: #fff;
-  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  font-size: clamp(1.9rem, 3.6vw, 2.75rem);
   line-height: 1.08;
   margin-bottom: 1rem;
   letter-spacing: 0;
   text-shadow: 0 12px 30px rgba(0, 0, 0, 0.42);
+  word-break: keep-all;
 `;
 
 const HeroDescription = styled.p`
   color: rgba(255, 255, 255, 0.82);
   font-size: clamp(1rem, 1.5vw, 1.12rem);
-  line-height: 1.8;
+  line-height: 1.65;
   margin: 0;
   max-width: 620px;
 
-  @media (max-width: 860px) {
+  @media (max-width: 820px) {
     margin: 0 auto;
   }
 `;
 
 const ContactRail = styled.div`
   display: grid;
-  gap: 0.75rem;
-  padding: 0.75rem;
+  gap: 0.55rem;
+  padding: 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.11);
@@ -126,11 +127,11 @@ const ContactRail = styled.div`
 `;
 
 const RailItem = styled.a`
-  min-height: 56px;
+  min-height: 44px;
   display: flex;
   align-items: center;
   gap: 0.85rem;
-  padding: 0.8rem 1rem;
+  padding: 0.58rem 0.75rem;
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(255, 255, 255, 0.58);
   border-radius: 8px;
@@ -145,7 +146,8 @@ const RailItem = styled.a`
 
   span {
     min-width: 0;
-    overflow-wrap: anywhere;
+    word-break: keep-all;
+    overflow-wrap: normal;
     line-height: 1.35;
     font-weight: 600;
     font-size: 0.95rem;
@@ -154,7 +156,7 @@ const RailItem = styled.a`
 
 const QuickActionGrid = styled.nav`
   width: min(100%, 1180px);
-  margin: 0 auto clamp(1.2rem, 3vw, 1.8rem);
+  margin: 0 auto clamp(0.8rem, 2vw, 1.2rem);
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.75rem;
@@ -169,7 +171,7 @@ const QuickActionGrid = styled.nav`
 `;
 
 const QuickAction = styled.a`
-  min-height: 58px;
+  min-height: 46px;
   border: 1px solid var(--border-color);
   border-radius: 8px;
   background: var(--card-bg);
@@ -178,7 +180,7 @@ const QuickAction = styled.a`
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.85rem 1rem;
+  padding: 0.62rem 0.82rem;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
   min-width: 0;
   transition: transform 0.2s ease, border-color 0.2s ease;
@@ -206,7 +208,7 @@ const QuickAction = styled.a`
 const ContactMainSection = styled(Section)`
   position: relative;
   z-index: 2;
-  margin-top: clamp(-3rem, -4vw, -2rem);
+  margin-top: clamp(-2.6rem, -3.5vw, -1.8rem);
   padding-top: 0;
   background: transparent;
 `;
@@ -219,7 +221,7 @@ const ContentLayout = styled.div`
   gap: clamp(1.25rem, 4vw, 2rem);
   align-items: start;
 
-  @media (max-width: 940px) {
+  @media (max-width: 820px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -228,14 +230,14 @@ const Panel = styled(motion.article)`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: clamp(1.25rem, 4vw, 2rem);
+  padding: clamp(0.9rem, 2.4vw, 1.25rem);
   min-width: 0;
   box-shadow: 0 18px 46px rgba(0, 0, 0, 0.08);
 `;
 
 const PanelTitle = styled.h2`
   color: var(--text-color);
-  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  font-size: clamp(1.25rem, 2.6vw, 1.65rem);
   line-height: 1.25;
   margin-bottom: 0.75rem;
 `;

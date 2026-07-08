@@ -8,31 +8,31 @@ import { customerPartners } from '../data/company';
 import { FaArrowRight, FaCar, FaCheckCircle, FaFilter, FaHandshake, FaIndustry, FaLayerGroup, FaTv } from 'react-icons/fa';
 
 const HeroSection = styled.section`
-  min-height: clamp(500px, 62vh, 640px);
+  min-height: clamp(360px, 48vh, 500px);
   display: flex;
   align-items: center;
-  padding: clamp(5.75rem, 8vw, 7rem) clamp(1rem, 5vw, 5%) clamp(2.25rem, 4vw, 3.5rem);
+  padding: clamp(3.6rem, 5.8vw, 5rem) clamp(1rem, 5vw, 5%) clamp(1.4rem, 3vw, 2.3rem);
   background:
     radial-gradient(circle at 83% 18%, rgba(var(--accent-amber-rgb), 0.11), transparent 22rem),
     linear-gradient(180deg, #ffffff 0%, var(--background-color) 100%);
   border-bottom: 1px solid var(--border-color);
   overflow: hidden;
 
-  @media (max-width: 920px) {
+  @media (max-width: 820px) {
     min-height: auto;
   }
 `;
 
 const HeroContent = styled.div`
-  width: min(100%, 1360px);
+  width: min(100%, var(--page-max-width));
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 0.78fr) minmax(20rem, 1fr);
-  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: minmax(18rem, 0.78fr) minmax(20rem, 1fr);
+  gap: clamp(1.35rem, 4vw, 3rem);
   align-items: center;
   min-width: 0;
 
-  @media (max-width: 920px) {
+  @media (max-width: 820px) {
     grid-template-columns: 1fr;
     text-align: center;
   }
@@ -50,10 +50,11 @@ const Eyebrow = styled.span`
 
 const HeroTitle = styled.h1`
   color: var(--text-color);
-  font-size: clamp(2.2rem, 5vw, 3.35rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.15;
   margin-bottom: 1rem;
   letter-spacing: 0;
+  word-break: keep-all;
 `;
 
 const HeroDescription = styled.p`
@@ -63,7 +64,7 @@ const HeroDescription = styled.p`
   max-width: 560px;
   margin-bottom: 1.5rem;
 
-  @media (max-width: 920px) {
+  @media (max-width: 820px) {
     margin-left: auto;
     margin-right: auto;
   }
@@ -76,7 +77,7 @@ const StatsContainer = styled(motion.div)`
   max-width: 600px;
   min-width: 0;
 
-  @media (max-width: 920px) {
+  @media (max-width: 820px) {
     margin: 0 auto;
   }
 
@@ -122,6 +123,7 @@ const StatLabel = styled.div`
   font-size: 0.8rem;
   line-height: 1.35;
   margin-top: 0.35rem;
+  word-break: keep-all;
 
   @media (max-width: 520px) {
     font-size: 0.72rem;
@@ -143,9 +145,35 @@ const LogoMosaic = styled(motion.div)`
   box-shadow: 0 28px 70px rgba(0, 0, 0, 0.12);
   min-width: 0;
 
-  @media (max-width: 920px) {
+  @media (max-width: 820px) {
     max-width: 640px;
     margin: 0 auto;
+  }
+`;
+
+const MosaicImage = styled.div`
+  position: relative;
+  min-height: clamp(150px, 20vw, 230px);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #111;
+
+  img {
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    object-fit: cover;
+    display: block;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.62) 0%, rgba(255, 255, 255, 0.08) 48%),
+      linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.28) 100%);
+    pointer-events: none;
   }
 `;
 
@@ -154,7 +182,7 @@ const MosaicHeader = styled.div`
   justify-content: space-between;
   gap: 1rem;
   align-items: flex-start;
-  padding: 0.35rem 0.25rem 0.2rem;
+  padding: 0.2rem 0.25rem 0;
 
   @media (max-width: 520px) {
     flex-direction: column;
@@ -198,7 +226,7 @@ const HeroScopeChip = styled.span`
 const MosaicLogoGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.65rem;
+  gap: 0.55rem;
 
   @media (max-width: 520px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -206,7 +234,7 @@ const MosaicLogoGrid = styled.div`
 `;
 
 const MosaicLogo = styled.div`
-  min-height: clamp(72px, 7vw, 92px);
+  min-height: clamp(54px, 5.5vw, 70px);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   background: #fff;
@@ -219,13 +247,13 @@ const MosaicLogo = styled.div`
 
   img {
     max-width: min(150px, 100%);
-    max-height: 42px;
+    max-height: 34px;
     object-fit: contain;
   }
 `;
 
 const PartnersSection = styled.section`
-  padding: clamp(4rem, 7vw, 6rem) clamp(1rem, 5vw, 5%);
+  padding: clamp(2.2rem, 4vw, 3.5rem) clamp(1rem, 5vw, 5%);
   background: linear-gradient(180deg, var(--background-color) 0%, #ffffff 100%);
 `;
 
@@ -404,14 +432,14 @@ const ScopeChip = styled.span`
 `;
 
 const CTASection = styled.section`
-  padding: clamp(3.5rem, 6vw, 5rem) clamp(1rem, 5vw, 5%);
+  padding: clamp(3rem, 5vw, 4.2rem) clamp(1rem, 5vw, 5%);
   background: var(--card-bg);
   border-top: 1px solid var(--border-color);
   text-align: center;
 `;
 
 const MatrixSection = styled.section`
-  padding: clamp(4rem, 7vw, 6rem) clamp(1rem, 5vw, 5%);
+  padding: clamp(3rem, 5vw, 4.6rem) clamp(1rem, 5vw, 5%);
   background: var(--card-bg);
   border-top: 1px solid var(--border-color);
 `;
@@ -423,6 +451,10 @@ const MatrixWrap = styled.div`
   border: 1px solid var(--border-color);
   border-radius: 8px;
   background: #fff;
+
+  @media (max-width: 620px) {
+    display: none;
+  }
 `;
 
 const MatrixTable = styled.table`
@@ -461,6 +493,46 @@ const ScopeCheck = styled.span`
   color: ${({ $active }) => $active ? '#121212' : 'transparent'};
   background: ${({ $active }) => $active ? 'var(--accent-amber)' : 'var(--background-color)'};
   border: 1px solid ${({ $active }) => $active ? 'var(--accent-amber)' : 'var(--border-color)'};
+`;
+
+const MobileMatrixGrid = styled.div`
+  display: none;
+
+  @media (max-width: 620px) {
+    width: min(100%, 1180px);
+    margin: 0 auto;
+    display: grid;
+    gap: 0.75rem;
+  }
+`;
+
+const MobileMatrixCard = styled.article`
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: #fff;
+  padding: 1rem;
+  display: grid;
+  gap: 0.75rem;
+`;
+
+const MobileMatrixTop = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: flex-start;
+`;
+
+const MobileMatrixName = styled.strong`
+  color: var(--text-color);
+  font-size: 0.98rem;
+  line-height: 1.3;
+`;
+
+const MobileMatrixIndustry = styled.span`
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  line-height: 1.35;
+  white-space: nowrap;
 `;
 
 const CTAContent = styled.div`
@@ -570,6 +642,16 @@ const PartnersPage = () => {
           </motion.div>
 
           <LogoMosaic initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12, duration: 0.45 }}>
+            <MosaicImage>
+              <img
+                src="/images/kmtech-about-warehouse-hero.png"
+                srcSet="/images/kmtech-about-warehouse-hero-960.webp 960w, /images/kmtech-about-warehouse-hero-1440.webp 1440w, /images/kmtech-about-warehouse-hero.png 1672w"
+                sizes="(max-width: 820px) 100vw, 42vw"
+                alt=""
+                loading="eager"
+                decoding="async"
+              />
+            </MosaicImage>
             <MosaicHeader>
               <MosaicTitle>{t('partners_matrix_title')}</MosaicTitle>
               <MosaicCount>{customerPartners.length} {t('partners_stat_partners')}</MosaicCount>
@@ -580,7 +662,7 @@ const PartnersPage = () => {
               ))}
             </HeroScopeGrid>
             <MosaicLogoGrid>
-              {customerPartners.slice(0, 6).map((partner) => (
+              {customerPartners.map((partner) => (
                 <MosaicLogo key={partner.name}>
                   <img src={partner.logo} alt={`${partner.name} logo`} loading="lazy" decoding="async" />
                 </MosaicLogo>
@@ -677,6 +759,21 @@ const PartnersPage = () => {
             </tbody>
           </MatrixTable>
         </MatrixWrap>
+        <MobileMatrixGrid>
+          {customerPartners.map((partner) => (
+            <MobileMatrixCard key={partner.name}>
+              <MobileMatrixTop>
+                <MobileMatrixName>{partner.name}</MobileMatrixName>
+                <MobileMatrixIndustry>{t(partner.industryKey)}</MobileMatrixIndustry>
+              </MobileMatrixTop>
+              <ScopeList>
+                {partner.scopes.map((scope) => (
+                  <ScopeChip key={scope}>{t(scope)}</ScopeChip>
+                ))}
+              </ScopeList>
+            </MobileMatrixCard>
+          ))}
+        </MobileMatrixGrid>
       </MatrixSection>
 
       <CTASection>

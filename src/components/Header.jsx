@@ -11,7 +11,8 @@ const HeaderContainer = styled(motion.header)`
   top: 0;
   left: 0;
   width: 100%;
-  padding: 1rem 2.5rem;
+  min-height: var(--header-height);
+  padding: 0.42rem 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,8 +29,12 @@ const HeaderContainer = styled(motion.header)`
     ? '0 4px 30px rgba(0, 0, 0, 0.1)'
     : 'none'};
 
-  @media (max-width: 1100px) {
-    padding: 1rem 1.5rem;
+  @media (max-width: 960px) {
+    padding: 0.55rem 1rem;
+  }
+
+  @media (max-width: 820px) {
+    padding: 0.55rem 1rem;
   }
 
   @media (max-width: 380px) {
@@ -43,7 +48,7 @@ const LogoContainer = styled(RouterNavLink)`
   gap: 0.75rem;
 
   img {
-    height: clamp(32px, 6vw, 38px);
+    height: clamp(24px, 3.2vw, 30px);
     width: auto;
     display: block;
     transition: transform 0.3s ease;
@@ -55,7 +60,7 @@ const LogoContainer = styled(RouterNavLink)`
 `;
 
 const LogoText = styled.span`
-  font-size: 1.4rem;
+  font-size: 1.08rem;
   font-weight: 700;
   color: var(--text-color);
   letter-spacing: 0;
@@ -68,10 +73,10 @@ const LogoText = styled.span`
 
 const Nav = styled.nav`
   display: flex;
-  gap: 0.5rem;
+  gap: 0.25rem;
   align-items: center;
 
-  @media (max-width: 1100px) {
+  @media (max-width: 820px) {
     display: none;
   }
 `;
@@ -101,11 +106,11 @@ const MobileNav = styled(motion.nav)`
 
 const NavLink = styled(RouterNavLink)`
   color: var(--text-color);
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   font-weight: 500;
   transition: all 0.3s ease;
   position: relative;
-  padding: 0.6rem 1rem;
+  padding: 0.4rem 0.68rem;
   border-radius: 8px;
 
   &::before {
@@ -152,7 +157,7 @@ const NavLink = styled(RouterNavLink)`
 const ControlsContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   min-width: 0;
 
   @media (max-width: 380px) {
@@ -161,17 +166,17 @@ const ControlsContainer = styled.div`
 `;
 
 const HeaderCTA = styled(RouterNavLink)`
-  min-height: 44px;
+  min-height: 36px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.45rem;
-  padding: 0.65rem 1rem;
+  padding: 0.48rem 0.86rem;
   border-radius: 8px;
   background: var(--accent-amber);
   border: 1px solid var(--accent-amber);
   color: #121212;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 800;
   white-space: nowrap;
   box-shadow: 0 10px 24px rgba(var(--accent-amber-rgb), 0.18);
@@ -189,7 +194,7 @@ const HeaderCTA = styled(RouterNavLink)`
     height: 16px;
   }
 
-  @media (max-width: 1100px) {
+  @media (max-width: 820px) {
     display: none;
   }
 `;
@@ -199,7 +204,7 @@ const ControlButton = styled(motion.button)`
   border: 1px solid rgba(255, 204, 0, 0.2);
   color: var(--text-color);
   cursor: pointer;
-  padding: 0.6rem;
+  padding: 0.5rem;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -207,8 +212,8 @@ const ControlButton = styled(motion.button)`
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  min-width: 44px;
-  min-height: 44px;
+  min-width: 36px;
+  min-height: 36px;
 
   &::before {
     content: '';
@@ -243,12 +248,12 @@ const LanguageSwitcher = styled.div`
     border: 1px solid rgba(255, 204, 0, 0.2);
     color: var(--text-color);
     cursor: pointer;
-    padding: 0.6rem 2.2rem 0.6rem 2.4rem;
+    padding: 0.45rem 1.85rem 0.45rem 2rem;
     border-radius: 8px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
     transition: all 0.3s ease;
-    min-height: 44px;
+    min-height: 36px;
     max-width: 7.25rem;
 
     &:hover {
@@ -291,7 +296,7 @@ const LanguageArrow = styled.span`
 const MobileMenuButton = styled(ControlButton)`
   display: none;
   z-index: 1001;
-  @media (max-width: 1100px) {
+  @media (max-width: 820px) {
     display: flex;
   }
 `;

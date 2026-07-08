@@ -29,7 +29,7 @@ const AppContainer = styled.div`
 
 const MainContent = styled.main`
   flex: 1;
-  padding-top: 80px;
+  padding-top: var(--header-height);
   overflow-y: auto; /* Ensure this container is the one that scrolls */
   background-color: var(--background-color);
   color: var(--text-color);

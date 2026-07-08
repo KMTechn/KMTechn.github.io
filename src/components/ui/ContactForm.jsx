@@ -7,9 +7,19 @@ import { CheckCircle, AlertCircle, Send } from 'lucide-react';
 const FormContainer = styled(motion.form)`
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
-  margin-top: var(--space-6);
+  gap: var(--space-3);
+  margin-top: var(--space-5);
   position: relative;
+`;
+
+const FieldGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const FormField = styled.div`
@@ -25,7 +35,7 @@ const Label = styled.label`
 `;
 
 const inputStyles = css`
-  padding: var(--space-4);
+  padding: 0.85rem 1rem;
   border-radius: 8px;
   border: 1px solid ${({ $hasError }) => $hasError ? 'var(--error-color)' : 'var(--border-color)'};
   background-color: var(--background-color);
@@ -57,7 +67,7 @@ const Input = styled.input`
 const Textarea = styled.textarea`
   ${inputStyles}
   line-height: var(--line-height-relaxed);
-  min-height: 150px;
+  min-height: 118px;
   resize: vertical;
 `;
 
@@ -70,7 +80,7 @@ const ErrorMessage = styled.span`
 `;
 
 const SubmitButton = styled.button`
-  padding: var(--space-4) var(--space-8);
+  padding: 0.85rem var(--space-8);
   border-radius: 8px;
   background-color: var(--accent-amber);
   color: #121212;
@@ -161,6 +171,21 @@ const TypeButton = styled.button`
   }
 `;
 
+const ConsentLabel = styled.label`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  color: var(--text-secondary);
+  font-size: var(--font-sm);
+  line-height: 1.45;
+
+  input {
+    margin-top: 0.2rem;
+    accent-color: var(--accent-amber);
+    flex: 0 0 auto;
+  }
+`;
+
 // Validation helpers
 const validateEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -175,9 +200,21 @@ const validateMessage = (message) => {
   return message.trim().length >= 10;
 };
 
+const validatePhone = (phone) => {
+  return phone.replace(/[^\d]/g, '').length >= 8;
+};
+
 const ContactForm = () => {
   const { t } = useTranslation();
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({
+    company: '',
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: '',
+    privacy: false,
+  });
   const inquiryTypes = [
     { value: '3pl', labelKey: 'contact_inquiry_type_3pl' },
     { value: 'quality', labelKey: 'contact_inquiry_type_quality' },
@@ -185,8 +222,8 @@ const ContactForm = () => {
     { value: 'general', labelKey: 'contact_inquiry_type_general' },
   ];
   const [inquiryType, setInquiryType] = useState(inquiryTypes[0].value);
-  const [errors, setErrors] = useState({ name: '', email: '', message: '' });
-  const [touched, setTouched] = useState({ name: false, email: false, message: false });
+  const [errors, setErrors] = useState({ name: '', email: '', phone: '', message: '', privacy: '' });
+  const [touched, setTouched] = useState({ name: false, email: false, phone: false, message: false, privacy: false });
   const [status, setStatus] = useState('idle'); // idle, submitting, success, error
 
   // Validate field on blur or change
@@ -196,20 +233,25 @@ const ContactForm = () => {
         return !validateName(value) ? t('validation_name_required') || 'Name must be at least 2 characters' : '';
       case 'email':
         return !validateEmail(value) ? t('validation_email_invalid') || 'Please enter a valid email address' : '';
+      case 'phone':
+        return !validatePhone(value) ? t('validation_phone_required') : '';
       case 'message':
         return !validateMessage(value) ? t('validation_message_required') || 'Message must be at least 10 characters' : '';
+      case 'privacy':
+        return !value ? t('validation_privacy_required') : '';
       default:
         return '';
     }
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    const nextValue = type === 'checkbox' ? checked : value;
+    setFormData(prev => ({ ...prev, [name]: nextValue }));
 
     // Clear error when user starts typing
     if (touched[name]) {
-      setErrors(prev => ({ ...prev, [name]: validateField(name, value) }));
+      setErrors(prev => ({ ...prev, [name]: validateField(name, nextValue) }));
     }
   };
 
@@ -223,10 +265,12 @@ const ContactForm = () => {
     const newErrors = {
       name: validateField('name', formData.name),
       email: validateField('email', formData.email),
+      phone: validateField('phone', formData.phone),
       message: validateField('message', formData.message),
+      privacy: validateField('privacy', formData.privacy),
     };
     setErrors(newErrors);
-    setTouched({ name: true, email: true, message: true });
+    setTouched({ name: true, email: true, phone: true, message: true, privacy: true });
     return !Object.values(newErrors).some(error => error);
   };
 
@@ -243,11 +287,15 @@ const ContactForm = () => {
     const recipient = 'cgpark@kmtechn.com';
     const selectedInquiry = inquiryTypes.find((type) => type.value === inquiryType);
     const inquiryLabel = t(selectedInquiry?.labelKey || 'contact_inquiry_type_general');
-    const subject = encodeURIComponent(`[KMTech 문의] ${inquiryLabel} - ${formData.name}`);
+    const subjectText = formData.subject.trim() || inquiryLabel;
+    const subject = encodeURIComponent(`[KMTech 문의] ${subjectText} - ${formData.name}`);
     const body = encodeURIComponent(
+      `회사명: ${formData.company || '-'}\n` +
       `보낸 사람: ${formData.name}\n` +
+      `연락처: ${formData.phone}\n` +
       `이메일: ${formData.email}\n\n` +
       `문의 유형: ${inquiryLabel}\n\n` +
+      `제목: ${subjectText}\n\n` +
       `문의 내용:\n${formData.message}`
     );
 
@@ -258,10 +306,10 @@ const ContactForm = () => {
 
     // 폼 초기화
     setStatus('success');
-    setFormData({ name: '', email: '', message: '' });
+    setFormData({ company: '', name: '', email: '', phone: '', subject: '', message: '', privacy: false });
     setInquiryType(inquiryTypes[0].value);
-    setErrors({ name: '', email: '', message: '' });
-    setTouched({ name: false, email: false, message: false });
+    setErrors({ name: '', email: '', phone: '', message: '', privacy: '' });
+    setTouched({ name: false, email: false, phone: false, message: false, privacy: false });
 
     setTimeout(() => {
       setStatus('idle');
@@ -319,48 +367,100 @@ const ContactForm = () => {
             </TypeGrid>
           </FormField>
 
-          <FormField>
-            <Label htmlFor="contact-name">{t('contact_form_name')}</Label>
-            <Input
-              id="contact-name"
-              type="text"
-              name="name"
-              placeholder={t('contact_form_name')}
-              value={formData.name}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              disabled={status === 'submitting'}
-              $hasError={touched.name && errors.name}
-              aria-invalid={touched.name && errors.name ? 'true' : 'false'}
-              aria-describedby={errors.name ? 'name-error' : undefined}
-            />
-            {touched.name && errors.name && (
-              <ErrorMessage id="name-error" role="alert">
-                <AlertCircle size={14} /> {errors.name}
-              </ErrorMessage>
-            )}
-          </FormField>
+          <FieldGrid>
+            <FormField>
+              <Label htmlFor="contact-company">{t('contact_form_company')}</Label>
+              <Input
+                id="contact-company"
+                type="text"
+                name="company"
+                placeholder={t('contact_form_company')}
+                value={formData.company}
+                onChange={handleChange}
+                disabled={status === 'submitting'}
+              />
+            </FormField>
+
+            <FormField>
+              <Label htmlFor="contact-name">{t('contact_form_name')}</Label>
+              <Input
+                id="contact-name"
+                type="text"
+                name="name"
+                placeholder={t('contact_form_name')}
+                value={formData.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                disabled={status === 'submitting'}
+                $hasError={touched.name && errors.name}
+                aria-invalid={touched.name && errors.name ? 'true' : 'false'}
+                aria-describedby={errors.name ? 'name-error' : undefined}
+              />
+              {touched.name && errors.name && (
+                <ErrorMessage id="name-error" role="alert">
+                  <AlertCircle size={14} /> {errors.name}
+                </ErrorMessage>
+              )}
+            </FormField>
+          </FieldGrid>
+
+          <FieldGrid>
+            <FormField>
+              <Label htmlFor="contact-email">{t('contact_form_email')}</Label>
+              <Input
+                id="contact-email"
+                type="email"
+                name="email"
+                placeholder={t('contact_form_email')}
+                value={formData.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                disabled={status === 'submitting'}
+                $hasError={touched.email && errors.email}
+                aria-invalid={touched.email && errors.email ? 'true' : 'false'}
+                aria-describedby={errors.email ? 'email-error' : undefined}
+              />
+              {touched.email && errors.email && (
+                <ErrorMessage id="email-error" role="alert">
+                  <AlertCircle size={14} /> {errors.email}
+                </ErrorMessage>
+              )}
+            </FormField>
+
+            <FormField>
+              <Label htmlFor="contact-phone">{t('contact_form_phone')}</Label>
+              <Input
+                id="contact-phone"
+                type="tel"
+                name="phone"
+                placeholder={t('contact_form_phone')}
+                value={formData.phone}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                disabled={status === 'submitting'}
+                $hasError={touched.phone && errors.phone}
+                aria-invalid={touched.phone && errors.phone ? 'true' : 'false'}
+                aria-describedby={errors.phone ? 'phone-error' : undefined}
+              />
+              {touched.phone && errors.phone && (
+                <ErrorMessage id="phone-error" role="alert">
+                  <AlertCircle size={14} /> {errors.phone}
+                </ErrorMessage>
+              )}
+            </FormField>
+          </FieldGrid>
 
           <FormField>
-            <Label htmlFor="contact-email">{t('contact_form_email')}</Label>
+            <Label htmlFor="contact-subject">{t('contact_form_subject')}</Label>
             <Input
-              id="contact-email"
-              type="email"
-              name="email"
-              placeholder={t('contact_form_email')}
-              value={formData.email}
+              id="contact-subject"
+              type="text"
+              name="subject"
+              placeholder={t('contact_form_subject')}
+              value={formData.subject}
               onChange={handleChange}
-              onBlur={handleBlur}
               disabled={status === 'submitting'}
-              $hasError={touched.email && errors.email}
-              aria-invalid={touched.email && errors.email ? 'true' : 'false'}
-              aria-describedby={errors.email ? 'email-error' : undefined}
             />
-            {touched.email && errors.email && (
-              <ErrorMessage id="email-error" role="alert">
-                <AlertCircle size={14} /> {errors.email}
-              </ErrorMessage>
-            )}
           </FormField>
 
           <FormField>
@@ -380,6 +480,27 @@ const ContactForm = () => {
             {touched.message && errors.message && (
               <ErrorMessage id="message-error" role="alert">
                 <AlertCircle size={14} /> {errors.message}
+              </ErrorMessage>
+            )}
+          </FormField>
+
+          <FormField>
+            <ConsentLabel htmlFor="contact-privacy">
+              <input
+                id="contact-privacy"
+                type="checkbox"
+                name="privacy"
+                checked={formData.privacy}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                disabled={status === 'submitting'}
+                aria-invalid={touched.privacy && errors.privacy ? 'true' : 'false'}
+              />
+              <span>{t('contact_form_privacy')}</span>
+            </ConsentLabel>
+            {touched.privacy && errors.privacy && (
+              <ErrorMessage id="privacy-error" role="alert">
+                <AlertCircle size={14} /> {errors.privacy}
               </ErrorMessage>
             )}
           </FormField>

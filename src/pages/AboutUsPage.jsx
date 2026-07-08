@@ -14,14 +14,14 @@ import { HiOutlineChevronRight } from 'react-icons/hi';
 
 const HeroSection = styled.section`
   position: relative;
-  min-height: clamp(600px, 72vh, 720px);
+  min-height: clamp(340px, 45vh, 460px);
   display: flex;
   align-items: center;
   background:
     linear-gradient(115deg, rgba(245, 245, 245, 0.98) 0%, rgba(245, 245, 245, 0.94) 38%, rgba(255, 255, 255, 0.42) 100%),
     radial-gradient(circle at 82% 18%, rgba(var(--accent-amber-rgb), 0.14), transparent 22rem),
     var(--background-color);
-  padding: clamp(5.75rem, 8vw, 7.5rem) clamp(1rem, 5vw, 5%) clamp(2.35rem, 4vw, 3.5rem);
+  padding: clamp(3.35rem, 5vw, 4.6rem) clamp(1rem, 5vw, 5%) clamp(1.1rem, 2.4vw, 1.8rem);
   overflow: hidden;
 
   &::before {
@@ -43,26 +43,26 @@ const HeroSection = styled.section`
     background: linear-gradient(90deg, transparent, var(--border-color), transparent);
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 820px) {
     min-height: auto;
-    padding-top: clamp(5.75rem, 12vw, 7rem);
+    padding-top: clamp(5rem, 12vw, 6.5rem);
   }
 `;
 
 const HeroGrid = styled.div`
   position: relative;
   z-index: 1;
-  max-width: 1480px;
+  max-width: var(--page-max-width);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 0.72fr) minmax(24rem, 1.08fr);
-  gap: clamp(1.75rem, 5vw, 5.5rem);
+  grid-template-columns: minmax(18rem, 0.52fr) minmax(22rem, 0.9fr);
+  gap: clamp(1.35rem, 4vw, 3.5rem);
   align-items: center;
   width: 100%;
   min-width: 0;
   overflow-x: clip;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 820px) {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
@@ -72,7 +72,7 @@ const HeroContent = styled(motion.div)`
   max-width: 620px;
   min-width: 0;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 820px) {
     max-width: 100%;
     margin: 0 auto;
   }
@@ -89,25 +89,26 @@ const HeroLabel = styled(motion.span)`
 `;
 
 const HeroTitle = styled(motion.h1)`
-  font-size: clamp(2.35rem, 5vw, 4.35rem);
+  font-size: clamp(2rem, 3.8vw, 3rem);
   font-weight: 800;
   line-height: 1.08;
   color: var(--text-color);
   margin-bottom: 1.2rem;
   letter-spacing: 0;
-  overflow-wrap: anywhere;
+  word-break: keep-all;
+  overflow-wrap: normal;
 `;
 
 const HeroDescription = styled(motion.p)`
-  font-size: 1.125rem;
-  line-height: 1.8;
+  font-size: 0.98rem;
+  line-height: 1.58;
   color: var(--text-secondary);
   overflow-wrap: anywhere;
   max-width: 560px;
 `;
 
 const HeroProofGrid = styled(motion.div)`
-  margin-top: clamp(1.35rem, 3vw, 2rem);
+  margin-top: clamp(1rem, 2.2vw, 1.4rem);
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.7rem;
@@ -121,7 +122,7 @@ const HeroProofGrid = styled(motion.div)`
 
 const HeroProofCard = styled.div`
   min-width: 0;
-  min-height: 94px;
+  min-height: 82px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.76);
@@ -168,7 +169,7 @@ const HeroVisual = styled(motion.div)`
     z-index: -1;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 820px) {
     max-width: 820px;
     margin: 0 auto;
 
@@ -182,7 +183,7 @@ const HeroVisual = styled(motion.div)`
 const HeroImageFrame = styled.div`
   position: relative;
   border-radius: 8px;
-  min-height: clamp(390px, 42vw, 580px);
+  min-height: clamp(250px, 30vw, 360px);
   overflow: hidden;
   background: #111;
   box-shadow: 0 32px 80px rgba(0, 0, 0, 0.22);
@@ -277,6 +278,7 @@ const HeroMetricValue = styled.div`
   font-weight: 900;
   line-height: 1.1;
   overflow-wrap: anywhere;
+  white-space: nowrap;
 `;
 
 const HeroMetricLabel = styled.div`
@@ -288,7 +290,7 @@ const HeroMetricLabel = styled.div`
 
 const TrustSection = styled(Section)`
   background: var(--background-color);
-  padding: clamp(3rem, 5vw, 4.5rem) clamp(1rem, 5vw, 5%);
+  padding: clamp(1.5rem, 3vw, 2.3rem) clamp(1rem, 5vw, 5%);
 `;
 
 const TrustGrid = styled.div`
@@ -299,7 +301,7 @@ const TrustGrid = styled.div`
   gap: clamp(0.9rem, 2.4vw, 1.4rem);
   align-items: start;
 
-  @media (max-width: 900px) {
+  @media (max-width: 820px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -308,7 +310,7 @@ const TrustIntro = styled.div`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: clamp(1.1rem, 3vw, 1.6rem);
+  padding: clamp(0.95rem, 2.4vw, 1.25rem);
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   gap: clamp(1rem, 2.2vw, 1.35rem);
@@ -322,8 +324,8 @@ const TrustIntro = styled.div`
 `;
 
 const TrustLogo = styled.div`
-  width: clamp(64px, 6vw, 82px);
-  height: clamp(64px, 6vw, 82px);
+  width: clamp(56px, 5vw, 72px);
+  height: clamp(56px, 5vw, 72px);
   border-radius: 8px;
   background: #fff;
   border: 1px solid var(--border-color);
@@ -345,7 +347,7 @@ const TrustTitle = styled.h2`
   margin-bottom: 0.65rem;
   max-width: 17ch;
 
-  @media (max-width: 900px) {
+  @media (max-width: 820px) {
     max-width: 28ch;
   }
 `;
@@ -381,9 +383,9 @@ const TrustMetric = styled.div`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: clamp(0.9rem, 2vw, 1.15rem);
+  padding: clamp(0.78rem, 1.6vw, 1rem);
   min-width: 0;
-  min-height: clamp(142px, 12vw, 170px);
+  min-height: clamp(118px, 10vw, 142px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -401,6 +403,7 @@ const TrustMetricValue = styled.div`
   font-weight: 900;
   line-height: 1.1;
   overflow-wrap: anywhere;
+  white-space: nowrap;
 `;
 
 const TrustMetricLabel = styled.div`
@@ -440,7 +443,7 @@ const TrustHighlight = styled.div`
   border: 1px solid rgba(var(--accent-amber-rgb), 0.35);
   background: rgba(var(--accent-amber-rgb), 0.08);
   border-radius: 8px;
-  padding: 0.9rem 1rem;
+  padding: 0.72rem 0.85rem;
   min-width: 0;
 `;
 
@@ -448,12 +451,13 @@ const TrustHighlightValue = styled.div`
   color: var(--text-color);
   font-weight: 800;
   line-height: 1.2;
+  word-break: keep-all;
 `;
 
 // Philosophy Section
 const PhilosophySection = styled(Section)`
   background: var(--card-bg);
-  padding: 7rem 5%;
+  padding: clamp(2.2rem, 4vw, 3.4rem) 5%;
 `;
 
 const PhilosophyGrid = styled.div`
@@ -461,12 +465,12 @@ const PhilosophyGrid = styled.div`
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1.5fr;
-  gap: 5rem;
+  gap: clamp(1.5rem, 4vw, 3rem);
   align-items: start;
 
-  @media (max-width: 900px) {
+  @media (max-width: 820px) {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2rem;
   }
 `;
 
@@ -483,7 +487,7 @@ const PhilosophyLabel = styled.span`
 `;
 
 const PhilosophyTitle = styled.h2`
-  font-size: 2rem;
+  font-size: clamp(1.55rem, 3vw, 2rem);
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 1.5rem;
@@ -491,15 +495,15 @@ const PhilosophyTitle = styled.h2`
 `;
 
 const PhilosophyText = styled.p`
-  font-size: 1.05rem;
-  line-height: 1.9;
+  font-size: 0.98rem;
+  line-height: 1.72;
   color: var(--text-secondary);
 `;
 
 const QuoteBlock = styled.div`
   position: relative;
-  padding: 2rem 0 2rem 2rem;
-  margin-top: 2rem;
+  padding: 1.3rem 0 1.3rem 1.5rem;
+  margin-top: 1.3rem;
   border-left: 3px solid var(--accent-amber);
 
   svg {
@@ -529,7 +533,7 @@ const PrincipleCard = styled(motion.div)`
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  padding: 1.5rem;
+  padding: 1.05rem 1.15rem;
   background: var(--background-color);
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -542,8 +546,8 @@ const PrincipleCard = styled(motion.div)`
 `;
 
 const PrincipleIcon = styled.div`
-  width: 48px;
-  height: 48px;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -566,13 +570,13 @@ const PrincipleText = styled.span`
 // Core Values Section
 const ValuesSection = styled(Section)`
   background: var(--background-color);
-  padding: 7rem 5%;
+  padding: clamp(2.2rem, 4vw, 3.5rem) 5%;
 `;
 
 const SectionHeader = styled(motion.div)`
   text-align: center;
   max-width: 600px;
-  margin: 0 auto 4rem;
+  margin: 0 auto clamp(2rem, 4vw, 3rem);
 `;
 
 const SectionLabel = styled.span`
@@ -651,7 +655,7 @@ const ValueTitle = styled.h4`
 // Strengths Section
 const StrengthsSection = styled(Section)`
   background: var(--card-bg);
-  padding: 7rem 5%;
+  padding: clamp(3rem, 5vw, 4.6rem) 5%;
 `;
 
 const StrengthsGrid = styled.div`
@@ -661,7 +665,7 @@ const StrengthsGrid = styled.div`
   max-width: 1180px;
   margin: 0 auto;
 
-  @media (max-width: 920px) {
+  @media (max-width: 820px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -684,7 +688,7 @@ const StrengthCard = styled(motion.div)`
 
 const StrengthImageWrapper = styled.div`
   position: relative;
-  height: 180px;
+  height: clamp(150px, 16vw, 180px);
   overflow: hidden;
 `;
 
@@ -716,7 +720,7 @@ const StrengthNumber = styled.div`
 `;
 
 const StrengthContent = styled.div`
-  padding: 1.75rem;
+  padding: 1.35rem;
 `;
 
 const StrengthTitle = styled.h3`
@@ -743,7 +747,7 @@ const StrengthDescription = styled.p`
 // Organization Section - Modern Minimal Design
 const OrgSection = styled(Section)`
   background: var(--background-color);
-  padding: 7rem 5%;
+  padding: clamp(3rem, 5vw, 4.6rem) 5%;
 `;
 
 const OrgContainer = styled.div`
@@ -982,7 +986,7 @@ const AboutUsPage = () => {
               <img
                 src="/images/kmtech-about-warehouse-hero.png"
                 srcSet="/images/kmtech-about-warehouse-hero-960.webp 960w, /images/kmtech-about-warehouse-hero-1440.webp 1440w, /images/kmtech-about-warehouse-hero.png 1672w"
-                sizes="(max-width: 1024px) 100vw, 52vw"
+                sizes="(max-width: 820px) 100vw, 52vw"
                 alt="KMTech warehouse operations"
                 loading="eager"
                 decoding="async"
