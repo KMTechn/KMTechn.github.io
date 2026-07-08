@@ -6,7 +6,7 @@ import Page, { Section, SectionTitle } from '../components/ui/Page';
 import { facilityMetrics, operationHighlights } from '../data/company';
 import {
   FaCheckCircle, FaBuilding, FaBalanceScale,
-  FaLeaf, FaBullseye, FaGavel, FaAward, FaBrain,
+  FaBullseye, FaAward, FaBrain, FaShieldAlt,
   FaShippingFast, FaCogs, FaSearchPlus,
   FaSitemap, FaUsers, FaQuoteLeft
 } from 'react-icons/fa';
@@ -14,14 +14,14 @@ import { HiOutlineChevronRight } from 'react-icons/hi';
 
 const HeroSection = styled.section`
   position: relative;
-  min-height: clamp(340px, 45vh, 460px);
+  min-height: clamp(320px, 40vh, 420px);
   display: flex;
   align-items: center;
   background:
     linear-gradient(115deg, rgba(245, 245, 245, 0.98) 0%, rgba(245, 245, 245, 0.94) 38%, rgba(255, 255, 255, 0.42) 100%),
     radial-gradient(circle at 82% 18%, rgba(var(--accent-amber-rgb), 0.14), transparent 22rem),
     var(--background-color);
-  padding: clamp(3.35rem, 5vw, 4.6rem) clamp(1rem, 5vw, 5%) clamp(1.1rem, 2.4vw, 1.8rem);
+  padding: clamp(2.7rem, 4vw, 3.8rem) clamp(1rem, 5vw, 5%) clamp(0.9rem, 2vw, 1.35rem);
   overflow: hidden;
 
   &::before {
@@ -545,7 +545,7 @@ const PhilosophySection = styled(Section)`
   background:
     linear-gradient(90deg, rgba(17, 17, 17, 0.96) 0%, rgba(17, 17, 17, 0.9) 44%, rgba(17, 17, 17, 0.48) 100%),
     url('/images/kmtech-contact-warehouse-hero-1440.webp') center / cover no-repeat;
-  padding: clamp(2rem, 3.8vw, 3.25rem) 5%;
+  padding: clamp(1.65rem, 3vw, 2.55rem) 5%;
   color: #fff;
 `;
 
@@ -659,7 +659,7 @@ const PrincipleText = styled.span`
 // Core Values Section
 const ValuesSection = styled(Section)`
   background: var(--background-color);
-  padding: clamp(1.8rem, 3.4vw, 2.8rem) 5%;
+  padding: clamp(1.45rem, 2.8vw, 2.15rem) 5%;
 `;
 
 const SectionHeader = styled(motion.div)`
@@ -686,7 +686,7 @@ const SectionDescription = styled.p`
 
 const ValuesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 0;
   max-width: 1100px;
   margin: 0 auto;
@@ -695,27 +695,18 @@ const ValuesGrid = styled.div`
   overflow: hidden;
   background: #fff;
 
-  @media (max-width: 900px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  @media (max-width: 560px) {
-    grid-template-columns: 1fr;
-  }
 `;
 
 const ValueCard = styled(motion.div)`
   text-align: left;
-  padding: 0.9rem 1rem;
+  padding: 0;
   background: #fff;
   border: 0;
-  border-right: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
   border-radius: 0;
   display: grid;
-  grid-template-columns: 52px minmax(0, 1fr);
-  gap: 0.85rem;
-  align-items: center;
+  grid-template-columns: 58px minmax(8rem, 0.9fr) minmax(0, 1.3fr) minmax(0, 1.45fr);
+  align-items: stretch;
   min-width: 0;
   will-change: transform;
   transform: translateZ(0);
@@ -726,35 +717,73 @@ const ValueCard = styled(motion.div)`
     transform: none;
     box-shadow: none;
   }
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  @media (max-width: 720px) {
+    grid-template-columns: 52px minmax(0, 1fr);
+  }
 `;
 
 const ValueIcon = styled.div`
-  width: 42px;
-  height: 42px;
+  width: 100%;
+  min-height: 62px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(var(--accent-amber-rgb), 0.16);
-  border-radius: 8px;
+  background: rgba(var(--accent-amber-rgb), 0.12);
+  border-radius: 0;
   margin: 0;
+  border-right: 1px solid var(--border-color);
 
   svg {
     font-size: 1rem;
     color: #121212;
   }
+
+  @media (max-width: 720px) {
+    grid-row: span 3;
+  }
 `;
 
 const ValueTitle = styled.h4`
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 800;
   color: var(--text-color);
   line-height: 1.4;
+  padding: 1rem;
+  border-right: 1px solid var(--border-color);
+
+  @media (max-width: 720px) {
+    border-right: 0;
+    padding: 0.85rem 0.9rem 0.25rem;
+  }
+`;
+
+const ValueText = styled.p`
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+  line-height: 1.6;
+  padding: 1rem;
+  border-right: 1px solid var(--border-color);
+  margin: 0;
+
+  &:last-child {
+    border-right: 0;
+  }
+
+  @media (max-width: 720px) {
+    border-right: 0;
+    padding: 0.25rem 0.9rem 0.85rem;
+  }
 `;
 
 // Strengths Section
 const StrengthsSection = styled(Section)`
   background: var(--card-bg);
-  padding: clamp(2rem, 3.8vw, 3.2rem) 5%;
+  padding: clamp(1.35rem, 2.5vw, 2rem) 5%;
 `;
 
 const StrengthsGrid = styled.div`
@@ -787,7 +816,7 @@ const StrengthCard = styled(motion.div)`
 
 const StrengthImageWrapper = styled.div`
   position: relative;
-  height: clamp(150px, 16vw, 180px);
+  height: clamp(132px, 14vw, 160px);
   overflow: hidden;
 `;
 
@@ -819,7 +848,7 @@ const StrengthNumber = styled.div`
 `;
 
 const StrengthContent = styled.div`
-  padding: 1.35rem;
+  padding: 1rem;
 `;
 
 const StrengthTitle = styled.h3`
@@ -846,7 +875,11 @@ const StrengthDescription = styled.p`
 // Organization Section - Modern Minimal Design
 const OrgSection = styled(Section)`
   background: var(--background-color);
-  padding: clamp(2rem, 3.8vw, 3.2rem) 5%;
+  padding: clamp(1.15rem, 2.2vw, 1.7rem) 5% clamp(1.45rem, 2.5vw, 2rem);
+
+  ${SectionHeader} {
+    margin-bottom: clamp(1.1rem, 2vw, 1.55rem);
+  }
 `;
 
 const OrgContainer = styled.div`
@@ -867,17 +900,17 @@ const CEOCard = styled(motion.div)`
   border: 1px solid var(--accent-amber);
   border-radius: 8px;
   position: relative;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.8rem;
   line-height: 1;
 
   &::after {
     content: '';
     position: absolute;
-    bottom: -2.5rem;
+    bottom: -1.8rem;
     left: 50%;
     transform: translateX(-50%);
     width: 1px;
-    height: 2.5rem;
+    height: 1.8rem;
     background: var(--border-color);
   }
 `;
@@ -897,7 +930,7 @@ const OrgLine = styled.div`
   height: 1px;
   background: var(--border-color);
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: 1.55rem;
 
   @media (max-width: 768px) {
     width: 90%;
@@ -918,11 +951,11 @@ const DepartmentCard = styled(motion.div)`
   &::before {
     content: '';
     position: absolute;
-    top: -2rem;
+    top: -1.55rem;
     left: 50%;
     transform: translateX(-50%);
     width: 1px;
-    height: 2rem;
+    height: 1.55rem;
     background: var(--border-color);
   }
 `;
@@ -1014,12 +1047,10 @@ const AboutUsPage = () => {
   ];
 
   const coreValues = [
-    { icon: <FaCheckCircle />, titleKey: 'pillar_credibility' },
-    { icon: <FaBalanceScale />, titleKey: 'pillar_stability' },
-    { icon: <FaLeaf />, titleKey: 'pillar_environmental_quality' },
-    { icon: <FaBullseye />, titleKey: 'pillar_customer_orientation' },
-    { icon: <FaGavel />, titleKey: 'pillar_ethical_behavior' },
-    { icon: <FaBuilding />, titleKey: 'pillar_company_development' },
+    { icon: <FaCheckCircle />, title: '정확', meaning: '정확한 프로세스와 데이터로 신뢰를 만듭니다.', action: '정확한 입출고 및 검수 수행, 데이터 실시간 기록 및 확인' },
+    { icon: <FaShippingFast />, title: '신속', meaning: '고객의 납기와 현장 변화에 민첩하게 대응합니다.', action: '우선순위 기반 작업 배치, 이상 발생 즉시 보고 및 조치' },
+    { icon: <FaShieldAlt />, title: '안전', meaning: '안전한 작업 환경을 최우선으로 합니다.', action: '표준 안전 절차 준수, 위험 요소 사전 점검 및 개선' },
+    { icon: <FaUsers />, title: '협력', meaning: '함께 더 나은 성과를 만듭니다.', action: '부서 간 협업으로 고객·협력사와 긴밀한 소통' },
   ];
 
   const strongPoints = [
@@ -1209,13 +1240,15 @@ const AboutUsPage = () => {
         <ValuesGrid>
           {coreValues.map((value, index) => (
             <ValueCard
-              key={value.titleKey}
+              key={value.title}
               initial={{ opacity: 0, y: 20 }}
               animate={valuesInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: index * 0.08, duration: 0.5 }}
             >
               <ValueIcon>{value.icon}</ValueIcon>
-              <ValueTitle>{t(value.titleKey)}</ValueTitle>
+              <ValueTitle>{value.title}</ValueTitle>
+              <ValueText>{value.meaning}</ValueText>
+              <ValueText>{value.action}</ValueText>
             </ValueCard>
           ))}
         </ValuesGrid>

@@ -435,9 +435,9 @@ const Header = ({ scrollRootRef }) => {
         $scrolled={scrolled}
         role="banner"
       >
-        <LogoContainer to="/" onClick={closeMenu} aria-label="KMTECH home">
-          <img src="/logo.png?v=1" alt="KMTECH Logo" />
-          <LogoText>KMTECH</LogoText>
+        <LogoContainer to="/" onClick={closeMenu} aria-label="KMTech home">
+          <img src="/logo.png?v=1" alt="KMTech Logo" />
+          <LogoText>KMTech</LogoText>
         </LogoContainer>
         <Nav aria-label="Main navigation">
           <NavLink to="/about" title={t('nav_about')}>{t('nav_about')}</NavLink>
@@ -504,8 +504,8 @@ const Header = ({ scrollRootRef }) => {
               <X size={24} />
             </MobileNavClose>
             <MobileNavLogo>
-              <img src="/logo.png?v=1" alt="KMTECH Logo" />
-              <span>KMTECH</span>
+              <img src="/logo.png?v=1" alt="KMTech Logo" />
+              <span>KMTech</span>
             </MobileNavLogo>
             <motion.div variants={mobileNavItemVariants}>
               <NavLink to="/about" onClick={closeMenu}>{t('nav_about')}</NavLink>

@@ -7,19 +7,15 @@ import { CheckCircle, AlertCircle, Send } from 'lucide-react';
 const FormContainer = styled(motion.form)`
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-4);
   margin-top: var(--space-5);
   position: relative;
 `;
 
 const FieldGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-3);
-
-  @media (max-width: 560px) {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
 `;
 
 const FormField = styled.div`
@@ -67,7 +63,7 @@ const Input = styled.input`
 const Textarea = styled.textarea`
   ${inputStyles}
   line-height: var(--line-height-relaxed);
-  min-height: 118px;
+  min-height: 158px;
   resize: vertical;
 `;
 
@@ -89,7 +85,7 @@ const SubmitButton = styled.button`
   cursor: pointer;
   transition: all 0.3s ease;
   border: 2px solid var(--accent-amber);
-  align-self: flex-start;
+  align-self: stretch;
   font-family: inherit;
   min-height: 48px;
   display: inline-flex;
@@ -117,9 +113,7 @@ const SubmitButton = styled.button`
     cursor: not-allowed;
   }
 
-  @media (max-width: 520px) {
-    width: 100%;
-  }
+  width: 100%;
 `;
 
 const StatusMessage = styled(motion.div)`
@@ -143,32 +137,15 @@ const StatusTitle = styled.h3`
   gap: 0.5rem;
 `;
 
-const TypeGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-2);
-
-  @media (max-width: 420px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const TypeButton = styled.button`
-  min-height: 44px;
-  border-radius: 8px;
-  border: 1px solid ${({ $active }) => $active ? 'var(--accent-amber)' : 'var(--border-color)'};
-  background: ${({ $active }) => $active ? 'rgba(var(--accent-amber-rgb), 0.12)' : 'var(--background-color)'};
+const Select = styled.select`
+  ${inputStyles}
+  min-height: 48px;
+  appearance: none;
+  background:
+    linear-gradient(45deg, transparent 50%, var(--text-secondary) 50%) calc(100% - 18px) 52% / 6px 6px no-repeat,
+    linear-gradient(135deg, var(--text-secondary) 50%, transparent 50%) calc(100% - 13px) 52% / 6px 6px no-repeat,
+    var(--background-color);
   color: var(--text-color);
-  font: inherit;
-  font-size: var(--font-sm);
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0.75rem;
-  text-align: left;
-
-  &:hover {
-    border-color: var(--accent-amber);
-  }
 `;
 
 const ConsentLabel = styled.label`
@@ -350,21 +327,22 @@ const ContactForm = () => {
           noValidate
         >
           <FormField>
-            <Label>{t('contact_inquiry_type_label')}</Label>
-            <TypeGrid role="group" aria-label={t('contact_inquiry_type_label')}>
+            <Label htmlFor="contact-inquiry-type">{t('contact_inquiry_type_label')}</Label>
+            <Select
+              id="contact-inquiry-type"
+              value={inquiryType}
+              onChange={(event) => setInquiryType(event.target.value)}
+              disabled={status === 'submitting'}
+            >
               {inquiryTypes.map((type) => (
-                <TypeButton
+                <option
                   key={type.value}
-                  type="button"
-                  $active={inquiryType === type.value}
-                  aria-pressed={inquiryType === type.value}
-                  onClick={() => setInquiryType(type.value)}
-                  disabled={status === 'submitting'}
+                  value={type.value}
                 >
                   {t(type.labelKey)}
-                </TypeButton>
+                </option>
               ))}
-            </TypeGrid>
+            </Select>
           </FormField>
 
           <FieldGrid>
@@ -382,7 +360,7 @@ const ContactForm = () => {
             </FormField>
 
             <FormField>
-              <Label htmlFor="contact-name">{t('contact_form_name')}</Label>
+              <Label htmlFor="contact-name">{t('contact_form_name')} *</Label>
               <Input
                 id="contact-name"
                 type="text"
@@ -406,7 +384,7 @@ const ContactForm = () => {
 
           <FieldGrid>
             <FormField>
-              <Label htmlFor="contact-email">{t('contact_form_email')}</Label>
+              <Label htmlFor="contact-email">{t('contact_form_email')} *</Label>
               <Input
                 id="contact-email"
                 type="email"
@@ -428,7 +406,7 @@ const ContactForm = () => {
             </FormField>
 
             <FormField>
-              <Label htmlFor="contact-phone">{t('contact_form_phone')}</Label>
+              <Label htmlFor="contact-phone">{t('contact_form_phone')} *</Label>
               <Input
                 id="contact-phone"
                 type="tel"
@@ -464,7 +442,7 @@ const ContactForm = () => {
           </FormField>
 
           <FormField>
-            <Label htmlFor="contact-message">{t('contact_form_message')}</Label>
+            <Label htmlFor="contact-message">{t('contact_form_message')} *</Label>
             <Textarea
               id="contact-message"
               name="message"

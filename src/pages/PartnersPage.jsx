@@ -8,10 +8,10 @@ import { customerPartners } from '../data/company';
 import { FaArrowRight, FaCar, FaCheckCircle, FaFilter, FaHandshake, FaIndustry, FaLayerGroup, FaTv } from 'react-icons/fa';
 
 const HeroSection = styled.section`
-  min-height: clamp(330px, 43vh, 460px);
+  min-height: clamp(390px, 47vh, 500px);
   display: flex;
   align-items: center;
-  padding: clamp(3.2rem, 5vw, 4.35rem) clamp(1rem, 5vw, 5%) clamp(1.25rem, 2.4vw, 1.8rem);
+  padding: clamp(2.9rem, 4.6vw, 4rem) clamp(1rem, 5vw, 5%) clamp(1.55rem, 3vw, 2.25rem);
   background:
     radial-gradient(circle at 83% 18%, rgba(var(--accent-amber-rgb), 0.11), transparent 22rem),
     linear-gradient(180deg, #ffffff 0%, var(--background-color) 100%);
@@ -91,7 +91,8 @@ const StatCard = styled.div`
   background: rgba(255, 255, 255, 0.82);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 1rem 1.05rem;
+  padding: 1rem;
+  min-height: 108px;
   min-width: 0;
   box-shadow: 0 12px 34px rgba(0, 0, 0, 0.05);
 
@@ -151,7 +152,7 @@ const LogoMosaic = styled(motion.div)`
 
 const MosaicImage = styled.div`
   position: relative;
-  min-height: clamp(240px, 28vw, 330px);
+  min-height: clamp(300px, 34vw, 410px);
   border-radius: 8px;
   overflow: hidden;
   background: #111;
@@ -251,14 +252,14 @@ const MosaicLogo = styled.div`
 `;
 
 const PartnersSection = styled.section`
-  padding: clamp(2rem, 3.6vw, 3.1rem) clamp(1rem, 5vw, 5%);
+  padding: clamp(2rem, 3.6vw, 3rem) clamp(1rem, 5vw, 5%);
   background: linear-gradient(180deg, var(--background-color) 0%, #ffffff 100%);
 `;
 
 const SectionHeader = styled.div`
   width: min(100%, 720px);
-  margin: 0 auto 2rem;
-  text-align: center;
+  margin: 0 auto 1.55rem 0;
+  text-align: left;
 `;
 
 const SectionLabel = styled.span`
@@ -286,8 +287,8 @@ const SectionDescription = styled.p`
 
 const FilterBar = styled.div`
   width: min(100%, 760px);
-  margin: 0 auto 2rem;
-  display: flex;
+  margin: 0 auto 1.55rem;
+  display: none;
   justify-content: center;
   gap: 0.5rem;
   flex-wrap: wrap;
@@ -314,12 +315,12 @@ const PartnersGrid = styled(motion.div)`
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 18.5rem), 1fr));
-  gap: 1rem;
+  gap: 0.85rem;
 `;
 
 const IndustryReferenceGroup = styled.section`
   width: min(100%, 1180px);
-  margin: 0 auto clamp(1.5rem, 4vw, 2.5rem);
+  margin: 0 auto clamp(1.15rem, 3vw, 2rem);
 
   &:last-child {
     margin-bottom: 0;
@@ -364,10 +365,11 @@ const PartnerCard = styled(motion.article)`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 1.15rem;
+  padding: 1rem;
   min-width: 0;
   display: grid;
-  gap: 1rem;
+  gap: 0.75rem;
+  min-height: 292px;
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {
@@ -378,11 +380,11 @@ const PartnerCard = styled(motion.article)`
 `;
 
 const PartnerLogoBox = styled.div`
-  min-height: 126px;
+  min-height: 128px;
   border-radius: 8px;
   background: #fff;
   border: 1px solid var(--border-color);
-  padding: 1rem;
+  padding: 0.8rem;
   display: grid;
   place-items: center;
 
@@ -395,7 +397,7 @@ const PartnerLogoBox = styled.div`
 
 const PartnerMeta = styled.div`
   display: grid;
-  gap: 0.5rem;
+  gap: 0.65rem;
 `;
 
 const PartnerName = styled.h3`
@@ -413,33 +415,44 @@ const PartnerIndustry = styled.div`
 const ScopeList = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  gap: 0.5rem;
 `;
 
 const ScopeChip = styled.span`
-  min-height: 30px;
+  min-height: 32px;
   display: inline-flex;
   align-items: center;
   border-radius: 8px;
   border: 1px solid var(--border-color);
   background: var(--background-color);
   color: var(--text-secondary);
-  font-size: 0.76rem;
+  font-size: 0.8rem;
   line-height: 1.2;
-  padding: 0.35rem 0.55rem;
+  padding: 0.42rem 0.6rem;
+`;
+
+const PartnerPeriod = styled.div`
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color);
+
+  strong {
+    color: var(--text-color);
+    font-weight: 700;
+    margin-right: 0.45rem;
+  }
 `;
 
 const CTASection = styled.section`
-  padding: clamp(3rem, 5.4vw, 4.5rem) clamp(1rem, 5vw, 5%);
-  background:
-    linear-gradient(90deg, rgba(16, 16, 16, 0.94), rgba(16, 16, 16, 0.72)),
-    url('/images/kmtech-contact-warehouse-hero-1440.webp') center / cover no-repeat;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  text-align: center;
+  padding: clamp(1.8rem, 3.2vw, 2.5rem) clamp(1rem, 5vw, 5%);
+  background: #fff;
+  border-top: 1px solid var(--border-color);
 `;
 
 const MatrixSection = styled.section`
-  padding: clamp(1.8rem, 3.4vw, 2.8rem) clamp(1rem, 5vw, 5%);
+  padding: clamp(2rem, 3.6vw, 3rem) clamp(1rem, 5vw, 5%);
   background: var(--card-bg);
   border-top: 1px solid var(--border-color);
 `;
@@ -478,7 +491,7 @@ const MatrixTd = styled.td`
   color: var(--text-secondary);
   font-size: 0.82rem;
   line-height: 1.45;
-  padding: 0.85rem;
+  padding: 1rem 0.85rem;
   border-bottom: 1px solid var(--border-color);
   vertical-align: middle;
 `;
@@ -536,8 +549,29 @@ const MobileMatrixIndustry = styled.span`
 `;
 
 const CTAContent = styled.div`
-  width: min(100%, 620px);
+  width: min(100%, 1180px);
   margin: 0 auto;
+  min-height: clamp(230px, 24vw, 300px);
+  border-radius: 8px;
+  overflow: hidden;
+  padding: clamp(1.5rem, 4vw, 2.6rem);
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  text-align: left;
+  background:
+    linear-gradient(90deg, rgba(17, 17, 17, 0.94) 0%, rgba(17, 17, 17, 0.78) 44%, rgba(17, 17, 17, 0.18) 100%),
+    image-set(
+      url('/images/kmtech-partners-consultation-v2-960.webp') 1x type('image/webp'),
+      url('/images/kmtech-partners-consultation-v2-1440.webp') 2x type('image/webp'),
+      url('/images/kmtech-partners-consultation-v2.png') 2x type('image/png')
+    ) center / cover no-repeat;
+  box-shadow: 0 22px 58px rgba(15, 23, 42, 0.16);
+
+  @media (max-width: 620px) {
+    min-height: auto;
+    background-position: 58% center;
+  }
 `;
 
 const CTATitle = styled.h2`
@@ -545,12 +579,14 @@ const CTATitle = styled.h2`
   font-size: clamp(1.55rem, 3vw, 2rem);
   line-height: 1.25;
   margin-bottom: 1rem;
+  max-width: 16em;
 `;
 
 const CTADescription = styled.p`
   color: rgba(255, 255, 255, 0.72);
   line-height: 1.7;
   margin-bottom: 1.5rem;
+  max-width: 34rem;
 `;
 
 const CTAButton = styled(Link)`
@@ -621,6 +657,15 @@ const PartnersPage = () => {
     if (key === 'partners_industry_electronics') return <FaTv />;
     return <FaFilter />;
   };
+  const partnerPeriods = {
+    'Hyundai Motor': '2019.03 - 현재',
+    Kia: '2020.07 - 현재',
+    Continental: '2021.11 - 현재',
+    'Kanavi Mobility': '2021.08 - 현재',
+    'LG Display': '2018.06 - 현재',
+    'LG Electronics': '2019.01 - 현재',
+    Humax: '2022.04 - 현재',
+  };
 
   return (
     <Page>
@@ -628,7 +673,7 @@ const PartnersPage = () => {
         <HeroContent>
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
             <Eyebrow>{t('partners_section_label')}</Eyebrow>
-            <HeroTitle>{t('core_customers_title')}</HeroTitle>
+            <HeroTitle>산업별 고객 레퍼런스</HeroTitle>
             <HeroDescription>{t('partners_hero_desc')}</HeroDescription>
             <StatsContainer initial="hidden" animate="visible" variants={containerVariants}>
               {stats.map((stat) => (
@@ -675,7 +720,7 @@ const PartnersPage = () => {
       <PartnersSection>
         <SectionHeader>
           <SectionLabel>{t('partners_catalog_label')}</SectionLabel>
-          <SectionTitle>{t('partners_reference_title')}</SectionTitle>
+          <SectionTitle>산업별 고객사</SectionTitle>
           <SectionDescription>{t('partners_reference_desc')}</SectionDescription>
         </SectionHeader>
 
@@ -717,6 +762,7 @@ const PartnersPage = () => {
                         <ScopeChip key={scope}>{t(scope)}</ScopeChip>
                       ))}
                     </ScopeList>
+                    <PartnerPeriod><strong>파트너십 기간</strong>{partnerPeriods[partner.name]}</PartnerPeriod>
                   </PartnerMeta>
                 </PartnerCard>
               ))}

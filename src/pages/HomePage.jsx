@@ -7,8 +7,9 @@ import { Section, SectionTitle } from '../components/ui/Page';
 import GlobeFallback from '../components/ui/GlobeFallback';
 import { customerPartners, facilityMetrics, operationHighlights } from '../data/company';
 import {
-  FaArrowRight, FaWarehouse, FaBrain, FaShippingFast, FaMicroscope, FaSearch, FaTools,
-  FaCheckCircle, FaEnvelope, FaCar, FaTv, FaTruckLoading, FaBoxOpen, FaClipboardCheck
+  FaArrowRight, FaWarehouse, FaBrain, FaShippingFast, FaSearch, FaTools, FaBoxes,
+  FaCheckCircle, FaEnvelope, FaCar, FaTv, FaTruckLoading, FaBoxOpen, FaClipboardCheck,
+  FaShieldAlt
 } from 'react-icons/fa';
 import { HiOutlineChevronRight } from 'react-icons/hi';
 
@@ -51,9 +52,9 @@ const HeroLayout = styled.div`
   width: min(100%, var(--page-max-width));
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(20rem, 0.48fr) minmax(34rem, 1fr);
-  align-items: end;
-  gap: clamp(0.8rem, 2vw, 1.4rem);
+  grid-template-columns: minmax(24rem, 0.68fr) minmax(32rem, 0.95fr);
+  align-items: start;
+  gap: clamp(0.4rem, 1.4vw, 1rem);
 
   @media (max-width: 820px) {
     grid-template-columns: 1fr;
@@ -69,10 +70,12 @@ const TextContainer = styled(motion.div)`
   z-index: 1;
   min-width: 0;
   width: 100%;
+  padding-top: clamp(1.1rem, 3vw, 2.5rem);
 
   @media (max-width: 820px) {
     align-items: center;
     order: 1;
+    padding-top: 0;
   }
 `;
 
@@ -83,24 +86,26 @@ const HeroLabel = styled(motion.span)`
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--accent-amber);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.1rem;
 `;
 
 const Title = styled(motion.h1)`
-  font-size: clamp(2.75rem, 5.1vw, 4.45rem);
+  font-size: clamp(2.45rem, 3.75vw, 3.55rem);
   font-weight: 800;
   line-height: 1.08;
   margin-bottom: 1rem;
-  max-width: 590px;
+  max-width: 670px;
   width: 100%;
   color: var(--text-color);
   letter-spacing: 0;
   word-break: keep-all;
   overflow-wrap: normal;
+  white-space: nowrap;
 
   @media (max-width: 600px) {
     font-size: clamp(2.1rem, 10vw, 2.75rem);
     margin-bottom: 1rem;
+    white-space: normal;
   }
 `;
 
@@ -125,6 +130,10 @@ const ButtonGroup = styled(motion.div)`
   flex-wrap: wrap;
   width: 100%;
   max-width: 500px;
+
+  @media (min-width: 821px) {
+    display: none;
+  }
 
   @media (max-width: 820px) {
     justify-content: center;
@@ -223,7 +232,7 @@ const SecondaryButton = styled(PrimaryButton)`
 `;
 
 const ArtworkContainer = styled(motion.div)`
-  height: clamp(25rem, 38vw, 35rem);
+  height: clamp(24rem, 35vw, 32rem);
   width: 100%;
   position: relative;
   isolation: isolate;
@@ -280,30 +289,6 @@ const NetworkBackdrop = styled.img`
   @media (max-width: 600px) {
     object-position: 46% center;
   }
-`;
-
-const VisualHeader = styled.div`
-  position: absolute;
-  top: clamp(1rem, 2vw, 1.5rem);
-  left: clamp(1rem, 2vw, 1.5rem);
-  z-index: 3;
-  text-align: left;
-`;
-
-const VisualKicker = styled.div`
-  color: #253046;
-  font-size: 0.76rem;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  margin-bottom: 0.35rem;
-`;
-
-const VisualTitle = styled.div`
-  color: var(--text-secondary);
-  font-size: 0.86rem;
-  line-height: 1.35;
-  font-weight: 600;
 `;
 
 const GlobeStage = styled.div`
@@ -455,8 +440,12 @@ const HeroProofGrid = styled(motion.div)`
 const HeroProofItem = styled.div`
   border-right: 1px solid var(--border-color);
   background: transparent;
-  padding: 1.1rem 1.45rem;
+  padding: 1rem 1.25rem;
   min-width: 0;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: center;
 
   &:last-child {
     border-right: 0;
@@ -465,6 +454,18 @@ const HeroProofItem = styled.div`
   @media (max-width: 600px) {
     border-right: 0;
     border-bottom: 1px solid var(--border-color);
+  }
+`;
+
+const HeroProofIcon = styled.span`
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  color: var(--accent-amber);
+
+  svg {
+    font-size: 1rem;
   }
 `;
 
@@ -487,11 +488,11 @@ const HeroProofLabel = styled.div`
 // Stats Section
 const StatsSection = styled.section`
   background: var(--card-bg);
-  padding: clamp(2rem, 3.6vw, 3.1rem) 5%;
+  padding: clamp(1.65rem, 3vw, 2.45rem) 5%;
   border-bottom: 1px solid var(--border-color);
 
   @media (max-width: 600px) {
-    padding: 3rem 1.25rem;
+    padding: 2.35rem 1.25rem;
   }
 `;
 
@@ -634,10 +635,10 @@ const OperationProofValue = styled.strong`
 // Services Section
 const ServicesSection = styled(Section)`
   background: var(--background-color);
-  padding: clamp(2rem, 3.5vw, 3rem) 5%;
+  padding: clamp(1.65rem, 3vw, 2.45rem) 5%;
 
   @media (max-width: 600px) {
-    padding: 3rem 1.25rem;
+    padding: 2.4rem 1.25rem;
   }
 `;
 
@@ -729,7 +730,7 @@ const ServiceCard = styled(motion.div)`
   display: flex;
   flex-direction: column;
   height: 100%;
-  min-height: 190px;
+  min-height: 168px;
   min-width: 0;
 
   &:hover {
@@ -834,7 +835,7 @@ const StrengthsSection = styled(Section)`
   background:
     linear-gradient(90deg, rgba(16, 16, 16, 0.95), rgba(16, 16, 16, 0.84)),
     url('/images/kmtech-about-warehouse-hero-1440.webp') center / cover no-repeat;
-  padding: clamp(2.1rem, 4vw, 3.35rem) 5%;
+  padding: clamp(1.75rem, 3.2vw, 2.6rem) 5%;
   color: #fff;
 
   ${SectionTitle} {
@@ -842,22 +843,35 @@ const StrengthsSection = styled(Section)`
   }
 
   @media (max-width: 600px) {
-    padding: 3rem 1.25rem;
+    padding: 2.4rem 1.25rem;
   }
 `;
 
 const StrengthsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
-  gap: clamp(1rem, 3vw, 2rem);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
   max-width: 1200px;
   margin: 0 auto 2rem;
+  border: 1px solid rgba(255, 204, 0, 0.22);
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(10, 10, 10, 0.36);
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 520px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const StrengthCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 204, 0, 0.22);
-  border-radius: 8px;
+  background: transparent;
+  border: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0;
   padding: clamp(1.25rem, 2.5vw, 1.65rem);
   display: flex;
   align-items: flex-start;
@@ -868,8 +882,27 @@ const StrengthCard = styled(motion.div)`
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {
-    border-color: var(--accent-amber);
+    border-color: rgba(255, 255, 255, 0.12);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  &:last-child {
+    border-right: 0;
+  }
+
+  @media (max-width: 900px) {
+    &:nth-child(2n) {
+      border-right: 0;
+    }
+  }
+
+  @media (max-width: 520px) {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+    &:last-child {
+      border-bottom: 0;
+    }
   }
 `;
 
@@ -895,8 +928,8 @@ const StrengthContent = styled.div`
 `;
 
 const StrengthTitle = styled.h4`
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  font-weight: 900;
   color: #fff;
   margin-bottom: 0.5rem;
 `;
@@ -914,10 +947,10 @@ const CTAContainer = styled(motion.div)`
 // Process Section
 const ProcessSection = styled(Section)`
   background: var(--background-color);
-  padding: clamp(2rem, 3.6vw, 3rem) 5%;
+  padding: clamp(1.6rem, 3vw, 2.35rem) 5%;
 
   @media (max-width: 600px) {
-    padding: 3rem 1.25rem;
+    padding: 2.35rem 1.25rem;
   }
 `;
 
@@ -1025,11 +1058,11 @@ const ProcessArrow = styled(motion.div)`
 // Partners Section
 const PartnersSection = styled.section`
   background: var(--background-color);
-  padding: clamp(2rem, 3.6vw, 3.2rem) 5%;
+  padding: clamp(1.65rem, 3vw, 2.55rem) 5%;
   border-top: 1px solid var(--border-color);
 
   @media (max-width: 600px) {
-    padding: 3rem 1.25rem;
+    padding: 2.35rem 1.25rem;
   }
 `;
 
@@ -1045,7 +1078,7 @@ const IndustryGroup = styled(motion.div)`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 2rem;
+  padding: 1.35rem;
   transition: border-color 0.2s ease;
 
   &:hover {
@@ -1233,16 +1266,17 @@ const HomePage = () => {
   ];
 
   const strongPoints = [
-    { icon: <FaBrain />, titleKey: 'strong_point_2_title', descKey: 'strong_point_2_desc' },
-    { icon: <FaShippingFast />, titleKey: 'strong_point_5_title', descKey: 'strong_point_5_desc' },
-    { icon: <FaMicroscope />, titleKey: 'strong_point_6_title', descKey: 'strong_point_6_desc' },
+    { icon: <FaWarehouse />, value: '2,140㎡', titleKey: 'stats_warehouse_space', descKey: 'metric_space_detail' },
+    { icon: <FaBrain />, value: 'ERP QR', titleKey: 'metric_qr_system', descKey: 'metric_qr_detail' },
+    { icon: <FaBoxOpen />, value: '50 Pallet', titleKey: 'metric_rework_capacity', descKey: 'metric_rework_detail' },
+    { icon: <FaShieldAlt />, value: '16CH', titleKey: 'metric_cctv', descKey: 'metric_cctv_detail' },
   ];
 
   const heroProof = [
-    { value: '2,140㎡', labelKey: 'hero_proof_facility' },
-    { value: '3,000+', labelKey: 'hero_proof_capacity' },
-    { value: '40ft x2', labelKey: 'metric_container_dock' },
-    { value: '16CH', labelKey: 'metric_cctv' },
+    { icon: <FaWarehouse />, value: '2,140㎡', labelKey: 'hero_proof_facility' },
+    { icon: <FaBoxes />, value: '3,000+', labelKey: 'hero_proof_capacity' },
+    { icon: <FaTools />, value: '40ft x2', labelKey: 'metric_container_dock' },
+    { icon: <FaShieldAlt />, value: '16CH', labelKey: 'metric_cctv' },
   ];
 
   const visualMetrics = facilityMetrics.slice(0, 3);
@@ -1337,10 +1371,6 @@ const HomePage = () => {
               loading="eager"
               decoding="async"
             />
-            <VisualHeader>
-              <VisualKicker>{t('hero_visual_label')}</VisualKicker>
-              <VisualTitle>{t('hero_visual_network')}</VisualTitle>
-            </VisualHeader>
             <VisualMetricDock>
               {visualMetrics.map((metric) => (
                 <VisualMetric key={metric.labelKey}>
@@ -1371,8 +1401,11 @@ const HomePage = () => {
           >
             {heroProof.map((item) => (
               <HeroProofItem key={item.labelKey}>
-                <HeroProofValue>{item.value}</HeroProofValue>
-                <HeroProofLabel>{t(item.labelKey)}</HeroProofLabel>
+                <HeroProofIcon>{item.icon}</HeroProofIcon>
+                <div>
+                  <HeroProofValue>{item.value}</HeroProofValue>
+                  <HeroProofLabel>{t(item.labelKey)}</HeroProofLabel>
+                </div>
               </HeroProofItem>
             ))}
           </HeroProofGrid>
@@ -1541,7 +1574,7 @@ const HomePage = () => {
             >
               <StrengthIcon>{item.icon}</StrengthIcon>
               <StrengthContent>
-                <StrengthTitle>{t(item.titleKey)}</StrengthTitle>
+                <StrengthTitle>{item.value}</StrengthTitle>
                 <StrengthDescription>{t(item.descKey)}</StrengthDescription>
               </StrengthContent>
             </StrengthCard>

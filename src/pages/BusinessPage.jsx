@@ -4,13 +4,15 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Section } from '../components/ui/Page';
-import { customerPartners, facilityMetrics, operationHighlights } from '../data/company';
+import { facilityMetrics, operationHighlights } from '../data/company';
 import {
   FaArrowRight,
   FaBoxes,
   FaBuilding,
+  FaCar,
   FaCheckCircle,
   FaExpandArrowsAlt,
+  FaIndustry,
   FaQrcode,
   FaRegHandshake,
   FaSearch,
@@ -18,6 +20,7 @@ import {
   FaShippingFast,
   FaTools,
   FaTruckLoading,
+  FaTv,
   FaWarehouse,
 } from 'react-icons/fa';
 
@@ -562,6 +565,28 @@ const MetricsBar = styled.div`
   }
 `;
 
+const ModuleHeader = styled.div`
+  width: min(100%, 1180px);
+  margin: clamp(1.15rem, 2.4vw, 1.7rem) auto 0;
+  display: grid;
+  gap: 0.35rem;
+  text-align: left;
+
+  h2 {
+    color: var(--text-color);
+    font-size: clamp(1.35rem, 2.6vw, 1.8rem);
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  p {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+`;
+
 const MetricCell = styled.div`
   display: grid;
   grid-template-columns: 42px minmax(0, 1fr);
@@ -613,7 +638,7 @@ const ProcessSection = styled(Section)`
 
 const SectionHeader = styled.div`
   width: min(100%, 760px);
-  margin: 0 auto clamp(2rem, 5vw, 3rem);
+  margin: 0 auto clamp(1.35rem, 3vw, 2rem);
   text-align: center;
 `;
 
@@ -646,11 +671,12 @@ const ProcessGrid = styled.div`
   width: min(100%, 1200px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 0.55rem;
 
-  @media (max-width: 820px) {
+  @media (max-width: 1080px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
   }
 
   @media (max-width: 620px) {
@@ -663,19 +689,19 @@ const ProcessCard = styled(motion.article)`
   background: var(--background-color);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 1rem;
-  min-height: 150px;
+  padding: 0.72rem;
+  min-height: 112px;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.55rem;
   min-width: 0;
 `;
 
 const StepTop = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
+  align-items: flex-start;
+  gap: 0.5rem;
 `;
 
 const StepNumber = styled.span`
@@ -687,8 +713,8 @@ const StepNumber = styled.span`
 `;
 
 const StepIcon = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 8px;
   display: grid;
   place-items: center;
@@ -698,7 +724,7 @@ const StepIcon = styled.div`
 `;
 
 const StepTitle = styled.h3`
-  font-size: 1rem;
+  font-size: 0.88rem;
   color: var(--text-color);
   margin: 0;
   line-height: 1.35;
@@ -706,8 +732,8 @@ const StepTitle = styled.h3`
 
 const StepDescription = styled.p`
   color: var(--text-secondary);
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: 0.76rem;
+  line-height: 1.45;
   margin: 0;
 `;
 
@@ -800,32 +826,105 @@ const DarkMetric = styled.div`
   }
 `;
 
-const PartnersSection = styled(Section)`
+const IndustrySection = styled(Section)`
   background: var(--background-color);
 `;
 
-const PartnersPreview = styled.div`
-  width: min(100%, 1100px);
+const IndustryGrid = styled.div`
+  width: min(100%, 1120px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
-  gap: 0.85rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.8rem;
+
+  @media (max-width: 980px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (max-width: 620px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
-const PartnerLogoCard = styled.div`
-  min-height: 112px;
+const IndustryCard = styled.article`
+  min-height: 126px;
   background: #fff;
   border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 1rem;
   display: grid;
-  place-items: center;
+  align-content: start;
+  gap: 0.55rem;
+  min-width: 0;
+
+  svg {
+    color: var(--text-color);
+    font-size: 1.15rem;
+  }
+
+  strong {
+    color: var(--text-color);
+    font-size: 0.95rem;
+    line-height: 1.35;
+  }
+
+  span {
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+`;
+
+const EvidenceGrid = styled.div`
+  width: min(100%, 1120px);
+  margin: clamp(1.2rem, 3vw, 1.8rem) auto 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: #fff;
+  padding: 0.8rem;
+
+  @media (max-width: 1080px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (max-width: 620px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const EvidenceCard = styled.article`
+  display: grid;
+  gap: 0.65rem;
+  min-width: 0;
+`;
+
+const EvidenceImage = styled.div`
+  height: clamp(92px, 10vw, 124px);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--background-color);
 
   img {
-    max-width: 150px;
-    max-height: 58px;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
+`;
+
+const EvidenceTitle = styled.strong`
+  color: var(--text-color);
+  font-size: 0.9rem;
+  line-height: 1.35;
+`;
+
+const EvidenceText = styled.span`
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  line-height: 1.45;
 `;
 
 const ConsultationSection = styled(Section)`
@@ -900,6 +999,37 @@ const ChecklistText = styled.p`
   margin: 0;
 `;
 
+const ConsultationAction = styled.div`
+  grid-column: 2;
+  border: 1px solid rgba(var(--accent-amber-rgb), 0.36);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(var(--accent-amber-rgb), 0.16), rgba(var(--accent-amber-rgb), 0.04));
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  @media (max-width: 820px) {
+    grid-column: auto;
+    align-items: stretch;
+    flex-direction: column;
+  }
+`;
+
+const ConsultationActionText = styled.div`
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  line-height: 1.55;
+
+  strong {
+    display: block;
+    color: var(--text-color);
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+  }
+`;
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
@@ -935,7 +1065,7 @@ const BusinessPage = () => {
     },
     {
       icon: <FaSearch />,
-      image: '/images/kmtech-contact-warehouse-hero-960.webp',
+      image: '/images/kmtech-business-inspection-v2-960.webp',
       title: t('tpl_inspection_title'),
       descKey: 'business_inspection_summary',
       items: getSafeArray('tpl_inspection_items').slice(0, 3),
@@ -943,7 +1073,7 @@ const BusinessPage = () => {
     },
     {
       icon: <FaBoxes />,
-      image: '/images/kmtech-about-warehouse-hero-1440.webp',
+      image: '/images/kmtech-business-packaging-v2-960.webp',
       title: t('tpl_packaging_title'),
       descKey: 'business_packaging_summary',
       items: getSafeArray('tpl_packaging_items').slice(0, 3),
@@ -951,7 +1081,7 @@ const BusinessPage = () => {
     },
     {
       icon: <FaShippingFast />,
-      image: '/images/kmtech-contact-warehouse-hero-1440.webp',
+      image: '/images/kmtech-business-outbound-v2-960.webp',
       title: t('business_delivery_title'),
       descKey: 'business_delivery_summary',
       items: getSafeArray('business_delivery_items').slice(0, 3),
@@ -996,6 +1126,20 @@ const BusinessPage = () => {
     { icon: <FaCheckCircle />, titleKey: 'business_consult_check_quality_title', descKey: 'business_consult_check_quality_desc' },
     { icon: <FaTruckLoading />, titleKey: 'business_consult_check_delivery_title', descKey: 'business_consult_check_delivery_desc' },
   ];
+  const industryFit = [
+    { icon: <FaCar />, title: '자동차·부품', text: '부품, A/S부품, 모듈성 제품 보관 및 납품 관리' },
+    { icon: <FaTv />, title: '전자·전기', text: '디스플레이, 보드, 전장품 입고와 검수 표준 관리' },
+    { icon: <FaIndustry />, title: '기계·설비', text: '부품, 공구, 자재 프로젝트성 출고 관리' },
+    { icon: <FaBoxes />, title: '소비재·유통', text: '소분, 합포장, 재포장과 단기 물량 대응' },
+    { icon: <FaShieldAlt />, title: '의료·헬스케어', text: '오염 방지와 추적성 중심 보관 기준' },
+  ];
+  const operationEvidence = [
+    { image: '/images/kmtech-about-warehouse-hero-960.webp', title: '3,000+ Class 보관', text: '랙 기반 대량 보관과 위치 관리' },
+    { image: '/images/kmtech-business-inspection-v2-960.webp', title: '검수·입고 기록', text: '태블릿 기반 확인과 작업 이력 축적' },
+    { image: '/images/kmtech-business-control-desk-v2-960.webp', title: 'ERP QR 관제', text: '재고와 작업 흐름을 데이터로 관리' },
+    { image: '/images/kmtech-business-packaging-v2-960.webp', title: '포장·재작업', text: '소분, 라벨링, 합포장 작업 대응' },
+    { image: '/images/kmtech-business-outbound-v2-960.webp', title: '출고 준비', text: '상차와 배송 준비 흐름 지원' },
+  ];
 
   return (
     <PageContainer>
@@ -1005,7 +1149,7 @@ const BusinessPage = () => {
             <HeroCopy initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
               <Eyebrow>{t('business_hero_label')}</Eyebrow>
               <HeroTitle>{t('business_title')}</HeroTitle>
-              <HeroDescription>{t('tpl_biz_desc')}</HeroDescription>
+              <HeroDescription>보관, 검수, 재포장, 출고·배송까지 고객의 물류 프로세스 전반을 최적화합니다.</HeroDescription>
               <FeatureRow>
                 {features.map((feature) => (
                   <FeatureItem key={feature.titleKey}>
@@ -1092,6 +1236,12 @@ const BusinessPage = () => {
             ))}
           </MetricsBar>
 
+          <ModuleHeader>
+            <SectionKicker>{t('business_services_label')}</SectionKicker>
+            <h2>처리 업무 모듈</h2>
+            <p>고객사의 물류 업무에 맞춰 필요한 운영만 선택하여 조합할 수 있습니다.</p>
+          </ModuleHeader>
+
           <ServicesGrid variants={containerVariants} initial="hidden" animate="visible">
             {services.map((service) => (
               <ServiceCard key={service.title} variants={itemVariants}>
@@ -1167,20 +1317,33 @@ const BusinessPage = () => {
         </DarkMetricBand>
       </MeaningSection>
 
-      <PartnersSection>
+      <IndustrySection>
         <SectionHeader>
-          <SectionKicker>{t('home_section_partners_label')}</SectionKicker>
-          <SectionHeading>{t('core_customers_title')}</SectionHeading>
-          <SectionDescription>{t('partners_section_desc')}</SectionDescription>
+          <SectionKicker>주요 고객사</SectionKicker>
+          <SectionHeading>고객 산업 적합성</SectionHeading>
+          <SectionDescription>다양한 제조·유통 산업의 3PL 운영 경험이 있습니다.</SectionDescription>
         </SectionHeader>
-        <PartnersPreview>
-          {customerPartners.map((partner) => (
-            <PartnerLogoCard key={partner.name}>
-              <img src={partner.logo} alt={`${partner.name} logo`} loading="lazy" decoding="async" />
-            </PartnerLogoCard>
+        <IndustryGrid>
+          {industryFit.map((item) => (
+            <IndustryCard key={item.title}>
+              {item.icon}
+              <strong>{item.title}</strong>
+              <span>{item.text}</span>
+            </IndustryCard>
           ))}
-        </PartnersPreview>
-      </PartnersSection>
+        </IndustryGrid>
+        <EvidenceGrid>
+          {operationEvidence.map((item) => (
+            <EvidenceCard key={item.title}>
+              <EvidenceImage>
+                <img src={item.image} alt="" loading="lazy" decoding="async" />
+              </EvidenceImage>
+              <EvidenceTitle>{item.title}</EvidenceTitle>
+              <EvidenceText>{item.text}</EvidenceText>
+            </EvidenceCard>
+          ))}
+        </EvidenceGrid>
+      </IndustrySection>
 
       <ConsultationSection>
         <ConsultationGrid>
@@ -1200,6 +1363,15 @@ const BusinessPage = () => {
               </ChecklistCard>
             ))}
           </ChecklistGrid>
+          <ConsultationAction>
+            <ConsultationActionText>
+              <strong>{t('business_consult_cta')}</strong>
+              물량, 제품군, 검수·포장 기준을 알려주시면 맞춤형 운영안을 제안드립니다.
+            </ConsultationActionText>
+            <PrimaryLink to="/contact">
+              {t('nav_contact')} <FaArrowRight />
+            </PrimaryLink>
+          </ConsultationAction>
         </ConsultationGrid>
       </ConsultationSection>
     </PageContainer>

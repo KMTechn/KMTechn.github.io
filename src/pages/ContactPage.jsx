@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Section, SectionTitle } from '../components/ui/Page';
+import { Section } from '../components/ui/Page';
 import { FaBoxes, FaClock, FaEnvelope, FaHeadset, FaMapMarkerAlt, FaPhoneAlt, FaRoute, FaShieldAlt, FaTruckLoading } from 'react-icons/fa';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -28,7 +28,7 @@ const PageContainer = styled.div`
 
 const HeroSection = styled.section`
   position: relative;
-  min-height: clamp(360px, 44vh, 430px);
+  min-height: clamp(420px, 48vh, 500px);
   display: flex;
   align-items: center;
   padding: clamp(3.6rem, 5.6vw, 4.8rem) clamp(1rem, 5vw, 5%) clamp(4.2rem, 6vw, 5.4rem);
@@ -60,9 +60,9 @@ const HeroSection = styled.section`
   }
 
   @media (min-width: 821px) {
-    min-height: clamp(360px, 38vh, 430px);
+    min-height: clamp(420px, 44vh, 500px);
     padding-top: clamp(3.2rem, 4.5vw, 4.4rem);
-    padding-bottom: clamp(4.2rem, 5.6vw, 5.4rem);
+    padding-bottom: clamp(5rem, 6.2vw, 6.4rem);
   }
 `;
 
@@ -117,13 +117,12 @@ const HeroDescription = styled.p`
 const ContactRail = styled.div`
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.55rem;
-  padding: 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  gap: 0;
+  padding: 0;
+  border: 1px solid rgba(17, 24, 39, 0.08);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.11);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.18);
   min-width: 0;
   width: min(100%, 1120px);
   transform: translateY(clamp(3.2rem, 4.8vw, 4.4rem));
@@ -135,21 +134,37 @@ const ContactRail = styled.div`
 `;
 
 const RailItem = styled.a`
-  min-height: 44px;
+  min-height: 58px;
   display: flex;
   align-items: center;
   gap: 0.85rem;
-  padding: 0.58rem 0.75rem;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.58);
-  border-radius: 8px;
+  padding: 0.7rem 0.95rem;
+  background: transparent;
+  border: 0;
+  border-right: 1px solid var(--border-color);
+  border-radius: 0;
   text-decoration: none;
   color: #111;
   min-width: 0;
 
+  &:first-child {
+    border-radius: 8px 0 0 8px;
+  }
+
+  &:last-child {
+    border-right: 0;
+    border-radius: 0 8px 8px 0;
+  }
+
   svg {
     color: var(--accent-amber);
     flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    box-sizing: content-box;
+    padding: 0.55rem;
+    border-radius: 50%;
+    background: rgba(var(--accent-amber-rgb), 0.16);
   }
 
   span {
@@ -159,6 +174,31 @@ const RailItem = styled.a`
     line-height: 1.35;
     font-weight: 600;
     font-size: 0.95rem;
+  }
+
+  strong,
+  small {
+    display: block;
+  }
+
+  strong {
+    color: var(--text-color);
+    font-size: 0.88rem;
+  }
+
+  small {
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    margin-top: 0.1rem;
+  }
+
+  @media (max-width: 820px) {
+    border-right: 0;
+    border-bottom: 1px solid var(--border-color);
+
+    &:last-child {
+      border-bottom: 0;
+    }
   }
 `;
 
@@ -320,10 +360,23 @@ const InquiryNotice = styled.div`
   border-radius: 8px;
   background: linear-gradient(135deg, rgba(var(--accent-amber-rgb), 0.16), rgba(var(--accent-amber-rgb), 0.05));
   border: 1px solid rgba(var(--accent-amber-rgb), 0.26);
-  padding: 1rem;
+  padding: 1.15rem;
   color: var(--text-secondary);
   line-height: 1.65;
   font-size: 0.9rem;
+
+  strong {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--text-color);
+    margin-bottom: 0.55rem;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.1rem;
+  }
 `;
 
 const LocationsSection = styled.section`
@@ -334,6 +387,21 @@ const LocationsSection = styled.section`
 const LocationCard = styled(Panel)`
   display: grid;
   gap: 1rem;
+`;
+
+const LocationMedia = styled.div`
+  height: clamp(104px, 10vw, 132px);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  background: var(--background-color);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 `;
 
 const LocationHeader = styled.div`
@@ -427,7 +495,7 @@ const LocationAction = styled.a`
 `;
 
 const MapWrapper = styled.div`
-  height: clamp(220px, 28vw, 300px);
+  height: clamp(128px, 17vw, 160px);
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid var(--border-color);
@@ -453,6 +521,8 @@ const ContactPage = () => {
       pos: headOfficePos,
       tag: t('contact_office_tag'),
       role: t('contact_office_role'),
+      image: '/images/kmtech-contact-office-v2.png',
+      srcSet: '/images/kmtech-contact-office-v2-960.webp 960w, /images/kmtech-contact-office-v2-1440.webp 1440w, /images/kmtech-contact-office-v2.png 1536w',
     },
     {
       key: 'warehouse',
@@ -463,6 +533,8 @@ const ContactPage = () => {
       pos: warehousePos,
       tag: t('contact_warehouse_tag'),
       role: t('contact_warehouse_role'),
+      image: '/images/kmtech-business-outbound-v2.png',
+      srcSet: '/images/kmtech-business-outbound-v2-960.webp 960w, /images/kmtech-business-outbound-v2-1440.webp 1440w, /images/kmtech-business-outbound-v2.png 1536w',
     },
   ];
 
@@ -478,26 +550,26 @@ const ContactPage = () => {
       <HeroSection>
         <HeroInner>
           <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
-            <Eyebrow>{t('contact_hero_label')}</Eyebrow>
+            <Eyebrow>빠르고 정확한 3PL 파트너</Eyebrow>
             <HeroTitle>3PL 상담과 방문 위치 안내</HeroTitle>
-            <HeroDescription>{t('contact_form_desc')}</HeroDescription>
+            <HeroDescription>문의 주시면 담당자가 빠르게 확인하여 최적의 3PL 솔루션과 방문 안내를 도와드립니다.</HeroDescription>
           </motion.div>
           <ContactRail>
             <RailItem href={`tel:${t('contact_office_phone')}`}>
               <FaPhoneAlt />
-              <span>{t('contact_office_phone')}</span>
+              <span><strong>전화하기</strong><small>{t('contact_office_phone')}</small></span>
             </RailItem>
             <RailItem href={`mailto:${t('contact_office_email')}`}>
               <FaEnvelope />
-              <span>{t('contact_office_email')}</span>
+              <span><strong>이메일 보내기</strong><small>{t('contact_office_email')}</small></span>
             </RailItem>
             <RailItem href="#contact-form">
               <FaHeadset />
-              <span>{t('contact_quick_form')}</span>
+              <span><strong>문의 작성하기</strong><small>온라인 문의 접수</small></span>
             </RailItem>
             <RailItem as="div">
               <FaClock />
-              <span>평일 09:00 - 18:00</span>
+              <span><strong>운영시간 안내</strong><small>평일 09:00 - 18:00</small></span>
             </RailItem>
           </ContactRail>
         </HeroInner>
@@ -522,7 +594,6 @@ const ContactPage = () => {
             <span>{t('contact_quick_locations')}</span>
           </QuickAction>
         </QuickActionGrid>
-        <SectionTitle>{t('contact_section_title')}</SectionTitle>
         <ContentLayout>
           <Panel id="contact-form" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
             <PanelTitle>{t('contact_form_title')}</PanelTitle>
@@ -542,13 +613,18 @@ const ContactPage = () => {
               ))}
             </InquiryGrid>
             <InquiryNotice>
-              빠른 답변을 위해 물량, 제품군, 검수·포장 요구사항을 함께 남겨주세요.
+              <strong><FaShieldAlt /> 빠른 답변을 위해 확인해주세요</strong>
+              <ul>
+                <li>문의 유형을 선택하시면 담당자에게 더 빠르게 전달됩니다.</li>
+                <li>입고/검수/운영 방문은 물류센터로 문의 부탁드립니다.</li>
+                <li>계약/견적 상담은 본사로 문의 부탁드립니다.</li>
+              </ul>
             </InquiryNotice>
           </InquiryPanel>
         </ContentLayout>
 
         <LocationsSection id="locations">
-          <PanelTitle>{t('contact_quick_locations')}</PanelTitle>
+          <PanelTitle>방문 위치 안내</PanelTitle>
           <PanelText>방문 목적에 맞는 위치를 선택하시면 상세 정보를 확인할 수 있습니다.</PanelText>
           <LocationStack>
             {locations.map((location, index) => (
@@ -562,6 +638,16 @@ const ContactPage = () => {
                   <LocationTitle>{location.title}</LocationTitle>
                   <LocationTag><FaRoute /> {location.tag}</LocationTag>
                 </LocationHeader>
+                <LocationMedia>
+                  <img
+                    src={location.image}
+                    srcSet={location.srcSet}
+                    sizes="(max-width: 820px) 100vw, 42vw"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </LocationMedia>
                 <LocationRole>{location.role}</LocationRole>
                 <InfoRows>
                   <InfoRow>
@@ -578,11 +664,8 @@ const ContactPage = () => {
                   </InfoRow>
                 </InfoRows>
                 <LocationActions>
-                  <LocationAction href={`tel:${location.phone}`}>
-                    <FaPhoneAlt /> {t('contact_quick_phone')}
-                  </LocationAction>
                   <LocationAction href={`https://www.google.com/maps/search/?api=1&query=${location.pos[0]},${location.pos[1]}`} target="_blank" rel="noreferrer">
-                    <FaMapMarkerAlt /> {t('contact_open_map')}
+                    <FaMapMarkerAlt /> 길찾기
                   </LocationAction>
                 </LocationActions>
                 <MapWrapper>

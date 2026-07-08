@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { FaMapMarkerAlt, FaEnvelope, FaLinkedin, FaGlobe, FaWarehouse } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaEnvelope, FaLinkedin, FaGlobe, FaPhoneAlt } from 'react-icons/fa';
 
 const FooterContainer = styled.footer`
   background:
@@ -225,8 +225,8 @@ const Footer = () => {
       <FooterContent>
         <FooterSection>
           <FooterLogo to="/">
-            <img src="/logo.png?v=1" alt="KMTECH Logo" />
-            <LogoText>KMTECH</LogoText>
+            <img src="/logo.png?v=1" alt="KMTech Logo" />
+            <LogoText>KMTech</LogoText>
           </FooterLogo>
           <FooterDescription>
             {t('footer_description')}
@@ -277,6 +277,10 @@ const Footer = () => {
           <ContactItem>
             <FaEnvelope size={14} />
             <a href={`mailto:${t('contact_office_email')}`}>{t('contact_office_email')}</a>
+          </ContactItem>
+          <ContactItem>
+            <FaPhoneAlt size={14} />
+            <a href={`tel:${t('contact_office_phone')}`}>{t('contact_office_phone')}</a>
           </ContactItem>
         </FooterSection>
       </FooterContent>
