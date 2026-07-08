@@ -80,8 +80,8 @@
   "contact_form_privacy": "我同意收集和使用个人信息。（必填）",
   "contact_form_submit": "发送留言",
   "contact_form_submitting": "发送中...",
-  "contact_form_success_title": "邮件应用已打开",
-  "contact_form_success_desc": "您的消息已在邮件应用中准备好。请在那里确认内容并点击发送。",
+  "contact_form_success_title": "咨询已提交",
+  "contact_form_success_desc": "您的消息已发送给 KMTech 负责人。我们确认后会尽快联系您。",
   "home_services_title": "核心服务",
   "home_services_3pl_title": "3PL 解决方案",
   "home_services_3pl_desc": "我们提供全面的第三方物流服务，包括仓储、检验和包装，以优化您的供应链。",
@@ -348,5 +348,7 @@
   "contact_quick_locations": "访问位置",
   "contact_office_role": "咨询和合同咨询",
   "contact_warehouse_role": "入库、检验、运营访问",
-  "contact_open_map": "查看地图"
+  "contact_open_map": "查看地图",
+  "contact_form_fallback_title": "邮件应用已打开",
+  "contact_form_fallback_desc": "服务器发送尚未准备好，因此已在您的邮件应用中打开咨询内容。请确认后点击发送。"
 }

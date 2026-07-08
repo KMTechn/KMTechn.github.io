@@ -80,8 +80,8 @@
   "contact_form_privacy": "I agree to the collection and use of personal information. (Required)",
   "contact_form_submit": "Send Message",
   "contact_form_submitting": "Sending...",
-  "contact_form_success_title": "Email app opened",
-  "contact_form_success_desc": "Your message was prepared in your email app. Please review it there and press send.",
+  "contact_form_success_title": "Inquiry submitted",
+  "contact_form_success_desc": "Your message was sent to the KMTech team. We will review it and get back to you.",
   "home_services_title": "Our Core Service",
   "home_services_3pl_title": "3rd Party Logistics Solutions",
   "home_services_3pl_desc": "We provide comprehensive 3rd party logistics services, including warehousing, inspection, and packaging, to optimize your supply chain.",
@@ -348,5 +348,7 @@
   "contact_quick_locations": "Visit locations",
   "contact_office_role": "Consulting and contract inquiries",
   "contact_warehouse_role": "Inbound, inspection, and operations visits",
-  "contact_open_map": "Open map"
+  "contact_open_map": "Open map",
+  "contact_form_fallback_title": "Email app opened",
+  "contact_form_fallback_desc": "Server delivery is not ready yet, so your message was opened in your email app. Please review it and press send."
 }

@@ -80,8 +80,8 @@
   "contact_form_privacy": "개인정보 수집 및 이용에 동의합니다. (필수)",
   "contact_form_submit": "문의 접수하기",
   "contact_form_submitting": "전송 중...",
-  "contact_form_success_title": "이메일 앱이 열렸습니다",
-  "contact_form_success_desc": "문의 내용이 이메일 앱에 작성되었습니다. 이메일 앱에서 내용을 확인한 뒤 보내기를 눌러주세요.",
+  "contact_form_success_title": "문의가 접수되었습니다",
+  "contact_form_success_desc": "문의 내용이 담당자 이메일로 전송되었습니다. 확인 후 연락드리겠습니다.",
   "home_services_title": "핵심 서비스",
   "home_services_3pl_title": "3PL 솔루션",
   "home_services_3pl_desc": "창고 보관, 검수, 포장을 포함한 포괄적인 제3자 물류 서비스를 통해 고객의 공급망을 최적화합니다.",
@@ -348,5 +348,7 @@
   "contact_quick_locations": "방문 위치",
   "contact_office_role": "상담·계약 문의",
   "contact_warehouse_role": "입고·검수·운영 방문",
-  "contact_open_map": "지도 보기"
+  "contact_open_map": "지도 보기",
+  "contact_form_fallback_title": "이메일 앱이 열렸습니다",
+  "contact_form_fallback_desc": "서버 전송이 아직 준비되지 않아 이메일 앱으로 문의 내용을 열었습니다. 내용을 확인한 뒤 보내기를 눌러주세요."
 }

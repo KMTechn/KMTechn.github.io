@@ -199,8 +199,16 @@ const SubmitButton = styled.button`
 
 const StatusMessage = styled(motion.div)`
   background-color: var(--card-bg);
-  border: 1px solid ${props => props.status === 'success' ? '#10b981' : '#ef4444'};
-  color: ${props => props.status === 'success' ? '#10b981' : '#ef4444'};
+  border: 1px solid ${props => {
+    if (props.status === 'success') return '#10b981';
+    if (props.status === 'fallback') return 'var(--accent-amber)';
+    return '#ef4444';
+  }};
+  color: ${props => {
+    if (props.status === 'success') return '#10b981';
+    if (props.status === 'fallback') return '#121212';
+    return '#ef4444';
+  }};
   border-radius: var(--radius-lg);
   padding: var(--space-8);
   text-align: center;
@@ -261,6 +269,17 @@ const SecurityCopy = styled.div`
   }
 `;
 
+const HoneypotField = styled.div`
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+`;
+
+const contactApiUrl = import.meta.env.VITE_CONTACT_API_URL || '/api/contact';
+
 // Validation helpers
 const validateEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -288,6 +307,7 @@ const ContactForm = () => {
     phone: '',
     subject: '',
     message: '',
+    website: '',
     privacy: false,
   });
   const inquiryTypes = [
@@ -299,7 +319,7 @@ const ContactForm = () => {
   const [inquiryType, setInquiryType] = useState(inquiryTypes[0].value);
   const [errors, setErrors] = useState({ name: '', email: '', phone: '', message: '', privacy: '' });
   const [touched, setTouched] = useState({ name: false, email: false, phone: false, message: false, privacy: false });
-  const [status, setStatus] = useState('idle'); // idle, submitting, success, error
+  const [status, setStatus] = useState('idle'); // idle, submitting, success, fallback, error
 
   // Validate field on blur or change
   const validateField = (name, value) => {
@@ -349,7 +369,7 @@ const ContactForm = () => {
     return !Object.values(newErrors).some(error => error);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateForm()) {
@@ -358,42 +378,77 @@ const ContactForm = () => {
 
     setStatus('submitting');
 
-    // mailto: 방식으로 이메일 앱 열기
-    const recipient = 'cgpark@kmtechn.com';
     const selectedInquiry = inquiryTypes.find((type) => type.value === inquiryType);
     const inquiryLabel = selectedInquiry?.label || t(selectedInquiry?.labelKey || 'contact_inquiry_type_general');
     const subjectText = formData.subject.trim() || inquiryLabel;
-    const subject = encodeURIComponent(`[KMTech 문의] ${subjectText} - ${formData.name}`);
-    const body = encodeURIComponent(
-      `회사명: ${formData.company || '-'}\n` +
-      `보낸 사람: ${formData.name}\n` +
-      `연락처: ${formData.phone}\n` +
-      `이메일: ${formData.email}\n\n` +
-      `문의 유형: ${inquiryLabel}\n\n` +
-      `제목: ${subjectText}\n\n` +
-      `문의 내용:\n${formData.message}`
-    );
+    const resetForm = () => {
+      setFormData({ company: '', name: '', email: '', phone: '', subject: '', message: '', website: '', privacy: false });
+      setInquiryType(inquiryTypes[0].value);
+      setErrors({ name: '', email: '', phone: '', message: '', privacy: '' });
+      setTouched({ name: false, email: false, phone: false, message: false, privacy: false });
+    };
+    const openMailFallback = () => {
+      const recipient = 'cgpark@kmtechn.com';
+      const subject = encodeURIComponent(`[KMTech 문의] ${subjectText} - ${formData.name}`);
+      const body = encodeURIComponent(
+        `회사명: ${formData.company || '-'}\n` +
+        `보낸 사람: ${formData.name}\n` +
+        `연락처: ${formData.phone}\n` +
+        `이메일: ${formData.email}\n\n` +
+        `문의 유형: ${inquiryLabel}\n\n` +
+        `제목: ${subjectText}\n\n` +
+        `문의 내용:\n${formData.message}`
+      );
 
-    const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    };
 
-    // 메일 앱 열기
-    window.location.href = mailtoLink;
+    try {
+      const response = await fetch(contactApiUrl, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          inquiryType,
+          inquiryLabel,
+          company: formData.company,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: subjectText,
+          message: formData.message,
+          website: formData.website,
+        }),
+      });
 
-    // 폼 초기화
-    setStatus('success');
-    setFormData({ company: '', name: '', email: '', phone: '', subject: '', message: '', privacy: false });
-    setInquiryType(inquiryTypes[0].value);
-    setErrors({ name: '', email: '', phone: '', message: '', privacy: '' });
-    setTouched({ name: false, email: false, phone: false, message: false, privacy: false });
+      const result = await response.json().catch(() => ({}));
 
-    setTimeout(() => {
-      setStatus('idle');
-    }, 3000);
+      if (!response.ok || !result.ok) {
+        throw new Error(result.error || 'contact_request_failed');
+      }
+
+      setStatus('success');
+      resetForm();
+
+      setTimeout(() => {
+        setStatus('idle');
+      }, 3000);
+    } catch (error) {
+      console.error('Contact request failed', error);
+      openMailFallback();
+      setStatus('fallback');
+      resetForm();
+
+      setTimeout(() => {
+        setStatus('idle');
+      }, 4000);
+    }
   };
 
   return (
     <AnimatePresence mode="wait">
-      {status === 'success' || status === 'error' ? (
+      {status === 'success' || status === 'fallback' || status === 'error' ? (
         <StatusMessage
           key="status"
           status={status}
@@ -402,9 +457,9 @@ const ContactForm = () => {
           exit={{ opacity: 0, y: -20 }}
         >
           <StatusTitle>
-            {status === 'success' ? (
+            {status === 'success' || status === 'fallback' ? (
               <>
-                <CheckCircle size={28} /> {t('contact_form_success_title')}
+                <CheckCircle size={28} /> {status === 'fallback' ? t('contact_form_fallback_title') : t('contact_form_success_title')}
               </>
             ) : (
               <>
@@ -412,7 +467,13 @@ const ContactForm = () => {
               </>
             )}
           </StatusTitle>
-          <p>{status === 'success' ? t('contact_form_success_desc') : t('contact_form_error_desc') || 'Failed to send message'}</p>
+          <p>
+            {status === 'success'
+              ? t('contact_form_success_desc')
+              : status === 'fallback'
+                ? t('contact_form_fallback_desc')
+                : t('contact_form_error_desc') || 'Failed to send message'}
+          </p>
         </StatusMessage>
       ) : (
         <FormContainer
@@ -424,6 +485,19 @@ const ContactForm = () => {
           transition={{ delay: 0.2 }}
           noValidate
         >
+          <HoneypotField aria-hidden="true">
+            <label htmlFor="contact-website">Website</label>
+            <input
+              id="contact-website"
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              value={formData.website}
+              onChange={handleChange}
+            />
+          </HoneypotField>
+
           <TypeGrid aria-label={t('contact_inquiry_type_label')}>
             {inquiryTypes.map((type) => {
               const Icon = type.icon;

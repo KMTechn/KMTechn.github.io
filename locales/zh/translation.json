@@ -76,8 +76,8 @@
   "contact_form_message": "您的留言",
   "contact_form_submit": "发送留言",
   "contact_form_submitting": "发送中...",
-  "contact_form_success_title": "留言已发送！",
-  "contact_form_success_desc": "感谢您的咨询。我们会尽快回复您。",
+  "contact_form_success_title": "咨询已提交",
+  "contact_form_success_desc": "您的消息已发送给 KMTech 负责人。我们确认后会尽快联系您。",
   "contact_form_error_title": "发送消息时出错",
   "contact_form_error_desc": "发送消息时发生错误。请稍后再试。",
   "validation_name_required": "姓名至少需要2个字符",
@@ -143,5 +143,7 @@
   "business_service_more": "查看详情",
   "hero_visual_label": "GLOBAL NETWORK",
   "hero_visual_network": "以韩国枢纽连接的 3PL 物流网络",
-  "hero_visual_flow_label": "ONE-STOP 3PL SOLUTION"
+  "hero_visual_flow_label": "ONE-STOP 3PL SOLUTION",
+  "contact_form_fallback_title": "邮件应用已打开",
+  "contact_form_fallback_desc": "服务器发送尚未准备好，因此已在您的邮件应用中打开咨询内容。请确认后点击发送。"
 }

@@ -76,8 +76,8 @@
   "contact_form_message": "Ihre Nachricht",
   "contact_form_submit": "Nachricht senden",
   "contact_form_submitting": "Senden...",
-  "contact_form_success_title": "Nachricht gesendet!",
-  "contact_form_success_desc": "Vielen Dank für Ihre Anfrage. Wir werden uns bald bei Ihnen melden.",
+  "contact_form_success_title": "Anfrage eingegangen",
+  "contact_form_success_desc": "Ihre Nachricht wurde an das KMTech-Team gesendet. Wir prüfen sie und melden uns bei Ihnen.",
   "contact_form_error_title": "Fehler beim Senden der Nachricht",
   "contact_form_error_desc": "Beim Senden Ihrer Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
   "validation_name_required": "Der Name muss mindestens 2 Zeichen lang sein",
@@ -143,5 +143,7 @@
   "business_service_more": "Details ansehen",
   "hero_visual_label": "GLOBAL NETWORK",
   "hero_visual_network": "3PL-Logistiknetzwerk über den Korea-Hub",
-  "hero_visual_flow_label": "ONE-STOP 3PL SOLUTION"
+  "hero_visual_flow_label": "ONE-STOP 3PL SOLUTION",
+  "contact_form_fallback_title": "E-Mail-App geöffnet",
+  "contact_form_fallback_desc": "Der Serverversand ist noch nicht bereit, daher wurde Ihre Nachricht in Ihrer E-Mail-App geöffnet. Bitte prüfen und senden Sie sie dort."
 }

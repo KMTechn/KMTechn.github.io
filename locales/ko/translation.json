@@ -76,8 +76,8 @@
   "contact_form_message": "문의 내용",
   "contact_form_submit": "문의 접수하기",
   "contact_form_submitting": "전송 중...",
-  "contact_form_success_title": "메시지 전송 완료",
-  "contact_form_success_desc": "문의해주셔서 감사합니다. 곧 회신드리겠습니다.",
+  "contact_form_success_title": "문의가 접수되었습니다",
+  "contact_form_success_desc": "문의 내용이 담당자 이메일로 전송되었습니다. 확인 후 연락드리겠습니다.",
   "contact_form_error_title": "메시지 전송 오류",
   "contact_form_error_desc": "메시지 전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
   "validation_name_required": "성함은 2자 이상이어야 합니다",
@@ -143,5 +143,7 @@
   "business_service_more": "자세히 보기",
   "hero_visual_label": "GLOBAL NETWORK",
   "hero_visual_network": "한국 허브에서 연결되는 3PL 물류 네트워크",
-  "hero_visual_flow_label": "ONE-STOP 3PL SOLUTION"
+  "hero_visual_flow_label": "ONE-STOP 3PL SOLUTION",
+  "contact_form_fallback_title": "이메일 앱이 열렸습니다",
+  "contact_form_fallback_desc": "서버 전송이 아직 준비되지 않아 이메일 앱으로 문의 내용을 열었습니다. 내용을 확인한 뒤 보내기를 눌러주세요."
 }

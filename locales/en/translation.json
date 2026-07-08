@@ -76,8 +76,8 @@
   "contact_form_message": "Your Message",
   "contact_form_submit": "Send Message",
   "contact_form_submitting": "Sending...",
-  "contact_form_success_title": "Message Sent!",
-  "contact_form_success_desc": "Thank you for your inquiry. We will get back to you soon.",
+  "contact_form_success_title": "Inquiry submitted",
+  "contact_form_success_desc": "Your message was sent to the KMTech team. We will review it and get back to you.",
   "contact_form_error_title": "Error Sending Message",
   "contact_form_error_desc": "There was an error sending your message. Please try again later.",
   "validation_name_required": "Name must be at least 2 characters",
@@ -143,5 +143,7 @@
   "business_service_more": "View details",
   "hero_visual_label": "GLOBAL NETWORK",
   "hero_visual_network": "3PL logistics network connected through the Korea hub",
-  "hero_visual_flow_label": "ONE-STOP 3PL SOLUTION"
+  "hero_visual_flow_label": "ONE-STOP 3PL SOLUTION",
+  "contact_form_fallback_title": "Email app opened",
+  "contact_form_fallback_desc": "Server delivery is not ready yet, so your message was opened in your email app. Please review it and press send."
 }

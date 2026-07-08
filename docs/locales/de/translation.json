@@ -80,8 +80,8 @@
   "contact_form_privacy": "Ich stimme der Erhebung und Nutzung personenbezogener Daten zu. (Erforderlich)",
   "contact_form_submit": "Nachricht senden",
   "contact_form_submitting": "Senden...",
-  "contact_form_success_title": "E-Mail-App geöffnet",
-  "contact_form_success_desc": "Ihre Nachricht wurde in Ihrer E-Mail-App vorbereitet. Bitte prüfen Sie sie dort und drücken Sie Senden.",
+  "contact_form_success_title": "Anfrage eingegangen",
+  "contact_form_success_desc": "Ihre Nachricht wurde an das KMTech-Team gesendet. Wir prüfen sie und melden uns bei Ihnen.",
   "home_services_title": "Unsere Kerndienstleistungen",
   "home_services_3pl_title": "3PL-Lösungen",
   "home_services_3pl_desc": "Wir bieten umfassende 3PL-Dienstleistungen, einschließlich Lagerhaltung, Inspektion und Verpackung, zur Optimierung Ihrer Lieferkette.",
@@ -348,5 +348,7 @@
   "contact_quick_locations": "Standorte",
   "contact_office_role": "Beratung und Vertragsanfragen",
   "contact_warehouse_role": "Wareneingang, Prüfung und Betriebsbesuche",
-  "contact_open_map": "Karte öffnen"
+  "contact_open_map": "Karte öffnen",
+  "contact_form_fallback_title": "E-Mail-App geöffnet",
+  "contact_form_fallback_desc": "Der Serverversand ist noch nicht bereit, daher wurde Ihre Nachricht in Ihrer E-Mail-App geöffnet. Bitte prüfen und senden Sie sie dort."
 }
