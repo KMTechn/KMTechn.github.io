@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import Page from '../components/ui/Page';
 import { customerPartners } from '../data/company';
-import { FaArrowRight, FaCar, FaCheckCircle, FaFilter, FaHandshake, FaIndustry, FaLayerGroup, FaTv } from 'react-icons/fa';
+import { FaArrowRight, FaCar, FaFilter, FaHandshake, FaIndustry, FaLayerGroup, FaTv } from 'react-icons/fa';
 
 const HeroSection = styled.section`
   min-height: clamp(390px, 47vh, 500px);
@@ -451,103 +451,6 @@ const CTASection = styled.section`
   border-top: 1px solid var(--border-color);
 `;
 
-const MatrixSection = styled.section`
-  padding: clamp(2rem, 3.6vw, 3rem) clamp(1rem, 5vw, 5%);
-  background: var(--card-bg);
-  border-top: 1px solid var(--border-color);
-`;
-
-const MatrixWrap = styled.div`
-  width: min(100%, 1180px);
-  margin: 0 auto;
-  overflow-x: auto;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  background: #fff;
-
-  @media (max-width: 620px) {
-    display: none;
-  }
-`;
-
-const MatrixTable = styled.table`
-  width: 100%;
-  min-width: 760px;
-  border-collapse: collapse;
-`;
-
-const MatrixTh = styled.th`
-  text-align: left;
-  color: var(--text-color);
-  font-size: 0.78rem;
-  line-height: 1.35;
-  padding: 0.85rem;
-  background: rgba(var(--accent-amber-rgb), 0.08);
-  border-bottom: 1px solid var(--border-color);
-  white-space: nowrap;
-`;
-
-const MatrixTd = styled.td`
-  color: var(--text-secondary);
-  font-size: 0.82rem;
-  line-height: 1.45;
-  padding: 1rem 0.85rem;
-  border-bottom: 1px solid var(--border-color);
-  vertical-align: middle;
-`;
-
-const ScopeCheck = styled.span`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 8px;
-  color: ${({ $active }) => $active ? '#121212' : 'transparent'};
-  background: ${({ $active }) => $active ? 'var(--accent-amber)' : 'var(--background-color)'};
-  border: 1px solid ${({ $active }) => $active ? 'var(--accent-amber)' : 'var(--border-color)'};
-`;
-
-const MobileMatrixGrid = styled.div`
-  display: none;
-
-  @media (max-width: 620px) {
-    width: min(100%, 1180px);
-    margin: 0 auto;
-    display: grid;
-    gap: 0.75rem;
-  }
-`;
-
-const MobileMatrixCard = styled.article`
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  background: #fff;
-  padding: 1rem;
-  display: grid;
-  gap: 0.75rem;
-`;
-
-const MobileMatrixTop = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 0.75rem;
-  align-items: flex-start;
-`;
-
-const MobileMatrixName = styled.strong`
-  color: var(--text-color);
-  font-size: 0.98rem;
-  line-height: 1.3;
-`;
-
-const MobileMatrixIndustry = styled.span`
-  color: var(--text-secondary);
-  font-size: 0.8rem;
-  line-height: 1.35;
-  white-space: nowrap;
-`;
-
 const CTAContent = styled.div`
   width: min(100%, 1180px);
   margin: 0 auto;
@@ -770,57 +673,6 @@ const PartnersPage = () => {
           </IndustryReferenceGroup>
         ))}
       </PartnersSection>
-
-      <MatrixSection>
-        <SectionHeader>
-          <SectionLabel>{t('partners_matrix_label')}</SectionLabel>
-          <SectionTitle>{t('partners_matrix_title')}</SectionTitle>
-          <SectionDescription>{t('partners_matrix_desc')}</SectionDescription>
-        </SectionHeader>
-        <MatrixWrap>
-          <MatrixTable>
-            <thead>
-              <tr>
-                <MatrixTh>{t('partners_stat_partners')}</MatrixTh>
-                <MatrixTh>{t('partners_stat_industries')}</MatrixTh>
-                {scopeKeys.map((scope) => (
-                  <MatrixTh key={scope}>{t(scope)}</MatrixTh>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {customerPartners.map((partner) => (
-                <tr key={partner.name}>
-                  <MatrixTd><strong>{partner.name}</strong></MatrixTd>
-                  <MatrixTd>{t(partner.industryKey)}</MatrixTd>
-                  {scopeKeys.map((scope) => (
-                    <MatrixTd key={scope}>
-                      <ScopeCheck $active={partner.scopes.includes(scope)} aria-label={partner.scopes.includes(scope) ? t(scope) : ''}>
-                        <FaCheckCircle />
-                      </ScopeCheck>
-                    </MatrixTd>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </MatrixTable>
-        </MatrixWrap>
-        <MobileMatrixGrid>
-          {customerPartners.map((partner) => (
-            <MobileMatrixCard key={partner.name}>
-              <MobileMatrixTop>
-                <MobileMatrixName>{partner.name}</MobileMatrixName>
-                <MobileMatrixIndustry>{t(partner.industryKey)}</MobileMatrixIndustry>
-              </MobileMatrixTop>
-              <ScopeList>
-                {partner.scopes.map((scope) => (
-                  <ScopeChip key={scope}>{t(scope)}</ScopeChip>
-                ))}
-              </ScopeList>
-            </MobileMatrixCard>
-          ))}
-        </MobileMatrixGrid>
-      </MatrixSection>
 
       <CTASection>
         <CTAContent>
