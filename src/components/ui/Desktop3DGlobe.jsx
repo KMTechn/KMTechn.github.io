@@ -22,7 +22,7 @@ import {
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 const GLOBE_RADIUS = 3.08;
-const ROUTE_BASE_RADIUS = GLOBE_RADIUS + 0.15;
+const ROUTE_ENDPOINT_RADIUS = GLOBE_RADIUS + 0.045;
 const INITIAL_ROTATION_Y = -3.85;
 const ROUTE_COLOR = '#ffcc00';
 const TEXTURE_PATHS = [
@@ -90,7 +90,7 @@ class GlobeArcCurve extends Curve {
     }
 
     const lift = Math.sin(Math.PI * t) * this.arcHeight;
-    return target.multiplyScalar(ROUTE_BASE_RADIUS + lift);
+    return target.multiplyScalar(ROUTE_ENDPOINT_RADIUS + lift);
   }
 }
 
@@ -109,7 +109,7 @@ const createRouteTube = (start, end, color) => {
 
 const addRoutes = (group, color) => {
   const routePoints = locations.map((location) => (
-    latLonToVector3(location.lat, location.lon, ROUTE_BASE_RADIUS)
+    latLonToVector3(location.lat, location.lon, ROUTE_ENDPOINT_RADIUS)
   ));
   const hub = routePoints[0];
 
@@ -122,7 +122,7 @@ const addRoutes = (group, color) => {
 const addPoints = (group, color) => {
   locations.forEach((location) => {
     group.add(createPoint(
-      latLonToVector3(location.lat, location.lon, ROUTE_BASE_RADIUS + 0.01),
+      latLonToVector3(location.lat, location.lon, ROUTE_ENDPOINT_RADIUS),
       color
     ));
   });
