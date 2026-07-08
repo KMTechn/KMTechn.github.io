@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import {
   AmbientLight,
-  CatmullRomCurve3,
   Clock,
+  Curve,
   DirectionalLight,
   Group,
   Mesh,
@@ -22,6 +22,7 @@ import {
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 const GLOBE_RADIUS = 3.08;
+const ROUTE_BASE_RADIUS = GLOBE_RADIUS + 0.15;
 const INITIAL_ROTATION_Y = -3.85;
 const ROUTE_COLOR = '#ffcc00';
 const TEXTURE_PATHS = [
@@ -65,43 +66,63 @@ const createPoint = (position, color) => {
   return point;
 };
 
-const createRouteTube = (points, color) => (
-  new Mesh(
-    new TubeGeometry(new CatmullRomCurve3(points), 36, 0.011, 6, false),
+class GlobeArcCurve extends Curve {
+  constructor(start, end) {
+    super();
+    this.startDirection = start.clone().normalize();
+    this.endDirection = end.clone().normalize();
+    this.angle = Math.acos(Math.min(1, Math.max(-1, this.startDirection.dot(this.endDirection))));
+    this.sinAngle = Math.sin(this.angle);
+    this.arcHeight = Math.min(0.82, Math.max(0.16, this.angle * 0.3));
+  }
+
+  getPoint(t, target = new Vector3()) {
+    if (this.angle < 1e-5 || Math.abs(this.sinAngle) < 1e-5) {
+      target.copy(this.startDirection).lerp(this.endDirection, t).normalize();
+    } else {
+      const startWeight = Math.sin((1 - t) * this.angle) / this.sinAngle;
+      const endWeight = Math.sin(t * this.angle) / this.sinAngle;
+      target
+        .copy(this.startDirection)
+        .multiplyScalar(startWeight)
+        .addScaledVector(this.endDirection, endWeight)
+        .normalize();
+    }
+
+    const lift = Math.sin(Math.PI * t) * this.arcHeight;
+    return target.multiplyScalar(ROUTE_BASE_RADIUS + lift);
+  }
+}
+
+const createRouteTube = (start, end, color) => {
+  const curve = new GlobeArcCurve(start, end);
+  return new Mesh(
+    new TubeGeometry(curve, 56, 0.011, 6, false),
     new MeshBasicMaterial({
       color,
       transparent: true,
       opacity: 0.72,
       toneMapped: false,
     })
-  )
-);
+  );
+};
 
 const addRoutes = (group, color) => {
   const routePoints = locations.map((location) => (
-    latLonToVector3(location.lat, location.lon, GLOBE_RADIUS + 0.05)
+    latLonToVector3(location.lat, location.lon, ROUTE_BASE_RADIUS)
   ));
   const hub = routePoints[0];
 
   routePoints.forEach((end, index) => {
     if (index === 0) return;
-
-    const distance = hub.distanceTo(end);
-    const heightMultiplier = 1.025 + (distance / (GLOBE_RADIUS * 2)) * 0.14;
-    const controlPoint = hub
-      .clone()
-      .lerp(end, 0.5)
-      .normalize()
-      .multiplyScalar(GLOBE_RADIUS * heightMultiplier);
-
-    group.add(createRouteTube([hub, controlPoint, end], color));
+    group.add(createRouteTube(hub, end, color));
   });
 };
 
 const addPoints = (group, color) => {
   locations.forEach((location) => {
     group.add(createPoint(
-      latLonToVector3(location.lat, location.lon, GLOBE_RADIUS + 0.02),
+      latLonToVector3(location.lat, location.lon, ROUTE_BASE_RADIUS + 0.01),
       color
     ));
   });
