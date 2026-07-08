@@ -52,9 +52,10 @@ const HeroLayout = styled.div`
   width: min(100%, var(--page-max-width));
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(24rem, 0.68fr) minmax(32rem, 0.95fr);
+  grid-template-columns: minmax(0, 0.46fr) minmax(0, 0.54fr);
   align-items: start;
-  gap: clamp(0.4rem, 1.4vw, 1rem);
+  gap: 0;
+  position: relative;
 
   @media (max-width: 820px) {
     grid-template-columns: 1fr;
@@ -64,18 +65,27 @@ const HeroLayout = styled.div`
 `;
 
 const TextContainer = styled(motion.div)`
+  grid-column: 1 / 2;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  z-index: 1;
+  z-index: 4;
   min-width: 0;
   width: 100%;
-  padding-top: clamp(1.1rem, 3vw, 2.5rem);
+  max-width: 34rem;
+  padding-top: clamp(3rem, 5vw, 4.6rem);
+  padding-left: clamp(0rem, 1.4vw, 1.15rem);
 
   @media (max-width: 820px) {
+    grid-column: 1;
+    grid-row: auto;
     align-items: center;
     order: 1;
+    max-width: 46rem;
+    margin: 0 auto;
     padding-top: 0;
+    padding-left: 0;
   }
 `;
 
@@ -90,17 +100,18 @@ const HeroLabel = styled(motion.span)`
 `;
 
 const Title = styled(motion.h1)`
-  font-size: clamp(2.45rem, 3.75vw, 3.55rem);
+  font-size: clamp(2.35rem, 3.7vw, 3.5rem);
   font-weight: 800;
   line-height: 1.08;
   margin-bottom: 1rem;
-  max-width: 670px;
+  max-width: 100%;
   width: 100%;
   color: var(--text-color);
   letter-spacing: 0;
   word-break: keep-all;
-  overflow-wrap: normal;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+  white-space: normal;
 
   @media (max-width: 600px) {
     font-size: clamp(2.1rem, 10vw, 2.75rem);
@@ -112,7 +123,7 @@ const Title = styled(motion.h1)`
 const Subtitle = styled(motion.p)`
   font-size: 1.02rem;
   color: var(--text-secondary);
-  max-width: 500px;
+  max-width: 31rem;
   width: 100%;
   margin-bottom: 1.45rem;
   line-height: 1.72;
@@ -232,7 +243,9 @@ const SecondaryButton = styled(PrimaryButton)`
 `;
 
 const ArtworkContainer = styled(motion.div)`
-  height: clamp(24rem, 35vw, 32rem);
+  grid-column: 1 / -1;
+  grid-row: 1;
+  height: clamp(27rem, 38vw, 34rem);
   width: 100%;
   position: relative;
   isolation: isolate;
@@ -247,7 +260,7 @@ const ArtworkContainer = styled(motion.div)`
     content: '';
     position: absolute;
     inset: 1.1rem;
-    z-index: -1;
+    z-index: 1;
     border-radius: 10px;
     background-image:
       linear-gradient(rgba(15, 23, 42, 0.055) 1px, transparent 1px),
@@ -256,15 +269,47 @@ const ArtworkContainer = styled(motion.div)`
     mask-image: radial-gradient(circle at 56% 44%, black, transparent 68%);
   }
 
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(248, 249, 251, 0.98) 0%,
+        rgba(248, 249, 251, 0.92) 28%,
+        rgba(248, 249, 251, 0.48) 47%,
+        rgba(248, 249, 251, 0.04) 66%,
+        rgba(248, 249, 251, 0) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.82) 0%,
+        rgba(255, 255, 255, 0.05) 34%,
+        rgba(248, 249, 251, 0.18) 74%,
+        rgba(248, 249, 251, 0.72) 100%
+      );
+  }
+
   &:active {
     cursor: grabbing;
   }
 
   @media (max-width: 820px) {
+    grid-column: 1;
+    grid-row: auto;
     order: 2;
     height: clamp(27rem, 64vw, 34rem);
     max-width: 760px;
     margin: 0 auto;
+
+    &::after {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 30%),
+        linear-gradient(90deg, rgba(248, 249, 251, 0.9) 0%, rgba(248, 249, 251, 0.12) 48%, rgba(248, 249, 251, 0) 100%);
+    }
   }
 
   @media (max-width: 600px) {
@@ -281,7 +326,7 @@ const NetworkBackdrop = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center bottom;
   opacity: 0.9;
   filter: saturate(0.94) contrast(0.98) brightness(1.03);
   z-index: 0;
@@ -293,13 +338,13 @@ const NetworkBackdrop = styled.img`
 
 const GlobeStage = styled.div`
   position: absolute;
-  right: clamp(-2.4rem, -2.4vw, -0.5rem);
-  bottom: clamp(2.5rem, 4.6vw, 4.5rem);
-  width: clamp(19rem, 31vw, 28rem);
-  height: clamp(19rem, 31vw, 28rem);
+  right: clamp(-1rem, -1.2vw, -0.2rem);
+  bottom: clamp(3.8rem, 5.5vw, 5.6rem);
+  width: clamp(18.5rem, 29vw, 27rem);
+  height: clamp(18.5rem, 29vw, 27rem);
   display: grid;
   place-items: center;
-  z-index: 2;
+  z-index: 3;
   pointer-events: none;
 
   canvas {
@@ -412,12 +457,13 @@ const VisualFlowStep = styled.div`
 
 const HeroProofGrid = styled(motion.div)`
   grid-column: 1 / -1;
+  grid-row: 2;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0;
   width: 100%;
   max-width: none;
-  margin-top: clamp(-1.75rem, -2.3vw, -1rem);
+  margin-top: clamp(-4.6rem, -5.2vw, -3.1rem);
   position: relative;
   z-index: 5;
   border: 1px solid var(--border-color);
@@ -433,7 +479,9 @@ const HeroProofGrid = styled(motion.div)`
   }
 
   @media (max-width: 820px) {
+    grid-row: auto;
     order: 3;
+    margin-top: clamp(-1.25rem, -2.2vw, -0.65rem);
   }
 `;
 
