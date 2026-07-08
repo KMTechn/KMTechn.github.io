@@ -23,25 +23,26 @@ L.Marker.prototype.options.icon = defaultLeafletIcon;
 const PageContainer = styled.div`
   color: var(--text-color);
   overflow-x: hidden;
-  background: var(--background-color);
+  background:
+    linear-gradient(180deg, #f4f4f3 0%, #f7f7f6 48%, #f4f4f3 100%);
 `;
 
 const HeroSection = styled.section`
   position: relative;
-  min-height: clamp(420px, 48vh, 500px);
+  min-height: clamp(430px, 47vh, 515px);
   display: flex;
   align-items: center;
-  padding: clamp(3.6rem, 5.6vw, 4.8rem) clamp(1rem, 5vw, 5%) clamp(4.2rem, 6vw, 5.4rem);
+  padding: clamp(3.85rem, 5.6vw, 5.1rem) clamp(1rem, 5vw, 5%) clamp(4.9rem, 7vw, 6.2rem);
   background:
-    linear-gradient(90deg, rgba(8, 10, 12, 0.9) 0%, rgba(8, 10, 12, 0.74) 42%, rgba(8, 10, 12, 0.28) 100%),
-    url('/images/kmtech-contact-warehouse-hero.png') center / cover no-repeat;
+    linear-gradient(90deg, rgba(5, 7, 9, 0.92) 0%, rgba(5, 7, 9, 0.76) 42%, rgba(5, 7, 9, 0.24) 100%),
+    url('/images/kmtech-contact-warehouse-hero.png') 55% center / cover no-repeat;
   background:
-    linear-gradient(90deg, rgba(8, 10, 12, 0.9) 0%, rgba(8, 10, 12, 0.74) 42%, rgba(8, 10, 12, 0.28) 100%),
+    linear-gradient(90deg, rgba(5, 7, 9, 0.92) 0%, rgba(5, 7, 9, 0.76) 42%, rgba(5, 7, 9, 0.24) 100%),
     image-set(
       url('/images/kmtech-contact-warehouse-hero-960.webp') 1x type('image/webp'),
       url('/images/kmtech-contact-warehouse-hero-1440.webp') 2x type('image/webp'),
       url('/images/kmtech-contact-warehouse-hero.png') 2x type('image/png')
-    ) center / cover no-repeat;
+    ) 55% center / cover no-repeat;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   overflow: hidden;
 
@@ -49,8 +50,8 @@ const HeroSection = styled.section`
     content: '';
     position: absolute;
     inset: auto 0 0;
-    height: 38%;
-    background: linear-gradient(180deg, transparent 0%, rgba(245, 245, 245, 0.96) 100%);
+    height: 44%;
+    background: linear-gradient(180deg, transparent 0%, rgba(244, 244, 243, 0.98) 100%);
     pointer-events: none;
   }
 
@@ -60,9 +61,9 @@ const HeroSection = styled.section`
   }
 
   @media (min-width: 821px) {
-    min-height: clamp(420px, 44vh, 500px);
-    padding-top: clamp(3.2rem, 4.5vw, 4.4rem);
-    padding-bottom: clamp(5rem, 6.2vw, 6.4rem);
+    min-height: clamp(430px, 45vh, 515px);
+    padding-top: clamp(3.65rem, 4.7vw, 4.9rem);
+    padding-bottom: clamp(5.4rem, 6.8vw, 6.9rem);
   }
 `;
 
@@ -121,11 +122,12 @@ const ContactRail = styled.div`
   padding: 0;
   border: 1px solid rgba(17, 24, 39, 0.08);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.18);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.22);
   min-width: 0;
-  width: min(100%, 1120px);
-  transform: translateY(clamp(3.2rem, 4.8vw, 4.4rem));
+  width: min(100%, 1240px);
+  transform: translateY(clamp(3rem, 4.4vw, 4.1rem));
+  backdrop-filter: blur(12px);
 
   @media (max-width: 820px) {
     grid-template-columns: 1fr;
@@ -134,11 +136,11 @@ const ContactRail = styled.div`
 `;
 
 const RailItem = styled.a`
-  min-height: 58px;
+  min-height: 78px;
   display: flex;
   align-items: center;
-  gap: 0.85rem;
-  padding: 0.7rem 0.95rem;
+  gap: 0.95rem;
+  padding: 0.9rem 1.2rem;
   background: transparent;
   border: 0;
   border-right: 1px solid var(--border-color);
@@ -159,10 +161,10 @@ const RailItem = styled.a`
   svg {
     color: var(--accent-amber);
     flex: 0 0 auto;
-    width: 18px;
-    height: 18px;
+    width: 19px;
+    height: 19px;
     box-sizing: content-box;
-    padding: 0.55rem;
+    padding: 0.68rem;
     border-radius: 50%;
     background: rgba(var(--accent-amber-rgb), 0.16);
   }
@@ -183,12 +185,12 @@ const RailItem = styled.a`
 
   strong {
     color: var(--text-color);
-    font-size: 0.88rem;
+    font-size: 0.96rem;
   }
 
   small {
     color: var(--text-secondary);
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     margin-top: 0.1rem;
   }
 
@@ -263,8 +265,8 @@ const ContactMainSection = styled(Section)`
 `;
 
 const SecurityNotice = styled.div`
-  width: min(100%, 1180px);
-  margin: clamp(1.55rem, 2.4vw, 2.15rem) auto clamp(1.35rem, 2.4vw, 1.75rem);
+  width: min(100%, 1240px);
+  margin: clamp(1.45rem, 2.3vw, 2rem) auto clamp(1.25rem, 2.2vw, 1.65rem);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -291,7 +293,7 @@ const SecurityNotice = styled.div`
 `;
 
 const ContentLayout = styled.div`
-  width: min(100%, 960px);
+  width: min(100%, 1180px);
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
@@ -309,7 +311,8 @@ const Panel = styled(motion.article)`
 `;
 
 const FormPanel = styled(Panel)`
-  padding: clamp(1.05rem, 2.6vw, 2rem);
+  padding: clamp(1.45rem, 3vw, 2.5rem);
+  box-shadow: 0 24px 68px rgba(15, 23, 42, 0.09);
 `;
 
 const PanelTitle = styled.h2`
@@ -352,18 +355,20 @@ const LocationStack = styled.div`
 `;
 
 const LocationsSection = styled.section`
-  width: min(100%, 1180px);
-  margin: clamp(1.8rem, 3.4vw, 2.8rem) auto 0;
+  width: min(100%, 1240px);
+  margin: clamp(1.55rem, 3vw, 2.35rem) auto 0;
 `;
 
 const LocationCard = styled(Panel)`
   display: grid;
-  gap: 0.9rem;
+  gap: 1rem;
+  padding: clamp(1rem, 2vw, 1.45rem);
+  box-shadow: 0 22px 54px rgba(15, 23, 42, 0.08);
 `;
 
 const LocationMedia = styled.div`
-  width: min(188px, 38%);
-  height: clamp(78px, 8vw, 106px);
+  width: min(218px, 40%);
+  height: clamp(86px, 8.5vw, 116px);
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid var(--border-color);
@@ -482,7 +487,7 @@ const LocationAction = styled.a`
 `;
 
 const MapWrapper = styled.div`
-  height: clamp(128px, 17vw, 160px);
+  height: clamp(142px, 17vw, 172px);
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid var(--border-color);

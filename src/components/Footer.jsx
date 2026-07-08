@@ -54,16 +54,14 @@ const FooterLogo = styled(Link)`
   img {
     height: 34px;
     width: auto;
+    filter: brightness(0) invert(1);
   }
 `;
 
 const LogoText = styled.span`
   font-size: 1.2rem;
   font-weight: 700;
-  background: linear-gradient(135deg, var(--accent-amber) 0%, var(--accent-amber-light) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #fff;
 `;
 
 const FooterDescription = styled.p`
