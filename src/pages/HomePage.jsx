@@ -1518,7 +1518,7 @@ const HomePage = () => {
               srcSet="/images/kmtech-about-warehouse-hero-960.webp 960w, /images/kmtech-about-warehouse-hero-1440.webp 1440w, /images/kmtech-about-warehouse-hero.png 1672w"
               sizes="(max-width: 1080px) 100vw, 38vw"
               alt="KMTech 직산 물류센터 내부"
-              loading="lazy"
+              loading="eager"
               decoding="async"
             />
           </FacilityMedia>
