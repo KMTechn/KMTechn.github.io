@@ -4,6 +4,7 @@ import { Vector3, NormalBlending } from 'three';
 import { useFrame } from '@react-three/fiber';
 
 const GLOBE_RADIUS = 3.08;
+const INITIAL_ROTATION_Y = -3.85;
 
 // Helper function to convert latitude/longitude to a 3D vector on the sphere
 const latLonToVector3 = (lat, lon, radius) => {
@@ -102,7 +103,7 @@ function Arcs({ points, color }) {
 
       const distance = start.distanceTo(end);
       // Adjust arc height based on the distance between points
-      const heightMultiplier = 1.05 + (distance / (GLOBE_RADIUS * 2)) * 0.25;
+      const heightMultiplier = 1.025 + (distance / (GLOBE_RADIUS * 2)) * 0.14;
 
       const controlPoint = start.clone().lerp(end, 0.5).normalize().multiplyScalar(GLOBE_RADIUS * heightMultiplier);
       result.push([start, controlPoint, end]);
@@ -117,7 +118,7 @@ function Arcs({ points, color }) {
           key={i}
           points={curvePoints}
           color={color}
-          lineWidth={2.4}
+          lineWidth={2}
           transparent
           opacity={0.88}
         />
@@ -166,7 +167,7 @@ const Globe = (props) => {
       <directionalLight position={[8, 8, 6]} intensity={directionalIntensity} />
       <pointLight position={[-4, -2, 5]} intensity={1.8} color={routeColor} />
 
-      <group ref={globeRef}>
+      <group ref={globeRef} rotation={[0, INITIAL_ROTATION_Y, 0]}>
         {/* Earth */}
         <Sphere args={[GLOBE_RADIUS, 48, 48]}>
           <meshStandardMaterial

@@ -12,7 +12,7 @@ import Loader from './Loader';
 const Desktop3DGlobe = () => {
   return (
     <Canvas
-      camera={{ position: [0, 0, 7.2], fov: 44 }}
+      camera={{ position: [0, 0, 9.8], fov: 46 }}
       dpr={[1, 1.5]}
       performance={{ min: 0.5 }}
       gl={{ alpha: true, antialias: true }}

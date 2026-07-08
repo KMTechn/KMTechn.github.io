@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { Suspense, lazy, useRef } from 'react';
 import styled from 'styled-components';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Section, SectionTitle } from '../components/ui/Page';
+import useIsMobile, { usePrefersReducedMotion } from '../hooks/useIsMobile';
 import GlobeFallback from '../components/ui/GlobeFallback';
 import { customerPartners, facilityMetrics, operationHighlights } from '../data/company';
 import {
@@ -12,6 +13,8 @@ import {
   FaShieldAlt
 } from 'react-icons/fa';
 import { HiOutlineChevronRight } from 'react-icons/hi';
+
+const Desktop3DGlobe = lazy(() => import('../components/ui/Desktop3DGlobe'));
 
 const PageContainer = styled.div`
   width: 100%;
@@ -1254,6 +1257,10 @@ const PartnerLogo = styled(motion.img).attrs({
 const HomePage = () => {
   const { t } = useTranslation();
   const artworkRef = useRef(null);
+  const isMobile = useIsMobile(1024);
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const hasDesktopViewport = typeof window !== 'undefined' && window.innerWidth >= 1024;
+  const shouldUse3DGlobe = hasDesktopViewport && !isMobile && !prefersReducedMotion;
 
   // Refs for scroll animations
   const heroRef = useRef(null);
@@ -1425,7 +1432,13 @@ const HomePage = () => {
               ))}
             </VisualMetricDock>
             <GlobeStage>
-              <GlobeFallback />
+              {shouldUse3DGlobe ? (
+                <Suspense fallback={<GlobeFallback />}>
+                  <Desktop3DGlobe />
+                </Suspense>
+              ) : (
+                <GlobeFallback />
+              )}
             </GlobeStage>
             <VisualFlow>
               <VisualFlowLabel>{t('hero_visual_flow_label')}</VisualFlowLabel>
