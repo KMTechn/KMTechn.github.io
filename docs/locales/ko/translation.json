@@ -339,7 +339,6 @@
   "business_consult_check_delivery_title": "납품 조건",
   "business_consult_check_delivery_desc": "목적지, 라벨, 포장 단위, 출고 마감",
   "partners_reference_title": "고객사별 수행 범위",
-  "partners_reference_desc": "로고만 나열하지 않고 실제 데이터에 등록된 산업군과 수행 범위를 함께 보여줍니다.",
   "partners_matrix_label": "업무 범위 매트릭스",
   "partners_matrix_title": "고객사별 3PL 수행 범위 비교",
   "partners_matrix_desc": "보관, 검수, 재작업, ERP QR, 재포장, 출고 준비 중 실제 연결된 범위를 기준으로 정리했습니다.",

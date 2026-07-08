@@ -339,7 +339,6 @@
   "business_consult_check_delivery_title": "Delivery conditions",
   "business_consult_check_delivery_desc": "Destination, labeling, pack unit, and outbound cutoff",
   "partners_reference_title": "Client service-scope references",
-  "partners_reference_desc": "We show industry and registered scope data with each client instead of only listing logos.",
   "partners_matrix_label": "Scope matrix",
   "partners_matrix_title": "Compare 3PL scope by client",
   "partners_matrix_desc": "This matrix uses the registered scope across storage, inspection, rework, ERP QR, repackaging, and outbound preparation.",

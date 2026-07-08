@@ -339,7 +339,6 @@
   "business_consult_check_delivery_title": "交付条件",
   "business_consult_check_delivery_desc": "目的地、标签、包装单位、出库截止",
   "partners_reference_title": "按客户执行范围",
-  "partners_reference_desc": "不仅展示标识，还同时展示数据中登记的行业和执行范围。",
   "partners_matrix_label": "业务范围矩阵",
   "partners_matrix_title": "按客户比较3PL执行范围",
   "partners_matrix_desc": "基于仓储、检验、返工、ERP QR、重新包装、出库准备中实际连接的范围整理。",

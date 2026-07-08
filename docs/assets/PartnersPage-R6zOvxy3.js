@@ -1,4 +1,4 @@
-import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d as r,F as z,b as S,V as C,L as P}from"./index-DuWl_3U_.js";const M=r.section`
+import{u as v,r as d,c as n,j as e,Q as w,C as f,T as y,U as j,m as s,e as k,d as t,F as _,b as z,V as C,L as S}from"./index-xbQ2uFGu.js";const P=t.section`
   min-height: clamp(390px, 47vh, 500px);
   display: flex;
   align-items: center;
@@ -12,7 +12,7 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
   @media (max-width: 820px) {
     min-height: auto;
   }
-`,T=r.div`
+`,M=t.div`
   width: min(100%, var(--page-max-width));
   margin: 0 auto;
   display: grid;
@@ -25,7 +25,7 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
     grid-template-columns: 1fr;
     text-align: center;
   }
-`,H=r.span`
+`,T=t.span`
   display: inline-block;
   color: var(--accent-amber);
   font-size: 0.78rem;
@@ -33,14 +33,14 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
   letter-spacing: 0.12em;
   text-transform: uppercase;
   margin-bottom: 1rem;
-`,K=r.h1`
+`,H=t.h1`
   color: var(--text-color);
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.15;
   margin-bottom: 1rem;
   letter-spacing: 0;
   word-break: keep-all;
-`,L=r.p`
+`,K=t.p`
   color: var(--text-secondary);
   font-size: clamp(1rem, 1.5vw, 1.12rem);
   line-height: 1.8;
@@ -51,7 +51,7 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
     margin-left: auto;
     margin-right: auto;
   }
-`,F=r(s.div)`
+`,F=t(s.div)`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.75rem;
@@ -66,7 +66,7 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.45rem;
   }
-`,I=r.div`
+`,I=t.div`
   background: rgba(255, 255, 255, 0.82);
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -79,20 +79,20 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
     padding: 0.78rem 0.55rem;
     text-align: center;
   }
-`,G=r.div`
+`,L=t.div`
   color: var(--accent-amber);
   margin-bottom: 0.6rem;
 
   @media (max-width: 520px) {
     margin-bottom: 0.35rem;
   }
-`,A=r.div`
+`,G=t.div`
   color: var(--text-color);
   font-size: clamp(1.35rem, 3vw, 1.8rem);
   font-weight: 800;
   line-height: 1.1;
   white-space: nowrap;
-`,$=r.div`
+`,A=t.div`
   color: var(--text-secondary);
   font-size: 0.8rem;
   line-height: 1.35;
@@ -102,7 +102,7 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
   @media (max-width: 520px) {
     font-size: 0.72rem;
   }
-`,B=r(s.div)`
+`,$=t(s.div)`
   position: relative;
   width: 100%;
   max-width: 620px;
@@ -119,7 +119,7 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
     max-width: 640px;
     margin: 0 auto;
   }
-`,D=r.div`
+`,B=t.div`
   position: relative;
   min-height: clamp(300px, 34vw, 410px);
   border-radius: 8px;
@@ -143,7 +143,7 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
       linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.28) 100%);
     pointer-events: none;
   }
-`,E=r.div`
+`,E=t.div`
   display: none;
   justify-content: space-between;
   gap: 1rem;
@@ -153,21 +153,21 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
   @media (max-width: 520px) {
     flex-direction: column;
   }
-`,R=r.h2`
+`,D=t.h2`
   color: var(--text-color);
   font-size: 1.05rem;
   line-height: 1.35;
   margin: 0;
-`,V=r.span`
+`,R=t.span`
   color: var(--text-secondary);
   font-size: 0.8rem;
   line-height: 1.35;
   white-space: nowrap;
-`,N=r.div`
+`,V=t.div`
   display: none;
   flex-wrap: wrap;
   gap: 0.45rem;
-`,O=r.span`
+`,N=t.span`
   min-height: 30px;
   border: 1px solid rgba(var(--accent-amber-rgb), 0.34);
   border-radius: 8px;
@@ -179,7 +179,7 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
   font-size: 0.76rem;
   font-weight: 700;
   line-height: 1.2;
-`,Q=r.div`
+`,O=t.div`
   display: none;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.55rem;
@@ -187,7 +187,7 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
   @media (max-width: 520px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-`,U=r.div`
+`,Q=t.div`
   min-height: clamp(54px, 5.5vw, 70px);
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -204,14 +204,14 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
     max-height: 34px;
     object-fit: contain;
   }
-`,Y=r.section`
+`,U=t.section`
   padding: clamp(2rem, 3.6vw, 3rem) clamp(1rem, 5vw, 5%);
   background: linear-gradient(180deg, var(--background-color) 0%, #ffffff 100%);
-`,q=r.div`
+`,Y=t.div`
   width: min(100%, 720px);
   margin: 0 auto 1.55rem 0;
   text-align: left;
-`,J=r.span`
+`,q=t.span`
   display: inline-block;
   color: var(--accent-amber);
   font-size: 0.75rem;
@@ -219,23 +219,19 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
   letter-spacing: 0.12em;
   text-transform: uppercase;
   margin-bottom: 0.9rem;
-`,W=r.h2`
+`,J=t.h2`
   color: var(--text-color);
   font-size: clamp(1.8rem, 4vw, 2.4rem);
   line-height: 1.2;
   margin-bottom: 1rem;
-`,X=r.p`
-  color: var(--text-secondary);
-  line-height: 1.7;
-  margin: 0;
-`,Z=r.div`
+`,W=t.div`
   width: min(100%, 760px);
   margin: 0 auto 1.55rem;
   display: none;
   justify-content: center;
   gap: 0.5rem;
   flex-wrap: wrap;
-`,ee=r.button`
+`,X=t.button`
   min-height: 44px;
   border-radius: 8px;
   border: 1px solid ${({$active:a})=>a?"var(--accent-amber)":"var(--border-color)"};
@@ -249,20 +245,20 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
   font-weight: 700;
   font-size: 0.9rem;
   cursor: pointer;
-`,re=r(s.div)`
+`,Z=t(s.div)`
   width: min(100%, 1180px);
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 18.5rem), 1fr));
   gap: 0.85rem;
-`,te=r.section`
+`,ee=t.section`
   width: min(100%, 1180px);
   margin: 0 auto clamp(1.15rem, 3vw, 2rem);
 
   &:last-child {
     margin-bottom: 0;
   }
-`,ae=r.div`
+`,re=t.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -275,7 +271,7 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
     align-items: flex-start;
     flex-direction: column;
   }
-`,ie=r.h3`
+`,te=t.h3`
   color: var(--text-color);
   display: inline-flex;
   align-items: center;
@@ -287,10 +283,10 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
   svg {
     color: var(--accent-amber);
   }
-`,ne=r.span`
+`,ae=t.span`
   color: var(--text-secondary);
   font-size: 0.84rem;
-`,oe=r(s.article)`
+`,ie=t(s.article)`
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -306,7 +302,7 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
     border-color: rgba(var(--accent-amber-rgb), 0.6);
     box-shadow: 0 14px 36px rgba(0, 0, 0, 0.08);
   }
-`,se=r.div`
+`,ne=t.div`
   min-height: 128px;
   border-radius: 8px;
   background: #fff;
@@ -320,33 +316,18 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
     max-height: 64px;
     object-fit: contain;
   }
-`,de=r.div`
+`,oe=t.div`
   display: grid;
   gap: 0.65rem;
-`,ce=r.h3`
+`,se=t.h3`
   color: var(--text-color);
   font-size: 1.05rem;
   line-height: 1.35;
   margin: 0;
-`,me=r.div`
+`,de=t.div`
   color: var(--text-secondary);
   font-size: 0.86rem;
-`,le=r.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-`,pe=r.span`
-  min-height: 32px;
-  display: inline-flex;
-  align-items: center;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  background: var(--background-color);
-  color: var(--text-secondary);
-  font-size: 0.8rem;
-  line-height: 1.2;
-  padding: 0.42rem 0.6rem;
-`,ge=r.div`
+`,ce=t.div`
   color: var(--text-secondary);
   font-size: 0.78rem;
   line-height: 1.45;
@@ -358,11 +339,11 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
     font-weight: 700;
     margin-right: 0.45rem;
   }
-`,xe=r.section`
+`,me=t.section`
   padding: clamp(1.8rem, 3.2vw, 2.5rem) clamp(1rem, 5vw, 5%);
   background: #fff;
   border-top: 1px solid var(--border-color);
-`,he=r.div`
+`,le=t.div`
   width: min(100%, 1180px);
   margin: 0 auto;
   min-height: clamp(230px, 24vw, 300px);
@@ -386,18 +367,18 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
     min-height: auto;
     background-position: 58% center;
   }
-`,be=r.h2`
+`,pe=t.h2`
   color: #fff;
   font-size: clamp(1.55rem, 3vw, 2rem);
   line-height: 1.25;
   margin-bottom: 1rem;
   max-width: 16em;
-`,ue=r.p`
+`,ge=t.p`
   color: rgba(255, 255, 255, 0.72);
   line-height: 1.7;
   margin-bottom: 1.5rem;
   max-width: 34rem;
-`,ve=r(P)`
+`,xe=t(S)`
   min-height: 48px;
   display: inline-flex;
   align-items: center;
@@ -418,4 +399,4 @@ import{u as f,r as d,c as n,j as e,Q as w,C as y,T as j,U as k,m as s,e as _,d a
   @media (max-width: 420px) {
     width: 100%;
   }
-`,g={hidden:{opacity:0},visible:{opacity:1,transition:{staggerChildren:.06}}},fe={hidden:{opacity:0,y:18},visible:{opacity:1,y:0,transition:{duration:.35,ease:"easeOut"}}},ye=()=>{const{t:a}=f(),[o,x]=d.useState("all"),h=["all",...new Set(n.map(t=>t.industryKey))],c=d.useMemo(()=>o==="all"?n:n.filter(t=>t.industryKey===o),[o]),m=d.useMemo(()=>[...new Set(n.flatMap(t=>t.scopes))],[]),b=d.useMemo(()=>Object.entries(c.reduce((t,i)=>(t[i.industryKey]=t[i.industryKey]||[],t[i.industryKey].push(i),t),{})).map(([t,i])=>({industryKey:t,partners:i})),[c]),u=[{icon:e.jsx(w,{}),value:`${n.length}+`,label:a("partners_stat_partners")},{icon:e.jsx(y,{}),value:"2",label:a("partners_stat_industries")},{icon:e.jsx(j,{}),value:`${m.length}`,label:a("partners_stat_service_scope")}],l=t=>t==="partners_industry_automotive"?e.jsx(z,{}):t==="partners_industry_electronics"?e.jsx(S,{}):e.jsx(C,{}),v={"Hyundai Motor":"2019.03 - 현재",Kia:"2020.07 - 현재",Continental:"2021.11 - 현재","Kanavi Mobility":"2021.08 - 현재","LG Display":"2018.06 - 현재","LG Electronics":"2019.01 - 현재",Humax:"2022.04 - 현재"};return e.jsxs(k,{children:[e.jsx(M,{children:e.jsxs(T,{children:[e.jsxs(s.div,{initial:{opacity:0,y:24},animate:{opacity:1,y:0},transition:{duration:.45},children:[e.jsx(H,{children:a("partners_section_label")}),e.jsx(K,{children:"산업별 고객 레퍼런스"}),e.jsx(L,{children:a("partners_hero_desc")}),e.jsx(F,{initial:"hidden",animate:"visible",variants:g,children:u.map(t=>e.jsxs(I,{children:[e.jsx(G,{children:t.icon}),e.jsx(A,{children:t.value}),e.jsx($,{children:t.label})]},t.label))})]}),e.jsxs(B,{initial:{opacity:0,y:18},animate:{opacity:1,y:0},transition:{delay:.12,duration:.45},children:[e.jsx(D,{children:e.jsx("img",{src:"/images/kmtech-about-warehouse-hero.png",srcSet:"/images/kmtech-about-warehouse-hero-960.webp 960w, /images/kmtech-about-warehouse-hero-1440.webp 1440w, /images/kmtech-about-warehouse-hero.png 1672w",sizes:"(max-width: 820px) 100vw, 42vw",alt:"",loading:"eager",decoding:"async"})}),e.jsxs(E,{children:[e.jsx(R,{children:a("partners_matrix_title")}),e.jsxs(V,{children:[n.length," ",a("partners_stat_partners")]})]}),e.jsx(N,{children:m.map(t=>e.jsx(O,{children:a(t)},t))}),e.jsx(Q,{children:n.map(t=>e.jsx(U,{children:e.jsx("img",{src:t.logo,alt:`${t.name} logo`,loading:"lazy",decoding:"async"})},t.name))})]})]})}),e.jsxs(Y,{children:[e.jsxs(q,{children:[e.jsx(J,{children:a("partners_catalog_label")}),e.jsx(W,{children:"산업별 고객사"}),e.jsx(X,{children:a("partners_reference_desc")})]}),e.jsx(Z,{"aria-label":a("partners_filter_label"),children:h.map(t=>e.jsxs(ee,{type:"button",$active:o===t,"aria-pressed":o===t,onClick:()=>x(t),children:[l(t),a(t==="all"?"partners_filter_all":t)]},t))}),b.map(t=>e.jsxs(te,{children:[e.jsxs(ae,{children:[e.jsxs(ie,{children:[l(t.industryKey),a(t.industryKey)]}),e.jsxs(ne,{children:[t.partners.length," ",a("partners_stat_partners")]})]}),e.jsx(re,{variants:g,initial:"hidden",animate:"visible",children:t.partners.map(i=>e.jsxs(oe,{variants:fe,children:[e.jsx(se,{children:e.jsx("img",{src:i.logo,alt:`${i.name} logo`,loading:"lazy",decoding:"async"})}),e.jsxs(de,{children:[e.jsx(ce,{children:i.name}),e.jsx(me,{children:a(i.industryKey)}),e.jsx(le,{children:i.scopes.map(p=>e.jsx(pe,{children:a(p)},p))}),e.jsxs(ge,{children:[e.jsx("strong",{children:"파트너십 기간"}),v[i.name]]})]})]},i.name))})]},t.industryKey))]}),e.jsx(xe,{children:e.jsxs(he,{children:[e.jsx(be,{children:a("partners_cta_title")}),e.jsx(ue,{children:a("partners_cta_desc")}),e.jsxs(ve,{to:"/contact",children:[a("partners_cta_button")," ",e.jsx(_,{})]})]})})]})};export{ye as default};
+`,p={hidden:{opacity:0},visible:{opacity:1,transition:{staggerChildren:.06}}},he={hidden:{opacity:0,y:18},visible:{opacity:1,y:0,transition:{duration:.35,ease:"easeOut"}}},ue=()=>{const{t:a}=v(),[o,g]=d.useState("all"),x=["all",...new Set(n.map(r=>r.industryKey))],c=d.useMemo(()=>o==="all"?n:n.filter(r=>r.industryKey===o),[o]),m=d.useMemo(()=>[...new Set(n.flatMap(r=>r.scopes))],[]),h=d.useMemo(()=>Object.entries(c.reduce((r,i)=>(r[i.industryKey]=r[i.industryKey]||[],r[i.industryKey].push(i),r),{})).map(([r,i])=>({industryKey:r,partners:i})),[c]),b=[{icon:e.jsx(w,{}),value:`${n.length}+`,label:a("partners_stat_partners")},{icon:e.jsx(f,{}),value:"2",label:a("partners_stat_industries")},{icon:e.jsx(y,{}),value:`${m.length}`,label:a("partners_stat_service_scope")}],l=r=>r==="partners_industry_automotive"?e.jsx(_,{}):r==="partners_industry_electronics"?e.jsx(z,{}):e.jsx(C,{}),u={"Hyundai Motor":"2019.03 - 현재",Kia:"2020.07 - 현재",Continental:"2021.11 - 현재","Kanavi Mobility":"2021.08 - 현재","LG Display":"2018.06 - 현재","LG Electronics":"2019.01 - 현재",Humax:"2022.04 - 현재"};return e.jsxs(j,{children:[e.jsx(P,{children:e.jsxs(M,{children:[e.jsxs(s.div,{initial:{opacity:0,y:24},animate:{opacity:1,y:0},transition:{duration:.45},children:[e.jsx(T,{children:a("partners_section_label")}),e.jsx(H,{children:"산업별 고객 레퍼런스"}),e.jsx(K,{children:a("partners_hero_desc")}),e.jsx(F,{initial:"hidden",animate:"visible",variants:p,children:b.map(r=>e.jsxs(I,{children:[e.jsx(L,{children:r.icon}),e.jsx(G,{children:r.value}),e.jsx(A,{children:r.label})]},r.label))})]}),e.jsxs($,{initial:{opacity:0,y:18},animate:{opacity:1,y:0},transition:{delay:.12,duration:.45},children:[e.jsx(B,{children:e.jsx("img",{src:"/images/kmtech-about-warehouse-hero.png",srcSet:"/images/kmtech-about-warehouse-hero-960.webp 960w, /images/kmtech-about-warehouse-hero-1440.webp 1440w, /images/kmtech-about-warehouse-hero.png 1672w",sizes:"(max-width: 820px) 100vw, 42vw",alt:"",loading:"eager",decoding:"async"})}),e.jsxs(E,{children:[e.jsx(D,{children:a("partners_matrix_title")}),e.jsxs(R,{children:[n.length," ",a("partners_stat_partners")]})]}),e.jsx(V,{children:m.map(r=>e.jsx(N,{children:a(r)},r))}),e.jsx(O,{children:n.map(r=>e.jsx(Q,{children:e.jsx("img",{src:r.logo,alt:`${r.name} logo`,loading:"lazy",decoding:"async"})},r.name))})]})]})}),e.jsxs(U,{children:[e.jsxs(Y,{children:[e.jsx(q,{children:a("partners_catalog_label")}),e.jsx(J,{children:"산업별 고객사"})]}),e.jsx(W,{"aria-label":a("partners_filter_label"),children:x.map(r=>e.jsxs(X,{type:"button",$active:o===r,"aria-pressed":o===r,onClick:()=>g(r),children:[l(r),a(r==="all"?"partners_filter_all":r)]},r))}),h.map(r=>e.jsxs(ee,{children:[e.jsxs(re,{children:[e.jsxs(te,{children:[l(r.industryKey),a(r.industryKey)]}),e.jsxs(ae,{children:[r.partners.length," ",a("partners_stat_partners")]})]}),e.jsx(Z,{variants:p,initial:"hidden",animate:"visible",children:r.partners.map(i=>e.jsxs(ie,{variants:he,children:[e.jsx(ne,{children:e.jsx("img",{src:i.logo,alt:`${i.name} logo`,loading:"lazy",decoding:"async"})}),e.jsxs(oe,{children:[e.jsx(se,{children:i.name}),e.jsx(de,{children:a(i.industryKey)}),e.jsxs(ce,{children:[e.jsx("strong",{children:"파트너십 기간"}),u[i.name]]})]})]},i.name))})]},r.industryKey))]}),e.jsx(me,{children:e.jsxs(le,{children:[e.jsx(pe,{children:a("partners_cta_title")}),e.jsx(ge,{children:a("partners_cta_desc")}),e.jsxs(xe,{to:"/contact",children:[a("partners_cta_button")," ",e.jsx(k,{})]})]})})]})};export{ue as default};

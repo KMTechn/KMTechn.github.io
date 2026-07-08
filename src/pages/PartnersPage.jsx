@@ -279,12 +279,6 @@ const SectionTitle = styled.h2`
   margin-bottom: 1rem;
 `;
 
-const SectionDescription = styled.p`
-  color: var(--text-secondary);
-  line-height: 1.7;
-  margin: 0;
-`;
-
 const FilterBar = styled.div`
   width: min(100%, 760px);
   margin: 0 auto 1.55rem;
@@ -410,25 +404,6 @@ const PartnerName = styled.h3`
 const PartnerIndustry = styled.div`
   color: var(--text-secondary);
   font-size: 0.86rem;
-`;
-
-const ScopeList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-`;
-
-const ScopeChip = styled.span`
-  min-height: 32px;
-  display: inline-flex;
-  align-items: center;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  background: var(--background-color);
-  color: var(--text-secondary);
-  font-size: 0.8rem;
-  line-height: 1.2;
-  padding: 0.42rem 0.6rem;
 `;
 
 const PartnerPeriod = styled.div`
@@ -624,7 +599,6 @@ const PartnersPage = () => {
         <SectionHeader>
           <SectionLabel>{t('partners_catalog_label')}</SectionLabel>
           <SectionTitle>산업별 고객사</SectionTitle>
-          <SectionDescription>{t('partners_reference_desc')}</SectionDescription>
         </SectionHeader>
 
         <FilterBar aria-label={t('partners_filter_label')}>
@@ -660,11 +634,6 @@ const PartnersPage = () => {
                   <PartnerMeta>
                     <PartnerName>{partner.name}</PartnerName>
                     <PartnerIndustry>{t(partner.industryKey)}</PartnerIndustry>
-                    <ScopeList>
-                      {partner.scopes.map((scope) => (
-                        <ScopeChip key={scope}>{t(scope)}</ScopeChip>
-                      ))}
-                    </ScopeList>
                     <PartnerPeriod><strong>파트너십 기간</strong>{partnerPeriods[partner.name]}</PartnerPeriod>
                   </PartnerMeta>
                 </PartnerCard>
