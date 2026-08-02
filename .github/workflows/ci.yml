@@ -1,38 +1,80 @@
-name: Verify deployment
+name: Full CI
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: full-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   verify:
+    name: Verify source and committed Pages output
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout exact candidate
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
 
-      - name: Verify docs directory
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Classify docs output scope
+        id: scope
+        shell: bash
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
         run: |
-          echo "=== Build artifacts verification ==="
-          echo ""
-          if [ ! -d "docs" ]; then
-            echo "❌ ERROR: docs/ directory not found"
-            exit 1
+          set -euo pipefail
+          docs_drift=false
+          base_sha="${BEFORE_SHA}"
+
+          if [[ "${docs_drift}" != "true" ]]; then
+            if [[ -z "${base_sha:-}" || "${base_sha}" =~ ^0+$ ]] || ! git cat-file -e "${base_sha}^{commit}"; then
+              docs_drift=true
+            else
+              changed_files="$(git diff --name-only "${base_sha}" "${GITHUB_SHA}")"
+              if grep -Eq '^(src/|public/|locales/|docs/|index\.html$|package(-lock)?\.json$|vite\.config\.(js|mjs|ts)$)' <<<"${changed_files}"; then
+                docs_drift=true
+              fi
+            fi
           fi
 
-          if [ ! -f "docs/index.html" ]; then
-            echo "❌ ERROR: docs/index.html not found"
+          echo "docs_drift=${docs_drift}" >> "${GITHUB_OUTPUT}"
+          echo "Committed docs drift check required: ${docs_drift}"
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Unit tests
+        run: npm run test:run
+
+      - name: Production build
+        run: npm run build
+
+      - name: Verify committed docs output has no drift
+        if: steps.scope.outputs.docs_drift == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          drift="$(git status --porcelain --untracked-files=all -- docs)"
+          if [[ -n "${drift}" ]]; then
+            echo "::error::docs/ does not match the production build for this candidate."
+            printf '%s\n' "${drift}"
             exit 1
           fi
-
-          echo "✓ docs/ directory exists"
-          echo "✓ docs/index.html exists"
-          echo ""
-          echo "=== Deployment structure ==="
-          ls -lh docs/ | head -15
-          echo ""
-          echo "Total size:"
-          du -sh docs/
-          echo ""
-          echo "✓ Ready for GitHub Pages deployment from /docs"
+          test -f docs/index.html

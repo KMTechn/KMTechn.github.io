@@ -1,0 +1,8 @@
+# Only the repository owner currently has write access. Add an independent
+# reviewer before enabling required Code Owner review in the ruleset.
+/.github/CODEOWNERS @KMTechn
+/.github/workflows/** @KMTechn
+/VERIFICATION_RELEASE_PROCESS.md @KMTechn
+/package.json @KMTechn
+/package-lock.json @KMTechn
+/vite.config.* @KMTechn
