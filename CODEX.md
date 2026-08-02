@@ -32,15 +32,19 @@
 
 ```powershell
 cd C:\company\program\KMTechn.github.io
-npm install
+npm ci
 npm run dev
-npm run build
-npm run preview
-npm run test:run
-npm run lint
+
+# 개발 중 변경 영역 quick-check
+npx eslint <changed-files>
+npm run test:run -- <test-file>
 ```
 
-`npm run lint`는 `eslint.config.js`가 `eslint-plugin-react-refresh`를 참조하지만 `package.json`에 명시되지 않은 상태일 수 있어 먼저 의존성 상태를 확인한다.
+빌드 설정·정적 자산 경계를 바꾼 경우에만 `npm run build`를 quick-check에 추가한다.
+전체 `npm run lint`, `npm run test:run`, `npm run build`와 committed `docs/` drift는
+최종 main SHA의 Full CI가 한 번 소유한다. exact 역할과 배포 경계는
+`VERIFICATION_RELEASE_PROCESS.md`를 따른다. `eslint-plugin-react-refresh`는 현재
+`package.json` devDependency에 고정되어 있다.
 
 ## 주요 파일
 
