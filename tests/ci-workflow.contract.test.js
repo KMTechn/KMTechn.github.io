@@ -1,9 +1,15 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import process from 'node:process';
 import { describe, expect, it } from 'vitest';
 
 const workflowPath = resolve(process.cwd(), '.github/workflows/ci.yml');
 const workflow = readFileSync(workflowPath, 'utf8');
+const deployWorkflowPath = resolve(
+  process.cwd(),
+  '.github/workflows/deploy-pages.yml',
+);
+const deployWorkflow = readFileSync(deployWorkflowPath, 'utf8');
 
 describe('Full CI docs drift classification contract', () => {
   it('queries accumulated successful main-push runs with read-only permissions', () => {
@@ -58,6 +64,58 @@ describe('Full CI docs drift classification contract', () => {
     );
     expect(workflow).toContain(
       "if: steps.scope.outputs.docs_drift == 'true'",
+    );
+  });
+});
+
+describe('Pages deployment decision contract', () => {
+  it('runs only after the named Full CI has completed', () => {
+    expect(deployWorkflow).toContain('workflow_run:');
+    expect(deployWorkflow).toContain('workflows: [Full CI]');
+    expect(deployWorkflow).toContain('types: [completed]');
+    expect(deployWorkflow).not.toMatch(/\n\s+push:/);
+    expect(deployWorkflow).not.toContain('npm ci');
+    expect(deployWorkflow).not.toContain('npm run');
+  });
+
+  it('revalidates the exact successful main SHA before deployment', () => {
+    expect(deployWorkflow).toContain('UPSTREAM_RUN_ID: ${{ github.event.workflow_run.id }}');
+    expect(deployWorkflow).toContain('VERIFIED_SHA: ${{ github.event.workflow_run.head_sha }}');
+    expect(deployWorkflow).toContain('/actions/runs/${UPSTREAM_RUN_ID}');
+    expect(deployWorkflow).toContain('.name == "Full CI"');
+    expect(deployWorkflow).toContain('.conclusion == "success"');
+    expect(deployWorkflow).toContain('.event == "push"');
+    expect(deployWorkflow).toContain('.head_branch == "main"');
+    expect(deployWorkflow).toContain('(.head_sha | ascii_downcase) == $sha');
+    expect(deployWorkflow).toContain('/git/ref/heads/main');
+    expect(deployWorkflow).toContain('needs: validate');
+
+    const upload = deployWorkflow.indexOf('Upload exact committed Pages artifact');
+    const revalidate = deployWorkflow.indexOf(
+      'Revalidate exact SHA immediately before Pages mutation',
+    );
+    const deploy = deployWorkflow.indexOf('Deploy exact artifact to GitHub Pages');
+    expect(upload).toBeGreaterThan(-1);
+    expect(revalidate).toBeGreaterThan(upload);
+    expect(deploy).toBeGreaterThan(revalidate);
+  });
+
+  it('keeps Pages mutation permissions and archive structure checks explicit', () => {
+    expect(deployWorkflow).toContain('contents: read');
+    expect(deployWorkflow).toContain('actions: read');
+    expect(deployWorkflow).toContain('pages: write');
+    expect(deployWorkflow).toContain('id-token: write');
+    expect(deployWorkflow).toContain('find docs -type l');
+    expect(deployWorkflow).toContain('find docs -type f -links +1');
+    expect(deployWorkflow).toContain('sha256sum');
+    expect(deployWorkflow).toContain('path: docs');
+    expect(deployWorkflow).toContain('group: deploy-pages-production');
+    expect(deployWorkflow).toContain('cancel-in-progress: false');
+    expect(deployWorkflow.indexOf('group: deploy-pages-production')).toBeGreaterThan(
+      deployWorkflow.indexOf('needs: validate'),
+    );
+    expect(deployWorkflow.indexOf('environment:')).toBeGreaterThan(
+      deployWorkflow.indexOf('needs: validate'),
     );
   });
 });

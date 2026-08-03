@@ -58,6 +58,7 @@ npm run test:run -- <test-file>
 - `locales/*/translation.json`, `public/locales/*/translation.json`: 번역 데이터.
 - `public/org-structure.json`: 조직도 데이터.
 - `docs/`: Vite build 산출물. GitHub Pages 배포 대상이다.
+- `.github/workflows/deploy-pages.yml`: 성공한 exact-SHA Full CI 뒤에만 committed `docs/`를 게시한다.
 
 ## 설정과 배포
 

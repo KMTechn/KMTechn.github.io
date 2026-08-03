@@ -1,0 +1,143 @@
+name: Deploy Pages
+run-name: deploy-pages/${{ github.event.workflow_run.head_sha }}/${{ github.event.workflow_run.id }}
+
+on:
+  workflow_run:
+    workflows: [Full CI]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate exact successful Full CI SHA
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      contents: read
+      actions: read
+    outputs:
+      upstream_run_id: ${{ steps.eligibility.outputs.upstream_run_id }}
+      verified_sha: ${{ steps.eligibility.outputs.verified_sha }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+      UPSTREAM_RUN_ID: ${{ github.event.workflow_run.id }}
+      VERIFIED_SHA: ${{ github.event.workflow_run.head_sha }}
+
+    steps:
+      - name: Require exact successful main Full CI
+        id: eligibility
+        shell: bash
+        run: |
+          set -euo pipefail
+          verified_sha="${VERIFIED_SHA,,}"
+          if [[ ! "${verified_sha}" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "::error::Invalid upstream Full CI SHA: ${VERIFIED_SHA}"
+            exit 1
+          fi
+
+          run_json="$(gh api "/repos/${GITHUB_REPOSITORY}/actions/runs/${UPSTREAM_RUN_ID}")"
+          if ! jq -e --arg sha "${verified_sha}" '
+            .name == "Full CI"
+            and .conclusion == "success"
+            and .event == "push"
+            and .head_branch == "main"
+            and (.head_sha | ascii_downcase) == $sha
+          ' <<<"${run_json}" > /dev/null; then
+            echo "::error::Upstream run is not the successful main Full CI for ${verified_sha}."
+            exit 1
+          fi
+
+          current_main="$(gh api "/repos/${GITHUB_REPOSITORY}/git/ref/heads/main" --jq '.object.sha' | tr '[:upper:]' '[:lower:]')"
+          if [[ "${current_main}" != "${verified_sha}" ]]; then
+            echo "::error::main advanced from ${verified_sha} to ${current_main}; refusing stale deployment."
+            exit 1
+          fi
+          echo "verified_full_ci_run=${UPSTREAM_RUN_ID}"
+          echo "verified_sha=${verified_sha}"
+          echo "upstream_run_id=${UPSTREAM_RUN_ID}" >> "${GITHUB_OUTPUT}"
+          echo "verified_sha=${verified_sha}" >> "${GITHUB_OUTPUT}"
+
+  deploy:
+    name: Deploy exact successful Full CI SHA
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: deploy-pages-production
+      cancel-in-progress: false
+    permissions:
+      contents: read
+      actions: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+      UPSTREAM_RUN_ID: ${{ needs.validate.outputs.upstream_run_id }}
+      VERIFIED_SHA: ${{ needs.validate.outputs.verified_sha }}
+
+    steps:
+      - name: Checkout exact verified SHA
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Validate committed Pages artifact structure and fingerprint
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f docs/index.html
+          if [[ -n "$(find docs -type l -print -quit)" ]]; then
+            echo "::error::docs/ must not contain symbolic links."
+            exit 1
+          fi
+          if [[ -n "$(find docs -type f -links +1 -print -quit)" ]]; then
+            echo "::error::docs/ must not contain hard-linked files."
+            exit 1
+          fi
+          file_count="$(find docs -type f | wc -l | tr -d ' ')"
+          byte_count="$(du -sb docs | cut -f1)"
+          fingerprint="$({ find docs -type f -print0 | sort -z | xargs -0 sha256sum; } | sha256sum | cut -d' ' -f1)"
+          echo "docs_files=${file_count}"
+          echo "docs_bytes=${byte_count}"
+          echo "docs_sha256=${fingerprint}"
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+
+      - name: Upload exact committed Pages artifact
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        with:
+          path: docs
+
+      - name: Revalidate exact SHA immediately before Pages mutation
+        shell: bash
+        run: |
+          set -euo pipefail
+          verified_sha="${VERIFIED_SHA,,}"
+          run_json="$(gh api "/repos/${GITHUB_REPOSITORY}/actions/runs/${UPSTREAM_RUN_ID}")"
+          if ! jq -e --arg sha "${verified_sha}" '
+            .name == "Full CI"
+            and .conclusion == "success"
+            and .event == "push"
+            and .head_branch == "main"
+            and (.head_sha | ascii_downcase) == $sha
+          ' <<<"${run_json}" > /dev/null; then
+            echo "::error::Full CI evidence changed or is no longer eligible."
+            exit 1
+          fi
+          current_main="$(gh api "/repos/${GITHUB_REPOSITORY}/git/ref/heads/main" --jq '.object.sha' | tr '[:upper:]' '[:lower:]')"
+          if [[ "${current_main}" != "${verified_sha}" ]]; then
+            echo "::error::main advanced to ${current_main}; refusing stale Pages mutation."
+            exit 1
+          fi
+
+      - name: Deploy exact artifact to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
